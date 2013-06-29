@@ -29,6 +29,9 @@ IpoWeb::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  # Use letter opener for mail delivery (github.com/ryanb/letter_opener)
+  config.action_mailer.delivery_method = :letter_opener
+
   # Do not compress assets
   config.assets.compress = false
 

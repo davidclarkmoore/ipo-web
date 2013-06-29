@@ -22,6 +22,37 @@ end
 
 gem 'jquery-rails'
 
+group :development do
+  gem 'letter_opener'
+
+  # Speed and testing Tools (not needed on testing/integration server)
+  gem 'guard'
+  gem 'rb-fsevent'
+  gem 'zeus'
+  gem 'guard-rspec'
+
+  # Debugger and REPL
+  gem 'pry'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
+end
+
+group :test, :development do
+  gem 'rspec'
+  gem 'rspec-rails', ">= 2.0"
+  gem 'shoulda-matchers'
+  gem 'factory_girl', ">= 4.2.0"
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'rr'
+  gem 'ffaker'
+  gem 'database_cleaner'
+
+  gem 'ruby_gntp'
+  gem 'fuubar'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -1,0 +1,221 @@
+@import "base";
+@import "compass/css3";
+@import "flat-ui";
+
+/* apply a natural box layout model to all elements */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* ================
+   Semantic Columns
+   ================ */
+.omega { @include omega; }
+.c1 { @include span-columns(1); }
+.c2 { @include span-columns(2); }
+.c3 { @include span-columns(3); }
+.c4 { @include span-columns(4); }
+.c5 { @include span-columns(5); }
+.c6 { @include span-columns(6); }
+.c7 { @include span-columns(7); }
+.c8 { @include span-columns(8); }
+.c9 { @include span-columns(9); }
+.c10 { @include span-columns(10); }
+.c11 { @include span-columns(11); }
+.c12 { @include span-columns(12); }
+
+/* ==================
+   Default Font Sizes
+   ================== */
+body {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+// TODO: Define consistent sizes for all h elements.
+h1 {
+  font-size: 2.1875em; /* = 35px/16px */
+  line-height: 1.257em; /* = 44px/35px */
+  margin-bottom: $baseline * 2;
+}
+
+h2 {
+  font-size: 1.875em; /* = 30px/16px */
+  line-height: 1.1em; /* = 44px/30px */
+  margin-bottom: $baseline * 3;
+
+  &.w-seperator {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: $baseline * 1.5;
+    margin-bottom:  $baseline  * 1.5;
+  }
+
+}
+
+h3 {
+  font-size: 1.5625em; /* = 25px/16px; */
+  line-height: 1.32em; /* = 25px/33px; */
+  margin-bottom: $baseline * 3;
+}
+
+p {
+  font-size: 0.875em; /* 16px is the default em size */
+  line-height: 1.5714285714285714em; /* = 22px/14px */
+  margin-bottom: $baseline * 2;
+}
+
+
+/* ================
+   Component Styles
+   ================ */
+
+.ui-datepicker {
+  font-size: 14px;
+}
+
+.table-head, .table-body {
+  font-size: 0.875em; /* 16px is the default em size */
+}
+
+
+/* ===========
+   Main Styles
+   =========== */
+
+.or {
+  font-size: 0.75em;
+  padding: 0 0.5em;
+}
+
+.container {
+  margin-top: $baseline * 2;
+  @include container;
+  //@include susy-grid-background;
+}
+
+header {
+  line-height: 2.75em; /* = 44px/16px */
+  margin-bottom: $baseline * 6;
+  h1, h2, h3, h4, h5, h6 { margin-bottom: 0; } /* remove margin. header handles. */
+  h1.title { @include span-columns(4); color: black; }
+  @include omega;
+  @include span-columns(12);
+}
+
+nav .link {
+  font-size: 1.25em;
+  text-align: center;
+  padding: 0;
+  line-height: inherit;
+  @include span-columns(2);
+}
+
+
+/* ===========
+   Form Styles
+   =========== */
+
+form {
+  label {
+    display: block;
+    margin-bottom: $baseline;
+    font-size: 14px; /** NEED TO DEFINE IN EMS **/
+  }
+  div.input { margin-bottom: $baseline * 2; }
+
+  .invalid {
+    position: static;
+    display: inherit;
+  }
+
+  span.error {
+    color: #e46b66;
+    font-size: 0.75em;
+    padding-left: 0.5em;
+    font-style: italic;
+  }
+}
+
+/* ====================
+   Page Specific Styles
+   ==================== */
+
+.not-available {
+  color: #999;
+  text-align: center;
+  margin: $baseline * 4;
+  @include span-columns(12 omega);
+}
+
+.explore-by { padding-right: 0.9em; }
+.explore {
+  @include span-columns(12 omega);
+  line-height: 2.0625em; /* = 33/16px */
+  border-bottom: 1px solid #ccc;
+  padding-bottom: $baseline * 2;
+  margin-bottom: $baseline * 2;
+
+  h1, h2, h3, h4, h5, h6 {
+    display: inline-block;
+    margin-bottom: 0;  /* remove margin. header handles. */
+  }
+
+  .new-project { margin-left: 1.5em; }
+
+  >.options {
+    @include span-columns(4);
+    @include omega;
+  }
+}
+
+.filter {
+  @include span-columns(12 omega);
+  line-height: 2.0625em; /* = 33/16px */
+  border-bottom: 1px solid #ccc;
+  padding-bottom: $baseline * 2;
+  margin-bottom: $baseline * 2;
+
+
+  >.sort { @include span-columns(3); }
+  >.include {
+    @include span-columns(6);
+    > span { margin-right: 0.9em; }
+    > span.interests { margin: 0 1em; }
+  }
+  >.search {
+    @include span-columns(3 omega);
+  }
+}
+
+.project {
+  @include nth-omega(3n);
+  background: rgb(240, 240, 240);
+  border-radius: 2px;
+  padding: 1em;
+  margin-bottom: $baseline * 2;
+
+  &:hover {
+    color: white;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background: rgba(32,170,229,0.95);
+    @include transition-property(all);
+    @include transition-duration(0.1s);
+
+    .date-bar {
+      background: rgba(0, 0, 0, 0.15);
+      color: white;
+      @include transition-property(all);
+      @include transition-duration(0.1s);
+    }
+  }
+
+  .date-bar {
+    margin: -1em;
+    margin-top: -0.5em;
+    padding: 0.5em 1em;
+    background: rgb(220, 220, 220);
+  }
+
+}
+
+#new-project {
+  >h2 { @include span-columns(12 omega) }
+}

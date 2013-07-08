@@ -1,0 +1,18 @@
+!!!
+%head
+  %title ipo web
+  = stylesheet_link_tag    "application", media: "all"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
+
+%body
+  .container
+    %header
+      = link_to projects_path do
+        %h1.title IPO Connection
+      %nav
+        %span.link.heading Explore
+        %span.link.heading Discover IPO
+        %span.link.heading Get Started
+
+    = yield

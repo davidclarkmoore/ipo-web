@@ -1,0 +1,12 @@
+#new-project
+  %h2.w-seperator Create a New Project
+
+  = simple_form_for @project, validate: true do |f|
+    = f.input :name
+    = f.input :description
+    = f.input :start_date, as: :date_picker
+    = f.input :end_date, as: :date_picker
+
+    = f.submit class: 'button button-green'
+    %span.or OR
+    = button_link_to 'Back to Projects', projects_path, :blue

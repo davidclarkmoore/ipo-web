@@ -1,0 +1,15 @@
+%table.table
+  %thead.table-head
+    %tr
+      %th Name
+      %th Description
+      %th Start
+      %th End
+
+  %tbody.table-body
+    - projects.each do |p|
+      %tr
+        %td= p.name
+        %td= p.description
+        %td= p.start_date
+        %td= p.end_date

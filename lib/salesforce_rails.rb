@@ -1,0 +1,1 @@
+require_relative 'salesforce_rails/connector'

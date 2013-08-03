@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
     @q = Project.search(params[:q])
     @projects = @q.result
 
+    binding.pry
+
     params[:view] ||= 'grid'
   end
 

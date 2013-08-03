@@ -1,0 +1,6 @@
+development:
+  client_id: abc
+  client_secret: xyz
+  username: example@example.com
+  password: password
+  security_token: pwd_token

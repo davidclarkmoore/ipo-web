@@ -1,21 +1,17 @@
 module SFRails
   attr_accessor :client
 
-  CLIENT_ID      = "3MVG98XJQQAccJQfOIfYKJq5IT9AZVYCZj_xsH4X6lEDy5iaO66XDey0VlRVILVTw3egQ.TAfI0xIwBGZickm"
-  SECRET         = "2727504907817902269"
-  SECURITY_TOKEN = "69eMZLjUu7oNpILujNU1AwVu"
-
   # Database connection module. Used to instantiate new connections to salesforce.
   # -- TODO: Handle connection authentication errors.
   # -- TODO: Extract connector values to YML file.
   def self.connection
     return @client if @client.present?
-    @client = Databasedotcom::Client.new client_id: CLIENT_ID,
-                                         client_secret: SECRET,
+    @client = Databasedotcom::Client.new client_id: SF_API_CONFIG["client_id"],
+                                         client_secret: SF_API_CONFIG["client_secret"],
                                          verify_mode: OpenSSL::SSL::VERIFY_NONE
 
-    @client.authenticate username: "james.strong@etherpros.com",
-                         password: "!#QE24wr#{SECURITY_TOKEN}"
+    @client.authenticate username: SF_API_CONFIG["username"],
+                         password: SF_API_CONFIG["password"] + SF_API_CONFIG["security_token"]
     @client
   end
 

@@ -10,6 +10,9 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'databasedotcom'
 
+gem 'unicorn' # Use unicorn as the app server
+gem 'capistrano' # Deploy with Capistrano
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -26,6 +29,7 @@ gem 'jquery-ui-rails'
 
 group :development do
   gem 'letter_opener'
+  gem 'hooves' # Unicorn Rack handler for `rails s`
 
   # Speed and testing Tools (not needed on testing/integration server)
   gem 'guard'
@@ -54,6 +58,3 @@ group :test, :development do
   gem 'ruby_gntp'
   gem 'fuubar'
 end
-
-gem 'unicorn' # Use unicorn as the app server
-gem 'capistrano' # Deploy with Capistrano

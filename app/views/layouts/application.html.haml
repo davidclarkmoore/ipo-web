@@ -8,13 +8,15 @@
   = csrf_meta_tags
 
 %body
+  .header-bg &nbsp;
   .container
     %header
       = link_to projects_path do
         %h1.title IPO Connection
       %nav
         %span.link.heading Explore
-        %span.link.heading Discover IPO
-        %span.link.heading Get Started
+        %span.link.heading Discover
+        %span.link.heading Learn
+        %span.link.heading Apply
 
     = yield

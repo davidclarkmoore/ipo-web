@@ -162,6 +162,15 @@ body {
   color: $color;
 }
 
+.header-bg {
+  background: url(header-bg.png) no-repeat;
+  margin-top: -25px;
+  height: 192px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
 .or {
   font-size: 0.75em; // TODO: Use compass for defining size.
   padding: 0 0.5em;
@@ -170,28 +179,43 @@ body {
 .container {
   @include leader();
   @include container;
-  //@include susy-grid-background;
+  // Enable if you want to see grid layout. Useful for development.
+  // @include susy-grid-background;
 }
 
 header {
-  @include adjust-leading-to(2);
-  @include trailer(2);
+  @include adjust-leading-to(6);
   @include omega;
-  @include span-columns(12);
+  @include span-columns(12 omega);
+  @include trailer(3);
 
-  h1, h2, h3, h4, h5, h6 { margin-bottom: 0; } /* remove margin. header handles. */
-  h1.title { @include span-columns(4); color: black; }
+  color: white;
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: inherit;
+    color: white;
+    margin-bottom: 0; /* remove margin. header handles. */
+  }
+
+  h1.title { @include span-columns(7); font-weight: thin; }
 
 }
 
-nav .link {
-  @include adjust-font-size-to(20px);
-  @include span-columns(2);
-  line-height: inherit;
-  text-align: center;
-  padding: 0;
-}
+nav {
+  @include span-columns(5 omega);
 
+  .link {
+    @include adjust-font-size-to(20px);
+    font-family: $header-font-family;
+    font-weight: 300;
+    line-height: inherit;
+    text-align: center;
+    padding: 0;
+    padding-right: 2em;
+    &:last-child { padding-right: 0;}
+  }
+
+}
 
 /* ===========
    Form Styles

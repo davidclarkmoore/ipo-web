@@ -1,65 +1,73 @@
+@import "reset";
 @import "base";
 @import "compass/css3";
-@import "flat-ui";
+@import "compass/typography/vertical_rhythm";
 
-/* apply a natural box layout model to all elements */
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+// TODO: Eventually remove all dependencies on flat-ui.
+@import "mixins";
+@import "tables";
+@import "button-dropdowns";
+@import "button-groups";
+// ====================================================
 
 /* ================
    Semantic Columns
    ================ */
-.omega { @include omega; }
-.c1 { @include span-columns(1); }
-.c2 { @include span-columns(2); }
-.c3 { @include span-columns(3); }
-.c4 { @include span-columns(4); }
-.c5 { @include span-columns(5); }
-.c6 { @include span-columns(6); }
-.c7 { @include span-columns(7); }
-.c8 { @include span-columns(8); }
-.c9 { @include span-columns(9); }
-.c10 { @include span-columns(10); }
-.c11 { @include span-columns(11); }
-.c12 { @include span-columns(12); }
 
-/* ==================
-   Default Font Sizes
-   ================== */
+.omega { @include omega; }
+.c1    { @include span-columns(1); }
+.c2    { @include span-columns(2); }
+.c3    { @include span-columns(3); }
+.c4    { @include span-columns(4); }
+.c5    { @include span-columns(5); }
+.c6    { @include span-columns(6); }
+.c7    { @include span-columns(7); }
+.c8    { @include span-columns(8); }
+.c9    { @include span-columns(9); }
+.c10   { @include span-columns(10); }
+.c11   { @include span-columns(11); }
+.c12   { @include span-columns(12); }
+
+/* ==========
+   Typography
+   ========== */
+
 body {
-  font-size: 16px;
-  line-height: 22px;
+  font-family: $body-font-family;
 }
 
-// TODO: Define consistent sizes for all h elements.
+h1, h2, h3, h4 {
+  font-family: $header-font-family;
+  font-weight: 300;
+  color: $header-color;
+}
+
 h1 {
-  font-size: 2.1875em; /* = 35px/16px */
-  line-height: 1.257em; /* = 44px/35px */
-  margin-bottom: $baseline * 2;
+  @include adjust-font-size-to(35px);
+  @include trailer();
 }
 
 h2 {
-  font-size: 1.875em; /* = 30px/16px */
-  line-height: 1.1em; /* = 44px/30px */
-  margin-bottom: $baseline * 3;
+  @include adjust-font-size-to(30px);
+  @include trailer(1.5);
 
   &.w-seperator {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: $baseline * 1.5;
-    margin-bottom:  $baseline  * 1.5;
+    @include trailing-border();
+    @include padding-trailer(0.5);
+    @include margin-trailer(0.5);
+    border-color: #ccc;
   }
 
 }
 
 h3 {
-  font-size: 1.5625em; /* = 25px/16px; */
-  line-height: 1.32em; /* = 25px/33px; */
-  margin-bottom: $baseline * 3;
+  @include adjust-font-size-to(25px);
+  @include trailer(1.5);
 }
 
 p {
-  font-size: 0.875em; /* 16px is the default em size */
-  line-height: 1.5714285714285714em; /* = 22px/14px */
-  margin-bottom: $baseline * 2;
+  @include adjust-font-size-to(16px);
+  @include trailer();
 }
 
 
@@ -67,12 +75,81 @@ p {
    Component Styles
    ================ */
 
+a.button { text-decoration: none; }
+.button {
+  @extend .button-default;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  line-height: 1;
+  vertical-align: top;
+
+  color: white;
+  text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  border-bottom: 3px solid;
+
+  &.active { font-weight: 400; }
+}
+
+@each $pair in $btn-colors {
+  .button-#{nth($pair, 1)} {
+    $btn-color: nth($pair, 2);
+    color: white;
+    background: $btn-color;
+    border-color: desaturate( darken($btn-color, 20), 10);
+
+    &:hover {
+      color: white;
+      background: lighten($btn-color, 8%);
+    }
+
+    &:active, &.active {
+      color: white;
+      background: darken($btn-color, 10%);
+    }
+
+  }
+}
+
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=search],
+textarea {
+  @include adjust-font-size-to(16px);
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 10px; // TODO: PX instead of EM? Not sure.
+  color: lighten($color, 15%);
+  background: white;
+  border: 2px solid #d9d9d9;
+  border-radius: 2px;
+
+  &:hover { border-color: #ccc; }
+
+  &:focus {
+    color: $color;
+    background: white;
+    border-color: $focus-color;
+    outline: none;
+  }
+}
+
+/**
+ * This PX definition of font size is required in order for flat-ui dropdowns to work.
+ * Eventually, once flat-ui dependency is removed, this should be axed.
+ */
+.button-group .button, .button-dropdown {
+  font-size: 16px;
+}
+
 .ui-datepicker {
   font-size: 14px;
 }
 
 .table-head, .table-body {
-  font-size: 0.875em; /* 16px is the default em size */
+  @include adjust-font-size-to(16px);
 }
 
 
@@ -80,32 +157,39 @@ p {
    Main Styles
    =========== */
 
+body {
+  background: #f4f3f3;
+  color: $color;
+}
+
 .or {
-  font-size: 0.75em;
+  font-size: 0.75em; // TODO: Use compass for defining size.
   padding: 0 0.5em;
 }
 
 .container {
-  margin-top: $baseline * 2;
+  @include leader();
   @include container;
   //@include susy-grid-background;
 }
 
 header {
-  line-height: 2.75em; /* = 44px/16px */
-  margin-bottom: $baseline * 6;
-  h1, h2, h3, h4, h5, h6 { margin-bottom: 0; } /* remove margin. header handles. */
-  h1.title { @include span-columns(4); color: black; }
+  @include adjust-leading-to(2);
+  @include trailer(2);
   @include omega;
   @include span-columns(12);
+
+  h1, h2, h3, h4, h5, h6 { margin-bottom: 0; } /* remove margin. header handles. */
+  h1.title { @include span-columns(4); color: black; }
+
 }
 
 nav .link {
-  font-size: 1.25em;
+  @include adjust-font-size-to(20px);
+  @include span-columns(2);
+  line-height: inherit;
   text-align: center;
   padding: 0;
-  line-height: inherit;
-  @include span-columns(2);
 }
 
 
@@ -116,10 +200,10 @@ nav .link {
 form {
   label {
     display: block;
-    margin-bottom: $baseline;
-    font-size: 14px; /** NEED TO DEFINE IN EMS **/
+    @include adjust-font-size-to(14px);
+    @include trailer(0.5);
   }
-  div.input { margin-bottom: $baseline * 2; }
+  div.input {  @include trailer(); }
 
   .invalid {
     position: static;
@@ -127,10 +211,10 @@ form {
   }
 
   span.error {
-    color: #e46b66;
-    font-size: 0.75em;
     padding-left: 0.5em;
+    font-size: 0.75em;
     font-style: italic;
+    color: #e46b66;
   }
 }
 
@@ -148,10 +232,11 @@ form {
 .explore-by { padding-right: 0.9em; }
 .explore {
   @include span-columns(12 omega);
-  line-height: 2.0625em; /* = 33/16px */
-  border-bottom: 1px solid #ccc;
-  padding-bottom: $baseline * 2;
-  margin-bottom: $baseline * 2;
+  @include adjust-leading-to(1, 16px);
+  @include padding-trailer();
+  @include margin-trailer();
+  @include trailing-border();
+  border-color: #ccc;
 
   h1, h2, h3, h4, h5, h6 {
     display: inline-block;
@@ -168,11 +253,11 @@ form {
 
 .filter {
   @include span-columns(12 omega);
-  line-height: 2.0625em; /* = 33/16px */
-  border-bottom: 1px solid #ccc;
-  padding-bottom: $baseline * 2;
-  margin-bottom: $baseline * 2;
-
+  @include adjust-leading-to(1.5, 16px);
+  @include padding-trailer();
+  @include margin-trailer();
+  @include trailing-border();
+  border-color: #ccc;
 
   >.sort { @include span-columns(3); }
   >.include {
@@ -187,10 +272,11 @@ form {
 
 .project {
   @include nth-omega(3n);
+  @include trailer();
   background: rgb(240, 240, 240);
   border-radius: 2px;
   padding: 1em;
-  margin-bottom: $baseline * 2;
+
 
   &:hover {
     color: white;

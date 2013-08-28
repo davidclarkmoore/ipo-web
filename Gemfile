@@ -10,6 +10,11 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'databasedotcom'
 
+gem 'wicked'
+gem 'enumerize'
+gem 'foreigner'
+gem 'activerecord-postgres-hstore'
+
 gem 'unicorn' # Use unicorn as the app server
 gem 'capistrano' # Deploy with Capistrano
 

@@ -1,0 +1,47 @@
+= render 'header', active_step: params[:id]
+
+%h2 Memorandum of Understanding
+
+%p In this Memorandum of Understanding, you, the Field Host, affirm that you represent, as an employee or an authorized partner, the organization seeking the intern(s) and you agree to facilitate food,  housing, and local transportation for pre-qualified participant(s). 
+ 
+%h3 PARTIES TO THIS INTERNSHIP:
+%p An internship is a three-way relationship between you, the FIELD HOST, the INTERN(s), and the MENTOR (SMC's Academic Coordinator). 
+ 
+ 
+ 
+%h3 THE INTERN
+%p The intern will be equipped through a series of training modules, assignments, and Mentor interviews before he/she arrives at the Field Project location. The Intern will function as if he/she were a member of the Field Project personnel. The intern is expected to be punctual and abide by cultural, community, and project etiquette, including dress code and safety/security requirements. The Intern will meet with the Field Host for weekly one-on-one interviews.
+ 
+%p Students may raise funds for their own internship or you may raise funds for the IPO Participant.  An internship is not a part-time job and no monetary compensation is provided and/or no employment offer after the internship term is expected. 
+ 
+%p Intern(s) will strive to complete all assignments on time, respect the confidentiality of information he/she may learn, make the best of constructive criticism, and present herself/himself in a manner that is a credit to the field project. Upon completion of the internship experience, the Intern will participate in "exit interviews" with both FIELD HOST and the MENTOR. 
+ 
+ 
+ 
+%h3 THE FIELD HOST:
+%p You, the Field Host, may or may not be the Project Leader. We are partnering with you and your project because a YWAM leader has or will recommend you to supervise the approved intern(s). INTERN applications and references will be sent to you for final approval. Formal acceptance will require your timely response.
+ 
+%p In addition to arranging housing, food, and local transport, you will be responsible for the Enculturation module, a one day orientation for the intern(s) after they arrive. The Enculturation is a vital component of the complete IPO Course training program. By leading the Enculturation module, you will personally introduce the Intern(s) to the Field Project and personnel. You will facilitate presentations about the history, strategic goals, and practical issues related to regular duties and weekly schedule, including any community/team practices. As appropriate, please include intern(s) in the regular rhythms of worship and intercessory prayer in your community.
+ 
+%p You will provide on-going supervision of the Intern(s), including weekly non-formal one-on-one interviews when you may ask open-ended questions about what they are learning. You are also agreeing to conduct an "exit interview" and fill out an evaluation of the intern'(s) performance within 48 hours of the completion of the Intern(s) departure.
+ 
+ 
+ 
+%h3 THE SMC MENTOR:
+%p The Mentor will coach the Intern(s) through the IPO learning modules prior to the arrival at the Field Project location. The Mentor is not expected to visit or assist in any way with the Field Project. The Mentor will regularly connect with the Intern via web or teleconference before, during (as available), and after the internship. 
+ 
+%p The Mentor will check on the intern'(s) progress on weekly assignments. The Mentor will conduct an "exit interview" with the Intern(s) to debrief and evaluate the experience. 
+ 
+ 
+ 
+%h3 SIGNING THE AGREEMENT
+%p In lieu of a signature, we ask that you acknowledge that you have read this Memorandum of Understanding and agree to fulfill the responsibilities to the intern as outlined above. By clicking the Memorandum of Understanding checkbox below, you are giving the Student Mobilization Centre permission to publish this internship opportunity (including description, dates, fees and photo). The SMC agrees to recruit and qualify student applicants according to the criteria you have created. 
+%p By checking this box, I agree to the terms of this Memorandum of Understanding.
+
+%p I have read the entire Memo. of Understanding and I agree to its terms
+= simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+  = f.input :agree_memo, as: :boolean
+  %p I agree to arrange transport and meed the student(s) at their port of arrival
+  = f.input :agree_to_transport, as: :boolean
+
+  = f.submit "Save & Finish"

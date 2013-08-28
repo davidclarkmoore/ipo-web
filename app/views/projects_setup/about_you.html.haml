@@ -1,3 +1,26 @@
 = render 'header', active_step: params[:id]
 
-%h2 About you page
+%h2 About You
+
+= simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+  = f.fields_for :field_host do |f_field_host|
+    = f_field_host.input :salutation
+    = f_field_host.input :first_name
+    = f_field_host.input :middle_initial
+    = f_field_host.input :last_name
+    = f_field_host.input :email
+    = f_field_host.input :preferred_phone
+    = f_field_host.input :phone_type
+
+  %h2 Your Background
+
+  = f.fields_for :organization do |f_organization|
+    = f_organization.input :name
+    = f_organization.input :organization_type
+    = f_organization.input :website
+
+  = f.fields_for :field_host do |f_field_host|
+    = f_field_host.input :role_title
+    = f_field_host.input :years_associated_with_organization, as: :integer
+
+  = f.submit "Save & Continue to Step #2"

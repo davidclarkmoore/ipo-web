@@ -1,0 +1,25 @@
+= render 'header', active_step: params[:id]
+
+%h2 The Project
+
+= simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+  = f.input :name, label: 'Internship Project Name:'
+  %h3 Are you interested in teams or individuals?
+  = f.input :team_mode, as: :boolean
+  = f.input :min_stay_duration
+  = f.input :min_students, label: 'Min. number of students to make this project worthwhile?'
+  = f.input :max_students, label: 'Max. number of students you can house at any one time?'
+
+  %h2 Project Sessions
+
+  %h3 What is the weekly cost for hosting/feeding a student for 1 week?
+
+  = f.input :per_week_cost, label: 'Per Week Cost for Each Student:'
+  = f.input :per_week_cost_final, as: :boolean, inline_label: "Is this final?"
+  %ul
+    %li This weekly cost will include all housing and all meal costs for student
+    %li Please include any additional costs for gear or equipment the student will need for the program
+
+  %h2 Student Requirements
+
+  = f.submit "Save & Continue to Step #3"

@@ -8,7 +8,7 @@ class Organization < ActiveRecord::Base
   has_many :field_hosts
   has_many :projects
 
-  attr_accessible :name, :organization_type
+  attr_accessible :name, :organization_type, :website
 
   validates_presence_of :name, :website, :organization_type
 end

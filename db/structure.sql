@@ -122,12 +122,14 @@ CREATE TABLE projects (
     id integer NOT NULL,
     name character varying(255),
     description text,
-    start_date date,
-    end_date date,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     sf_object_id character varying(255),
-    organization_id integer
+    organization_id integer,
+    field_host_id integer,
+    properties hstore,
+    status character varying(255),
+    wizard_status character varying(255)
 );
 
 
@@ -227,6 +229,14 @@ ALTER TABLE ONLY field_hosts
 
 
 --
+-- Name: projects_field_host_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY projects
+    ADD CONSTRAINT projects_field_host_id_fk FOREIGN KEY (field_host_id) REFERENCES field_hosts(id);
+
+
+--
 -- Name: projects_organization_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -247,3 +257,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130823165112');
 INSERT INTO schema_migrations (version) VALUES ('20130823165332');
 
 INSERT INTO schema_migrations (version) VALUES ('20130823165418');
+
+INSERT INTO schema_migrations (version) VALUES ('20130828211325');
+
+INSERT INTO schema_migrations (version) VALUES ('20130828222146');

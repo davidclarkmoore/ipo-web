@@ -1,4 +1,4 @@
 IpoWeb::Application.routes.draw do
   resources :projects
-  root :to => "projects#index"
+  root :to => "home#index"
 end

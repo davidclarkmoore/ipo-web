@@ -1,0 +1,87 @@
+// -------------
+// Project Index
+// -------------
+
+.not-available {
+  color: #999;
+  text-align: center;
+  margin: $baseline * 4;
+  @include span-columns(12 omega);
+}
+
+.explore-by { padding-right: 0.9em; }
+.explore {
+  @include span-columns(12 omega);
+  @include adjust-leading-to(1, 16px);
+  @include padding-trailer();
+  @include margin-trailer();
+  @include trailing-border();
+  border-color: #ccc;
+
+  h1, h2, h3, h4, h5, h6 {
+    display: inline-block;
+    margin-bottom: 0;  /* remove margin. header handles. */
+  }
+
+  .new-project { margin-left: 1.5em; }
+
+  >.options {
+    @include span-columns(4);
+    @include omega;
+  }
+}
+
+.filter {
+  @include span-columns(12 omega);
+  @include adjust-leading-to(1.5, 16px);
+  @include padding-trailer();
+  @include margin-trailer();
+  @include trailing-border();
+  border-color: #ccc;
+
+  >.sort { @include span-columns(3); }
+  >.include {
+    @include span-columns(6);
+    > span { margin-right: 0.9em; }
+    > span.interests { margin: 0 1em; }
+  }
+  >.search {
+    @include span-columns(3 omega);
+  }
+}
+
+.project {
+  @include nth-omega(3n);
+  @include trailer();
+  background: rgb(240, 240, 240);
+  border-radius: 2px;
+  padding: 1em;
+
+
+  &:hover {
+    color: white;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background: rgba(32,170,229,0.95);
+    @include transition-property(all);
+    @include transition-duration(0.1s);
+
+    .date-bar {
+      background: rgba(0, 0, 0, 0.15);
+      color: white;
+      @include transition-property(all);
+      @include transition-duration(0.1s);
+    }
+  }
+
+  .date-bar {
+    margin: -1em;
+    margin-top: -0.5em;
+    padding: 0.5em 1em;
+    background: rgb(220, 220, 220);
+  }
+
+}
+
+#new-project {
+  >h2 { @include span-columns(12 omega) }
+}

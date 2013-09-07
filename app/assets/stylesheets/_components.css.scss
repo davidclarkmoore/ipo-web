@@ -1,0 +1,146 @@
+// ============
+// Button Styles
+// ============
+
+a.button { text-decoration: none; }
+.button {
+  @extend .button-default;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  padding: 0.5em 1.25em;
+  line-height: 1;
+  vertical-align: top;
+
+  color: white;
+  text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  border-bottom: 3px solid;
+
+  font-weight: 600;
+  &.active { font-weight: 400; }
+}
+
+@each $pair in $btn-colors {
+  .button-#{nth($pair, 1)} {
+    $btn-color: nth($pair, 2);
+    color: white;
+    background: $btn-color;
+    border-color: desaturate( darken($btn-color, 20), 10);
+    -webkit-transition:all .08s ease-in;
+
+    &:hover {
+      color: white;
+      background: lighten($btn-color, 8%);
+      -webkit-transition:all .1s ease-in;
+    }
+
+    &:active, &.active {
+      color: white;
+      background: darken($btn-color, 10%);
+    }
+
+  }
+}
+
+// ==========
+// Box Styles
+// ==========
+
+.box {
+  @include padding-leader(2);
+  @include padding-trailer(1);
+}
+@each $pair in $box-colors {
+  .box-#{nth($pair, 1)} {
+    $box-color: nth($pair, 2);
+    background: $box-color;
+  }
+}
+
+.box-blue, .box-grey {
+  -webkit-font-smoothing: antialiased;
+  > h1, h2, h3, h4, p { color: white; }
+}
+
+.box-grey {
+  background-image: url(grey-box-bg.png);
+  > h1, h2, h3, h4, p {
+    color: black;
+  }
+}
+
+// ============
+// Input Styles
+// ============
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=search],
+textarea {
+  @include adjust-font-size-to(16px);
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 10px; // TODO: PX instead of EM? Not sure.
+  color: lighten($color, 15%);
+  background: white;
+  border: 2px solid #d9d9d9;
+  border-radius: 2px;
+
+  &:hover { border-color: #ccc; }
+
+  &:focus {
+    color: $color;
+    background: white;
+    border-color: $focus-color;
+    outline: none;
+  }
+}
+
+// =======
+// Tab Box
+// =======
+
+.tab {
+  @include adjust-font-size-to(20px);
+  @include adjust-leading-to(2, 20px);
+  @include leading-border(2px, 2, 20px);
+
+  display: inline-block;
+  padding: 0 1em;
+  font-family: $header-font-family;
+
+  background-color: #f4f4f4; // TODO: Extract color to variable.
+  border-color: #d6d6d6; // TODO: Extract color to variable.
+
+  &.active {
+    background-color: white;
+    border-color: #80c8d4; // TODO: Extract to variable.
+  }
+
+}
+
+.tab-box {
+  background-color: white;
+  height: 300px;
+  width: 100%;
+}
+
+
+
+
+/**
+ * This PX definition of font size is required in order for flat-ui dropdowns to work.
+ * Eventually, once flat-ui dependency is removed, this should be axed.
+ */
+.button-group .button, .button-dropdown {
+  font-size: 16px;
+}
+
+.ui-datepicker {
+  font-size: 14px;
+}
+
+.table-head, .table-body {
+  @include adjust-font-size-to(16px);
+}

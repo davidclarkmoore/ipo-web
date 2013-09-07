@@ -1,0 +1,51 @@
+// ---------
+// Home Page
+// ---------
+
+h1.title-search {
+  @include span-columns(12 omega);
+  @include trailer(4, 35px);
+  @extend .clearfix;
+
+  color: white;
+  -webkit-font-smoothing: antialiased;
+
+  input {
+    @include adjust-font-size-to(25px, 1, 35px);
+    @include adjust-leading-to(1, 16px);
+    display: block;
+    float: left;
+    width: 42.5%;
+  }
+
+  div {
+    width: 15%;
+    display: block;
+    float: left;
+    text-align: center;
+  }
+}
+
+.motto {
+  h2 { font-weight: bold; }
+  p {
+    @include adjust-font-size-to(20px);
+  }
+}
+
+.we-are-unique {
+  .col1 {
+    @include span-columns(5);
+    @include adjust-font-size-to(20px, 1.5);
+  }
+  .col2 {
+    @include leader(-3);
+    @include pre(1);
+    @include span-columns(6 omega);
+  }
+}
+
+.unique {
+  color: $light-grey;
+  font-weight: bold;
+}

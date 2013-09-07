@@ -10,5 +10,5 @@
  *
  *= require_self
  *= require jquery.ui.datepicker
- *= require_tree .
+ *= require screen
  */

@@ -1,0 +1,41 @@
+/* ==========
+   Typography
+   ========== */
+
+body {
+  font-family: $body-font-family;
+}
+
+h1, h2, h3, h4 {
+  font-family: $header-font-family;
+  font-weight: 300;
+  color: $header-color;
+}
+
+h1 {
+  @include adjust-font-size-to(35px);
+  @include trailer(1, 35px);
+}
+
+h2 {
+  @include adjust-font-size-to(30px);
+  @include trailer(1, 30px);
+
+  &.w-seperator {
+    @include trailing-border();
+    @include padding-trailer(0.5);
+    @include margin-trailer(0.5);
+    border-color: #ccc;
+  }
+
+}
+
+h3 {
+  @include adjust-font-size-to(25px);
+  @include trailer(1, 25px);
+}
+
+p {
+  @include adjust-font-size-to(16px);
+  @include trailer();
+}

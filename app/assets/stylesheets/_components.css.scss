@@ -127,8 +127,6 @@ textarea {
 }
 
 
-
-
 /**
  * This PX definition of font size is required in order for flat-ui dropdowns to work.
  * Eventually, once flat-ui dependency is removed, this should be axed.
@@ -144,3 +142,78 @@ textarea {
 .table-head, .table-body {
   @include adjust-font-size-to(16px);
 }
+
+
+// =========
+// Combo Box
+// =========
+
+.select2-container, .select2-dropdown-open.select2-drop-above {
+  .select2-choice {
+    // Select 2 doesn't seem to be sufficiently responsive.
+    // Will have to manage manually?
+    @include adjust-font-size-to(16px, 1.5);
+    height: 36px;
+    font-family: $header-font-family;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 600;
+
+    // TODO: Convert background to SASS.
+    background: #80c8d4;
+    color: white;
+
+    box-shadow: none;
+    border: none;
+    &:focus { outline: none; }
+  }
+  .select2-chosen {
+    padding: 0 0.5em;
+  }
+
+  .select2-choice .select2-arrow {
+    background: transparent;
+    border: none;
+    padding-right: 5px;
+    b { background: url(combo-arrow-down.png) no-repeat 50%; }
+  }
+}
+
+.select2-dropdown-open .select2-choice .select2-arrow b {
+  background: url(combo-arrow-up.png) no-repeat 50%;
+}
+
+.select2-drop {
+  box-shadow: none;
+}
+
+.select2-drop-active {
+  border: none;
+}
+
+.select2-search input {
+  background: white url(/assets/select2.png) no-repeat 100% -22px !important;
+  @include leader(0.5);
+  @include trailer(0.5);
+}
+
+.select2-no-results {
+  @include adjust-font-size-to(13px, 1, 16px);
+}
+
+.select2-results {
+  @include adjust-font-size-to(16px);
+
+  color: #333;
+  font-family: $header-font-family;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+
+  .select2-highlighted {
+    // TODO: Convert background to SASS.
+    background: #80c8d4;
+  }
+}
+
+

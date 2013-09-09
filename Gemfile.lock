@@ -237,6 +237,9 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    select2-rails (3.4.8)
+      sass-rails
+      thor (~> 0.14)
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
     simple_form (2.1.0)
@@ -311,6 +314,7 @@ DEPENDENCIES
   rspec-rails (>= 2.0)
   ruby_gntp
   sass-rails (~> 3.2.3)
+  select2-rails
   shoulda-matchers
   simple_form
   susy

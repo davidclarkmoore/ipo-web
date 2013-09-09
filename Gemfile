@@ -18,6 +18,9 @@ gem 'activerecord-postgres-hstore'
 gem 'unicorn' # Use unicorn as the app server
 gem 'capistrano' # Deploy with Capistrano
 
+
+gem 'select2-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

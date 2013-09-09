@@ -8,7 +8,7 @@
   = csrf_meta_tags
 
 %body
-  .header-bg &nbsp;
+  .header-bg-large &nbsp;
   .container
     %header
       = link_to projects_path do
@@ -16,4 +16,6 @@
 
       = render 'shared/navigation'
 
-    = yield
+    = yield :header
+
+  = yield

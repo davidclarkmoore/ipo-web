@@ -77,7 +77,7 @@ $buttonDropdownListColor: #eaedf5;
   position: relative;
   padding: 0 floor($buttonDropdownHeight * .4);
   line-height: $buttonDropdownHeight;
-  font-size: $fontSize;
+  /*font-size: $fontSize;*/
   color: #243140;
   text-shadow: 0 1px rgba(white, .2);
   background: $buttonDropdownListColor;

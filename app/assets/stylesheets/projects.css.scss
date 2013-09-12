@@ -85,3 +85,45 @@
 #new-project {
   >h2 { @include span-columns(12 omega) }
 }
+
+
+// ==============
+// New Form Style
+// =============
+form#new_project {
+  @include prefix(2);
+  @include suffix(2);
+  @include span-columns(12 omega);
+  input { width: 100%; }
+
+  .field-host-fields  { @include span-columns(6, 8); }
+  .field-host-profile { @include span-columns(2 omega, 8); }
+
+  div.input {
+    margin-bottom: 0;
+    @include margin-trailer(0.5, 16px);
+  }
+
+  .invalid span.error { display: none; }
+}
+
+.project_field_host_salutation { @include span-columns(1, 6); }
+.project_field_host_first_name { @include span-columns(2, 6); }
+.project_field_host_middle_initial { @include span-columns(1, 6); }
+.project_field_host_last_name {
+  @include span-columns(2 omega, 6);
+}
+
+.project_field_host_email {
+  @include span-columns(2 omega, 6);
+  @include post(4, 6);
+}
+
+.project_field_host_preferred_phone {
+  @include span-columns(2, 6);
+}
+
+.project_field_host_phone_type {
+  @include span-columns(2, 6);
+  @include post(2, 6);
+}

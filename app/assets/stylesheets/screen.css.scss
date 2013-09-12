@@ -52,8 +52,8 @@
    Main Styles
    =========== */
 
-.centered { text-align: center; }
-.italic { font-style: italic; }
+.centered, .center{ text-align: center; }
+.italic, .i { font-style: italic; }
 .or {
   font-size: 0.75em; // TODO: Use compass for defining size.
   padding: 0 0.5em;

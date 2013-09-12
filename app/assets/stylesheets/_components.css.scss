@@ -73,27 +73,38 @@ a.button { text-decoration: none; }
 // Input Styles
 // ============
 
-input[type=text],
-input[type=email],
-input[type=url],
-input[type=search],
+input[type=text], input[type=email], input[type=url],
+input[type=search], input[type=tel],
 textarea {
-  @include adjust-font-size-to(16px);
+  font-size: 1em;
+  line-height: 2em;
   display: inline-block;
   vertical-align: top;
-  padding: 0 10px; // TODO: PX instead of EM? Not sure.
   color: lighten($color, 15%);
   background: white;
+  border-style: solid;
+  margin: 0;
+  padding: 0 10px; // TODO: PX instead of EM? Not sure.
   border: 2px solid #d9d9d9;
   border-radius: 2px;
 
   &:hover { border-color: #ccc; }
-
   &:focus {
     color: $color;
     background: white;
     border-color: $focus-color;
     outline: none;
+  }
+}
+
+.invalid {
+  input[type=text], input[type=email], input[type=url],
+  input[type=search], input[type=tel], textarea {
+    border-color: $orange;
+    color: darken($orange, 10%);
+    background: white url(error-x.png) no-repeat right;
+
+    padding-right: 20px;
   }
 }
 
@@ -153,13 +164,12 @@ textarea {
     // Select 2 doesn't seem to be sufficiently responsive.
     // Will have to manage manually?
     @include adjust-font-size-to(16px, 1.5);
+
     height: 36px;
     font-family: $header-font-family;
     -webkit-font-smoothing: antialiased;
     font-weight: 600;
-
-    // TODO: Convert background to SASS.
-    background: #80c8d4;
+    background: $blue;
     color: white;
 
     box-shadow: none;
@@ -202,7 +212,6 @@ textarea {
 
 .select2-results {
   @include adjust-font-size-to(16px);
-
   color: #333;
   font-family: $header-font-family;
   -webkit-font-smoothing: antialiased;
@@ -210,10 +219,7 @@ textarea {
   margin: 0;
   padding: 0;
 
-  .select2-highlighted {
-    // TODO: Convert background to SASS.
-    background: #80c8d4;
-  }
+  .select2-highlighted { background: $blue; }
 }
 
 

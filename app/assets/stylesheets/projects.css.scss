@@ -90,11 +90,18 @@
 // ==============
 // New Form Style
 // =============
+
+
 form#new_project {
   @include prefix(2);
   @include suffix(2);
   @include span-columns(12 omega);
-  input { width: 100%; }
+
+  h3 { @include leader(1, 25px); }
+
+  .background { @include leader(1); }
+
+  .select2-container, input { width: 100%; }
 
   .field-host-fields  { @include span-columns(6, 8); }
   .field-host-profile { @include span-columns(2 omega, 8); }
@@ -115,8 +122,8 @@ form#new_project {
 }
 
 .project_field_host_email {
-  @include span-columns(2 omega, 6);
-  @include post(4, 6);
+  @include span-columns(4 omega, 6);
+  @include post(2, 6);
 }
 
 .project_field_host_preferred_phone {

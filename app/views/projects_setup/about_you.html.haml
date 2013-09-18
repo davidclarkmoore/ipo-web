@@ -1,8 +1,9 @@
 = render 'header', active_step: params[:id]
 
-%h3.center About You
-
 = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+
+  %h3.center About You
+
   = f.fields_for :field_host do |f_field_host|
 
     .field-host-fields
@@ -17,7 +18,7 @@
     .field-host-profile
       &nbsp;
 
-  .c12.omega
+  .background.c12.omega
     %h3.center Your Background
 
     = f.fields_for :organization do |f_organization|

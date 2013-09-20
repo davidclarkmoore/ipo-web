@@ -3,16 +3,18 @@
 // ============
 
 a.button { text-decoration: none; }
-.button {
+.button, input[type=submit].button {
   @extend .button-default;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
+  margin: 0;
   padding: 0.5em 1.25em;
   line-height: 1;
   vertical-align: top;
 
   color: white;
   text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.15);
+  border: none;
   border-radius: 3px;
   border-bottom: 3px solid;
 
@@ -21,7 +23,7 @@ a.button { text-decoration: none; }
 }
 
 @each $pair in $btn-colors {
-  .button-#{nth($pair, 1)} {
+  .button-#{nth($pair, 1)}, input[type=submit].button-#{nth($pair, 1)} {
     $btn-color: nth($pair, 2);
     color: white;
     background: $btn-color;
@@ -74,7 +76,7 @@ a.button { text-decoration: none; }
 // ============
 
 input[type=text], input[type=email], input[type=url],
-input[type=search], input[type=tel],
+input[type=search], input[type=tel], input[type=number]
 textarea {
   font-size: 1em;
   line-height: 2em;
@@ -108,6 +110,13 @@ textarea {
   }
 }
 
+
+input[type=submit] {
+  border: none;
+  display: inline-block;
+  @include adjust-font-size-to(14px);
+}
+
 // =======
 // Tab Box
 // =======
@@ -139,9 +148,19 @@ textarea {
 
 
 /**
+ * This height definition of font size is required in order for flat-ui dropdowns to work.
+ * Eventually, once flat-ui dependency is removed, this should be axed.
+ */
+
+.button-group {
+  height: 36px;
+}
+
+/**
  * This PX definition of font size is required in order for flat-ui dropdowns to work.
  * Eventually, once flat-ui dependency is removed, this should be axed.
  */
+
 .button-group .button, .button-dropdown {
   font-size: 16px;
 }
@@ -230,14 +249,11 @@ $steps: 6;
 $step-percent: 100/($steps);
 
 .wizard-steps {
-  @include leader(1);
+  @include leader(2);
   @include trailer(1);
   /*
-  @include prefix(2);
-  @include suffix(2);
   @include span-columns(12 omega);
   */
-
 
   ul li {
     @include leader(0.5, 14px);
@@ -272,7 +288,7 @@ $step-percent: 100/($steps);
       width: 10px;
       position: absolute;
 
-      background: #CFCFCF;
+      background: rgba(0, 0, 0, .15);
       border-radius: 50%;
 
       top: -23px;

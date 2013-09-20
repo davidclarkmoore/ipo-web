@@ -10,7 +10,8 @@ module ApplicationHelper
   end
 
   def button label, color, options={}
-    content_tag(:button, label, class: "button button-#{color.to_s}")
+    options.merge!({:class => "button button-#{color.to_s}"})
+    content_tag(:button, label, options)
   end
 
   def button_link_to label, href, color, options={}

@@ -53,6 +53,8 @@
    =========== */
 .clr { clear: both; }
 .centered, .center{ text-align: center; }
+.block-center { display: block; text-align: center; }
+
 .italic, .i { font-style: italic; }
 .or {
   font-size: 0.75em; // TODO: Use compass for defining size.

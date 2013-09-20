@@ -92,7 +92,7 @@
 // =============
 
 
-form#new_project {
+form#new_project, form.edit_project {
   @include prefix(2);
   @include suffix(2);
   @include span-columns(12 omega);
@@ -112,6 +112,11 @@ form#new_project {
   }
 
   .invalid span.error { display: none; }
+  input[type=submit] {
+    @include adjust-font-size-to(16px, 1, 14px);
+    @include leader(1, 16px);
+    @include trailer(1, 16px);
+  }
 }
 
 .project_field_host_salutation { @include span-columns(1, 6); }
@@ -133,4 +138,24 @@ form#new_project {
 .project_field_host_phone_type {
   @include span-columns(2, 6);
   @include post(2, 6);
+}
+
+.project_per_week_cost_final {
+  display: inline;
+  input { width: auto !important; }
+}
+
+h4.teams-individuals {
+  @include adjust-leading-to(1.5, 18px);
+}
+
+#team-select {
+  // @include trailer(2);
+  // TODO: Currently button dropdown cannot use em definitions.
+  margin-bottom: 36px;
+}
+
+ul.weekly-cost {
+  @include leader(1);
+  @include trailer(1);
 }

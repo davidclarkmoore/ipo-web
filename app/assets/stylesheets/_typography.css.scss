@@ -35,6 +35,11 @@ h3 {
   @include trailer(1, 25px);
 }
 
+h4 {
+  @include adjust-font-size-to(18px);
+  @include trailer(1, 18px);
+}
+
 p {
   @include adjust-font-size-to(16px);
   @include trailer();

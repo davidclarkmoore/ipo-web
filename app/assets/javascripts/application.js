@@ -16,9 +16,5 @@
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require select2
+//= require router
 //= require_tree .
-
-
-$(document).ready(function() {
-	$("select").select2();
-});

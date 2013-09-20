@@ -7,7 +7,7 @@
   = javascript_include_tag "application"
   = csrf_meta_tags
 
-%body
+%body{'data-controller' => controller_name, 'data-action' => action_name, 'data-application' => 'ipo'}
   .header-bg &nbsp;
   .container
     %header

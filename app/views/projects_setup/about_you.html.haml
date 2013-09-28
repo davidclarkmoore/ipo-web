@@ -21,13 +21,19 @@
   .background.c12.omega
     %h3.center Your Background
 
-    = f.fields_for :organization do |f_organization|
-      = f_organization.input :name
-      = f_organization.input :organization_type
-      = f_organization.input :website
+    %fieldset
+      %ul.tab-list.small
+        %li.tab Choose Existing
+        %li.tab.active New Organization
+      .tab-box.w-padding
+        = f.fields_for :organization do |f_organization|
+          = f_organization.input :name
+          = f_organization.input :organization_type
+          = f_organization.input :website
 
-    = f.fields_for :field_host do |f_field_host|
-      = f_field_host.input :role_title
-      = f_field_host.input :years_associated_with_organization, as: :string
+    %fieldset
+      = f.fields_for :field_host do |f_field_host|
+        = f_field_host.input :role_title
+        = f_field_host.input :years_associated_with_organization, as: :string
 
   = f.submit "Save & Continue to Step #2", class: "button button-orange"

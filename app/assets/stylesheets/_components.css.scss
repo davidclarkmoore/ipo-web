@@ -144,10 +144,21 @@ input[type=submit] {
 
 }
 
+
+// TODO: Offsets vertical rhythm by 2px because of border.
+.tab-list.small .tab {
+  @include adjust-font-size-to(16px);
+  @include adjust-leading-to(1.5, 16px);
+  border-width: 2px;
+}
+
 .tab-box {
   background-color: white;
-  height: 300px;
   width: 100%;
+  // TODO: Remove faux style.
+  height: 300px;
+
+  &.w-padding { padding: 1em; }
 }
 
 

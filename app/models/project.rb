@@ -21,8 +21,27 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
 
+  # Stub for SalesForce population.
   def self.location_types
     %w(urban suburban rural slum)
+  end
+
+  # Stub for SalesForce population.
+  def self.housing_types
+    %w(Dormitory Apartment Family)
+  end
+
+  # Stub for SalesForce population.
+  def self.dining_locations
+    ['Cafeteria', 'With Family', 'Shop/Cook Own']
+  end
+
+  def self.location_safetys
+    ['Never Walk Alone', 'Daytime  OK', 'Free to Move Around Alone']
+  end
+
+  def self.student_attires
+    ['Very Modest', 'Business Dress', 'Casual Work', 'Very Informal']
   end
 
   # TODO: Partial validations with wizard steps

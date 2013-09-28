@@ -126,6 +126,11 @@ form#new_project, form.edit_project {
   }
 
   #location-type { margin-top: 0; }
+
+  fieldset {
+    @include leader(2);
+    @include trailer(2);
+  }
 }
 
 .project_field_host_salutation { @include span-columns(1, 6); }
@@ -167,4 +172,13 @@ h4.teams-individuals {
 ul.weekly-cost {
   @include leader(1);
   @include trailer(1);
+}
+
+// ------
+// Step 4
+// ------
+.project_housing_type { @include span-columns(3, 8); }
+.project_dining_location {
+  @include span-columns(3 omega, 8);
+  @include post(2, 8);
 }

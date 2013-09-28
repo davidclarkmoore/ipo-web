@@ -1,24 +1,30 @@
 = render 'header', active_step: params[:id]
 
-%h2 Add Photos & Videos
-
 = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+  %article
+    %h3.center Add Photos & Videos
 
-  %h2 Publish Your Internship Opportunity
+  %article
+    %h3.center Publish Your Internship Opportunity
 
-  = f.input :description, as: :text, label: 'Internship Project, Community, and Personal Overview'
+    %fieldset
+      %h4 Internship Project, Community, and Personal Overview
+      = f.input :description, as: :text, label: false
 
-  %h3 Housing & Meals
-  = f.input :housing_type
-  = f.input :dining_location
-  = f.input :housing_description, as: :text, label: false, placeholder: 'Describe the housing, diet, and any health concerns here....'
+    %fieldset
+      %h4 Housing & Meals
+      = f.input :housing_type, label: "Student housing type.", collection: Project.housing_types
+      = f.input :dining_location, label: "Student dining location.", collection: Project.dining_locations
+      = f.input :housing_description, as: :text, label: false, placeholder: 'Describe the housing, diet, and any health concerns here....'
 
-  %h3 Challenges at your location
-  = f.input :safety_level, as: :select
-  = f.input :challenges_description, as: :text, label: false, placeholder: 'Describe the specific cultural, safety, and lifestyle challenges at your location...'
+    %fieldset
+      %h4 Challenges at your location
+      = f.input :safety_level, label: "Describe the level of safety in your area:", collection: Project.location_safetys
+      = f.input :challenges_description, as: :text, label: false, placeholder: 'Describe the specific cultural, safety, and lifestyle challenges at your location...'
 
-  %h3 What are your community guidelines (Dress, schedule, etc...)
-  = f.input :attire, as: :select
-  = f.input :guidelines_description, as: :text, label: false, placeholder: 'Describe your project and/or organization guidelines'
+    %fieldset
+      %h4 What are your community guidelines (Dress, schedule, etc...)
+      = f.input :attire, label: "Describe a students typical attire:", colletion: Project.student_attires
+      = f.input :guidelines_description, as: :text, label: false, placeholder: 'Describe your project and/or organization guidelines'
 
-  = f.submit "Save & Continue to Step #5"
+  = f.submit "Save & Continue to Step #5", class: "button button-orange"

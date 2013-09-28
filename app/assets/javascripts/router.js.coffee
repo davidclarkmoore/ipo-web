@@ -3,6 +3,7 @@ ipo =
     init:
       $(document).ready ->
         $("select").select2();
+
 window.ipo = ipo
 
 UTIL =

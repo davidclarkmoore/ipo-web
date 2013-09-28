@@ -98,18 +98,25 @@ form#new_project, form.edit_project {
   @include span-columns(12 omega);
 
   h3 { @include leader(1, 25px); }
+  /* Prevent collapsing margins when defining form blocks */
+  article { overflow: auto; }
+  .select2-container, input, textarea { width: 100%; }
+  textarea {
+    font-size: 1em;
+    height: 5em;
+  }
 
   .background { @include leader(1); }
-
-  .select2-container, input { width: 100%; }
 
   .field-host-fields  { @include span-columns(6, 8); }
   .field-host-profile { @include span-columns(2 omega, 8); }
 
-  div.input {
-    margin-bottom: 0;
-    @include margin-trailer(0.5, 16px);
+  .location-col1 { @include span-columns(3, 8); }
+  .location-col2 {
+    @include prefix(0.5, 8);
+    @include span-columns(5 omega, 8);
   }
+
 
   .invalid span.error { display: none; }
   input[type=submit] {
@@ -117,6 +124,8 @@ form#new_project, form.edit_project {
     @include leader(1, 16px);
     @include trailer(1, 16px);
   }
+
+  #location-type { margin-top: 0; }
 }
 
 .project_field_host_salutation { @include span-columns(1, 6); }
@@ -152,7 +161,7 @@ h4.teams-individuals {
 #team-select {
   // @include trailer(2);
   // TODO: Currently button dropdown cannot use em definitions.
-  margin-bottom: 36px;
+  // margin-bottom: 36px;
 }
 
 ul.weekly-cost {

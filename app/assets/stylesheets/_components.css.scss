@@ -28,7 +28,7 @@ a.button { text-decoration: none; }
     color: white;
     background: $btn-color;
     border-color: desaturate( darken($btn-color, 20), 10);
-    -webkit-transition:all .08s ease-in;
+    -webkit-transition:all .04s ease-in;
 
     &:hover {
       color: white;
@@ -36,9 +36,13 @@ a.button { text-decoration: none; }
       -webkit-transition:all .1s ease-in;
     }
 
+    &:active {
+      box-shadow: inset 1px 1px 8px rgba(0, 0, 0, .3);
+    }
+
     &:active, &.active {
       color: white;
-      background: darken($btn-color, 10%);
+      background: $btn-color;
     }
 
   }
@@ -154,6 +158,8 @@ input[type=submit] {
 
 .button-group {
   height: 36px;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 /**

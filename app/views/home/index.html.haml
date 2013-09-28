@@ -1,34 +1,38 @@
 - content_for :header do
-  %h1.title-search
-    %input{type: 'text', placeholder: "Engineering, Medicine, Marketing, etc..."}
-    %div near
-    %input{type: 'text', placeholder: "City, Province or Postal Code"}
+  %h1.center.subtitle Global customized internships in your field of study
+  .title-search
+    .c5
+      %label Search your Field of Study:
+      %input{type: 'text', placeholder: "Engineering, Medicine, Marketing, etc..."}
+
+    .c4
+      %label And where you want to go:
+      %input{type: 'text', placeholder: "City, Province or Postal Code"}
+
+    .c2.omega
+      = button "Go", :green
 
 
-.box.box-blue
-  .motto.container
-    %h2.centered Immersive, missional apprenticeships
+.motto.box.box-light-yellow
+  .container
+    = image_tag 'lightbulbs.png', id: "lightbulbs"
+    %h2.centered Customized, Missional Internships
     %p.centered
-      Choose an Immersive, intensive, learning, serving experience that revolves around <br />
-      your dreams and passions to engage with God's world.
+      70% of Christ’s followers live in the Global South.
+      70% of Christ’s followers live in the Global South.
+      70% of Christ’s followers live in the Global South.
 
 
 .box.container
-  %h3.orange Go ahead, pick one!
   %ul.tab-list
     %li.tab.active Fields of Study
-    %li.tab Passion Area
+    %li.tab Passion Areas
   .tab-box
 
-.box.box-grey
-  .container.we-are-unique
-    %h1 Why we are <span class='unique'>unique</unique>.
+.box.box-green
+  .container
+    %h2.center.medium
+      Don’t see your field? <br />
+      Search all of our projects. Boom, its that easy.
 
-    %p.col1
-      Our main goal is to help <span class='unique italic'>you</span> cultivate your sense of calling.
-      Because an internship should be a life-giving time of discovery and purpose.
-      Of course you'll help people during your internship, but ultimately we'd love it
-      if you finished with a new sense of purpose.
-
-    .col2
-      <iframe width="100%" height="360" src="//www.youtube.com/embed/IpdoRUMeshw" frameborder="0" allowfullscreen></iframe>
+    = button "Search Our Projects", :orange, id: "search-projects"

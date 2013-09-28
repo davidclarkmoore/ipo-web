@@ -39,6 +39,7 @@ $blue   : #80c8d4;
 $green  : #accf8a;
 $grey   : #999;
 $shaded-grey: #ebedef;
+$light-yellow: #fefff5;
 
 $btn-colors: default   $grey,
              green     $green,
@@ -46,7 +47,10 @@ $btn-colors: default   $grey,
              orange    $orange;
 
 
-$box-colors: grey      #565656,
-             blue      #80c8d4;
+$box-colors: grey          #565656,
+             blue          $blue,
+             green		   $green,
+             light-yellow  $light-yellow;
+
 
 $light-grey: #c1c1c1;

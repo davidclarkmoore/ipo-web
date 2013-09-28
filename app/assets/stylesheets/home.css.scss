@@ -2,34 +2,51 @@
 // Home Page
 // ---------
 
-h1.title-search {
+#lightbulbs {
+  display: block;
+  width: 268px; // TODO: Make responsive.
+  margin: auto;
+  @include trailer(2);
+}
+
+.title-search {
   @include span-columns(12 omega);
-  @include trailer(4, 35px);
+  @include trailer(4);
   @extend .clearfix;
 
   color: white;
   -webkit-font-smoothing: antialiased;
 
-  input {
-    @include adjust-font-size-to(25px, 1, 35px);
-    @include adjust-leading-to(1, 16px);
-    display: block;
-    float: left;
-    width: 42.5%;
+  button {
+    width: 100%;
+    @include adjust-font-size-to(20px, 1);
+    @include leader(1, 20px);
   }
 
-  div {
-    width: 15%;
+  label {
+    @include adjust-leading-to(1);
+    text-transform: uppercase;
+    font-weight: bold;
     display: block;
-    float: left;
-    text-align: center;
   }
+
+  input {
+    @include adjust-font-size-to(20px, 2);
+    width: 100%;
+    display: block;
+    border: none;
+  }
+
 }
 
 .motto {
-  h2 { font-weight: bold; }
+  border-top: 8px solid #dcdcdc; // TODO: Make responsive?
   p {
-    @include adjust-font-size-to(20px);
+    font-weight: 300;
+    margin-bottom: 0;
+    @include adjust-font-size-to(25px);
+    @include pre(1);
+    @include post(1);
   }
 }
 
@@ -48,4 +65,15 @@ h1.title-search {
 .unique {
   color: $light-grey;
   font-weight: bold;
+}
+
+#search-projects {
+  @include adjust-font-size-to(25px);
+
+  @include leader(1, 25px);
+  @include trailer(2, 25px);
+
+  @include span-columns(4 omega);
+  @include pre(4);
+  @include post(4);
 }

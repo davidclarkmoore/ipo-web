@@ -19,6 +19,7 @@ a.button { text-decoration: none; }
   border-bottom: 3px solid;
 
   font-weight: 600;
+  font-size: 1em;
   &.active { font-weight: 400; }
 }
 
@@ -54,7 +55,7 @@ a.button { text-decoration: none; }
 
 .box {
   @include padding-leader(2);
-  @include padding-trailer(1);
+  @include padding-trailer(2);
 }
 @each $pair in $box-colors {
   .box-#{nth($pair, 1)} {
@@ -72,6 +73,21 @@ a.button { text-decoration: none; }
   background-image: url(grey-box-bg.png);
   > h1, h2, h3, h4, p {
     color: black;
+  }
+}
+
+.box-light-yellow {
+  > h1, h2 {
+    color: $orange;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.box-green {
+  > h1, h2 {
+    color: white;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
@@ -126,9 +142,8 @@ input[type=submit] {
 // =======
 
 .tab {
-  @include adjust-font-size-to(20px);
-  @include adjust-leading-to(2, 20px);
-  @include leading-border(2px, 2, 20px);
+  @include adjust-font-size-to(20px, 3);
+  @include leading-border(3px, 3, 20px);
 
   display: inline-block;
   padding: 0 1em;

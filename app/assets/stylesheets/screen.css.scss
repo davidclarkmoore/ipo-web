@@ -48,18 +48,21 @@
 .c11   { @include span-columns(11); }
 .c12   { @include span-columns(12); }
 
+.pre1 { @include pre(1); }
+
 /* ===========
    Main Styles
    =========== */
 .clr { clear: both; }
 .centered, .center{ text-align: center; }
 .block-center { display: block; text-align: center; }
-
 .italic, .i { font-style: italic; }
 .or {
   font-size: 0.75em; // TODO: Use compass for defining size.
   padding: 0 0.5em;
 }
+.light { font-weight: 300; }
+.medium { font-weight: 400; }
 
 body {
   background: #f4f3f3;
@@ -82,17 +85,18 @@ body {
 }
 .header-bg-large {
   background: url(header-bg-large.jpg) no-repeat;
-  height: 386px;
+  height: 730px;
 }
+
+.main-header { min-height: 700px; }
 
 header {
   @include adjust-leading-to(6);
-  @include omega;
-  @include span-columns(12 omega);
   @include trailer(3);
 
   color: white;
   -webkit-font-smoothing: antialiased;
+  overflow: auto;
 
   h1, h2, h3, h4, h5, h6 {
     line-height: inherit;
@@ -101,12 +105,24 @@ header {
   }
 
   h1.title {
+    color: #4b4b4b;
     @include span-columns(7);
-    font-weight: thin;
+    font-weight: bold;
   }
 }
 
+h1.subtitle {
+  -webkit-font-smoothing: antialiased;
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, .10);
+  font-weight: 300;
+  @include adjust-font-size-to(44px, 4);
+  @include trailer(3, 44px);
+
+}
+
 nav {
+  color: #4b4b4b;
   @include span-columns(5 omega);
 
   .link {
@@ -115,7 +131,7 @@ nav {
     line-height: inherit;
     text-align: center;
     padding: 0;
-    padding-right: 2em;
+    padding-right: 4em;
     &:last-child { padding-right: 0;}
     // font-weight: 300;
   }

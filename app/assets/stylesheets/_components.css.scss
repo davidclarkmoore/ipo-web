@@ -188,6 +188,10 @@ input[type=submit] {
   margin-bottom: 24px;
 }
 
+.button_group {
+  @extend .button-group;
+}
+
 /**
  * This PX definition of font size is required in order for flat-ui dropdowns to work.
  * Eventually, once flat-ui dependency is removed, this should be axed.

@@ -1,7 +1,7 @@
 ipo['projects_setup'] = {}
 ipo['projects_setup']['show'] = ->
 
-  connect_group_to_select $("#location-type"), $("#project_location_type")
+  connect_group_to_select $(".project_location_type.button_group"), $("#project_location_type")
 
   # Toggles checkbox based on element selected in a binary button group.
   # -- el:        element in button group that was clicked.

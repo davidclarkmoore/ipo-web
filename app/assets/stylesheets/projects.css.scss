@@ -128,7 +128,7 @@ form#new_project, form.edit_project {
     @include trailer(1, 16px);
   }
 
-  #location-type { margin-top: 0; }
+  .project_location_type { margin-top: 0; }
 
   fieldset {
     @include leader(2);

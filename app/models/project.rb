@@ -33,6 +33,12 @@ class Project < ActiveRecord::Base
   %w(required_languages related_student_passions related_fields_of_study student_educational_requirement).each do |f|
     # serialize f.to_sym, Array
     enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
+
+    define_method "#{f}_with_deserialize" do
+      value = send("#{f}_without_deserialize")
+      value = JSON.parse(send("#{f}_without_deserialize")) if value && value.is_a?(String)
+    end
+    alias_method_chain f, :deserialize
   end
 
   # TODO: Partial validations with wizard steps

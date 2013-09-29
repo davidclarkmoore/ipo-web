@@ -1,12 +1,20 @@
 en:
   enumerize:
     project:
+      dining_location:
+        - Cafeteria
+        - Cook Own Food in Shared Kitchen
+        - Shared Meals at Residence
+      housing_type:
+        - Dormitory
+        - Homestay
+        - Apartment
       internet_distance:
-        - On-site
-        - Within a few blocks (walkable)
-        - 2-4 Kilometers (bikeable)
-        - Must take mass transit
-        - Need special transport
+        - On-site (Free)
+        - On-site (Fee based)
+        - Off-site, a few blocks away
+        - Off-site, need mass transit
+        - Off-site, need special transport
         - No access
       location_type:
         - Urban
@@ -14,30 +22,91 @@ en:
         - Rural
         - Slum
       related_fields_of_study:
-        - Criminal Justice
-        - Communication Studies
-        - Education
-        - Social Work
-      related_student_passions:
-        children_at_risk: Children at Risk
-        human_trafficking: Human Trafficking
-        cross_cultural_evangelism: Cross-Cultural Evangelism
-      required_languages:
-        - Arabic
+        - Accounting & Finance
+        - Agriculture
+        - Aviation
+        - Business & Management
+        - Child Development
+        - Communications & Journalism
+        - Community Development
+        - Computers & Information Systems
+        - Construction & Civil Engineering
+        - Counseling
+        - Creative Writing
+        - Cultural Anthropology
+        - Education & Teaching
+        - Engineering: Elec, Chem, Mech
         - English
-        - French
-        - Japanese
-        - Greek
-        - German
-        - Hindi
-        - Spanish
+        - Environmental Studies
+        - Fine Art
+        - Hospitality & Service Mgmt
+        - Intercultural Studies
+        - International Studies
+        - Internet Technology
+        - Languages & Linguistics
+        - Law & Criminal Justice
+        - Marriage & Family
+        - Occupational & Physical Therapy
+        - Organizational Mgmt
+        - Political Science
+        - Public Relations & Marketing
+        - Psychology
+        - Social Work
+        - Sports & Recreation Mgmt
+        - Theology & Religion
+        - Video & Photography
+        - Web Design
+        - Youth Work
+        - Other
+      related_student_passions:    
+        - Business & Economic Development
+        - Children at Risk
+        - Church Planting
+        - Drug Abuse
+        - Environmental Stewardship
+        - Food Resources
+        - HIV/AIDS Awareness
+        - Human Traffiking
+        - International Students
+        - Malaria Prevention
+        - Other
+        - Poverty
+        - Pure Water Resources
+        - Solar Light &/or Heat
+        - Women & Children Health
+        - Youth & Young Adults
+      required_languages:
         - Mandarin
+        - Spanish
+        - English
+        - Arabic
+        - Hindi
+        - Bengali
+        - Portuguese
         - Russian
-        - Thai
+        - Japanese
+        - German
+        - Other
+      safety_level:
+        - Never Walk Alone
+        - Daytime OK to walk area
+        - Free to Move Around Alone
       student_educational_requirement:
-        - High School Diploma
-        - 4-year General College Degree
+        - High School Graduate
+        - Some College
+        - Associates (2-yr) Degree (AA)
+        - Bachelor's Degree (BA/BS)
+        - Some Post-Graduate Studies
+        - Graduate Degree (MA/MS)
+        - Doctoral Degree or Equivalent
+        - Other
       transportation_available:
+        - Private Team Vehicle
+        - Public Bus/Metro
         - Taxi/Rickshaw
-        - Public Bus
-        - Team Vehicle
+      typical_attire:
+        - Very Modest
+        - Business Dress
+        - Casual Work
+        - Very Informal
+        - Culturally Appropriate Dress Required

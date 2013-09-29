@@ -15,10 +15,14 @@ en:
         - YouTube
         - Twitter
       overall_education:
-        - Associates Degree (AA or AS)
-        - Bachelor's Degree (BA or BS)
-        - Master's Degree (MA or MS)
-        - None of the Above
+        - High School Graduate
+        - Some College
+        - Associates (2-yr) Degree (AA)
+        - Bachelor's Degree (BA/BS)
+        - Some Post-Graduate Studies
+        - Graduate Degree (MA/MS)
+        - Doctoral Degree or Equivalent
+        - Other
       phone_type:
         - Work
         - Household

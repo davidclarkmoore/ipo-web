@@ -34,3 +34,5 @@ ipo['projects_setup']['show'] = ->
 
   $("#private-location").click (e) ->
     select_group_element $(@), e, "private-location", "#project_location_private"
+
+ipo['projects_setup']['update'] = ipo['projects_setup']['show']

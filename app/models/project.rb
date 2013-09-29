@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  extend Enumerize
   include SFRails::ActiveRecord
   salesforce "Project__c", [:name, :description]
 
@@ -7,41 +8,31 @@ class Project < ActiveRecord::Base
 
   serialize :properties, ActiveRecord::Coders::Hstore
 
-  hstore_accessor :properties, :team_mode, :min_stay_duration, :min_students, :max_students,
-    :per_week_cost, :per_week_cost_final, :address, :internet_distance, :location_private, :location_type,
-    :location_description, :culture_description, :housing_type, :dining_location, :housing_description,
+  hstore_accessor :properties, :team_mode, :min_stay_duration, :min_students, :max_students, 
+    :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
+    :student_educational_requirement,
+    :address, :internet_distance, :location_private, :location_type, :transportation_available,
+    :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :attire, :guidelines_description, :agree_memo, :agree_to_transport
 
-  attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students,
-    :per_week_cost, :per_week_cost_final, :address, :internet_distance, :location_private, :location_type,
-    :location_description, :culture_description, :housing_type, :dining_location, :housing_description,
-    :safety_level, :challenges_description, :attire, :guidelines_description, :agree_memo, :agree_to_transport,
+  attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, 
+    :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
+    :student_educational_requirement,
+    :address, :internet_distance, :location_private, :location_type, :transportation_available,
+    :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
+    :safety_level, :challenges_description, :attire, :guidelines_description, :agree_memo, :agree_to_transport, 
     :field_host_attributes, :organization_attributes
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
 
-  # Stub for SalesForce population.
-  def self.location_types
-    %w(urban suburban rural slum)
+  %w(dining_location internet_distance location_type housing_type safety_level attire).each do |f|
+    enumerize f, in: I18n.t("enumerize.project.#{f}")
   end
 
-  # Stub for SalesForce population.
-  def self.housing_types
-    %w(Dormitory Apartment Family)
-  end
-
-  # Stub for SalesForce population.
-  def self.dining_locations
-    ['Cafeteria', 'With Family', 'Shop/Cook Own']
-  end
-
-  def self.location_safetys
-    ['Never Walk Alone', 'Daytime  OK', 'Free to Move Around Alone']
-  end
-
-  def self.student_attires
-    ['Very Modest', 'Business Dress', 'Casual Work', 'Very Informal']
+  %w(required_languages related_student_passions related_fields_of_study student_educational_requirement).each do |f|
+    # serialize f.to_sym, Array
+    enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
   end
 
   # TODO: Partial validations with wizard steps

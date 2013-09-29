@@ -117,6 +117,9 @@ form#new_project, form.edit_project {
     @include span-columns(5 omega, 8);
   }
 
+  .student-requirements-illustration { @include span-columns(4, 8); }
+  .student-requirements-fields { @include span-columns(4 omega, 8); }
+
 
   .invalid span.error { display: none; }
   input[type=submit] {

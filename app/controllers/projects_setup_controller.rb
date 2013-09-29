@@ -24,7 +24,7 @@ class ProjectsSetupController < ApplicationController
   private
   def current_project
     @current_project ||= begin
-      project = session[:project_id] && Project.find(session[:project_id])
+      project = session[:project_id] && Project.find_by_id(session[:project_id])
       project ||= Project.new
     end
   end

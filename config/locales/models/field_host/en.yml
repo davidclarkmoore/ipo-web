@@ -1,0 +1,32 @@
+en:
+  enumerize:
+    field_host:
+      experience_with_ywam:
+        - YWAM DTS
+        - Secondary YWAM/UofN Schools
+        - YWAM Short Term Outreach (Only)
+      heard_about_ipo:
+        - College Group
+        - YWAM Staff
+        - IPO Advocate
+        - Website
+        - Event
+        - Facebook
+        - YouTube
+        - Twitter
+      overall_education:
+        - Associates Degree (AA or AS)
+        - Bachelor's Degree (BA or BS)
+        - Master's Degree (MA or MS)
+        - None of the Above
+      phone_type:
+        - Work
+        - Household
+        - Mobile
+        - Other
+      salutation:
+        - Mr.
+        - Ms.
+        - Dr.
+        - Prof. 
+        - Rev.

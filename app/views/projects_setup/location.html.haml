@@ -18,9 +18,9 @@
     .location-col2
       %label Is your location urban, surburban or rural?
       #location-type.button-group
-        - Project.location_types.each do |type|
+        - Project.location_type.values.each do |type|
           = button type.capitalize, :grey, "data-value" => type
-      = f.input :location_type, label: false, collection: Project.location_types
+      = f.input :location_type, label: false, input_html: {style: "display:none;"}
 
 
 

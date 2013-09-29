@@ -1,0 +1,43 @@
+en:
+  enumerize:
+    project:
+      internet_distance:
+        - On-site
+        - Within a few blocks (walkable)
+        - 2-4 Kilometers (bikeable)
+        - Must take mass transit
+        - Need special transport
+        - No access
+      location_type:
+        - Urban
+        - Suburban
+        - Rural
+        - Slum
+      related_fields_of_study:
+        - Criminal Justice
+        - Communication Studies
+        - Education
+        - Social Work
+      related_student_passions:
+        children_at_risk: Children at Risk
+        human_trafficking: Human Trafficking
+        cross_cultural_evangelism: Cross-Cultural Evangelism
+      required_languages:
+        - Arabic
+        - English
+        - French
+        - Japanese
+        - Greek
+        - German
+        - Hindi
+        - Spanish
+        - Mandarin
+        - Russian
+        - Thai
+      student_educational_requirement:
+        - High School Diploma
+        - 4-year General College Degree
+      transportation_available:
+        - Taxi/Rickshaw
+        - Public Bus
+        - Team Vehicle

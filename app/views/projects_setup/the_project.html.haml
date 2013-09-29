@@ -11,8 +11,8 @@
 
   = f.input :team_mode, as: :boolean, label: false, input_html: {style:"display:none;"}
   -# = f.input :min_stay_duration
-  = f.input :min_students, label: 'Min. number of students to make this project worthwhile?'
-  = f.input :max_students, label: 'Max. number of students you can house at any one time?'
+  = f.input :min_students, label: 'Min. number of students to make this project worthwhile?', as: :integer
+  = f.input :max_students, label: 'Max. number of students you can house at any one time?', as: :integer
 
   %h3.center Project Sessions
 
@@ -25,6 +25,15 @@
   = f.input :per_week_cost, label: 'Per Week Cost for Each Student:'
   = f.input :per_week_cost_final, as: :boolean, label: "Is this final?"
 
-  -# %h2 Student Requirements
+  %h3.center Student Requirements
+
+  .student-requirements-illustration.center
+    %h4 Define the Right Students
+    %img(src="http://placehold.it/350x300")
+  .student-requirements-fields
+    = f.input :required_languages, label: 'Select Required Languages Students Must Speak'
+    = f.input :related_student_passions, label: 'Tag All Related Student Passions'
+    = f.input :related_fields_of_study, label: 'Tag all related fields of study that would benefit this project'
+    = f.input :student_educational_requirement, label: 'Student Educational Requirement'
 
   = f.submit "Save & Continue to Step #3", class: "button button-orange"

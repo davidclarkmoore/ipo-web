@@ -19,6 +19,7 @@ gem 'unicorn' # Use unicorn as the app server
 gem 'capistrano' # Deploy with Capistrano
 
 
+gem 'http_accept_language'
 gem 'select2-rails'
 
 # Gems used only for assets and not required

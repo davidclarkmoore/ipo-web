@@ -34,6 +34,6 @@
     %fieldset
       = f.fields_for :field_host do |f_field_host|
         = f_field_host.input :role_title
-        = f_field_host.input :years_associated_with_organization, as: :string
+        = f_field_host.input :years_associated_with_organization, as: :integer
 
   = f.submit "Save & Continue to Step #2", class: "button button-orange"

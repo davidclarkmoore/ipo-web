@@ -38,6 +38,7 @@ module IpoWeb
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     # config.i18n.default_locale = :de
 
     # Configure the default encoding used in templates for Ruby 1.9.
@@ -65,5 +66,8 @@ module IpoWeb
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    require 'http_accept_language'
+    config.middleware.use HttpAcceptLanguage::Middleware
   end
 end

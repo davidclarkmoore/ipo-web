@@ -11,10 +11,16 @@ module HstoreAccessor
         scope "has_#{key}", lambda { |value| where("#{hstore_attribute} @> (? => ?)", key, value) }
         define_method("#{key}=") do |value|
           send("#{hstore_attribute}_will_change!")
+          instance_variable_set "@#{key}".to_sym, nil
           send("#{hstore_attribute}=", (send(hstore_attribute) || {}).merge(key.to_s => value))
         end
         define_method(key) do
-          send(hstore_attribute) && send(hstore_attribute)[key.to_s]
+          cached = instance_variable_get "@#{key}".to_sym
+          return cached if cached
+          # cached ||= do
+            value = send(hstore_attribute) && send(hstore_attribute)[key.to_s]
+            instance_variable_set "@#{key}", value
+          # end
         end
       end
     end

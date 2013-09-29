@@ -21,12 +21,16 @@
   .background.c12.omega
     %h3.center Your Background
 
-    %fieldset
+    %fieldset#organizations
+      = hidden_field_tag 'is_new_organization', false
       %ul.tab-list.small
-        %li.tab Choose Existing
-        %li.tab.active New Organization
-      .tab-box.w-padding
-        = f.fields_for :organization do |f_organization|
+        %li.tab.active(data-box="#existing-organization") Choose Existing
+        %li.tab(data-box="#new-organization") New Organization
+      #existing-organization.tab-box.w-padding
+        = f.association :organization, include_blank: true, label: "Select Organization"
+        %p If you can't find your organization please choose the "New Organization" tab and fill it out
+      #new-organization.tab-box.w-padding(style="display: none")
+        = f.fields_for :organization, Organization.new, validate: true do |f_organization|
           = f_organization.input :name
           = f_organization.input :organization_type
           = f_organization.input :website

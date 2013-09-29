@@ -17,6 +17,17 @@ class ProjectsSetupController < ApplicationController
 
   def update
     @project = current_project
+
+    case step
+    when :about_you
+      if params[:is_new_organization] == "true"
+        params[:project].delete(:organization_id)
+        @project.build_organization
+      else
+        params[:project].delete(:organization_attributes)
+      end
+    end
+
     @project.update_attributes params[:project]
     render_wizard @project
     session[:project_id] = @project.id

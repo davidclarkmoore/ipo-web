@@ -177,6 +177,18 @@ ul.weekly-cost {
   @include trailer(1);
 }
 
+// -----
+// Step 1
+// ------
+.project_organization {
+  @include span-columns(4, 8);
+}
+#existing-organization p {
+  @include pre(1,8);
+  @include leader(1);
+  @include span-columns(3 omega, 8);
+}
+
 // ------
 // Step 4
 // ------

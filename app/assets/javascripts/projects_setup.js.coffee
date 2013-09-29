@@ -35,4 +35,9 @@ ipo['projects_setup']['show'] = ->
   $("#private-location").click (e) ->
     select_group_element $(@), e, "private-location", "#project_location_private"
 
+  $('#organizations .tab').click (e) ->
+    $(@).addClass('active').siblings().first().removeClass 'active'
+    $($(@).data('box')).show().siblings('.tab-box').first().hide()
+    $('#is_new_organization').val(($(@).data('box') == "#new-organization"))
+
 ipo['projects_setup']['update'] = ipo['projects_setup']['show']

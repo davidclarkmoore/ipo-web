@@ -21,7 +21,7 @@ class Project < ActiveRecord::Base
     :address, :internet_distance, :location_private, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport, 
-    :field_host_attributes, :organization_attributes
+    :field_host_attributes, :organization_attributes, :organization_id
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization

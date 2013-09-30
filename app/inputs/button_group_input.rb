@@ -5,7 +5,11 @@ class ButtonGroupInput <  SimpleForm::Inputs::CollectionInput
 
     html = ""
     collection.each do |c|
-      html += "<button class='button button-grey'>#{c}</button>"
+      if c.instance_of?(Array)
+        html += "<button class='button button-grey'>#{c[0]}</button>"
+      else
+        html += "<button class='button button-grey'>#{c}</button>"
+      end
     end
 
     html += @builder.collection_select(

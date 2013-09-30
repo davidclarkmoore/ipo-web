@@ -2,9 +2,9 @@ en:
   enumerize:
     field_host:
       experience_with_ywam:
-        - YWAM DTS
-        - Secondary YWAM/UofN Schools
-        - YWAM Short Term Outreach (Only)
+        ywam_dts: YWAM DTS
+        secondary_ywam_schools: Secondary YWAM/UofN Schools
+        ywam_short_term_outreach: YWAM Short Term Outreach (Only)
       heard_about_ipo:
         - College Group
         - YWAM Staff

@@ -31,7 +31,6 @@ class Project < ActiveRecord::Base
   end
 
   %w(required_languages related_student_passions related_fields_of_study student_educational_requirement).each do |f|
-    # serialize f.to_sym, Array
     enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
 
     define_method "#{f}_with_deserialize" do

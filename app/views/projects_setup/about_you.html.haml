@@ -39,5 +39,8 @@
       = f.fields_for :field_host do |f_field_host|
         = f_field_host.input :role_title
         = f_field_host.input :years_associated_with_organization
+        = f_field_host.input :overall_education
+        = f_field_host.input :experience_with_ywam, as: :check_boxes
+        = f_field_host.input :heard_about_ipo, as: :check_boxes
 
   = f.submit "Save & Continue to Step #2", class: "button button-orange"

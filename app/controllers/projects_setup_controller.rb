@@ -12,6 +12,7 @@ class ProjectsSetupController < ApplicationController
       @project.build_field_host unless @project.field_host
       @project.build_organization unless @project.organization
     end
+    @project.wizard_status = step.to_s # For client-side validations
     render_wizard
   end
 
@@ -27,6 +28,9 @@ class ProjectsSetupController < ApplicationController
         params[:project].delete(:organization_attributes)
       end
     end
+
+    params[:project][:wizard_status] = step.to_s
+    params[:project][:wizard_status] = 'complete' if step == steps.last
 
     @project.update_attributes params[:project]
     render_wizard @project

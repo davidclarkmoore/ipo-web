@@ -36,7 +36,7 @@
           = f_organization.input :website
 
     %fieldset
-      = f.fields_for :field_host do |f_field_host|
+      = f.fields_for :field_host, validate: true do |f_field_host|
         = f_field_host.input :role_title
         = f_field_host.input :years_associated_with_organization
         = f_field_host.input :overall_education

@@ -32,7 +32,7 @@ class FieldHost < ActiveRecord::Base
   belongs_to :organization
   has_many :projects
 
-  validates_presence_of :first_name, :last_name, :email, :preferred_phone, :phone_type
+  validates_presence_of :first_name, :last_name, :email, :preferred_phone, :phone_type, :overall_education
   validates :years_associated_with_organization, :numericality => {:allow_nil => true}
 
 end

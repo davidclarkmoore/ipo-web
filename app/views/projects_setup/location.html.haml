@@ -10,20 +10,20 @@
       = button 'Project location must be private', :grey, id: "private-location"
 
     = f.input :location_private, as: :boolean, label: false, input_html: {style:"display:none;"}
-    = f.input :address, label: "Street Address (include Street Address, City, Province, Country)"
+    = f.input :address, label: "Street Address (include Street Address, City, Province, Country)", validate: true
 
   %article
     %h3.center Describe Your Region
-    .location-col1= f.input :internet_distance, label: "How far away is the internet?"
+    .location-col1= f.input :internet_distance, label: "How far away is the internet?", validate: true
     .location-col2
       %label Is your location urban, surburban or rural?
       = f.input :location_type, label: false, as: :button_group
       -# = f.input :location_type, label: false, input_html: {style: "display:none;"}
-      = f.input :transportation_available, label: 'Describe the type(s) of transportation available in your area'
+      = f.input :transportation_available, label: 'Describe the type(s) of transportation available in your area', validate: true
 
 
 
-  = f.input :location_description, as: :text, label: "Describe Your City/Area", placeholder: 'Enter a few sentences on your area, region or city. What will students experience while they\'re at your location?'
-  = f.input :culture_description, as: :text, label: "Describe the Culture of the Area", placeholder: 'Enter a few sentences on your culture, events, the people, history, art, people\'s interests, their living, etc...'
+  = f.input :location_description, as: :text, label: "Describe Your City/Area", placeholder: 'Enter a few sentences on your area, region or city. What will students experience while they\'re at your location?', validate: true
+  = f.input :culture_description, as: :text, label: "Describe the Culture of the Area", placeholder: 'Enter a few sentences on your culture, events, the people, history, art, people\'s interests, their living, etc...', validate: true
 
   = f.submit "Save & Continue to Step #4", class: "button button-orange"

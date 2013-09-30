@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
     :address, :internet_distance, :location_private, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport, 
-    :field_host_attributes, :organization_attributes, :organization_id
+    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
@@ -39,6 +39,46 @@ class Project < ActiveRecord::Base
       value = JSON.parse(send("#{f}_without_deserialize")) if value && value.is_a?(String)
     end
     alias_method_chain f, :deserialize
+  end
+
+  # -- About You
+  validates :field_host, :organization, :associated => true, :if => :complete_or_about_you?
+  # -- The Project
+  validates :name, :student_educational_requirement, :presence => true, :if => :complete_or_the_project?
+  validates :team_mode, inclusion: {in: [true, false]}, :if => :complete_or_the_project?
+  validates :min_students, :max_students, :numericality => true, :if => :complete_or_the_project?
+  # -- Location
+  validates :location_private, :address, :internet_distance,
+      :location_description, :culture_description, :presence => true, :if => :complete_or_location?
+  # -- Content
+  validates :description, :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description,
+      :typical_attire, :guidelines_description, :presence => true, :if => :complete_or_content?
+  # -- Agreement
+  validates :agree_memo, :agree_to_transport, inclusion: { in: [true, 1, 'true', 'T', '1'] }, :if => :complete_or_agreement?
+
+
+  def complete?
+    wizard_status == 'complete'
+  end
+
+  def complete_or_about_you?
+    wizard_status.include?('about_you') || complete?
+  end
+
+  def complete_or_the_project?
+    wizard_status.include?('the_project') || complete?
+  end
+
+  def complete_or_location?
+    wizard_status.include?('location') || complete?
+  end
+
+  def complete_or_content?
+    wizard_status.include?('content') || complete?
+  end
+
+  def complete_or_agreement?
+    wizard_status.include?('agreement') || complete?
   end
 
   # TODO: Partial validations with wizard steps

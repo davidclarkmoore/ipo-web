@@ -17,7 +17,7 @@
     .location-col1= f.input :internet_distance, label: "How far away is the internet?"
     .location-col2
       %label Is your location urban, surburban or rural?
-      = f.input :location_type, label: false, as: :button_group, collection: Project.location_type.values
+      = f.input :location_type, label: false, as: :button_group
       -# = f.input :location_type, label: false, input_html: {style: "display:none;"}
 
 

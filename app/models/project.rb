@@ -26,11 +26,11 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
 
-  %w(dining_location internet_distance location_type housing_type safety_level typical_attire).each do |f|
+  %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")
   end
 
-  %w(required_languages related_student_passions related_fields_of_study student_educational_requirement).each do |f|
+  %w(required_languages related_student_passions related_fields_of_study).each do |f|
     enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
 
     define_method "#{f}_with_deserialize" do

@@ -9,13 +9,13 @@
 
     %fieldset
       %h4 Internship Project, Community, and Personal Overview
-      = f.input :description, as: :text, label: false
+      = f.input :description, as: :text, label: false, placeholder: 'Describe the project, the project facilities, organization, and project personnel here...'
 
     %fieldset
       %h4 Housing & Meals
       = f.input :housing_type, label: "Student housing type."
       = f.input :dining_location, label: "Student dining location."
-      = f.input :housing_description, as: :text, label: false, placeholder: 'Describe the housing, diet, and any health concerns here....'
+      = f.input :housing_description, as: :text, label: false, placeholder: 'Describe the housing, diet, and any health concerns here...'
 
     %fieldset
       %h4 Challenges at your location
@@ -25,6 +25,6 @@
     %fieldset
       %h4 What are your community guidelines (Dress, schedule, etc...)
       = f.input :typical_attire, label: "Describe a students typical attire:"
-      = f.input :guidelines_description, as: :text, label: false, placeholder: 'Describe your project and/or organization guidelines'
+      = f.input :guidelines_description, as: :text, label: false, placeholder: 'Describe your project and/or organization guidelines (such as dress, for personal/interns)...'
 
   = f.submit "Save & Continue to Step #5", class: "button button-orange"

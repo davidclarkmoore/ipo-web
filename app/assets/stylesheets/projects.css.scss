@@ -187,9 +187,9 @@ ul.weekly-cost {
   @include span-columns(4, 8);
 }
 #existing-organization p {
-  @include pre(1,8);
   @include leader(1);
-  @include span-columns(3 omega, 8);
+  @include span-columns(4 omega, 8);
+  padding-left: 1em;
 }
 
 .project_field_host_heard_about_ipo, .project_field_host_experience_with_ywam {

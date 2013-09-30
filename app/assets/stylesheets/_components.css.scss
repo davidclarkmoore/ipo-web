@@ -277,6 +277,36 @@ input[type=submit] {
   .select2-highlighted { background: $blue; }
 }
 
+
+// ======================
+// Multi-select (select2)
+// ======================
+
+.select2-container-multi {
+  .select2-choices .select2-search-choice {
+    line-height: 1.5em;
+  }
+
+  .select2-choices .select2-search-field input {
+    line-height: 1.5em;
+  }
+
+  .select2-search-choice-close {
+    top: 8px; // TODO: Responsive?
+  }
+}
+
+.select2-results .select2-no-results {
+  text-align: center;
+  background: white;
+  @include adjust-font-size-to(16px)
+}
+
+.select2-dropdown-open.select2-drop-above .select2-choices {
+  background: white;
+}
+
+
 // ==========
 // Wizard Bar
 // ==========

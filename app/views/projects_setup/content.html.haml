@@ -1,8 +1,20 @@
 = render 'header', active_step: params[:id]
 
+%article
+  %h3.center Add Photos & Videos
+  .add-images
+    %h4 Add Images
+    = simple_form_for ProjectMedia.new, url: project_media_index_path(@project) do |f|
+      #drop_zone Drag & Drop Photos Here
+      = f.input :image
+    %h4 Add Third Party Image
+    %h4 Add a YouTube Video
+  .saved-images
+    %h4 Saved Project Photos and Videos
+    .project_media
+      = render @project.project_media
+
 = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
-  %article
-    %h3.center Add Photos & Videos
 
   %article
     %h3.center Publish Your Internship Opportunity
@@ -28,3 +40,5 @@
       = f.input :guidelines_description, as: :text, label: false, placeholder: 'Describe your project and/or organization guidelines (such as dress, for personal/interns)...'
 
   = f.submit "Save & Continue to Step #5", class: "button button-orange"
+
+= render 'media_progress'

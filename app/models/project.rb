@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :organization
   belongs_to :field_host
+  has_many :project_media
 
   serialize :properties, ActiveRecord::Coders::Hstore
 

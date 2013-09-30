@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require select2

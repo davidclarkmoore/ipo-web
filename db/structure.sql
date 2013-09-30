@@ -115,6 +115,39 @@ ALTER SEQUENCE organizations_id_seq OWNED BY organizations.id;
 
 
 --
+-- Name: project_media; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE project_media (
+    id integer NOT NULL,
+    image character varying(255),
+    project_id integer,
+    "order" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: project_media_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE project_media_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_media_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE project_media_id_seq OWNED BY project_media.id;
+
+
+--
 -- Name: projects; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -179,6 +212,13 @@ ALTER TABLE ONLY organizations ALTER COLUMN id SET DEFAULT nextval('organization
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY project_media ALTER COLUMN id SET DEFAULT nextval('project_media_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
 
 
@@ -196,6 +236,14 @@ ALTER TABLE ONLY field_hosts
 
 ALTER TABLE ONLY organizations
     ADD CONSTRAINT organizations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_media_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY project_media
+    ADD CONSTRAINT project_media_pkey PRIMARY KEY (id);
 
 
 --
@@ -226,6 +274,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 ALTER TABLE ONLY field_hosts
     ADD CONSTRAINT field_hosts_organization_id_fk FOREIGN KEY (organization_id) REFERENCES organizations(id);
+
+
+--
+-- Name: project_media_project_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY project_media
+    ADD CONSTRAINT project_media_project_id_fk FOREIGN KEY (project_id) REFERENCES projects(id);
 
 
 --
@@ -261,3 +317,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130823165418');
 INSERT INTO schema_migrations (version) VALUES ('20130828211325');
 
 INSERT INTO schema_migrations (version) VALUES ('20130828222146');
+
+INSERT INTO schema_migrations (version) VALUES ('20130930062101');

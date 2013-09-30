@@ -15,6 +15,10 @@ gem 'enumerize'
 gem 'foreigner'
 gem 'activerecord-postgres-hstore'
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'jquery-fileupload-rails'
+
 gem 'unicorn' # Use unicorn as the app server
 gem 'capistrano' # Deploy with Capistrano
 

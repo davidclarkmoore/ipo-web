@@ -40,4 +40,22 @@ ipo['projects_setup']['show'] = ->
     $($(@).data('box')).show().siblings('.tab-box').first().hide()
     $('#is_new_organization').val(($(@).data('box') == "#new-organization"))
 
+  $('#new_project_media').fileupload
+    dataType: "script"
+    dropZone: $("#drop_zone")
+    add: (e, data) ->
+      data.context = $(tmpl("template-upload", data.files[0]))
+      $('#drop_zone').append(data.context)
+      data.submit()
+    progress: (e, data) ->
+      if data.context
+        progress = parseInt(data.loaded / data.total * 100, 10)
+        data.context.find('.bar').css('width', progress + '%')
+        if progress == 100
+          data.context.remove()
+
+  $('.project_media').on "ajax:success", ".media form", (event, data, status, xhr) ->
+    $(event.target).parent().fadeOut "slow", () ->
+      $(this).remove()
+
 ipo['projects_setup']['update'] = ipo['projects_setup']['show']

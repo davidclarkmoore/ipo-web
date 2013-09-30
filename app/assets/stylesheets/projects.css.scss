@@ -205,3 +205,37 @@ ul.weekly-cost {
   @include span-columns(3 omega, 8);
   @include post(2, 8);
 }
+
+// ------
+// Step 5
+// ------
+#drop_zone {
+  height: 9em;
+  text-align: center;
+  background: #FFFFFF;
+  color: #DDDDDD;
+  border: 1px solid;
+}
+.upload {
+  border-top: solid 1px #CCC;
+  width: 100%;
+  padding-top: 10px;
+  margin-top: 10px;
+
+  .progress {
+    margin-top: 8px;
+    border: solid 1px #555;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    .bar {
+      height: 10px;
+      background: $blue;
+    }
+  }
+}
+.add-images {
+  @include span-columns(6, 12);
+}
+.saved-images {
+  @include span-columns(6 omega, 12);
+}

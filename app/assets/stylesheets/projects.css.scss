@@ -101,10 +101,13 @@ form#new_project, form.edit_project {
   /* Prevent collapsing margins when defining form blocks */
   article { overflow: auto; }
   .select2-container, input, textarea { width: 100%; }
+  input[type="checkbox"] { width: auto; }
   textarea {
     font-size: 1em;
     height: 5em;
   }
+
+  label.checkbox { margin-right: 2em; }
 
   .background { @include leader(1); }
 
@@ -187,6 +190,11 @@ ul.weekly-cost {
   @include pre(1,8);
   @include leader(1);
   @include span-columns(3 omega, 8);
+}
+
+.project_field_host_heard_about_ipo, .project_field_host_experience_with_ywam {
+  width: 95%;
+  line-height: 3em;
 }
 
 // ------

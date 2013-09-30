@@ -148,6 +148,9 @@ form {
     @include adjust-font-size-to(14px);
     @include trailer(0.5);
   }
+
+  label.checkbox { display: inline; }
+
   div.input {  @include trailer(); }
 
   .invalid {

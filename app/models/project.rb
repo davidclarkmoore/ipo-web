@@ -9,10 +9,10 @@ class Project < ActiveRecord::Base
 
   serialize :properties, ActiveRecord::Coders::Hstore
 
-  hstore_accessor :properties, :team_mode, :min_stay_duration, :min_students, :max_students, 
+  hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, 
     :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
     :student_educational_requirement,
-    :address, :internet_distance, :location_private, :location_type, :transportation_available,
+    :address, :internet_distance, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 

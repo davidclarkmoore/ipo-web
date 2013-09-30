@@ -19,9 +19,9 @@ ipo['projects_setup']['show'] = ->
     active_group_type = el
 
     if el.attr('id') == active_id
-      $(checkbox).prop('checked', true)
+      $(checkbox).attr('checked', 'checked')
     else
-      $(checkbox).prop('checked', false)
+      $(checkbox).removeAttr('checked')
 
   $("#teams").click (e) ->
     select_group_element $(@), e, "teams", "#project_team_mode"

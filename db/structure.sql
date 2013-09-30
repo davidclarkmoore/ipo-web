@@ -162,7 +162,9 @@ CREATE TABLE projects (
     field_host_id integer,
     properties hstore,
     status character varying(255),
-    wizard_status character varying(255)
+    wizard_status character varying(255),
+    team_mode boolean,
+    location_private boolean
 );
 
 
@@ -319,3 +321,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130828211325');
 INSERT INTO schema_migrations (version) VALUES ('20130828222146');
 
 INSERT INTO schema_migrations (version) VALUES ('20130930062101');
+
+INSERT INTO schema_migrations (version) VALUES ('20130930162454');

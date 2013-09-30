@@ -52,7 +52,8 @@ ipo['projects_setup']['show'] = ->
         progress = parseInt(data.loaded / data.total * 100, 10)
         data.context.find('.bar').css('width', progress + '%')
         if progress == 100
-          data.context.remove()
+          data.context.fadeOut "slow", ->
+            $(this).remove()
 
   $('.project_media').on "ajax:success", ".media form", (event, data, status, xhr) ->
     $(event.target).parent().fadeOut "slow", () ->

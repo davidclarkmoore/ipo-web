@@ -5,11 +5,10 @@
 = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
   %article
     %h3.center The Location
-    #team-select.button-group.block-center
-      = button 'Project location can be public'  , :grey, id: "public-location"
-      = button 'Project location must be private', :grey, id: "private-location"
 
-    = f.input :location_private, as: :boolean, label: false, input_html: {style:"display:none;"}
+    = f.input :location_private, as: :button_group, label: false, |
+              collection: [['Project location can be public', false], ['Project location must be private', true]] |
+
     = f.input :address, label: "Street Address (include Street Address, City, Province, Country)", validate: true
 
   %article

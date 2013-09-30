@@ -6,11 +6,14 @@ class ButtonGroupInput <  SimpleForm::Inputs::CollectionInput
     html = ""
     collection.each do |c|
       if c.instance_of?(Array)
-        html += "<button class='button button-grey'>#{c[0]}</button>"
+        html += "<button class='button button-grey' data-value='#{c[1]}'>#{c[0]}</button>"
       else
         html += "<button class='button button-grey'>#{c}</button>"
       end
     end
+
+    input_html_options[:class].push "no-select2"
+    input_html_options[:class].push "hide"
 
     html += @builder.collection_select(
               attribute_name, collection, value_method, label_method,

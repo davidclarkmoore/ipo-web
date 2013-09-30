@@ -7,8 +7,8 @@ window.connect_group_to_select = (group, select) ->
   selected_button = null
   $(group).find("button").click (e) ->
     e.preventDefault()
-    select.val $(@).data('value')
 
+    select.val $(@).data('value').toString()
     if selected_button
       selected_button.removeClass("active button-green").addClass("button-grey")
 

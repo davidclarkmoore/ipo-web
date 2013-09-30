@@ -49,6 +49,10 @@ a.button { text-decoration: none; }
   }
 }
 
+.button-group {
+  .select2-container { display: none; }
+}
+
 // ==========
 // Box Styles
 // ==========

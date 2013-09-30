@@ -2,7 +2,7 @@ ipo =
   common:
     init:
       $(document).ready ->
-        $("select").select2();
+        $('select').not('.no-select2').select2();
 
 window.ipo = ipo
 

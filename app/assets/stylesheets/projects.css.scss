@@ -169,11 +169,6 @@ h4.teams-individuals {
   @include adjust-leading-to(1.5, 18px);
 }
 
-#team-select {
-  // @include trailer(2);
-  // TODO: Currently button dropdown cannot use em definitions.
-  // margin-bottom: 36px;
-}
 
 ul.weekly-cost {
   @include leader(1);
@@ -183,6 +178,12 @@ ul.weekly-cost {
 // -----
 // Step 1
 // ------
+
+.project_team_mode {
+  @extend .block-center;
+  margin-bottom: 24px !important; // Responsive?
+}
+
 .project_organization {
   @include span-columns(4, 8);
 }
@@ -195,6 +196,14 @@ ul.weekly-cost {
 .project_field_host_heard_about_ipo, .project_field_host_experience_with_ywam {
   width: 95%;
   line-height: 3em;
+}
+
+// ------
+// Step 3
+// ------
+.project_location_private {
+  @extend .block-center;
+  margin-bottom: 24px !important; // Responsive?
 }
 
 // ------

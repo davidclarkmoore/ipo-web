@@ -1,0 +1,20 @@
+
+
+.new-project-header
+  %h1.center Project Setup Application
+
+  - step_index = wizard_steps.index(step) + 1
+  .wizard-steps
+    .wizard-bar
+      .fill{class: "step#{step_index}"}
+
+    %ul
+      = wizard_step "About You"             , 1, step_index
+      = wizard_step "The Project & Students", 2, step_index
+      = wizard_step "Location & Region"     , 3, step_index
+      = wizard_step "Multimedia & Content"  , 4, step_index
+      = wizard_step "Agreement"             , 5, step_index
+      = wizard_step "Confirmation"          , 6, step_index
+
+
+  =# wizard_steps_header active_step

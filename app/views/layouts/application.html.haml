@@ -7,13 +7,12 @@
   = javascript_include_tag "application"
   = csrf_meta_tags
 
-%body
+%body{'data-controller' => controller_name, 'data-action' => action_name, 'data-application' => 'ipo'}
   .header-bg &nbsp;
   .container
     %header
-      = link_to projects_path do
+      = link_to root_path do
         %h1.title IPO Connection
-
       = render 'shared/navigation'
 
     = yield

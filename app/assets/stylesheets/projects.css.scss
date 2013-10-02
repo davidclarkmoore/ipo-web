@@ -85,3 +85,166 @@
 #new-project {
   >h2 { @include span-columns(12 omega) }
 }
+
+
+// ==============
+// New Form Style
+// =============
+
+
+form#new_project, form.edit_project {
+  @include prefix(2);
+  @include suffix(2);
+  @include span-columns(12 omega);
+
+  h3 { @include leader(1, 25px); }
+  /* Prevent collapsing margins when defining form blocks */
+  article { overflow: auto; }
+  .select2-container, input, textarea { width: 100%; }
+  input[type="checkbox"] { width: auto; }
+  textarea {
+    font-size: 1em;
+    height: 5em;
+  }
+
+  label.checkbox { margin-right: 2em; }
+
+  .background { @include leader(1); }
+
+  .field-host-fields  { @include span-columns(6, 8); }
+  .field-host-profile { @include span-columns(2 omega, 8); }
+
+  .location-col1 { @include span-columns(3, 8); }
+  .location-col2 {
+    @include prefix(0.5, 8);
+    @include span-columns(5 omega, 8);
+  }
+
+  .student-requirements-illustration { @include span-columns(4, 8); }
+  .student-requirements-fields { @include span-columns(4 omega, 8); }
+
+
+  .invalid span.error { display: none; }
+  input[type=submit] {
+    @include adjust-font-size-to(16px, 1, 14px);
+    @include leader(1, 16px);
+    @include trailer(1, 16px);
+  }
+
+  .project_location_type { margin-top: 0; }
+
+  fieldset {
+    @include leader(2);
+    @include trailer(2);
+  }
+}
+
+.project_field_host_salutation { @include span-columns(1, 6); }
+.project_field_host_first_name { @include span-columns(2, 6); }
+.project_field_host_middle_initial { @include span-columns(1, 6); }
+.project_field_host_last_name {
+  @include span-columns(2 omega, 6);
+}
+
+.project_field_host_email {
+  @include span-columns(4 omega, 6);
+  @include post(2, 6);
+}
+
+.project_field_host_preferred_phone {
+  @include span-columns(2, 6);
+}
+
+.project_field_host_phone_type {
+  @include span-columns(2, 6);
+  @include post(2, 6);
+}
+
+.project_per_week_cost_final {
+  display: inline;
+  input { width: auto !important; }
+}
+
+h4.teams-individuals {
+  @include adjust-leading-to(1.5, 18px);
+}
+
+
+ul.weekly-cost {
+  @include leader(1);
+  @include trailer(1);
+}
+
+// -----
+// Step 1
+// ------
+
+.project_team_mode {
+  @extend .block-center;
+  margin-bottom: 24px !important; // Responsive?
+}
+
+.project_organization {
+  @include span-columns(4, 8);
+}
+#existing-organization p {
+  @include leader(1);
+  @include span-columns(4 omega, 8);
+  padding-left: 1em;
+}
+
+.project_field_host_heard_about_ipo, .project_field_host_experience_with_ywam {
+  width: 95%;
+  line-height: 3em;
+}
+
+// ------
+// Step 3
+// ------
+.project_location_private {
+  @extend .block-center;
+  margin-bottom: 24px !important; // Responsive?
+}
+
+// ------
+// Step 4
+// ------
+.project_housing_type { @include span-columns(3, 8); }
+.project_dining_location {
+  @include span-columns(3 omega, 8);
+  @include post(2, 8);
+}
+
+// ------
+// Step 5
+// ------
+#drop_zone {
+  height: 9em;
+  text-align: center;
+  background: #FFFFFF;
+  color: #DDDDDD;
+  border: 1px solid;
+}
+.upload {
+  border-top: solid 1px #CCC;
+  width: 100%;
+  padding-top: 10px;
+  margin-top: 10px;
+
+  .progress {
+    margin-top: 8px;
+    border: solid 1px #555;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    .bar {
+      height: 10px;
+      background: $blue;
+    }
+  }
+}
+.add-images {
+  @include span-columns(6, 12);
+}
+.saved-images {
+  @include span-columns(6 omega, 12);
+}

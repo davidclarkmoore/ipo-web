@@ -1,0 +1,36 @@
+en:
+  enumerize:
+    field_host:
+      experience_with_ywam:
+        ywam_dts: YWAM DTS
+        secondary_ywam_schools: Secondary YWAM/UofN Schools
+        ywam_short_term_outreach: YWAM Short Term Outreach (Only)
+      heard_about_ipo:
+        - College Group
+        - YWAM Staff
+        - IPO Advocate
+        - Website
+        - Event
+        - Facebook
+        - YouTube
+        - Twitter
+      overall_education:
+        - High School Graduate
+        - Some College
+        - Associates (2-yr) Degree (AA)
+        - Bachelor's Degree (BA/BS)
+        - Some Post-Graduate Studies
+        - Graduate Degree (MA/MS)
+        - Doctoral Degree or Equivalent
+        - Other
+      phone_type:
+        - Work
+        - Household
+        - Mobile
+        - Other
+      salutation:
+        - Mr.
+        - Ms.
+        - Dr.
+        - Prof. 
+        - Rev.

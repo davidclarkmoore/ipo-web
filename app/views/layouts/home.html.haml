@@ -9,11 +9,10 @@
 
 %body
   .header-bg-large &nbsp;
-  .container
+  .main-header.container
     %header
-      = link_to projects_path do
+      = link_to root_path do
         %h1.title IPO Connection
-
       = render 'shared/navigation'
 
     = yield :header

@@ -20,7 +20,10 @@ $base-line-height   : 24px;
 $round-to-nearest-half-line: true;
 @include establish-baseline;
 
+// TODO: No longer used
 $baseline           : 11px;
+//
+
 $header-font-family : "Comfortaa", "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $body-font-family   : "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
@@ -31,13 +34,23 @@ $focus-color  : #3fb6f2;
 // ---------------------------------------------------------------------------
 // Buttons
 
-$btn-colors: default   #999,
-             green     #accf8a,
-             blue      #80c8d4,
-             orange    #ff9855;
+$orange : #ff9855;
+$blue   : #80c8d4;
+$green  : #accf8a;
+$grey   : #999;
+$shaded-grey: #ebedef;
+$light-yellow: #fefff5;
+
+$btn-colors: default   $grey,
+             green     $green,
+             blue      $blue,
+             orange    $orange;
 
 
-$box-colors: grey      #565656,
-             blue      #80c8d4;
+$box-colors: grey          #565656,
+             blue          $blue,
+             green		   $green,
+             light-yellow  $light-yellow;
+
 
 $light-grey: #c1c1c1;

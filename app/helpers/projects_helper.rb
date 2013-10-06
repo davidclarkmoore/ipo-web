@@ -1,13 +1,18 @@
 module ProjectsHelper
 
-  def wizard_step(label, index, current_step)
+  def wizard_step(label, index, url, current_step)
     content_tag(:li) do
       raw(
-        label +
         if index == current_step
-          content_tag(:span, "", class: "circle")
+          link_to(url) do
+            raw(label + content_tag(:span, "", class: "circle"))
+          end
+        elsif index < current_step
+          link_to(url) do
+            raw(label + content_tag(:span, "", class: "small-circle"))
+          end
         else
-          content_tag(:span, "", class: "small-circle")
+          label + content_tag(:span, "", class: "small-circle")
         end
       )
     end

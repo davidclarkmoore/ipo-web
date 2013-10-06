@@ -340,7 +340,6 @@ $step-percent: 100/($steps);
   */
 
   ul li {
-    @include leader(0.5, 14px);
     @include adjust-font-size-to(14px, 1, 16px);
     font-weight: 600;
 
@@ -353,6 +352,15 @@ $step-percent: 100/($steps);
     vertical-align: middle;
     position: relative;
 
+    margin-top: -16px;
+    padding-top: 24px;
+
+    a {
+      color: darken($blue, 20);
+      text-decoration: none;
+    }
+
+
 
     .circle {
       height: 20px;
@@ -362,7 +370,7 @@ $step-percent: 100/($steps);
       background: desaturate( darken($blue, 20), 10);
       border-radius: 50%;
 
-      top: -29px;
+      top: 0;
       left: 50%;
       margin-left: -10px;
     }
@@ -375,9 +383,9 @@ $step-percent: 100/($steps);
       background: rgba(0, 0, 0, .15);
       border-radius: 50%;
 
-      top: -23px;
+      top: 5px;
       left: 50%;
-      margin-left: -2px;
+      margin-left: -2px
     }
 
   }

@@ -123,8 +123,6 @@ form#new_project, form.edit_project {
   .student-requirements-illustration { @include span-columns(4, 8); }
   .student-requirements-fields { @include span-columns(4 omega, 8); }
 
-
-  .invalid span.error { display: none; }
   input[type=submit] {
     @include adjust-font-size-to(16px, 1, 14px);
     @include leader(1, 16px);

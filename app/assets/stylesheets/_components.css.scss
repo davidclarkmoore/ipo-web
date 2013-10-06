@@ -24,8 +24,9 @@ a.button { text-decoration: none; }
 }
 
 @each $pair in $btn-colors {
+  $btn-color: nth($pair, 2);
+
   .button-#{nth($pair, 1)}, input[type=submit].button-#{nth($pair, 1)} {
-    $btn-color: nth($pair, 2);
     color: white;
     background: $btn-color;
     border-color: desaturate( darken($btn-color, 20), 10);
@@ -49,8 +50,8 @@ a.button { text-decoration: none; }
   }
 }
 
-.button-group {
-  .select2-container { display: none; }
+.invalid .select2-container .select2-choice {
+  border: 2px solid $orange;
 }
 
 // ==========
@@ -186,24 +187,37 @@ input[type=submit] {
  * Eventually, once flat-ui dependency is removed, this should be axed.
  */
 
+// ============
+// Button Group
+// ============
+
 .button-group {
   height: 36px;
   margin-top: 24px;
   margin-bottom: 24px;
-}
+  white-space: nowrap;
 
-.button_group {
-  @extend .button-group;
-}
+  > .button {
+    border-radius: 0;
+    &.active { font-weight: bold; }
+    &:first-child {
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
 
-/**
- * This PX definition of font size is required in order for flat-ui dropdowns to work.
- * Eventually, once flat-ui dependency is removed, this should be axed.
- */
+    &:last-child {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+  }
 
-.button-group .button, .button-dropdown {
-  font-size: 16px;
+  .select2-container { display: none; }
+  span.error { display: block; }
+  .button { outline: none; }
 }
+.button_group { @extend .button-group; }
+
+
 
 .ui-datepicker {
   font-size: 14px;
@@ -390,5 +404,4 @@ $step-percent: 100/($steps);
       }
     }
   }
-
 }

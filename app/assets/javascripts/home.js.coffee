@@ -1,7 +1,7 @@
 # Connects button group to combobox. When button group is selected,
 # value in hidden combobox is chosen.
 window.connect_group_to_select = (group, select) ->
-  select.hide()
+  # select.hide()
   $("#s2id_" + select.attr('id')).hide() # hide select2 if shown.
 
   selected_button = null

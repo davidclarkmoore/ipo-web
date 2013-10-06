@@ -8,7 +8,7 @@
     = f.input :name, label: 'Internship Project Name:', validate: true
     %h4.center.teams-individuals Are you interested in teams or individuals?
 
-    = f.input :team_mode, as: :button_group, label: false, collection: [['Teams', true], ['Individuals', false]]
+    = f.input :team_mode, as: :button_group, label: false, collection: [['Teams', true], ['Individuals', false]], validate: true
     -# = f.input :min_stay_duration
     = f.input :min_students, label: 'Min. number of students to make this project worthwhile?', validate: true
     = f.input :max_students, label: 'Max. number of students you can house at any one time?', validate: true

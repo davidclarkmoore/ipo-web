@@ -1,8 +1,8 @@
 ipo['projects_setup'] = {}
 ipo['projects_setup']['show'] = ->
 
-  connect_group_to_select $(".project_location_type.button_group"), $("#project_location_type")
-  connect_group_to_select $(".project_team_mode.button_group"), $("#project_team_mode")
+  connect_group_to_select $(".project_location_type.button_group")   , $("#project_location_type")
+  connect_group_to_select $(".project_team_mode.button_group")       , $("#project_team_mode")
   connect_group_to_select $(".project_location_private.button_group"), $("#project_location_private")
 
   $('#organizations .tab').click (e) ->

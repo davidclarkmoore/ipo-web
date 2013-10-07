@@ -137,6 +137,25 @@ form#new_project, form.edit_project {
   }
 }
 
+.project_per_week_cost_final {
+  display: inline;
+  input { width: auto !important; }
+}
+
+h4.teams-individuals {
+  @include adjust-leading-to(1.5, 18px);
+}
+
+
+ul.weekly-cost {
+  @include leader(1);
+  @include trailer(1);
+}
+
+// -----
+// Step 1
+// ------
+
 .project_field_host_salutation { @include span-columns(1, 6); }
 .project_field_host_first_name { @include span-columns(2, 6); }
 .project_field_host_middle_initial { @include span-columns(1, 6); }
@@ -157,25 +176,6 @@ form#new_project, form.edit_project {
   @include span-columns(2, 6);
   @include post(2, 6);
 }
-
-.project_per_week_cost_final {
-  display: inline;
-  input { width: auto !important; }
-}
-
-h4.teams-individuals {
-  @include adjust-leading-to(1.5, 18px);
-}
-
-
-ul.weekly-cost {
-  @include leader(1);
-  @include trailer(1);
-}
-
-// -----
-// Step 1
-// ------
 
 .project_team_mode {
   @extend .block-center;
@@ -216,33 +216,71 @@ ul.weekly-cost {
 // ------
 // Step 5
 // ------
+
 #drop_zone {
   height: 9em;
+  color: rgb(85, 85, 85);
+  font-weight: 600;
   text-align: center;
-  background: #FFFFFF;
-  color: #DDDDDD;
-  border: 1px solid;
+  border: 5px dashed;
+  position: relative;
+
+  padding-top: 4em;
+  @include trailer(1);
 }
+
+.project_media {
+  .media {
+    @include span-columns(2, 6);
+    @include trailer(1);
+    position: relative;
+
+    img { width: 100%; }
+    &:nth-child(3n) { @include omega; }
+
+    form {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+  }
+}
+
 .upload {
-  border-top: solid 1px #CCC;
   width: 100%;
-  padding-top: 10px;
-  margin-top: 10px;
+  background: white;
+  padding: 1em;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding-top: 3em;
 
   .progress {
     margin-top: 8px;
     border: solid 1px #555;
     border-radius: 3px;
     -moz-border-radius: 3px;
-    .bar {
-      height: 10px;
-      background: $blue;
-    }
+  }
+
+  .bar {
+    height: 10px;
+    background: $blue;
   }
 }
+
+input[type='submit'].delete-project-media {
+  padding: 0 1em;
+  height: 36px;
+  font-size: 15px;
+}
+
 .add-images {
-  @include span-columns(6, 12);
+  @include span-columns(5);
+  @include post(1);
 }
 .saved-images {
-  @include span-columns(6 omega, 12);
+  @include span-columns(6 omega);
 }
+
+#photos_and_videos h3 { @include leader(1, 25px); }

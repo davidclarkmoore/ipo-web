@@ -13,26 +13,68 @@
       = button "Go", :green
 
 
-.motto.box.box-light-yellow
-  .container
-    = image_tag 'lightbulbs.png', id: "lightbulbs"
-    %h2.centered Customized, Missional Internships
-    %p.centered
-      70% of Christ’s followers live in the Global South.
-      70% of Christ’s followers live in the Global South.
-      70% of Christ’s followers live in the Global South.
+#home
+  %article.motto.box.box-light-yellow
+    .container
+      = image_tag 'lightbulbs.png', id: "lightbulbs"
+      %h2.centered Customized, Missional Internships
+      %p.centered
+        70% of Christ’s followers live in the Global South.
+        70% of Christ’s followers live in the Global South.
+        70% of Christ’s followers live in the Global South.
 
 
-.box.container
-  %ul.tab-list
-    %li.tab.active Fields of Study
-    %li.tab Passion Areas
-  .tab-box
+  %article.box.container
+    %ul.tab-list
+      %li.tab.active Fields of Study
+      %li.tab Passion Areas
+    .tab-box
 
-.box.box-green
-  .container
-    %h2.center.medium
-      Don’t see your field? <br />
-      Search all of our projects. Boom, its that easy.
+  %article#search_projects.box.box-green
+    .container
+      %h2.center.medium
+        Don’t see your field? <br />
+        Search all of our projects. Boom, its that easy.
+      = button "Search Our Projects", :orange, id: "search-projects"
 
-    = button "Search Our Projects", :orange, id: "search-projects"
+  %article#home-description
+    .container
+
+      %article.description-section
+        .c6
+          %h1 What makes IPO different?
+          %p.sub-title
+            Choose a missional internship that matches your field of study, area of passion, and availability.
+            Because sometimes you just need to get out of the classroom.
+        .omega.c5.pre1
+          = image_tag 'vid_thumb1.jpg'
+
+      %article.description-section
+        .c5.post1
+          = image_tag 'infographic.png'
+
+        .c6.omega
+          %h1 A global internship model for the 21st century
+          %p.sub-title
+            Choose a missional internship that matches your field of study, area of passion, and availability.
+            Because sometimes you just need to get out of the classroom.
+
+          %p
+            %span.list-title Truly global internships
+            %br/
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
+          %p
+            %span.list-title Your major, outside the classroom
+            %br/
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
+          %p
+            %span.list-title Virtual Cross-Cultural Missions Training
+            %br/
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
+          %p
+            %span.list-title Amazing, Committed Mentors
+            %br/
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.

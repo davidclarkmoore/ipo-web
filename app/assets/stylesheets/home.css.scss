@@ -77,3 +77,31 @@
   @include pre(4);
   @include post(4);
 }
+
+#home {
+  #search_projects {
+    border-bottom: 0.5em solid desaturate( darken($green, 20), 10);
+  }
+
+  #home-description {
+    height: 900px;
+    background: url(location_graph.png) no-repeat top center; /* image */
+    @include padding-leader(20);
+    h1 { font-weight: bold; }
+  }
+
+  article.description-section {
+    overflow: hidden;
+    @include trailer(4);
+
+    p.sub-title {
+      font-weight: 300;
+      @include adjust-font-size-to(22px, 1.5);
+    }
+
+    span.list-title {
+      font-weight: bold;
+    }
+
+  }
+}

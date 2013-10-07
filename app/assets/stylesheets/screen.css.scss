@@ -46,7 +46,13 @@
 .c11   { @include span-columns(11); }
 .c12   { @include span-columns(12); }
 
+.c1, .c2, .c3, .c4, .c5, .c6, .c7,
+.c8, .c9, .c10, .c11, .c12 {
+  &.omega { @include omega; }
+}
+
 .pre1 { @include pre(1); }
+.post1 { @include post(1); }
 
 /* ===========
    Main Styles

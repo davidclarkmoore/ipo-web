@@ -79,29 +79,42 @@
 }
 
 #home {
+  article.description-section {
+    overflow: hidden;
+    @include trailer(4);
+    span.list-title { font-weight: bold; }
+  }
+
+  p.sub-title {
+    font-weight: 300;
+    @include adjust-font-size-to(22px, 1.5);
+  }
+
   #search_projects {
     border-bottom: 0.5em solid desaturate( darken($green, 20), 10);
   }
 
   #home-description {
-    height: 900px;
     background: url(location_graph.png) no-repeat top center; /* image */
     @include padding-leader(20);
     h1 { font-weight: bold; }
   }
 
-  article.description-section {
-    overflow: hidden;
-    @include trailer(4);
+  #stories-from-field {
+    border-bottom: 0.5em solid desaturate( darken($blue, 20), 10);
+    h2 { @include adjust-leading-to(4, 30px); }
+  }
 
-    p.sub-title {
-      font-weight: 300;
-      @include adjust-font-size-to(22px, 1.5);
+  .field_experience {
+    @include span-columns(3);
+    @include nth-omega(4n);
+    @include trailer(1);
+
+    color: white;
+    img { width: 100%; }
+    .title {
+      font-weight: 600;
+      @include adjust-font-size-to(22px, 2);
     }
-
-    span.list-title {
-      font-weight: bold;
-    }
-
   }
 }

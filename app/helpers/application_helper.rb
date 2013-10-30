@@ -9,8 +9,15 @@ module ApplicationHelper
     params[:view] == type ? 'active' : ''
   end
 
+  def large_button label, color, options={}
+    options[:class] ||= ""
+    options[:class] += " large"
+    button(label, color, options)
+  end
+
   def button label, color, options={}
-    options.merge!({:class => "button button-#{color.to_s}"})
+    options[:class] ||= ""
+    options[:class] += " button button-#{color.to_s}"
     content_tag(:button, label, options)
   end
 
@@ -18,7 +25,6 @@ module ApplicationHelper
     # TODO: There must be a better way to initialize defaults?
     options ||= {}
     options[:class] ||= ""
-
     options[:class] += " button button-#{color.to_s}"
     link_to label, href, options
   end

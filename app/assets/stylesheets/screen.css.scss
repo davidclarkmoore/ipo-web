@@ -57,6 +57,7 @@
 /* ===========
    Main Styles
    =========== */
+
 .clr { clear: both; }
 .centered, .center{ text-align: center; }
 .block-center { display: block; text-align: center; }
@@ -68,6 +69,7 @@
 .light { font-weight: 300; }
 .medium { font-weight: 400; }
 .hide { display: none; }
+.right { float: right; }
 
 .offscreen {
   @extend .select2-offscreen;
@@ -144,8 +146,31 @@ nav {
     &:last-child { padding-right: 0;}
     // font-weight: 300;
   }
-
 }
+
+#reach-out {
+  padding-left: 64px;
+  @include adjust-font-size-to(20px, 1.5);
+  div { @include trailer(0.5, 20px); }
+  input { margin-left: 11px; }
+  input[name="full_name"] { width: 324px; }
+  input[name="email"] { width: 396px; }
+  .select2-container {
+    @include adjust-font-size-to(16px, 1, 20px);
+    margin: 0;
+  }
+}
+
+footer li {
+  @include adjust-font-size-to(14px, 1);
+}
+
+.footer-col {
+  @include span-columns(2, 6);
+  @include nth-omega(3n);
+}
+
+li { @include adjust-leading-to(1, 16px); }
 
 /* ===========
    Form Styles

@@ -1,51 +1,49 @@
-= render 'header', active_step: params[:id]
+.container
+  = render 'header', active_step: params[:id]
 
-= simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+  = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+    %h3.center About You
+    = f.fields_for :field_host do |f_field_host|
 
-  %h3.center About You
+      .field-host-fields
+        = f_field_host.input :salutation
+        = f_field_host.input :first_name
+        = f_field_host.input :middle_initial, label: "Initial"
+        = f_field_host.input :last_name
+        = f_field_host.input :email
+        = f_field_host.input :preferred_phone
+        = f_field_host.input :phone_type
 
-  = f.fields_for :field_host do |f_field_host|
+      .field-host-profile &nbsp;
 
-    .field-host-fields
-      = f_field_host.input :salutation
-      = f_field_host.input :first_name
-      = f_field_host.input :middle_initial, label: "Initial"
-      = f_field_host.input :last_name
-      = f_field_host.input :email
-      = f_field_host.input :preferred_phone
-      = f_field_host.input :phone_type
+    .background.c12.omega
+      %h3.center Your Background
 
-    .field-host-profile
-      &nbsp;
+      %fieldset#organizations
+        = hidden_field_tag 'is_new_organization', false
+        %ul.tab-list.small
+          %li.tab.active(data-box="#existing-organization") Choose Existing
+          %li.tab(data-box="#new-organization") New Organization
+        #existing-organization.tab-box.w-padding
+          = f.association :organization, include_blank: true, label: "Select Organization"
+          %p If you can't find your organization please choose the "New Organization" tab and fill it out
+        #new-organization.tab-box.w-padding(style="display: none")
+          = f.fields_for :organization, Organization.new, validate: true do |f_organization|
+            = f_organization.input :name
+            = f_organization.input :organization_type
+            = f_organization.input :website
 
-  .background.c12.omega
-    %h3.center Your Background
+      %fieldset
+        = f.fields_for :field_host, validate: true do |f_field_host|
+          = f_field_host.input :role_title
+          = f_field_host.input :years_associated_with_organization
+          = f_field_host.input :overall_education
 
-    %fieldset#organizations
-      = hidden_field_tag 'is_new_organization', false
-      %ul.tab-list.small
-        %li.tab.active(data-box="#existing-organization") Choose Existing
-        %li.tab(data-box="#new-organization") New Organization
-      #existing-organization.tab-box.w-padding
-        = f.association :organization, include_blank: true, label: "Select Organization"
-        %p If you can't find your organization please choose the "New Organization" tab and fill it out
-      #new-organization.tab-box.w-padding(style="display: none")
-        = f.fields_for :organization, Organization.new, validate: true do |f_organization|
-          = f_organization.input :name
-          = f_organization.input :organization_type
-          = f_organization.input :website
+          %fieldset
+            %h4 What has your experience been with YWAM?
+            = f_field_host.input :experience_with_ywam, as: :check_boxes, label: false
 
-    %fieldset
-      = f.fields_for :field_host, validate: true do |f_field_host|
-        = f_field_host.input :role_title
-        = f_field_host.input :years_associated_with_organization
-        = f_field_host.input :overall_education
+            %h4 How did you hear about the IPO Connection?
+            = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false
 
-        %fieldset
-          %h4 What has your experience been with YWAM?
-          = f_field_host.input :experience_with_ywam, as: :check_boxes, label: false
-
-          %h4 How did you hear about the IPO Connection?
-          = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false
-
-  = f.submit "Save & Continue to Step #2", class: "button button-orange"
+    = f.submit "Save & Continue to Step #2", class: "button button-orange"

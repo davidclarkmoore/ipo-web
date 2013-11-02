@@ -75,12 +75,9 @@ a.button { text-decoration: none; }
 
 .box-blue, .box-grey {
   -webkit-font-smoothing: antialiased;
-  > h1, h2, h3, h4, p { color: white; }
-}
-
-.box-grey {
   color: white;
   h1, h2, h3, h4, p { color: white; }
+  p { font-weight: 600; }
 }
 
 .box-light-yellow {

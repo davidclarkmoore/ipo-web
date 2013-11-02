@@ -267,7 +267,9 @@ CREATE TABLE refinery_page_parts (
     body text,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    color character varying(255),
+    display_type character varying(255)
 );
 
 
@@ -986,3 +988,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131102202638');
 INSERT INTO schema_migrations (version) VALUES ('20131102202642');
 
 INSERT INTO schema_migrations (version) VALUES ('20131102202643');
+
+INSERT INTO schema_migrations (version) VALUES ('20131102214402');

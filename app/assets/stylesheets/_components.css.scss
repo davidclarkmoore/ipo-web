@@ -80,6 +80,11 @@ a.button { text-decoration: none; }
   p { font-weight: 600; }
 }
 
+
+.box-blue {
+  h1, h2, h3, h4, p { font-weight: 600; }
+}
+
 .box-light-yellow {
   > h1, h2 {
     color: $orange;
@@ -92,6 +97,9 @@ a.button { text-decoration: none; }
   > h1, h2 {
     color: white;
     -webkit-font-smoothing: antialiased;
+  }
+  p {
+    color: rgba(0, 0, 0, .8);
   }
 }
 
@@ -420,4 +428,22 @@ $step-percent: 100/($steps);
       }
     }
   }
+}
+
+
+
+article.img-left img, article.img-right img {
+  width: 40.84507%;
+  height: auto;
+  display: inline;
+}
+
+article.img-left img {
+  float: left;
+  margin-right: 8.4507%;
+}
+
+article.img-right img {
+  float: right;
+  margin-left: 8.4507%;
 }

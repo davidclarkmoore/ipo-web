@@ -4,9 +4,9 @@
   <%= hidden_field_tag "page[parts_attributes][#{part_index}][position]", part_index %>
 
   <label>Color</label>
-  <%= select_tag "page[parts_attributes][#{part_index}][color]", options_for_select(Refinery::PagePart.color_options) %>
+  <%= select_tag "page[parts_attributes][#{part_index}][color]", options_for_select(Refinery::PagePart.color_options, part.color) %>
 
    <label>Display Type</label>
-  <%= select_tag "page[parts_attributes][#{part_index}][display_type]", options_for_select(Refinery::PagePart.display_types) %>
+  <%= select_tag "page[parts_attributes][#{part_index}][display_type]", options_for_select(Refinery::PagePart.display_types, part.display_type) %>
 
 </div>

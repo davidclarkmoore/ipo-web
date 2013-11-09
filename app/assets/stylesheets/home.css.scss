@@ -2,6 +2,10 @@
 // Home Page
 // ---------
 
+#search-field-study {
+
+}
+
 #lightbulbs {
   display: block;
   width: 268px; // TODO: Make responsive.
@@ -16,6 +20,10 @@
 
   color: white;
   -webkit-font-smoothing: antialiased;
+
+  .c5, .c4 {
+    @include leader(0.5);
+  }
 
   button {
     width: 100%;

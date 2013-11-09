@@ -9,7 +9,11 @@
       %label And where you want to go:
       %input{type: 'text', placeholder: "City, Province or Postal Code"}
 
-    .c2.omega= button "Go", :green
+    .c2.omega
+      = button "Go", :green, class: 'x-large', id: 'search-field-study' do
+        = image_sprite :thumbs_up
+        Go
+
 
 #home
   %article.motto.box.box-light-yellow
@@ -32,7 +36,10 @@
       %h2.center.medium
         Don’t see your field? <br />
         Search all of our projects. Boom, its that easy.
-      = button "Search Our Projects", :orange, id: "search-projects"
+
+      = button "Search Our Projects", :orange, id: "search-projects" do
+        = image_sprite :search
+        Search Projects
 
   %article#home-description
     .container
@@ -98,7 +105,9 @@
         .title Xianyi Wu
         %p One student who changed 17 million lives
 
-      = button "See All", :green, class: 'x-large right'
+      = button "See All", :green, class: 'x-large right' do
+        See All
+        = image_sprite :arrow_right
 
   %article.box.container
     .c4

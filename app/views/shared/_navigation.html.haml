@@ -1,4 +1,4 @@
 %nav
-  %span.link.heading internships
-  %span.link.heading about ipo
-  %span.link.heading stories
+	- pages = menu_pages
+	- pages.each do |page| 
+		%span.link.heading=link_to page.menu_title, page.slug

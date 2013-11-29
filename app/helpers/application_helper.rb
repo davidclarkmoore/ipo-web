@@ -72,4 +72,8 @@ module ApplicationHelper
     end
   end
 
+  def menu_pages
+    Refinery::Page.where(show_in_menu: true)
+  end
+
 end

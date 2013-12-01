@@ -1,0 +1,52 @@
+.container
+  = render 'header', active_step: params[:id]
+
+  .info-box
+    .first-column
+      h8 Desired Project
+      p=@student.project.name
+
+    .second-column
+      h8 Start Date
+      p=@student.project_session.select_label
+
+    .clearfix
+
+  .confirmation
+    .hr
+    h2.center App Confirmation
+
+    .first-column
+      h8 Name
+      p=@student.full_name
+
+    .second-column
+      h8 Confirmation has been mailed to
+      p=@student.customer.email
+
+    .first-column
+      h8 Desired Project
+      p=@student.project.name
+
+    .second-column
+      h8 Session
+      p=@student.project_session.select_label
+
+    .first-column
+      h8 Your Address
+      p=@student.full_address
+
+    .clearfix
+    .spacer
+    .hr
+
+  .what_expect
+    strong What do I expect next?
+    ul
+      li You'll get this confirmation in your email, so no need to print.
+      li We've signed you up for our eNewsletter (unsubscribe any time)
+      li Prepare your passport and read our <a href="#">I've applied, what are my next steps blog post</a>
+      li We'll review your application in 3 business days and send an email with your status. If we need anything, we'll email or call you up.
+ 
+    strong Talk soon! ~ IPO Support Staff*
+

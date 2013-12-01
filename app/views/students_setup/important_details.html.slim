@@ -1,0 +1,65 @@
+.container
+  = render 'header', active_step: params[:id]
+
+  .info-box
+    .first-column
+      h8 Desired Project
+      p=@student.project.name
+
+    .second-column
+      h8 Start Date
+      p=@student.project_session.select_label
+
+    .clearfix
+
+  .important-details
+    h2
+      i.fa.fa-exclamation-triangle
+      | Important Note
+    p After initial acceptance, additional information will be required, including passport, insurance (with offer to purchase a travel insurance policy), etc.
+
+    h2
+      i.fa.fa-hand-o-right
+      | What's Next!
+
+    p Once accepted, we will send a Supplemental Information Form with instructions for participation, including fund raising, insurance, and the IPO online course. 
+   
+    p
+      strong
+        | *Supplemental Information Form*
+      br
+      | When your application file is complete, the Field Host will confirm your acceptance. Then your IPO Mentor will enroll you in the IPO Course online. The IPO Course has nine pre-departure lessons comprised of fifty short video interviews.
+    p
+      strong
+        | *Tuition*
+      br
+      | The Tuition fee varies according to our International Fee Scale (World A, B, and C - Most Developed to Least Developed), which is determined by your nation of citizenship. World A tuition is $400 USD; World B is $100 USD; and World C is $10 USD. To find out the fee scale for your country of citizenship, please see the International Fee Scale. 
+    p
+      The IPO Course Tuition does not include Field Fees, Travel Expenses or Personal Spending Money. 
+    p
+      strong
+        | *Field Fees*
+      br
+      | Field Fees include housing, food, and local travel expenses and they vary according to the length of stay and location of the Project. 
+    p
+      strong
+        | *Travel Expenses & Personal Spending*
+      br
+      | The IPO Tuition and Field Fees do not include travel expenses to and from your home, passport and visa fees, and/or personal travel and personal items. 
+    p
+      strong
+        | *Making the IPO Connection*
+      br
+      | The Field Project Host has agreed to arrange for your arrival pick up and daily oversight during your internship stay. Your Host has also agreed to help you get acquainted with the culture, the community, and the project personnel. Please understand, you will be expected to abide by the community-corporate culture guidelines as outlined by the Host. 
+
+    h2 Terms and Conditions
+
+    .terms-and-conditions
+      p These would be the terms and conditions including privacy information...
+
+    = simple_form_for @student, url: wizard_path, method: :put, validate: true do |f|
+      = f.input :agree_terms, as: :boolean, label: "I agree to the Terms and Conditions"
+
+      = f.submit "Save & Finish!", class: "button button-orange"
+
+    .clearfix

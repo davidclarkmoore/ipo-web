@@ -1,0 +1,54 @@
+.container
+  = render 'header', active_step: params[:id]
+
+  .info-box
+    .first-column
+      h8 Desired Project
+      p=@student.project.name
+
+    .second-column
+      h8 Start Date
+      p=@student.project_session.select_label
+
+    .clearfix
+
+  = simple_form_for @student, url: wizard_path, method: :put, validate: true do |f|
+    fieldset
+      .student-fields
+        = f.input :passions, as: :select, label: "What are your passions?"
+
+        = f.input :overall_education, as: :select, label: "Highest education completed"
+        = f.input :graduation_year, collection: ((Date.today.year - 50)..(Date.today.year)).to_a.reverse
+
+        = f.input :spoken_languages, as: :select
+        = f.input :fields_of_study, as: :select
+
+        = f.input :description, label: "Tell us about yourself..."
+
+    fieldset.reference
+      h2 Spiritual Reference
+      p
+        | *We require one spiritual reference (pastor, campus leader, etc.). We will send them an email when you complete this application to verify their contact information and setup a quick call with an IPO Staff member.*
+      .student_fields     
+        = f.fields_for :spiritual_reference, @student.spiritual_reference, validate: true do |f_r|
+          = f_r.input :first_name
+          = f_r.input :last_name
+          = f_r.input :email, label: "Email address"
+          = f_r.input :phone
+
+          = f_r.input :description, label: "How do you know this person?"
+
+    fieldset.reference
+      h2 Academic Reference
+      p
+        | *We one academic reference (professor/teacher, academic advisor, etc.). We will send them an email when you complete this application to verify their contact information and setup a quick call with an IPO Staff member.*
+      .student_fields     
+        = f.fields_for :academic_reference, @student.academic_reference, validate: true do |f_r|
+          = f_r.input :first_name
+          = f_r.input :last_name
+          = f_r.input :email, label: "Email address"
+          = f_r.input :phone
+
+          = f_r.input :description, label: "How do you know this person?"
+
+    = f.submit "Save & Continue to Step #3", class: "button button-orange"

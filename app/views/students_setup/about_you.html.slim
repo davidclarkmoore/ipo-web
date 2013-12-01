@@ -1,0 +1,55 @@
+.container
+  = render 'header', active_step: params[:id]
+
+  = simple_form_for @student, url: wizard_path, method: :put, validate: true, html: {id: "new_student"} do |f|
+    = render partial: 'shared/errors', locals: {object: @student}
+
+    .background.c12.omega
+      h3.center Your Project:
+      = f.association :project, include_blank: true, label: false
+
+      h3.center Your Session:
+      = f.association :project_session, include_blank: true, label: false, label_method: :select_label
+
+
+    fieldset
+      .student-fields
+        = f.input :first_name, label: "First Name (Nickname)"
+        = f.input :last_name
+
+        = f.input :email
+        = f.input :password
+        p.register-description We'll setup an account for you so you can check your applicaion status, update your info, access important material and setup a funraising page!
+        = f.input :password_confirmation, label: "Confirm Password"
+
+        = f.input :birthday, label: "Date of Birth"
+        = f.input :gender, collection: [:female, :male], as: :radio_buttons
+        = f.input :marital_status, as: :select
+
+    fieldset
+      .student-fields
+        = f.input :street_address
+        = f.input :city
+        = f.input :postal_code
+        = f.input :country
+
+        = f.input :preferred_phone
+        = f.input :phone_type
+
+        = f.input :organization, label: "School, Church, Student Organization"
+
+        = f.input :experiences, as: :select, label: "Please list your cross-cultural experiences"
+        p.experiences-description
+          i.fa.fa-globe Cross-Cultural Experience Requirement
+          br
+          | The IPO Connection internship is designed to extend and further your cross-cultural experiences. We require applying students to have at least one cross-cultural experience. If you yet have a cross-cultural experience, we encourage you to find an opportunity before applying.
+
+    fieldset
+      h4 How did you hear about the IPO Connection?
+      = f.input :heard_about_ipo, as: :check_boxes, label: false
+
+    fieldset
+      h4 Had you ever applied to an IPO Connection program before?
+      = f.input :applied_ipo_before, as: :radio_buttons, label: false
+
+    = f.submit "Save & Continue to Step #2", class: "button button-orange"

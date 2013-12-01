@@ -1,0 +1,17 @@
+doctype html
+= render 'shared/head'
+body data-controller= controller_name data-action= action_name data-application= 'ipo'
+  -unless flash.blank?
+    -flash.each do |name, msg|
+      .message-top class= "flash_#{name}"
+        .container.center=msg
+
+  .header-bg &nbsp;
+  .container
+    header
+      = link_to root_path do
+        h1.title IPO Connection
+      = render 'shared/navigation'
+
+  = yield
+  = render '/shared/footer'

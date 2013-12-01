@@ -1,0 +1,13 @@
+article.box.container
+  = simple_form_for @customer_session do |f|
+    h3 Login
+
+    =f.input :email, placeholder: "Email", label: false
+    =f.input :password, placeholder: "Password", label: false
+
+    label.checkbox.inline-block
+      input type= "checkbox" value= "remember-me" name= "remember-me"
+      |  Remember Me
+
+    =f.submit "Login"
+

@@ -43,6 +43,44 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: customers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE customers (
+    id integer NOT NULL,
+    username character varying(255),
+    email character varying(255),
+    rol character varying(255),
+    crypted_password character varying(255),
+    password_salt character varying(255),
+    persistence_token character varying(255),
+    entity_id integer,
+    entity_type character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE customers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE customers_id_seq OWNED BY customers.id;
+
+
+--
 -- Name: field_hosts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -148,6 +186,40 @@ ALTER SEQUENCE project_media_id_seq OWNED BY project_media.id;
 
 
 --
+-- Name: project_sessions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE project_sessions (
+    id integer NOT NULL,
+    title character varying(255),
+    start_date date,
+    end_date date,
+    project_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: project_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE project_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE project_sessions_id_seq OWNED BY project_sessions.id;
+
+
+--
 -- Name: projects; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -185,6 +257,41 @@ CREATE SEQUENCE projects_id_seq
 --
 
 ALTER SEQUENCE projects_id_seq OWNED BY projects.id;
+
+
+--
+-- Name: references; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE "references" (
+    id integer NOT NULL,
+    first_name character varying(255),
+    last_name character varying(255),
+    email character varying(255),
+    phone character varying(255),
+    description character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: references_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE references_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: references_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE references_id_seq OWNED BY "references".id;
 
 
 --
@@ -563,6 +670,70 @@ ALTER SEQUENCE seo_meta_id_seq OWNED BY seo_meta.id;
 
 
 --
+-- Name: students; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE students (
+    id integer NOT NULL,
+    first_name character varying(255) NOT NULL,
+    last_name character varying(255) NOT NULL,
+    birthday date,
+    gender character varying(255),
+    marital_status character varying(255),
+    organization character varying(255),
+    experiences text,
+    heard_about_ipo text,
+    applied_ipo_before boolean,
+    passions text,
+    overall_education character varying(255),
+    graduation_year character varying(255),
+    spoken_languages text,
+    fields_of_study text,
+    description text,
+    academic_reference_id integer,
+    spiritual_reference_id integer,
+    street_address character varying(255),
+    city character varying(255),
+    postal_code character varying(255),
+    country character varying(255),
+    preferred_phone character varying(255),
+    phone_type character varying(255),
+    wizard_status character varying(255),
+    properties hstore,
+    project_id integer,
+    project_session_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: students_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE students_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: students_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE students_id_seq OWNED BY students.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY customers ALTER COLUMN id SET DEFAULT nextval('customers_id_seq'::regclass);
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -587,7 +758,21 @@ ALTER TABLE ONLY project_media ALTER COLUMN id SET DEFAULT nextval('project_medi
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY project_sessions ALTER COLUMN id SET DEFAULT nextval('project_sessions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY "references" ALTER COLUMN id SET DEFAULT nextval('references_id_seq'::regclass);
 
 
 --
@@ -661,6 +846,21 @@ ALTER TABLE ONLY seo_meta ALTER COLUMN id SET DEFAULT nextval('seo_meta_id_seq':
 
 
 --
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY students ALTER COLUMN id SET DEFAULT nextval('students_id_seq'::regclass);
+
+
+--
+-- Name: customers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: field_hosts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -685,11 +885,27 @@ ALTER TABLE ONLY project_media
 
 
 --
+-- Name: project_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY project_sessions
+    ADD CONSTRAINT project_sessions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY projects
     ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: references_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY "references"
+    ADD CONSTRAINT references_pkey PRIMARY KEY (id);
 
 
 --
@@ -773,6 +989,14 @@ ALTER TABLE ONLY seo_meta
 
 
 --
+-- Name: students_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY students
+    ADD CONSTRAINT students_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: field_hosts_properties; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -784,6 +1008,13 @@ CREATE INDEX field_hosts_properties ON field_hosts USING gin (properties);
 --
 
 CREATE INDEX id_type_index_on_seo_meta ON seo_meta USING btree (seo_meta_id, seo_meta_type);
+
+
+--
+-- Name: index_customers_on_entity_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_customers_on_entity_id ON customers USING btree (entity_id);
 
 
 --
@@ -990,3 +1221,11 @@ INSERT INTO schema_migrations (version) VALUES ('20131102202642');
 INSERT INTO schema_migrations (version) VALUES ('20131102202643');
 
 INSERT INTO schema_migrations (version) VALUES ('20131102214402');
+
+INSERT INTO schema_migrations (version) VALUES ('20131126060903');
+
+INSERT INTO schema_migrations (version) VALUES ('20131201234948');
+
+INSERT INTO schema_migrations (version) VALUES ('20131202053806');
+
+INSERT INTO schema_migrations (version) VALUES ('20131202183556');

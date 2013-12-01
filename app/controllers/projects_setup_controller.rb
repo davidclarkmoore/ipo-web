@@ -32,6 +32,8 @@ class ProjectsSetupController < ApplicationController
     params[:project][:wizard_status] = step.to_s
     params[:project][:wizard_status] = 'complete' if step == steps.last
 
+    
+
     @project.update_attributes params[:project]
     render_wizard @project
     session[:project_id] = @project.id

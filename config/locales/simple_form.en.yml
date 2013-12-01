@@ -24,3 +24,12 @@ en:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
 
+    buttons:
+      or: 'or'
+      cancel: 'cancel'
+
+    options:
+      student:
+        gender:
+          male: 'Male'
+          female: 'Female'

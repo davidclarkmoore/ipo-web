@@ -1,0 +1,14 @@
+.new-project-header
+  h1.center Project Setup Application
+  - step_index = wizard_steps.index(step) + 1
+  .wizard-steps
+    .wizard-bar
+      .fill class= "step#{step_index}"
+
+    ul
+      = wizard_step "About You"             , 1, projects_setup_path(:about_you)    , step_index
+      = wizard_step "The Project & Students", 2, projects_setup_path(:the_project)  , step_index
+      = wizard_step "Location & Region"     , 3, projects_setup_path(:location)     , step_index
+      = wizard_step "Multimedia & Content"  , 4, projects_setup_path(:content)      , step_index
+      = wizard_step "Agreement"             , 5, projects_setup_path(:agreement)    , step_index
+      = wizard_step "Confirmation"          , 6, projects_setup_path(:confirmation) , step_index

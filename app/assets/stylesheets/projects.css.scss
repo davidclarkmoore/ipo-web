@@ -1,4 +1,4 @@
-// -------------
+.select2-container// -------------
 // Project Index
 // -------------
 
@@ -92,7 +92,7 @@
 // =============
 
 
-form#new_project, form.edit_project {
+form#new_project, form.edit_project, form#new_student, form.edit_student {
   @include prefix(2);
   @include suffix(2);
   @include span-columns(12 omega);

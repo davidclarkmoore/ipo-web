@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   belongs_to :organization
   belongs_to :field_host
   has_many :project_media
+  has_many :project_session
 
   serialize :properties, ActiveRecord::Coders::Hstore
 
@@ -23,6 +24,9 @@ class Project < ActiveRecord::Base
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport, 
     :field_host_attributes, :organization_attributes, :organization_id, :wizard_status
+  
+  #placeholders
+  attr_accessor :start_date, :end_date
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization

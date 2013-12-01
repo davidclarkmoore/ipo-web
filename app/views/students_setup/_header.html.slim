@@ -1,0 +1,12 @@
+.new-student-header
+  h1.center Student Setup Application
+  - step_index = wizard_steps.index(step) + 1
+  .wizard-steps
+    .wizard-bar
+      .fill class= "step#{step_index}"
+
+    ul
+      = wizard_step "About You"                    , 1, students_setup_path(:about_you), step_index
+      = wizard_step "Interests and Fields of Study", 2, students_setup_path(:interests_and_fields_of_study), step_index
+      = wizard_step "Important Details"            , 3, students_setup_path(:important_details), step_index
+      = wizard_step "Confirmation"                 , 4, students_setup_path(:confirmation), step_index

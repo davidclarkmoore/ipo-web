@@ -1,0 +1,9 @@
+article.box.container
+  #new-project
+    h2.w-seperator Project Sessions
+
+    - @project_sessions.each do | project_session |
+      h3= project_session.project.name
+      p= project_session.title
+      p= project_session.start_date
+      p= project_session.end_date

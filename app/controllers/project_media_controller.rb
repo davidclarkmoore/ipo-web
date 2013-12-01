@@ -1,5 +1,8 @@
 class ProjectMediaController < ApplicationController
   respond_to :js
+
+  load_and_authorize_resource
+
   def create
     @project = Project.find(params[:project_id])
     @project_media = @project.project_media.create(params[:project_media])

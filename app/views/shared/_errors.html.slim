@@ -1,0 +1,6 @@
+- if object.errors.any?
+  h4= "#{pluralize(object.errors.count, "error", "errors")} prohibited that the register was saved:"
+  br
+  ul
+    - object.errors.full_messages.each do |msg|
+      li= msg

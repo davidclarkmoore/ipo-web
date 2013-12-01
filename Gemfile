@@ -2,9 +2,11 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'pg'
 
-
 gem 'haml'
+gem 'slim'
 gem 'simple_form'
+gem 'country_select'
+gem 'font-awesome-rails'
 gem 'ransack'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
@@ -22,6 +24,8 @@ gem 'jquery-fileupload-rails'
 gem 'unicorn' # Use unicorn as the app server
 gem 'capistrano' # Deploy with Capistrano
 
+gem 'authlogic'
+gem 'cancan'
 
 gem 'http_accept_language'
 gem 'select2-rails'

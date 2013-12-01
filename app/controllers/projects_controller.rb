@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
+  load_and_authorize_resource
   respond_to :html, :js
-
+ 
   def index
     @q = Project.search(params[:q])
     @projects = @q.result

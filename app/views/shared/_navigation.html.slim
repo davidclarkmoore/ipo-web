@@ -1,0 +1,8 @@
+nav
+  span.link.heading internships
+  span.link.heading about ipo
+  span.link.heading stories
+  -if current_customer
+    span.link.heading=link_to "log out", logout_path
+  -else
+    span.link.heading=link_to "log in", login_path

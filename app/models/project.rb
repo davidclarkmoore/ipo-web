@@ -85,6 +85,10 @@ class Project < ActiveRecord::Base
     wizard_status.include?('agreement') || complete?
   end
 
+  def team_mode_to_string
+    self.team_mode ? "Team" : "Individual"
+  end
+
   # TODO: Partial validations with wizard steps
   # validates_presence_of :name, :description
   # validates_uniqueness_of :name

@@ -19,4 +19,7 @@ class StudentsController < ApplicationController
     end
   end
 
+  def profile_page
+    @student = Student.find(params[:id])
+  end
 end

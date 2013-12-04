@@ -19,10 +19,10 @@
 
         = f.input :email
         = f.input :password
-        p.register-description We'll setup an account for you so you can check your applicaion status, update your info, access important material and setup a funraising page!
+        p.register-description We'll setup an account for you so you can check your application status, update your info, access important material and setup a funraising page!
         = f.input :password_confirmation, label: "Confirm Password"
 
-        = f.input :birthday, label: "Date of Birth"
+        = f.input :birthday, start_year: (Date.today - 50.years).year, label: "Date of Birth"
         = f.input :gender, collection: [:female, :male], as: :radio_buttons
         = f.input :marital_status, as: :select
 

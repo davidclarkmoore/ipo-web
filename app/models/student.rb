@@ -8,7 +8,7 @@ class Student < ActiveRecord::Base
     :last_name, :marital_status, :organization, :overall_education, :passions, :spiritual_reference_id,
     :street_address, :city, :postal_code, :country, :preferred_phone, :phone_type,
     :spoken_languages, :graduation_year, :wizard_status, :project_id, :project_session_id,
-    :email, :password, :password_confirmation, :agree_terms
+    :email, :password, :password_confirmation, :agree_terms, :profile_picture, :cover_photo
 
   attr_accessor :email, :password, :password_confirmation, :agree_terms, :validate_customer
 
@@ -47,6 +47,9 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :academic_reference
   attr_accessible :spiritual_reference_attributes
   attr_accessible :academic_reference_attributes
+
+  mount_uploader :profile_picture, AvatarUploader
+  mount_uploader :cover_photo, AvatarUploader
 
   def complete?
     wizard_status == 'complete'

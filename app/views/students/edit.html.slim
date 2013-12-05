@@ -1,0 +1,18 @@
+.container
+	.info-box
+		h1=@student.full_name
+
+	fieldset
+		= simple_form_for @student, method: :put, validate: true do |f|
+			= f.label "Please select your profile picture"
+			= f.file_field :profile_picture
+			hr
+
+			= f.label "Please select your cover photo"
+			= f.file_field :cover_photo
+			hr
+
+			= f.submit "Submit", class: "button button-orange"
+			hr
+
+	fieldset

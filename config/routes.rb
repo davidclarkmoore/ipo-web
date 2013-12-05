@@ -10,7 +10,6 @@ IpoWeb::Application.routes.draw do
 
   resources :students_setup, path: "/students/setup", only: [:index, :show, :update]
   resources :students 
-  match '/profile_page' => 'students#profile_page'
 
   resources :customer_sessions
   resources :customers do

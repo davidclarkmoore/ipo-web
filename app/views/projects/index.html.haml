@@ -1,45 +1,47 @@
-.explore
-  .c8
-    %h3 Explore IPO Connection Projects
-    = button_link_to 'Create New Project', new_project_path, :blue, class: 'new-project'
+.container
 
-  .options
-    %span.explore-by Explore By:
-    .button-group
-      = button_link_to 'Map',  projects_path(view: 'map'),  :grey, class: view_active?('map')
-      = button_link_to 'Grid', projects_path(view: 'grid'), :grey, class: view_active?('grid')
-      = button_link_to 'List', projects_path(view: 'list'), :grey, class: view_active?('list')
+  .explore
+    .c8
+      %h3 Explore IPO Connection Projects
+      = button_link_to 'Create New Project', new_project_path, :blue, class: 'new-project'
 
-= search_form_for @q do |f|
-  = hidden_field_tag :view, params[:view]
-  .filter
-    .sort
-      %span.explore-by Sort:
+    .options
+      %span.explore-by Explore By:
       .button-group
-        = sort_button 'A-Z', 'name asc'
-        = sort_button 'Recent', 'created_at desc'
-        = sort_button 'Oldest', 'created_at asc'
+        = button_link_to 'Map',  projects_path(view: 'map'),  :grey, class: view_active?('map')
+        = button_link_to 'Grid', projects_path(view: 'grid'), :grey, class: view_active?('grid')
+        = button_link_to 'List', projects_path(view: 'list'), :grey, class: view_active?('list')
+
+  = search_form_for @q do |f|
+    = hidden_field_tag :view, params[:view]
+    .filter
+      .sort
+        %span.explore-by Sort:
+        .button-group
+          = sort_button 'A-Z', 'name asc'
+          = sort_button 'Recent', 'created_at desc'
+          = sort_button 'Oldest', 'created_at asc'
 
 
-    .include
-      %span Filter:
-      = dropdown 'Any #' do
-        = dropdown_btn '1-10'
-        = dropdown_btn '10-40'
-        = dropdown_btn '40+'
+      .include
+        %span Filter:
+        = dropdown 'Any #' do
+          = dropdown_btn '1-10'
+          = dropdown_btn '10-40'
+          = dropdown_btn '40+'
 
-      = dropdown 'Weeks' do
-        = dropdown_btn 'Days'
-        = dropdown_btn 'Weeks'
-        = dropdown_btn 'Months'
-        = dropdown_btn 'Years'
+        = dropdown 'Weeks' do
+          = dropdown_btn 'Days'
+          = dropdown_btn 'Weeks'
+          = dropdown_btn 'Months'
+          = dropdown_btn 'Years'
 
-      %span.interests Passion Interests:
-      = dropdown 'All' do
-        = dropdown_btn '??'
-        = dropdown_btn '??'
+        %span.interests Passion Interests:
+        = dropdown 'All' do
+          = dropdown_btn '??'
+          = dropdown_btn '??'
 
-    .search
-      = f.text_field :name_cont
+      .search
+        = f.text_field :name_cont
 
-= render "projects_#{params[:view]}", projects: @projects
+  = render "projects_#{params[:view]}", projects: @projects

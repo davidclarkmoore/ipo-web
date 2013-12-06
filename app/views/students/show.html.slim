@@ -8,37 +8,39 @@
 			.second-column
 				h1=@student.full_name
 
-fieldset
-	h1= t(:about_me)
-	p More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection 
-	hr
+	fieldset
+		h2= t(:spread_word)
+		= image_tag "sharing_options.jpg"
+		hr
 
-	h1= t(:my_project, project: @student.project.name, address: @student.project.address)
-	p More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection 
-	hr
+		h2= t(:give_to_the_project)
+		= button t(:donate_to_this_project), :blue, id: "donate_to_project"
+		p
+			span.list-title= t(:donation_cover_the_following)
+		ul
+			li= t(:housing_and_food)
+			li= t(:cost_associated_with_rutine)
+			li= t(:training_costs)
+		hr
 
-fieldset
-	h2= t(:spread_word)
-	= image_tag "sharing_options.jpg"
-	hr
+		h2= t(:quick_details)
+		ul
+			li= @student.project.nil? ? "No Project Specified" : t(:project, project: @student.project.name, address: @student.project.address)
+			li= t(:session, range: @student.project_session.select_label)
+			li= t(:internet_access, internet: @student.project.internet_distance)
+			li= t(:project_type, type: @student.project.team_mode_to_string)
+		hr
 
-	h2= t(:give_to_the_project)
-	= button t(:donate_to_this_project), :blue, id: "donate_to_project"
-	p
-		span.list-title= t(:donation_cover_the_following)
-	ul
-		li= t(:housing_and_food)
-		li= t(:cost_associated_with_rutine)
-		li= t(:training_costs)
-	hr
+		h2= t(:how_to_contact_me)
+		p More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection
 
-	h2= t(:quick_details)
-	ul
-		li= t(:project, project: @student.project.name, address: @student.project.address)
-		li= t(:session, range: @student.project_session.select_label)
-		li= t(:internet_access, internet: @student.project.internet_distance)
-		li= t(:project_type, type: @student.project.team_mode_to_string)
-	hr
+	fieldset
+		h1= t(:about_me)
+		p More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection 
+		hr
 
-	h2= t(:how_to_contact_me)
-	p More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection
+		h1= t(:my_project, project: @student.project.name, address: @student.project.address)
+		p More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection 
+		hr
+
+	

@@ -2,9 +2,11 @@ class ProjectsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @q = Project.search(params[:q])
-    @projects = @q.result
+    #binding.pry
+    @search = Project.search(params[:q])
+    @projects = @search.result(distinct: true)
     @total_projects = Project.all.count
+    
     params[:view] ||= 'grid'
   end
 

@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
     :address, :internet_distance, :location_private, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport, 
-    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status
+    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :related_fields_of_study_values
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
@@ -41,6 +41,10 @@ class Project < ActiveRecord::Base
     alias_method_chain f, :deserialize
   end
 
+  ransacker :by_fields_of_study, :formatter => proc { |field| self.related_fields_of_study_values.include?(field)} do |parent|
+    parent.table["projects"]
+  end
+
   # -- About You
   validates :field_host, :organization, :associated => true, :if => :complete_or_about_you?
   # -- The Project
@@ -56,7 +60,18 @@ class Project < ActiveRecord::Base
   # -- Agreement
   validates :agree_memo, :agree_to_transport, inclusion: { in: [true, 1, 'true', 'T', '1'] }, :if => :complete_or_agreement?
 
+  scope :recent, order('created_at desc')
+  scope :oldest, order('created_at asc')
+  scope :by_name, order('name asc')
 
+
+  def related_fields_of_study_values
+    field_of_studies = []
+    self.properties["related_fields_of_study"].split(",").each do |field|
+      field_of_studies << field.delete('"[]^')
+    end 
+    field_of_studies
+  end
   def complete?
     wizard_status == 'complete'
   end

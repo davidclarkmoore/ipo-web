@@ -14,36 +14,36 @@
         = button_link_to 'List', projects_path(view: 'list'), :grey, class: view_active?('list')
 
   .search-box 
-    = search_form_for @q do |f|
+    %span.explore-by Sort:
+    .button-group
+      = sort_link(@search, :name, 'A-Z')
+      = sort_link(@search, :created_at, 'Recent', default_order: :asc)
+      = sort_link(@search, :created_at, 'Oldest', default_order: :desc)
+
+    = search_form_for @search, :builder => SimpleForm::FormBuilder do |f|
       = hidden_field_tag :view, params[:view]
       .filter
         .sort
-          %span.explore-by Sort:
-          .button-group
-            = sort_button 'A-Z', 'name asc'
-            = sort_button 'Recent', 'created_at desc'
-            = sort_button 'Oldest', 'created_at asc'
+          %h5 Session Timeframe
+          = f.text_field :name_cont, size: 15
 
         .include
-          %span.explore-by Filter:
-          %h5 Session Timeframe
-          = f.text_field :created_at
-
           %h5 Fields of Study
-          = select_tag "fields_of_study", options_for_select(fields_of_study), prompt: "All fields of study"
+          = f.select :by_fields_of_study_in, options_for_select(fields_of_study), prompt: "All fields of study"
 
-          .button-group
-            = sort_button 'All', 'name asc'
-            = sort_button 'Team', 'created_at desc'
-            = sort_button 'Individual', 'created_at asc'
+        .include
+          %span Team
+          = f.check_box :team_mode_true
+          %span Individual
+          = f.check_box :team_mode_false
 
         .search
           %span By name:
-          = f.text_field :name_cont
+          = f.text_field :name_cont, size: 15
 
       .interests 
         %span Filter by Passion
-        = select_tag "All", options_for_select(student_passions), prompt: "All passions"
+        = f.select :properties_cont, options_for_select(student_passions), prompt: "All passions"
 
       = f.submit "Search!", class: "button button-orange" 
       %br

@@ -35,6 +35,7 @@ class ProjectsSetupController < ApplicationController
     @project.update_attributes params[:project]
     render_wizard @project
     session[:project_id] = @project.id
+    binding.pry
   end
 
   private

@@ -17,4 +17,12 @@ module ProjectsHelper
       )
     end
   end
+
+  def fields_of_study
+    Project.related_fields_of_study.values
+  end
+
+  def student_passions
+    Project.related_student_passions.values
+  end
 end

@@ -71,5 +71,4 @@ module ApplicationHelper
       content_tag(:span, label, class: 'dropdown-link')
     end
   end
-
 end

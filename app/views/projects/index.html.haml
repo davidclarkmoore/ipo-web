@@ -30,7 +30,7 @@
           = f.text_field :created_at
 
           %h5 Fields of Study
-          = select_tag "All", options_for_select(fields_of_study)
+          = select_tag "fields_of_study", options_for_select(fields_of_study), prompt: "All fields of study"
 
           .button-group
             = sort_button 'All', 'name asc'
@@ -43,7 +43,7 @@
 
       .interests 
         %span Filter by Passion
-        = select_tag "All", options_for_select(student_passions)
+        = select_tag "All", options_for_select(student_passions), prompt: "All passions"
 
       = f.submit "Search!", class: "button button-orange" 
       %br

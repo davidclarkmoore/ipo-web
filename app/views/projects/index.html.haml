@@ -3,7 +3,8 @@
   .explore
     .c8
       %h3 Explore IPO Connection Projects
-      = button_link_to 'Create New Project', new_project_path, :blue, class: 'new-project'
+      %br
+      %h5= @total_projects.to_s + " Total Projects"
 
     .options
       %span.explore-by Explore By:
@@ -12,36 +13,45 @@
         = button_link_to 'Grid', projects_path(view: 'grid'), :grey, class: view_active?('grid')
         = button_link_to 'List', projects_path(view: 'list'), :grey, class: view_active?('list')
 
-  = search_form_for @q do |f|
-    = hidden_field_tag :view, params[:view]
-    .filter
-      .sort
-        %span.explore-by Sort:
-        .button-group
-          = sort_button 'A-Z', 'name asc'
-          = sort_button 'Recent', 'created_at desc'
-          = sort_button 'Oldest', 'created_at asc'
+  .search-box 
+    = search_form_for @q do |f|
+      = hidden_field_tag :view, params[:view]
+      .filter
+        .sort
+          %span.explore-by Sort:
+          .button-group
+            = sort_button 'A-Z', 'name asc'
+            = sort_button 'Recent', 'created_at desc'
+            = sort_button 'Oldest', 'created_at asc'
 
+        .include
+          %span.explore-by Filter:
+          %h5 Session Timeframe
+          = f.text_field :created_at
 
-      .include
-        %span Filter:
-        = dropdown 'Any #' do
-          = dropdown_btn '1-10'
-          = dropdown_btn '10-40'
-          = dropdown_btn '40+'
+          %h5 Fields of Study
+          = dropdown 'Any #' do
+            = dropdown_btn '1-10'
+            = dropdown_btn '10-40'
+            = dropdown_btn '40+'
 
-        = dropdown 'Weeks' do
-          = dropdown_btn 'Days'
-          = dropdown_btn 'Weeks'
-          = dropdown_btn 'Months'
-          = dropdown_btn 'Years'
+          .button-group
+            = sort_button 'All', 'name asc'
+            = sort_button 'Team', 'created_at desc'
+            = sort_button 'Individual', 'created_at asc'
 
-        %span.interests Passion Interests:
+        .search
+          %span By name:
+          = f.text_field :name_cont
+
+      .interests 
+        %span Filter by Passion
         = dropdown 'All' do
           = dropdown_btn '??'
           = dropdown_btn '??'
 
-      .search
-        = f.text_field :name_cont
+      = f.submit "Search!", class: "button button-orange" 
+      %br
+      %br
 
   = render "projects_#{params[:view]}", projects: @projects

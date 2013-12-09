@@ -41,7 +41,7 @@
 
   >.sort { @include span-columns(3); }
   >.include {
-    @include span-columns(6);
+    @include span-columns(3);
     > span { margin-right: 0.9em; }
     > span.interests { margin: 0 1em; }
   }

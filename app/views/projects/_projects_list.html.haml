@@ -1,12 +1,12 @@
 %table.table
   %thead.table-head
     %tr
-      %th Name
-      %th Description
-      %th Address
-      %th Team
-      %th Student fields
-      %th Student passions
+      %th= t(:name)
+      %th= t(:description)
+      %th= t(:address)
+      %th= t(:team)
+      %th= t(:student_fields)
+      %th= t(:student_passions)
 
   %tbody.table-body
     - projects.each do |p|

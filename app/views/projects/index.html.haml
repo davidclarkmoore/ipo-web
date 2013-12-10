@@ -2,56 +2,56 @@
 
   .explore
     .c8
-      %h3 Explore IPO Connection Projects
+      %h3= t(:explore_ipo_connection_projects)
       %br
-      %h5= @total_projects.to_s + " Total Projects"
+      %h5= @total_projects.to_s + t(:total_projects)
 
     .options
-      %span.explore-by Explore By:
+      %span.explore-by= t(:explore_by)
       .button-group
         = button_link_to 'Map',  projects_path(view: 'map', q: params[:q], properties: params[:properties]),  :grey, class: view_active?('map'), remote: true
         = button_link_to 'Grid', projects_path(view: 'grid', q: params[:q], properties: params[:properties]), :grey, class: view_active?('grid'), remote: true
         = button_link_to 'List', projects_path(view: 'list', q: params[:q], properties: params[:properties]), :grey, class: view_active?('list'), remote: true
 
   .search-box 
-    %span.explore-by Sort:
+    %span.explore-by= t(:sort)
     .button-group
-      = sort_link(@projects, :name, 'A-Z')
-      = sort_link(@projects, :created_at, 'Recent', default_order: :asc)
-      = sort_link(@projects, :created_at, 'Oldest', default_order: :desc)
+      = sort_link(@projects, :name, t(:a_z))
+      = sort_link(@projects, :created_at, t(:recent), default_order: :asc)
+      = sort_link(@projects, :created_at, t(:oldest), default_order: :desc)
 
     = search_form_for @projects, :builder => SimpleForm::FormBuilder do |f|
       = hidden_field_tag :view, params[:view]
       .filter
         .sort
-          %h5 Session Timeframe
+          %h5= t(:session_timeframe)
           = f.text_field :name_cont, size: 15
 
         .include
-          %h5 Fields of Study
+          %h5= t(:fields_of_study)
           = select_tag "properties[fields]", options_for_select(fields_of_study), include_blank: true, multiple: true
 
         .include
-          %span Team
+          %span= t(:team)
           = f.check_box :team_mode_true
-          %span Individual
+          %span= t(:individual)
           = f.check_box :team_mode_false
 
         .search
-          %span By name:
+          %span= t(:by_name)
           = f.text_field :name_cont, size: 15
 
       .interests 
-        %span Filter by Passion
+        %span= t(:filter_by_passion)
         = select_tag "properties[passions]", options_for_select(student_passions), include_blank: true, multiple: true
 
-      = f.submit "Search!", class: "button button-orange" 
+      = f.submit t(:search), class: "button button-orange" 
       %br
       %br
 
   #projects
     - if @projects.result.empty?
-      %h2.not-available No projects available
+      %h2.not-available= t(:no_projects_available)
     - else
       #related_projects
         = render "projects_#{params[:view]}", projects: @projects.result

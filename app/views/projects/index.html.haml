@@ -25,7 +25,10 @@
       .filter
         .sort
           %h5= t(:session_timeframe)
-          = f.text_field :name_cont, size: 15
+          %span From
+          = f.text_field :created_at_gt, size: 15, class: "date_picker"
+          %span to
+          = f.text_field :created_at_lt, size: 15, class: "date_picker"
 
         .include
           %h5= t(:fields_of_study)
@@ -55,3 +58,7 @@
     - else
       #related_projects
         = render "projects_#{params[:view]}", projects: @projects.result
+
+:javascript
+  $("#q_created_at_gt").datepicker({ dateFormat: "yy/mm/dd" });
+  $("#q_created_at_lt").datepicker({ dateFormat: "yy/mm/dd" });

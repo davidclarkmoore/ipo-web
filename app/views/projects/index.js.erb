@@ -1,0 +1,7 @@
+<% if params[:view] == 'grid' %>
+	$("#related_projects").html("<%= escape_javascript(render 'projects_grid', projects: @projects.result) %>");
+<% elsif params[:view] == 'list'%>
+	$("#related_projects").html("<%= escape_javascript(render 'projects_list', projects: @projects.result) %>");
+<% else %>
+	$("#related_projects").html("<%= escape_javascript(render 'projects_map', projects: @projects.result) %>");
+<% end %>

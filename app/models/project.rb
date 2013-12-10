@@ -82,6 +82,14 @@ class Project < ActiveRecord::Base
     wizard_status.include?('agreement') || complete?
   end
 
+  def get_pretty_properties(type)
+    fields = []
+    self.properties[type].split(",").each do |field|
+      fields << field.delete('[]""').strip
+    end
+    fields.join(", ")
+  end
+
   # TODO: Partial validations with wizard steps
   # validates_presence_of :name, :description
   # validates_uniqueness_of :name

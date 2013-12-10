@@ -9,9 +9,9 @@
     .options
       %span.explore-by Explore By:
       .button-group
-        = button_link_to 'Map',  projects_path(view: 'map'),  :grey, class: view_active?('map')
-        = button_link_to 'Grid', projects_path(view: 'grid'), :grey, class: view_active?('grid')
-        = button_link_to 'List', projects_path(view: 'list'), :grey, class: view_active?('list')
+        = button_link_to 'Map',  projects_path(view: 'map', q: params[:q], properties: params[:properties]),  :grey, class: view_active?('map'), remote: true
+        = button_link_to 'Grid', projects_path(view: 'grid', q: params[:q], properties: params[:properties]), :grey, class: view_active?('grid'), remote: true
+        = button_link_to 'List', projects_path(view: 'list', q: params[:q], properties: params[:properties]), :grey, class: view_active?('list'), remote: true
 
   .search-box 
     %span.explore-by Sort:
@@ -49,4 +49,9 @@
       %br
       %br
 
-  = render "projects_#{params[:view]}", projects: @projects.result
+  #projects
+    - if @projects.result.empty?
+      %h2.not-available No projects available
+    - else
+      #related_projects
+        = render "projects_#{params[:view]}", projects: @projects.result

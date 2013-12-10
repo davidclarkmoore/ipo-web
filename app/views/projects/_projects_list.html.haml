@@ -3,8 +3,10 @@
     %tr
       %th Name
       %th Description
-      %th Start
-      %th End
+      %th Address
+      %th Team
+      %th Student fields
+      %th Student passions
 
   %tbody.table-body
     - projects.each do |p|
@@ -13,3 +15,5 @@
         %td= p.description
         %td= p.address
         %td= p.team_mode ? "Team" : "Individual"
+        %td= p.get_pretty_properties("related_fields_of_study")
+        %td= p.get_pretty_properties("related_student_passions")

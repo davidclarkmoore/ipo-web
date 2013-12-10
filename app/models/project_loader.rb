@@ -1,7 +1,6 @@
 class ProjectLoader
 
 	def self.load_projects(properties)
-
 		return Project.scoped if properties.nil?
 
 		projects = []
@@ -30,5 +29,4 @@ class ProjectLoader
 		end
 		fields
 	end
-
 end

@@ -16,11 +16,11 @@
   .search-box 
     %span.explore-by Sort:
     .button-group
-      = sort_link(@search, :name, 'A-Z')
-      = sort_link(@search, :created_at, 'Recent', default_order: :asc)
-      = sort_link(@search, :created_at, 'Oldest', default_order: :desc)
+      = sort_link(@projects, :name, 'A-Z')
+      = sort_link(@projects, :created_at, 'Recent', default_order: :asc)
+      = sort_link(@projects, :created_at, 'Oldest', default_order: :desc)
 
-    = search_form_for @search, :builder => SimpleForm::FormBuilder do |f|
+    = search_form_for @projects, :builder => SimpleForm::FormBuilder do |f|
       = hidden_field_tag :view, params[:view]
       .filter
         .sort
@@ -29,7 +29,7 @@
 
         .include
           %h5 Fields of Study
-          = select_tag "properties_fields", options_for_select(fields_of_study), include_blank: true, multiple: true
+          = select_tag "properties[fields]", options_for_select(fields_of_study), include_blank: true, multiple: true
 
         .include
           %span Team
@@ -43,10 +43,10 @@
 
       .interests 
         %span Filter by Passion
-        = select_tag "properties_passions", options_for_select(student_passions), include_blank: true, multiple: true
+        = select_tag "properties[passions]", options_for_select(student_passions), include_blank: true, multiple: true
 
       = f.submit "Search!", class: "button button-orange" 
       %br
       %br
 
-  = render "projects_#{params[:view]}", projects: @projects
+  = render "projects_#{params[:view]}", projects: @projects.result

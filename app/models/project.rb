@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
     :student_educational_requirement, :address, :internet_distance, :location_private, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport, 
-    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :related_fields_of_study_values
+    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :fields_of_study
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
@@ -57,30 +57,6 @@ class Project < ActiveRecord::Base
   scope :recent, order('created_at desc')
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
-
-  def self.related_to_fields_of_study?(study_values)
-    projects = []
-    Project.all.each do |project|
-      field_of_studies = []
-      project.properties["related_fields_of_study"].split(",").each do |field|
-        field_of_studies << field.delete('[]""').strip
-      end
-      projects << project unless (field_of_studies & study_values).empty?
-    end
-    projects
-  end
-
-  def self.related_student_passions?(student_passion_values)
-    projects = []
-    Project.all.each do |project|
-      student_passions = []
-      project.properties["related_student_passions"].split(",").each do |field|
-        student_passions << field.delete('[]""').strip
-      end
-      projects << project unless (student_passions & student_passion_values).empty?
-    end
-    projects
-  end
 
   def complete?
     wizard_status == 'complete'

@@ -2,11 +2,12 @@ class ProjectsController < ApplicationController
   respond_to :html, :js
 
   def index
-    #binding.pry
     @search = Project.search(params[:q])
-    @projects = @search.result(distinct: true)
-    @total_projects = Project.all.count
-    
+    @projects = @search.result
+    @projects.concat(Project.related_to_fields_of_study?(params[:properties_fields])) if params[:properties_fields]
+    @projects.concat(Project.related_student_passions?(params[:properties_passions])) if params[:properties_passion]
+    @total_projects = @projects.count
+ 
     params[:view] ||= 'grid'
   end
 
@@ -21,5 +22,4 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_path }
     end
   end
-
 end

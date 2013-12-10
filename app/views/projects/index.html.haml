@@ -29,7 +29,7 @@
 
         .include
           %h5 Fields of Study
-          = f.select :by_fields_of_study_in, options_for_select(fields_of_study), prompt: "All fields of study"
+          = select_tag "properties_fields", options_for_select(fields_of_study), include_blank: true, multiple: true
 
         .include
           %span Team
@@ -43,7 +43,7 @@
 
       .interests 
         %span Filter by Passion
-        = f.select :properties_cont, options_for_select(student_passions), prompt: "All passions"
+        = select_tag "properties_passions", options_for_select(student_passions), include_blank: true, multiple: true
 
       = f.submit "Search!", class: "button button-orange" 
       %br

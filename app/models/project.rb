@@ -11,15 +11,13 @@ class Project < ActiveRecord::Base
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, 
     :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
-    :student_educational_requirement,
-    :address, :internet_distance, :location_type, :transportation_available,
+    :student_educational_requirement, :address, :internet_distance, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 
   attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, 
     :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
-    :student_educational_requirement,
-    :address, :internet_distance, :location_private, :location_type, :transportation_available,
+    :student_educational_requirement, :address, :internet_distance, :location_private, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport, 
     :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :related_fields_of_study_values
@@ -41,10 +39,6 @@ class Project < ActiveRecord::Base
     alias_method_chain f, :deserialize
   end
 
-  ransacker :by_fields_of_study, :formatter => proc { |field| self.related_fields_of_study_values.include?(field)} do |parent|
-    parent.table["projects"]
-  end
-
   # -- About You
   validates :field_host, :organization, :associated => true, :if => :complete_or_about_you?
   # -- The Project
@@ -64,14 +58,30 @@ class Project < ActiveRecord::Base
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
 
-
-  def related_fields_of_study_values
-    field_of_studies = []
-    self.properties["related_fields_of_study"].split(",").each do |field|
-      field_of_studies << field.delete('"[]^')
-    end 
-    field_of_studies
+  def self.related_to_fields_of_study?(study_values)
+    projects = []
+    Project.all.each do |project|
+      field_of_studies = []
+      project.properties["related_fields_of_study"].split(",").each do |field|
+        field_of_studies << field.delete('[]""').strip
+      end
+      projects << project unless (field_of_studies & study_values).empty?
+    end
+    projects
   end
+
+  def self.related_student_passions?(student_passion_values)
+    projects = []
+    Project.all.each do |project|
+      student_passions = []
+      project.properties["related_student_passions"].split(",").each do |field|
+        student_passions << field.delete('[]""').strip
+      end
+      projects << project unless (student_passions & student_passion_values).empty?
+    end
+    projects
+  end
+
   def complete?
     wizard_status == 'complete'
   end

@@ -53,11 +53,6 @@ group :development do
   gem 'rb-fsevent'
   gem 'zeus'
   gem 'guard-rspec'
-
-  # Debugger and REPL
-  gem 'pry'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
 end
 
 group :test, :development do
@@ -74,4 +69,9 @@ group :test, :development do
 
   gem 'ruby_gntp'
   gem 'fuubar'
+
+  # Debugger and REPL
+  gem 'pry'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
 end

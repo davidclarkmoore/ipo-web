@@ -15,7 +15,7 @@ describe ProjectsController do
 
     it "returns all projects if no filter is used" do
       total = rand(1..10)
-      FactoryGirl.create_list(:project, total, :complete)
+      create_list(:project, total, :complete)
       
       get :index    
       expect(assigns(:total_projects)).to eq(total)
@@ -25,8 +25,8 @@ describe ProjectsController do
       context "Using name" do
         before(:each) do
           @total = rand(1..10)
-          FactoryGirl.create_list(:project, rand(1..10), :complete)
-          FactoryGirl.create_list(:project, @total, :static_name, :complete)
+          create_list(:project, rand(1..10), :complete)
+          create_list(:project, @total, :static_name, :complete)
         end
 
         it "should return only projects that match" do
@@ -43,8 +43,8 @@ describe ProjectsController do
       context "Using team mode" do
         before(:each) do
           @total_individual = rand(1..10)
-          FactoryGirl.create_list(:project, rand(1..10), :complete)
-          FactoryGirl.create_list(:project, @total_individual, :individual_mode, :complete)
+          create_list(:project, rand(1..10), :complete)
+          create_list(:project, @total_individual, :individual_mode, :complete)
         end
 
          it "should return only team projects" do

@@ -32,7 +32,7 @@
 
         .include
           %h5= t(:fields_of_study)
-          = select_tag "properties[fields]", options_for_select(fields_of_study), include_blank: true, multiple: true
+          = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study), include_blank: true, multiple: true
 
         .include
           %span= t(:team)
@@ -46,7 +46,7 @@
 
       .interests 
         %span= t(:filter_by_passion)
-        = select_tag "properties[passions]", options_for_select(student_passions), include_blank: true, multiple: true
+        = select_tag "properties[related_student_passions]", options_for_select(student_passions), include_blank: true, multiple: true
 
       = f.submit t(:search), class: "button button-orange" 
       %br

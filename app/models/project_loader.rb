@@ -3,7 +3,6 @@ class ProjectLoader
 	def self.load_projects(properties)
 		return Project.scoped if properties.nil?
 		projects = []
-
 		properties.each do |key, value|
 			projects.concat(related_to_properties?(key, value))
 		end

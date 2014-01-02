@@ -29,8 +29,8 @@
         %img(src="http://placehold.it/300x340")
       .student-requirements-fields
         = f.input :required_languages, label: 'Select Required Languages Students Must Speak', validate: true
-        = f.input :related_student_passions, label: 'Tag All Related Student Passions', validate: true
-        = f.input :related_fields_of_study, label: 'Tag all related fields of study that would benefit this project', validate: true
+        = f.input :related_student_passions, as: :select, collection: %w(one two three four), label: 'Tag All Related Student Passions'
+        = f.input :related_fields_of_study, as: :select, collection: %w(one two three four), label: 'Tag all related fields of study that would benefit this project'
         = f.input :student_educational_requirement, label: 'Student Educational Requirement', validate: true
 
       = f.submit "Save & Continue to Step #3", class: "button button-orange"

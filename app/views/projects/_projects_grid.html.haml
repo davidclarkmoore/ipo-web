@@ -4,5 +4,5 @@
     %p= p.description
     %p= p.address
     %p= p.team_mode ? "Team" : "Individual"
-    %p= p.get_pretty_properties("related_fields_of_study")
-    %p= p.get_pretty_properties("related_student_passions")
+    %p= p.related_fields_of_study.join(", ")
+    %p= p.related_student_passions.join(", ")

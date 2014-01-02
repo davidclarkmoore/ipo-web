@@ -14,6 +14,7 @@ gem 'wicked'
 gem 'enumerize'
 gem 'foreigner'
 gem 'activerecord-postgres-hstore'
+gem 'postgres_ext'
 
 gem 'carrierwave'
 gem 'mini_magick'
@@ -71,7 +72,6 @@ group :test, :development do
   gem 'fuubar'
 
   # Debugger and REPL
-  gem 'pry'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
+  gem "pry"
+  gem "pry-debugger"
 end

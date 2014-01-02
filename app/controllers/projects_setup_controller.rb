@@ -2,9 +2,8 @@ class ProjectsSetupController < ApplicationController
   include Wicked::Wizard
   steps :about_you, :the_project, :location, :content, :agreement, :confirmation
 
-  before_filter :check_step
-  before_filter :clean_select_multiple_params
-
+  before_filter :check_step, :clean_select_multiple_params
+  before_filter :set_array_fields, on: :update
   def show
     @project = current_project
     case step
@@ -31,19 +30,21 @@ class ProjectsSetupController < ApplicationController
 
     params[:project][:wizard_status] = step.to_s
     params[:project][:wizard_status] = 'complete' if step == steps.last
-
+    
     @project.update_attributes params[:project]
     render_wizard @project
     session[:project_id] = @project.id
   end
 
   private
+
   def current_project
     @current_project ||= begin
       project = session[:project_id] && Project.find_by_id(session[:project_id])
       project ||= Project.new
     end
   end
+
   def check_step
     # TODO: Add a validation to make sure user isn't skipping ahead
   end
@@ -55,5 +56,11 @@ class ProjectsSetupController < ApplicationController
       when Hash then clean_select_multiple_params(v)
       end
     end
+  end
+
+  def set_array_fields
+    return unless params[:project]
+    params[:project][:related_fields_of_study] = params[:project][:related_fields_of_study].split if params[:project][:related_fields_of_study]
+    params[:project][:related_student_passions] = params[:project][:related_student_passions].split if params[:project][:related_student_passions]
   end
 end

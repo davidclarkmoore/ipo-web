@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, 
-    :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
+    :per_week_cost, :per_week_cost_final, :required_languages,
     :student_educational_requirement, :address, :internet_distance, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
@@ -29,11 +29,12 @@ class Project < ActiveRecord::Base
     enumerize f, in: I18n.t("enumerize.project.#{f}")
   end
 
-  %w(required_languages related_student_passions related_fields_of_study transportation_available).each do |f|
+  %w(required_languages transportation_available).each do |f|
     enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
 
     define_method "#{f}_with_deserialize" do
       value = send("#{f}_without_deserialize")
+     # binding.pry
       value = JSON.parse(send("#{f}_without_deserialize")) if value && value.is_a?(String)
     end
     alias_method_chain f, :deserialize
@@ -57,7 +58,7 @@ class Project < ActiveRecord::Base
   scope :recent, order('created_at desc')
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
-  
+
   def complete?
     wizard_status == 'complete'
   end
@@ -80,14 +81,6 @@ class Project < ActiveRecord::Base
 
   def complete_or_agreement?
     wizard_status.include?('agreement') || complete?
-  end
-
-  def get_pretty_properties(type)
-    fields = []
-    self.properties[type].split(",").each do |field|
-      fields << field.delete('[]""').strip
-    end
-    fields.join(", ")
   end
 
   # TODO: Partial validations with wizard steps

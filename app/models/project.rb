@@ -10,10 +10,10 @@ class Project < ActiveRecord::Base
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, 
-    :per_week_cost, :per_week_cost_final, :required_languages,
-    :student_educational_requirement, :address, :internet_distance, :location_type, :transportation_available,
-    :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
-    :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
+    :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement, 
+    :address, :internet_distance, :location_type, :transportation_available, :location_description, 
+    :culture_description, :housing_type, :dining_location, :housing_description, :safety_level, 
+    :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 
   attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, 
     :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
@@ -34,7 +34,6 @@ class Project < ActiveRecord::Base
 
     define_method "#{f}_with_deserialize" do
       value = send("#{f}_without_deserialize")
-     # binding.pry
       value = JSON.parse(send("#{f}_without_deserialize")) if value && value.is_a?(String)
     end
     alias_method_chain f, :deserialize

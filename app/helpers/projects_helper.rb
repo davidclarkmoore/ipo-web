@@ -19,10 +19,11 @@ module ProjectsHelper
   end
 
   def fields_of_study
-    Project.related_fields_of_study.values
+    I18n.t("enumerize.project.related_fields_of_study").invert
   end
 
   def student_passions
-    Project.related_student_passions.values
+    I18n.t("enumerize.project.related_student_passions").invert
   end
+
 end

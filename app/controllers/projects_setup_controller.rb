@@ -3,7 +3,7 @@ class ProjectsSetupController < ApplicationController
   steps :about_you, :the_project, :location, :content, :agreement, :confirmation
 
   before_filter :check_step, :clean_select_multiple_params
-  before_filter :set_array_fields, on: :update
+ 
   def show
     @project = current_project
     case step
@@ -29,8 +29,7 @@ class ProjectsSetupController < ApplicationController
     end
 
     params[:project][:wizard_status] = step.to_s
-    params[:project][:wizard_status] = 'complete' if step == steps.last
-    
+    params[:project][:wizard_status] = 'complete' if step == steps.last  
     @project.update_attributes params[:project]
     render_wizard @project
     session[:project_id] = @project.id
@@ -56,11 +55,5 @@ class ProjectsSetupController < ApplicationController
       when Hash then clean_select_multiple_params(v)
       end
     end
-  end
-
-  def set_array_fields
-    return unless params[:project]
-    params[:project][:related_fields_of_study] = params[:project][:related_fields_of_study].split if params[:project][:related_fields_of_study]
-    params[:project][:related_student_passions] = params[:project][:related_student_passions].split if params[:project][:related_student_passions]
   end
 end

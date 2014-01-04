@@ -39,6 +39,10 @@ class Project < ActiveRecord::Base
     alias_method_chain f, :deserialize
   end
 
+  %w(related_fields_of_study related_student_passions).each do |f|
+    enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
+  end
+
   # -- About You
   validates :field_host, :organization, :associated => true, :if => :complete_or_about_you?
   # -- The Project
@@ -80,6 +84,16 @@ class Project < ActiveRecord::Base
 
   def complete_or_agreement?
     wizard_status.include?('agreement') || complete?
+  end
+
+  def get_pretty_properties(properties, type)
+    all_properties = I18n.t("enumerize.project." + type)
+    pretty_properties = []
+    properties.each do |property|
+      pretty_properties << all_properties[property.to_sym]
+    end
+
+    pretty_properties.join(", ")
   end
 
   # TODO: Partial validations with wizard steps

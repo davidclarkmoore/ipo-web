@@ -104,7 +104,7 @@ describe ProjectsController do
         before(:each) do
           @projects = create_list(:projects_with_student_passions, rand(1..10))
           @projects_related = create_list(:projects_with_student_passions, rand(1..10))     
-          fields = ["children_at_Risk", "malaria_prevention"] 
+          fields = ["children_at_risk", "malaria_prevention"] 
           set_different_properties(@projects_related, "related_student_passions", fields)
         end
  

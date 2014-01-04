@@ -25,7 +25,7 @@ describe ProjectLoader do
         projects_1 = create_list(:projects_with_fields_of_study, rand(1..10))  
         set_different_properties(projects_1, "related_fields_of_study", ["web_design", "social_work"])
         
-        properties = {"related_fields_of_study" => "web_design field_2"}
+        properties = {"related_fields_of_study" => ["web_design", "field_2"]}
         projects_2 = ProjectLoader.load_projects(properties)
         expect(projects_2).to match_array(projects_1)
       end

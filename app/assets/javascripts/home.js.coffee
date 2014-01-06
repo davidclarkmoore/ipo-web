@@ -21,3 +21,9 @@ window.connect_group_to_select = (group, select) ->
   # Detect pre-initialized values.
   if select.val()
     select_button select.siblings("[data-value='" + select.val() + "']")
+
+$ ->
+  $(".subpages").click ->
+    page = $(this).attr("page")
+    $("#submenus_#{page}").toggle()
+    $(this).html if $("#submenus_#{page}").is(':visible') then "Hide subpages" else "Show subpages"

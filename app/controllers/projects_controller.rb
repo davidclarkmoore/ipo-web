@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     projects = ProjectLoader.load_projects(params[:properties])
-    
+   
     @projects = projects.search(params[:q])
     @total_projects = @projects.result.count
     params[:view] ||= 'grid'
@@ -25,9 +25,11 @@ class ProjectsController < ApplicationController
   private
 
   def validate_home_search 
-    return unless params[:related_field_of_study].nil?
+    return if params[:related_field_of_study].nil?
+    field = params[:related_field_of_study]
+    
     params[:properties] = {}
-    params[:properties][:related_fields_of_study] = params[:related_field_of_study].split
+    params[:properties][:related_fields_of_study] = I18n.t("enumerize.project.related_fields_of_study").invert[field].to_s.split
   end
 
   def convert_to_datetime

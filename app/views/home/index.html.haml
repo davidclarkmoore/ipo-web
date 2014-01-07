@@ -4,7 +4,7 @@
     = form_tag(projects_path, method: "get") do
       .c5 
         %label Search your Field of Study:
-        = select_tag "related_field_of_study", options_for_select(fields_of_study), include_blank: true
+        = text_field_tag 'related_field_of_study', nil, placeholder: "Engineering, Medicine, Marketing, etc..."
 
       .c4
         %label And where you want to go:

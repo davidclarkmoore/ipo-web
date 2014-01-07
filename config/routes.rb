@@ -7,5 +7,7 @@ IpoWeb::Application.routes.draw do
   end
   resources :project_media, only: [:show, :destroy]
 
+  match '/home/autocomplete' => "home#autocomplete"
+
   mount Refinery::Core::Engine, :at => '/'
 end

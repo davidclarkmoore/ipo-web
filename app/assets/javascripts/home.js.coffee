@@ -21,3 +21,8 @@ window.connect_group_to_select = (group, select) ->
   # Detect pre-initialized values.
   if select.val()
     select_button select.siblings("[data-value='" + select.val() + "']")
+
+$(document).ready ->
+  $("#related_field_of_study").autocomplete
+    source: "/home/autocomplete"
+    select: (event,ui) -> $("#related_field_of_study").val(ui.item.id)

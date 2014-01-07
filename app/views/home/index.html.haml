@@ -1,19 +1,17 @@
 - content_for :header do
   %h1.center.subtitle Global customized internships in your field of study
   .title-search
-    .c5
-      %label Search your Field of Study:
-      %input{type: 'text', placeholder: "Engineering, Medicine, Marketing, etc..."}
+    = form_tag(projects_path, method: "get") do
+      .c5 
+        %label Search your Field of Study:
+        = select_tag "related_field_of_study", options_for_select(fields_of_study), include_blank: true
 
-    .c4
-      %label And where you want to go:
-      %input{type: 'text', placeholder: "City, Province or Postal Code"}
+      .c4
+        %label And where you want to go:
+        = text_field_tag "q[address_cont]", nil, placeholder: "City, Province or Postal Code.."
 
-    .c2.omega
-      = button "Go", :green, class: 'x-large', id: 'search-field-study' do
-        = image_sprite :thumbs_up
-        Go
-
+      .c2.omega
+        = button_tag "Go", class: "x-large", id: 'search-field-study'
 
 #home
   %article.motto.box.box-light-yellow

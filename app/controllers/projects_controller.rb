@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
   respond_to :html, :js
-  before_filter :convert_to_datetime, :only => [:index]
+  before_filter :convert_to_datetime, :validate_home_search, :only => [:index]
 
   def index
     projects = ProjectLoader.load_projects(params[:properties])
+    
     @projects = projects.search(params[:q])
     @total_projects = @projects.result.count
     params[:view] ||= 'grid'
@@ -22,6 +23,12 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def validate_home_search 
+    return unless params[:related_field_of_study].nil?
+    params[:properties] = {}
+    params[:properties][:related_fields_of_study] = params[:related_field_of_study].split
+  end
 
   def convert_to_datetime
     return unless params[:q].present?

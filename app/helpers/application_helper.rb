@@ -79,4 +79,12 @@ module ApplicationHelper
   def current_student_passions
     I18n.t("enumerize.project.related_student_passions")
   end
+
+  def menu_pages
+    Refinery::Page.in_main_menu
+  end
+
+  def submenu_pages parent_page
+    Refinery::Page.pages_related(parent_page.id)
+  end
 end

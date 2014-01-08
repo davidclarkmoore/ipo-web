@@ -1,4 +1,7 @@
 %nav
-  %span.link.heading internships
-  %span.link.heading about ipo
-  %span.link.heading stories
+	- pages = menu_pages
+	- pages.each do |page| 
+		%span.link.heading=link_to page.menu_title, page.slug
+		- if page.has_nested_pages?
+			= link_to "subpages", "#", class: "subpages", page: page.id
+			= render 'shared/submenus', :page => page

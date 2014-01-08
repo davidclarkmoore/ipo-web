@@ -22,7 +22,14 @@ window.connect_group_to_select = (group, select) ->
   if select.val()
     select_button select.siblings("[data-value='" + select.val() + "']")
 
-$(document).ready ->
+$ ->
+  $(".subpages").click ->
+    page = $(this).attr("page")
+    $("#submenus_#{page}").slideToggle("slow")
+
   $("#related_field_of_study").autocomplete
     source: "/home/autocomplete"
     select: (event,ui) -> $("#related_field_of_study").val(ui.item.id)
+
+  
+

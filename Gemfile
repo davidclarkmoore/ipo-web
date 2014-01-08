@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'pg'
-
+gem 'jquery-ui-rails'
 
 gem 'haml'
 gem 'simple_form'

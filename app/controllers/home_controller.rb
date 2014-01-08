@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   end
 
   def autocomplete
-    fields = I18n.t("enumerize.project.related_fields_of_study").values.grep /#{params[:term]}/
+    fields = current_fields_of_study.values.grep /#{params[:term]}/
     render json: fields
   end
 end

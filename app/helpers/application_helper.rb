@@ -71,4 +71,12 @@ module ApplicationHelper
       content_tag(:span, label, class: 'dropdown-link')
     end
   end
+
+  def current_fields_of_study
+    I18n.t("enumerize.project.related_fields_of_study")
+  end
+
+  def current_student_passions
+    I18n.t("enumerize.project.related_student_passions")
+  end
 end

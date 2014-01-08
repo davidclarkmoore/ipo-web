@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   respond_to :html, :js
+
   before_filter :convert_to_datetime, :validate_home_search, :only => [:index]
 
   def index
@@ -29,7 +30,7 @@ class ProjectsController < ApplicationController
     field = params[:related_field_of_study]
     
     params[:properties] = {}
-    params[:properties][:related_fields_of_study] = I18n.t("enumerize.project.related_fields_of_study").invert[field].to_s.split
+    params[:properties][:related_fields_of_study] = current_fields_of_study.invert[field].to_s.split
   end
 
   def convert_to_datetime

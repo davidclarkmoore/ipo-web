@@ -16,7 +16,6 @@
 #home
   %article.motto.box.box-light-yellow
     .container
-      = image_tag 'lightbulbs.png', id: "lightbulbs"
       = raw @page.content_for :motto
 
   %article.box.container
@@ -41,11 +40,11 @@
           = raw @page.content_for :ipo_title
           = raw @page.content_for :ipo_description
         .omega.c5.pre1
-          = image_tag 'vid_thumb1.jpg'
+          = raw @page.content_for :ipo_image
 
       %article.description-section
         .c5.post1
-          = image_tag 'infographic.png'
+          = raw @page.content_for :internship_image
 
         .c6.omega
           = raw @page.content_for :internship_title
@@ -56,22 +55,22 @@
     .container
       %h2.center.medium= raw @page.content_for :stories_title
       .field_experience
-        = image_tag "field_experience_1.jpg"
+        = raw @page.content_for :story_image
         .title= raw @page.content_for :story_name
         = raw @page.content_for :story_description
 
       .field_experience
-        = image_tag "field_experience_1.jpg"
+        = raw @page.content_for :story_image
         .title= raw @page.content_for :story_name
         = raw @page.content_for :story_description
 
       .field_experience
-        = image_tag "field_experience_1.jpg"
+        = raw @page.content_for :story_image
         .title= raw @page.content_for :story_name
         = raw @page.content_for :story_description
 
       .field_experience
-        = image_tag "field_experience_1.jpg"
+        = raw @page.content_for :story_image
         .title= raw @page.content_for :story_name
         = raw @page.content_for :story_description
 
@@ -82,7 +81,7 @@
   %article.box.container
     .c4
       = raw @page.content_for :share_title
-      = image_tag "sharing_options.jpg"
+      = raw @page.content_for :share_image
 
     .c4
       = raw @page.content_for :events

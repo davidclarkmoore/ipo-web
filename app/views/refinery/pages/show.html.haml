@@ -1,3 +1,3 @@
 - @page.parts.each do |p|
-  %article.box{class: [p.color.present? ? "box-#{p.color}" : "", p.display_type].join(" ")}
+  %article.box{class: [p.color.present? ? "box-#{p.color}" : "", p.display_type, p.margin].join(" ")}
     .container= raw p.body

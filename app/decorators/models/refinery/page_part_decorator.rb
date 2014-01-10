@@ -1,5 +1,5 @@
 Refinery::PagePart.class_eval do
-  attr_accessible :color, :display_type
+  attr_accessible :color, :display_type, :margin
 
   def self.color_options
     [['Default', nil],
@@ -17,4 +17,9 @@ Refinery::PagePart.class_eval do
      ['Grid', 'grid']]
   end
 
+  def self.margin_options
+    [['Default', nil],
+     ['No margin', 'no-margin']
+    ]
+  end
 end

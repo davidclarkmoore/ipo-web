@@ -455,8 +455,6 @@ $step-percent: 100/($steps);
   }
 }
 
-
-
 article.img-left img, article.img-right img {
   width: 40.84507%;
   height: auto;
@@ -471,4 +469,9 @@ article.img-left img {
 article.img-right img {
   float: right;
   margin-left: 8.4507%;
+}
+
+article.no-margin{
+  margin: 0px;
+  padding: 0px;
 }

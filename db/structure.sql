@@ -445,7 +445,8 @@ CREATE TABLE refinery_page_parts (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     color character varying(255),
-    display_type character varying(255)
+    display_type character varying(255),
+    margin character varying(255)
 );
 
 
@@ -1372,3 +1373,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131204235837');
 INSERT INTO schema_migrations (version) VALUES ('20140102160144');
 
 INSERT INTO schema_migrations (version) VALUES ('20140107171451');
+
+INSERT INTO schema_migrations (version) VALUES ('20140110174753');

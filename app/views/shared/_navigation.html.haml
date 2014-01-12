@@ -1,7 +1,6 @@
 %nav
-	- pages = menu_pages
-	- pages.each do |page| 
-		%span.link.heading=link_to page.menu_title, page.slug
-		- if page.has_nested_pages?
-			= link_to "subpages", "#", class: "subpages", page: page.id
-			= render 'shared/submenus', :page => page
+  - menu_pages.each do |page|
+    %span.link.heading= link_to page.menu_title, page.slug
+    - if page.has_nested_pages?
+      = link_to "subpages", "#", class: "subpages", page: page.id
+      = render 'shared/submenus', :page => page

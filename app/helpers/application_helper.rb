@@ -84,7 +84,7 @@ module ApplicationHelper
     Refinery::Page.in_main_menu
   end
 
-  def submenu_pages parent_page
+  def sub_menu_pages parent_page
     Refinery::Page.pages_related(parent_page.id)
   end
 end

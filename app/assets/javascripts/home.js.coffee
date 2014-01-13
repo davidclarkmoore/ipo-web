@@ -25,7 +25,7 @@ window.connect_group_to_select = (group, select) ->
 $ ->
   $(".subpages").click ->
     page = $(this).attr("page")
-    $("#submenus_#{page}").slideToggle("slow")
+    $("#sub_menus_#{page}").slideToggle("slow")
 
   $("#related_field_of_study").autocomplete
     source: "/home/autocomplete"
@@ -34,5 +34,4 @@ $ ->
   $("#search-field-study").click (event)->
     event.preventDefault() if $("#q_address_cont").val().length == 0 and $("#related_field_of_study").val().length == 0
 
-  
 

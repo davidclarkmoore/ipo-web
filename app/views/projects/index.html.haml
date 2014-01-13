@@ -1,56 +1,49 @@
 .container
-
   .explore
     .c8
       %h3= t(:explore_ipo_connection_projects)
-      %br
-      %h5= @total_projects.to_s + t(:total_projects)
+      .total-projects= @total_projects.to_s + t(:total_projects)
 
     .options
-      %span.explore-by= t(:explore_by)
+      %h4.explore-by= t(:explore_by)
+
       .button-group
-        = button_link_to 'Map',  projects_path(view: 'map', q: params[:q], properties: params[:properties]),  :grey, class: view_active?('map'), remote: true
         = button_link_to 'Grid', projects_path(view: 'grid', q: params[:q], properties: params[:properties]), :grey, class: view_active?('grid'), remote: true
         = button_link_to 'List', projects_path(view: 'list', q: params[:q], properties: params[:properties]), :grey, class: view_active?('list'), remote: true
 
-  .search-box 
-    %span.explore-by= t(:sort)
-    .button-group
-      = sort_link(@projects, :name, t(:a_z))
-      = sort_link(@projects, :created_at, t(:recent), default_order: :asc)
-      = sort_link(@projects, :created_at, t(:oldest), default_order: :desc)
+  .search-box
+    -# %span.explore-by= t(:sort)
+    -# = sort_link(@projects, :name, t(:a_z))
+    -# = sort_link(@projects, :created_at, t(:recent), default_order: :asc)
+    -# = sort_link(@projects, :created_at, t(:oldest), default_order: :desc)
 
     = search_form_for @projects, :builder => SimpleForm::FormBuilder do |f|
       = hidden_field_tag :view, params[:view]
       .filter
-        .sort
+        .session
           %h5= t(:session_timeframe)
-          %span From
           = f.text_field :created_at_gt, size: 15, class: "date_picker"
-          %span to
+          %span -
           = f.text_field :created_at_lt, size: 15, class: "date_picker"
 
         .include
           %h5= t(:fields_of_study)
           = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study), include_blank: true, multiple: true
 
-        .include
+        .mode
+          %h5= t(:project_mode)
           %span= t(:team)
           = f.check_box :team_mode_true
           %span= t(:individual)
           = f.check_box :team_mode_false
 
-        .search
-          %span= t(:by_name)
-          = f.text_field :name_cont, size: 15
+        .search= f.text_field :name_cont, size: 15, placeholder: "Text search ... "
 
-      .interests 
-        %span= t(:filter_by_passion)
+      .interests.clr
+        %h5= t(:filter_by_passion)
         = select_tag "properties[related_student_passions]", options_for_select(student_passions), include_blank: true, multiple: true
 
-      = f.submit t(:search), class: "button button-orange" 
-      %br
-      %br
+      = f.submit t(:search), class: "button button-orange"
 
   #projects
     - if @projects.result.empty?

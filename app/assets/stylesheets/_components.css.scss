@@ -239,8 +239,10 @@ input[type=submit] {
   margin-top: 24px;
   margin-bottom: 24px;
   white-space: nowrap;
+  font-size: 0;
 
   > .button {
+    font-size: 16px;
     border-radius: 0;
     &.active { font-weight: bold; }
     &:first-child {
@@ -345,15 +347,15 @@ input[type=submit] {
 
 .select2-container-multi {
   .select2-choices .select2-search-choice {
-    line-height: 1.5em;
+    line-height: 1em;
   }
 
   .select2-choices .select2-search-field input {
-    line-height: 1.5em;
+    line-height: 1em;
   }
 
   .select2-search-choice-close {
-    top: 8px; // TODO: Responsive?
+    top: 5px; // TODO: Responsive?
   }
 }
 
@@ -474,4 +476,40 @@ article.img-right img {
 article.no-margin{
   margin: 0px;
   padding: 0px;
+}
+
+// ===================
+// Multi-select styles
+// ===================
+
+.select2-container-multi .select2-choices .select2-search-choice {
+  @include adjust-font-size-to(14px, 0.75);
+  -webkit-font-smoothing: antialiased;
+  height: 22px; // TODO: Response?
+}
+
+
+// =============
+// Auto complete
+// =============
+
+.ui-autocomplete {
+  max-width: 600px; //TODO? Hacky.
+  border: none;
+
+  li {
+    @include adjust-font-size-to(16px, 1.25);
+    background: white;
+    width: auto;
+  }
+
+  a.ui-state-focus {
+    background: transparent;
+    border: none;
+  }
+
+  li:hover, li:focus, li:active {
+    background: $blue;
+    a { color: white; }
+  }
 }

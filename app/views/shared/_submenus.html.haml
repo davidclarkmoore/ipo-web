@@ -1,4 +1,0 @@
-%div{id: "submenus_#{page.id}", style: "display:none;"}
-  - subpages = submenu_pages(page)
-  - subpages.each do |page|
-    %span.link.heading= link_to page.menu_title, page.slug

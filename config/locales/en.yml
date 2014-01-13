@@ -1,6 +1,6 @@
 en:
   hello: "Hello world"
-  
+
   # Project search
   a_z: "A_Z"
   address: "Address"
@@ -25,3 +25,4 @@ en:
   sort: "Sort"
   student_fields: "Student Fields"
   student_passions: "Student Passions"
+  project_mode: "Project Mode"

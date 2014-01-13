@@ -34,13 +34,16 @@
     #reach-out.c6.omega
       %h1 reach out
       %div
-        %span Hi, my name is:
-        %input{type: 'text', placeholder: 'Enter Full Name...', name: 'full_name'}
+        %span Hi, my name is
+        %input{type: 'text', placeholder: 'Enter Full Name', name: 'full_name'}
 
       %div
-        %span I'm interested in:
-        %input{type: 'text', placeholder: 'Enter internship...', name: 'internship'}
+        %select{class: 'no-select2'}
+          %option I'm interested in an internship
+        %span . Please
+        %select{class: 'no-select2'}
+          %option Email me
 
       %div
-        %span Please email me at:
+        %span using...
         %input{type: 'email', placeholder: 'Enter email address...', name: 'email'}

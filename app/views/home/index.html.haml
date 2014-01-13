@@ -2,7 +2,7 @@
   %h1.center.subtitle Global customized internships in your field of study
   .title-search
     = form_tag(projects_path, method: "get") do
-      .c5 
+      .c5
         %label Search your Field of Study:
         = text_field_tag 'related_field_of_study', nil, placeholder: "Engineering, Medicine, Marketing, etc..."
 
@@ -11,7 +11,9 @@
         = text_field_tag "q[address_cont]", nil, placeholder: "City, Province or Postal Code.."
 
       .c2.omega
-        = button_tag "Go", class: "x-large", id: 'search-field-study'
+        = button "Go", :green, class: 'x-large', id: 'search-field-study' do
+          = image_sprite :thumbs_up
+          Go
 
 #home
   %article.motto.box.box-light-yellow

@@ -12,10 +12,10 @@
         = button_link_to 'List', projects_path(view: 'list', q: params[:q], properties: params[:properties]), :grey, class: view_active?('list'), remote: true
 
   .search-box
-    -# %span.explore-by= t(:sort)
-    -# = sort_link(@projects, :name, t(:a_z))
-    -# = sort_link(@projects, :created_at, t(:recent), default_order: :asc)
-    -# = sort_link(@projects, :created_at, t(:oldest), default_order: :desc)
+    .sort.clr
+      = sort_link(@projects, :name, t(:a_z))
+      = sort_link(@projects, :created_at, t(:recent), default_order: :asc)
+      = sort_link(@projects, :created_at, t(:oldest), default_order: :desc)
 
     = search_form_for @projects, :builder => SimpleForm::FormBuilder do |f|
       = hidden_field_tag :view, params[:view]

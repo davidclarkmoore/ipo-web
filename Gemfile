@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'pg'
 gem 'jquery-ui-rails'
+gem 'jquery-rails', "~> 2.3.0"
+
 
 gem 'haml'
 gem 'simple_form'
@@ -42,8 +44,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails', "~> 2.3.0"
-gem 'jquery-ui-rails'
+
 
 group :development do
   gem 'letter_opener'

@@ -5,7 +5,8 @@ class HomeController < ApplicationController
   end
 
   def autocomplete
-    fields = current_fields_of_study.values.grep /#{params[:term]}/
-    render json: fields
+    params[:term].downcase!
+    fields = current_fields_of_study.values.map(&:downcase).grep /#{params[:term]}/
+    render json: fields.map(&:titleize)
   end
 end

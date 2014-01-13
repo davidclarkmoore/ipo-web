@@ -31,5 +31,8 @@ $ ->
     source: "/home/autocomplete"
     select: (event,ui) -> $("#related_field_of_study").val(ui.item.id)
 
+  $("#search-field-study").click (event)->
+    event.preventDefault() if $("#q_address_cont").val().length == 0 and $("#related_field_of_study").val().length == 0
+
   
 

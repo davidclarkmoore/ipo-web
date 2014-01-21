@@ -7,17 +7,15 @@
     .options
       %h4.explore-by= t(:explore_by)
 
-      .button-group
-        = button_link_to 'Grid', projects_path(view: 'grid', q: params[:q], properties: params[:properties]), :grey, class: view_active?('grid'), remote: true
-        = button_link_to 'List', projects_path(view: 'list', q: params[:q], properties: params[:properties]), :grey, class: view_active?('list'), remote: true
+      #option_buttons
+        = render "button_group"
 
   .search-box
     .sort.clr
-      = sort_link(@projects, :name, t(:a_z))
-      = sort_link(@projects, :created_at, t(:recent), default_order: :asc)
-      = sort_link(@projects, :created_at, t(:oldest), default_order: :desc)
+      #sort_links
+        = render "sort_links"
 
-    = search_form_for @projects, :builder => SimpleForm::FormBuilder do |f|
+    = search_form_for @projects, :builder => SimpleForm::FormBuilder, remote: true do |f|
       = hidden_field_tag :view, params[:view]
       .filter
         .session
@@ -41,7 +39,9 @@
 
       .interests.clr
         %h5= t(:filter_by_passion)
-        = select_tag "properties[related_student_passions]", options_for_select(student_passions), include_blank: true, multiple: true
+        - student_passions.each do |key, value|
+          = check_box_tag "properties[related_student_passions][]", value
+          = key
 
       = f.submit t(:search), class: "button button-orange"
 
@@ -50,7 +50,7 @@
       %h2.not-available= t(:no_projects_available)
     - else
       #related_projects
-        = render "projects_#{params[:view]}", projects: @projects.result
+        = render "projects_#{params[:view]}", projects: @projects.result.order("#{params[:order]}")
 
 :javascript
   $("#q_created_at_gt").datepicker({ dateFormat: "yy/mm/dd" });

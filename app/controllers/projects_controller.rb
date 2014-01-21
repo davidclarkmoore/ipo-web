@@ -1,14 +1,14 @@
 class ProjectsController < ApplicationController
   respond_to :html, :js
-
   before_filter :convert_to_datetime, :validate_home_search, :only => [:index]
 
   def index
     projects = ProjectLoader.load_projects(params[:properties])
-   
     @projects = projects.search(params[:q])
     @total_projects = @projects.result.count
+    
     params[:view] ||= 'grid'
+    params[:order] ||= 'name'
   end
 
   def new

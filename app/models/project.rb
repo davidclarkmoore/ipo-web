@@ -10,19 +10,18 @@ class Project < ActiveRecord::Base
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, 
-    :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
-    :student_educational_requirement,
-    :address, :internet_distance, :location_type, :transportation_available,
-    :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
-    :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
+    :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement, 
+    :internet_distance, :location_type, :transportation_available, :location_description, 
+    :culture_description, :housing_type, :dining_location, :housing_description, :safety_level, 
+    :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 
   attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, 
     :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
-    :student_educational_requirement,
-    :address, :internet_distance, :location_private, :location_type, :transportation_available,
+    :student_educational_requirement, :address, :internet_distance, :location_private, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport, 
     :field_host_attributes, :organization_attributes, :organization_id, :wizard_status
+
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
@@ -31,7 +30,7 @@ class Project < ActiveRecord::Base
     enumerize f, in: I18n.t("enumerize.project.#{f}")
   end
 
-  %w(required_languages related_student_passions related_fields_of_study transportation_available).each do |f|
+  %w(required_languages transportation_available).each do |f|
     enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
 
     define_method "#{f}_with_deserialize" do
@@ -39,6 +38,10 @@ class Project < ActiveRecord::Base
       value = JSON.parse(send("#{f}_without_deserialize")) if value && value.is_a?(String)
     end
     alias_method_chain f, :deserialize
+  end
+
+  %w(related_fields_of_study related_student_passions).each do |f|
+    enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
   end
 
   # -- About You
@@ -56,6 +59,9 @@ class Project < ActiveRecord::Base
   # -- Agreement
   validates :agree_memo, :agree_to_transport, inclusion: { in: [true, 1, 'true', 'T', '1'] }, :if => :complete_or_agreement?
 
+  scope :recent, order('created_at desc')
+  scope :oldest, order('created_at asc')
+  scope :by_name, order('name asc')
 
   def complete?
     wizard_status == 'complete'
@@ -79,6 +85,16 @@ class Project < ActiveRecord::Base
 
   def complete_or_agreement?
     wizard_status.include?('agreement') || complete?
+  end
+
+  def get_pretty_properties(properties, type)
+    all_properties = I18n.t("enumerize.project." + type)
+    pretty_properties = []
+    properties.each do |property|
+      pretty_properties << all_properties[property.to_sym]
+    end
+
+    pretty_properties.join(", ")
   end
 
   # TODO: Partial validations with wizard steps

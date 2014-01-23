@@ -1,0 +1,93 @@
+.container 
+  %h1.center.subtitle Global customized internships in your field of study
+  .title-search
+    = form_tag(IpoWeb::Application.routes.url_helpers.projects_path, method: "get") do
+      .c5 
+        %label Search your Field of Study:
+        = text_field_tag 'related_field_of_study', nil, placeholder: "Engineering, Medicine, Marketing, etc..."
+
+      .c4
+        %label And where you want to go:
+        = text_field_tag "q[address_cont]", nil, placeholder: "City, Province or Postal Code.."
+
+      .c2.omega
+        = button_tag "Go", class: "x-large", id: 'search-field-study'
+
+#home
+  %article.motto.box.box-light-yellow
+    .container
+      = raw @page.content_for :motto
+
+  %article.box.container
+    %ul.tab-list
+      %li.tab.active Fields of Study
+      %li.tab Passion Areas
+    .tab-box
+
+  %article#search_projects.box.box-green
+    .container
+      %h2.center.medium
+        = raw @page.content_for :search
+
+      = button "Search Our Projects", :orange, id: "search-projects" do
+        = image_sprite :search
+        Search Projects
+
+  %article#home-description
+    .container
+      %article.description-section
+        .c6
+          = raw @page.content_for :ipo_title
+          = raw @page.content_for :ipo_description
+        .omega.c5.pre1
+          = raw @page.content_for :ipo_image
+
+      %article.description-section
+        .c5.post1
+          = raw @page.content_for :internship_image
+
+        .c6.omega
+          = raw @page.content_for :internship_title
+          = raw @page.content_for :internship_description	
+          = raw @page.content_for :internship_items
+
+  %article#stories-from-field.box.box-blue
+    .container
+      %h2.center.medium= raw @page.content_for :stories_title
+      .field_experience
+        = raw @page.content_for :story_image
+        .title= raw @page.content_for :story_name
+        = raw @page.content_for :story_description
+
+      .field_experience
+        = raw @page.content_for :story_image
+        .title= raw @page.content_for :story_name
+        = raw @page.content_for :story_description
+
+      .field_experience
+        = raw @page.content_for :story_image
+        .title= raw @page.content_for :story_name
+        = raw @page.content_for :story_description
+
+      .field_experience
+        = raw @page.content_for :story_image
+        .title= raw @page.content_for :story_name
+        = raw @page.content_for :story_description
+
+      = button "See All", :green, class: 'x-large right' do
+        See All
+        = image_sprite :arrow_right
+
+  %article.box.container
+    .c4
+      = raw @page.content_for :share_title
+      = raw @page.content_for :share_image
+
+    .c4
+      = raw @page.content_for :events
+
+    .c4.omega
+      = raw @page.content_for :support
+
+
+

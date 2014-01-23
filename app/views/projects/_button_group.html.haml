@@ -1,0 +1,3 @@
+.button-group
+  = button_link_to t(:grid), projects_path(view: 'grid', order: params[:order], q: params[:q], properties: params[:properties]), :grey, id: 'grid_button', class: view_active?('grid'), remote: true
+  = button_link_to t(:list), projects_path(view: 'list', order: params[:order], q: params[:q], properties: params[:properties]), :grey, id: 'list_button', class: view_active?('list'), remote: true

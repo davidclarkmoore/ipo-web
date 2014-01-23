@@ -1,5 +1,28 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
   hello: "Hello world"
+
+  # Project search
+  a_z: "A_Z"
+  address: "Address"
+  by_name: "By Name"
+  description: "Description"
+  explore_by: "Explore By"
+  explore_ipo_connection_projects: "Explore IPO Connection Projects"
+  fields_of_study: "Fields of Study"
+  filter_by_passion: "Filter by Passion"
+  grid: "Grid"
+  individual: "Individual"
+  list: "List"
+  map: "Map"
+  name: "Name"
+  no_projects_available: "No Projects Available"
+  oldest: "Oldest"
+  recent: "Recent"
+  team: "Team"
+  total_projects: " Total Projects"
+  search: "Search!"
+  session_timeframe: "Session Timeframe"
+  sort: "Sort"
+  student_fields: "Student Fields"
+  student_passions: "Student Passions"
+  project_mode: "Project Mode"

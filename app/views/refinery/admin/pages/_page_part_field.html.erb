@@ -9,4 +9,6 @@
    <label>Display Type</label>
   <%= select_tag "page[parts_attributes][#{part_index}][display_type]", options_for_select(Refinery::PagePart.display_types, part.display_type) %>
 
+  <label>Margin</label>
+  <%= select_tag "page[parts_attributes][#{part_index}][margin]", options_for_select(Refinery::PagePart.margin_options, part.margin) %>
 </div>

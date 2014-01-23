@@ -1,47 +1,57 @@
 .container
-
   .explore
     .c8
-      %h3 Explore IPO Connection Projects
-      = button_link_to 'Create New Project', new_project_path, :blue, class: 'new-project'
+      %h3= t(:explore_ipo_connection_projects)
+      .total-projects= @total_projects.to_s + t(:total_projects)
 
     .options
-      %span.explore-by Explore By:
-      .button-group
-        = button_link_to 'Map',  projects_path(view: 'map'),  :grey, class: view_active?('map')
-        = button_link_to 'Grid', projects_path(view: 'grid'), :grey, class: view_active?('grid')
-        = button_link_to 'List', projects_path(view: 'list'), :grey, class: view_active?('list')
+      %h4.explore-by= t(:explore_by)
 
-  = search_form_for @q do |f|
-    = hidden_field_tag :view, params[:view]
-    .filter
-      .sort
-        %span.explore-by Sort:
-        .button-group
-          = sort_button 'A-Z', 'name asc'
-          = sort_button 'Recent', 'created_at desc'
-          = sort_button 'Oldest', 'created_at asc'
+      #option_buttons
+        = render "button_group"
 
+  .search-box
+    .sort.clr
+      #sort_links
+        = render "sort_links"
 
-      .include
-        %span Filter:
-        = dropdown 'Any #' do
-          = dropdown_btn '1-10'
-          = dropdown_btn '10-40'
-          = dropdown_btn '40+'
+    = search_form_for @projects, :builder => SimpleForm::FormBuilder, remote: true do |f|
+      = hidden_field_tag :view, params[:view]
+      .filter
+        .session
+          %h5= t(:session_timeframe)
+          = f.text_field :created_at_gt, size: 15, class: "date_picker"
+          %span -
+          = f.text_field :created_at_lt, size: 15, class: "date_picker"
 
-        = dropdown 'Weeks' do
-          = dropdown_btn 'Days'
-          = dropdown_btn 'Weeks'
-          = dropdown_btn 'Months'
-          = dropdown_btn 'Years'
+        .include
+          %h5= t(:fields_of_study)
+          = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study), include_blank: true, multiple: true
 
-        %span.interests Passion Interests:
-        = dropdown 'All' do
-          = dropdown_btn '??'
-          = dropdown_btn '??'
+        .mode
+          %h5= t(:project_mode)
+          %span= t(:team)
+          = f.check_box :team_mode_true
+          %span= t(:individual)
+          = f.check_box :team_mode_false
 
-      .search
-        = f.text_field :name_cont
+        .search= f.text_field :name_cont, size: 15, placeholder: "Text search ... "
 
-  = render "projects_#{params[:view]}", projects: @projects
+      .interests.clr
+        %h5= t(:filter_by_passion)
+        - student_passions.each do |key, value|
+          = check_box_tag "properties[related_student_passions][]", value
+          = key
+
+      = f.submit t(:search), class: "button button-orange"
+
+  #projects
+    - if @projects.result.empty?
+      %h2.not-available= t(:no_projects_available)
+    - else
+      #related_projects
+        = render "projects_#{params[:view]}", projects: @projects.result.order("#{params[:order]}")
+
+:javascript
+  $("#q_created_at_gt").datepicker({ dateFormat: "yy/mm/dd" });
+  $("#q_created_at_lt").datepicker({ dateFormat: "yy/mm/dd" });

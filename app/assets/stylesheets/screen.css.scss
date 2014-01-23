@@ -89,7 +89,7 @@ body {
 .header-bg, .header-bg-large {
   background: url(header-bg.png) no-repeat;
   margin-top: -25px;
-  height: 192px;
+  height: 152px;
   width: 100%;
   position: absolute;
   z-index: -1;
@@ -102,7 +102,7 @@ body {
 .main-header { min-height: 700px; }
 
 header {
-  @include adjust-leading-to(6);
+  @include adjust-leading-to(5);
   @include trailer(3);
 
   color: white;
@@ -132,7 +132,7 @@ h1.subtitle {
 
 }
 
-nav {
+nav.main {
   color: #4b4b4b;
   @include span-columns(5 omega);
 
@@ -148,6 +148,19 @@ nav {
 
     a { color: #4b4b4b; text-decoration: none; }
   }
+}
+
+nav.sub-menu {
+  @include adjust-font-size-to(14px, 1.5);
+  box-shadow: inset -1px -2px 10px rgba(0, 0, 0, .15);
+  border-bottom: 4px solid #696969;
+  background: #8D8A8A;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  text-transform: uppercase;
+  margin-top: -66px; // TODO: Responsive? Also rather hacky..
+
+  a { color: white; text-decoration: none; }
 }
 
 #reach-out {

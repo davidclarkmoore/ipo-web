@@ -1,43 +1,113 @@
 es:
   enumerize:
     project:
+      dining_location:
+        cafeteria: "Cafeteria"
+        cook_own_food_in_shared_kitchen: "Cuenta con cocina propia para preparar alimentos"
+        shared_meals_at_residence: "Comidas compartidas en la residencia"
+      housing_type:
+        dormitory: "Dormitorio"
+        homestay: "Pensión"
+        apartment: "Apartamento"
       internet_distance:
-        - On-site
-        - Within a few blocks (walkable)
-        - 2-4 Kilometers (bikeable)
-        - Must take mass transit
-        - Need special transport
-        - No access
+        on_site: "En el sitio"
+        within_a_few_blocks: "Caminando a un par de cuadras"
+        2_4_kilometers: "2-4 kilómetros en bicicleta"
+        must_take_mass_transit: "Debe tomar transporte público"
+        need_special_transport: "Debe tomar transporte especial"
+        no_access: "Sin acceso"
       location_type:
-        - Urban
-        - Suburban
-        - Rural
-        - Slum
+        urban: "Urbana"
+        suburban: "Suburbana"
+        rural: "Rural"
+        slum: "Barrios bajos"
       related_fields_of_study:
-        - Criminal Justice
-        - Communication Studies
-        - Educación
-        - Social Work
+        accounting_and_finance: "Contaduría y Finanzas"
+        agriculture: "Agricultura"
+        aviation: "Aviación"
+        business_and_management: "Administración y Negocios"
+        child_development: "Desarrollo infantil"
+        communications_and_journalism: "Comunicación y Periodismo"
+        community_development: "Desarrollo comunitario"
+        computers_and_information_systems: "Computadoras y sistemas informáticos"
+        construction_and_civil_engineering: "Construccion e Ingeniería Civil"
+        counselig: "Asesoramiento"
+        creative_writing: "Escritura Creativa"
+        cultural_anthropology: "Antropologia"
+        education_and_teaching: "Educación y Enseñanza"
+        engineering_elec_chem_mech: "Ingeniería: Elec, Quim, Mec"
+        english: "Inglés"
+        enviromental_studies: "Estudios Ambientales"
+        fine_art: "Artes"
+        hospitality_service_mgmt: "Administración de Servicios Hospitalarios"
+        intercultural_studies: "Estudios Interculturales"
+        international_studies: "Estudios Internacionales"
+        internet_technology: "Tecnologías de Internet"
+        languages_linguistics: "Lenguajes y Linguística"
+        law_and_criminal_justice: "Leyes y Justicia Criminal"
+        marriage_and_family: "Matrimonio y Familia"
+        occupational_and_physical_therapy: "Terapia física y Ocupacional"
+        organizational_mgmt: "Gestión Organizativa"
+        political_science: "Ciencias Políticas"
+        public_relations_and_marketing: "Mercadotecnia y Relaciones Públicas"
+        psychology: "Psicología"
+        social_work: "Trabajo Social"
+        sports_and_recreation_mgmt: "Gestión Física y de Deportes"
+        theology_and_religion: "Teología y Religión"
+        video_and_photography: "Fotografía y Video"
+        web_design: "Diseño Web"
+        youth_work: "Trabajo con los Jóvenes"
+        other: "Otros"
       related_student_passions:
-        children_at_risk: Niños en riesgo
-        human_trafficking: Trafico de Humanos
-        cross_cultural_evangelism: Cross-Cultural Evangelism
+        business_and_economic_development: "Negocios y Desarrollo Económico"
+        children_at_risk: "Niños en riesgo"
+        human_trafficking: "Trafico de Humanos"
+        cross_cultural_evangelism: "Evangelización Transcultural"
+        chuch_planting: "Instalación de Iglesias"
+        drug_abuse: "Abuso de drogas"
+        enviromental_stewardship: "Gestión Ambiental"
+        food_resources: "Recursos alimentarios"
+        hiv_aids_awareness: "Prevención de HIV/AIDS"
+        international_students: "Estudios Internacionales"
+        malaria_prevention: "Prevención de Malaria"
+        other: "Otros"
+        poverty: "Pobreza"
+        pure_water_resources: "Recursos de Agua Pura"
+        solar_light_or_heat: "Luz Solar y/o Calor"
+        women_and_children_health: "Salud de mujeres y niños"
+        youth_and_young_adults: "Jóvenes y Jóvenes Adultos"
       required_languages:
-        - Arabic
-        - English
-        - French
-        - Japones
-        - Greek
-        - German
-        - Hindi
-        - Spanish
-        - Mandarin
-        - Russian
-        - Thai
+        mandaring: "Mandarin"
+        spanish: "Español"
+        english: "Inglés"
+        arabic: "Árabe"
+        hindi: "Hindi"
+        bengali: "Bengalí"
+        portuguese: "Portugués"
+        russian: "Ruso"
+        japanese: "Japonés"
+        german: "Alemán"
+        other: "Otros"
+      safety_level:
+        never_walk_alone: "Nunca camines solo"
+        daytime_ok_to_walk_area: "Es seguro caminar durante el día"
+        free_to_move_around_alone: "Es seguro caminar durante el día y la noche"
       student_educational_requirement:
-        - High School Diploma
-        - 4-year General College Degree
+        high_school_graduate: "Graduado de Escuela Secundaria"
+        some_college: "Algunos Educación Superior"
+        associates_2_year_degree: "Dos años de estudio asociado"
+        bachelors_degree: "Licenciatura"
+        some_post_graduate_studies: "Algunos Estudios de Posgrado"
+        graduate_degree: "Postgrado"
+        doctoral_degree_or_equivalent: "Título de Doctor o Equivalente"
+        other: "Otros"
       transportation_available:
-        - Taxi/Rickshaw
-        - Public Bus
-        - Team Vehicle
+        private_team_vehicle: "Transporte privado"
+        public_bus_metro: "Transporte público (autobús, metro)"
+        taxi_ricksahw: "Taxi"
+      typical_attire:
+        very_modest: "Modesto"
+        business_dress: "Formal"
+        casual_work: "Casual"
+        very_informal: "Informal"
+        culturally_appropiate_dress_required: "Culturalmente apropiado"

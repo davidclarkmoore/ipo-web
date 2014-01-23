@@ -17,4 +17,12 @@ module ProjectsHelper
       )
     end
   end
+
+  def fields_of_study
+    current_fields_of_study.invert
+  end
+
+  def student_passions
+    current_student_passions.invert
+  end
 end

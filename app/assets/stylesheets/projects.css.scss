@@ -2,6 +2,8 @@
 // Project Index
 // -------------
 
+.total-projects { @include adjust-font-size-to(14px, 1); }
+
 .not-available {
   color: #999;
   text-align: center;
@@ -13,10 +15,6 @@
 .explore {
   @include span-columns(12 omega);
   @include adjust-leading-to(1, 16px);
-  @include padding-trailer();
-  @include margin-trailer();
-  @include trailing-border();
-  border-color: #ccc;
 
   h1, h2, h3, h4, h5, h6 {
     display: inline-block;
@@ -24,8 +22,10 @@
   }
 
   .new-project { margin-left: 1.5em; }
+  .button-group { display: inline; }
 
   >.options {
+    @include adjust-leading-to(1.5, 16px);
     @include span-columns(4);
     @include omega;
   }
@@ -34,20 +34,45 @@
 .filter {
   @include span-columns(12 omega);
   @include adjust-leading-to(1.5, 16px);
-  @include padding-trailer();
-  @include margin-trailer();
-  @include trailing-border();
-  border-color: #ccc;
+  @include padding-leader(1);
+  @include padding-trailer(1);
+  @include leader(1);
+  @include trailer(1);
 
-  >.sort { @include span-columns(3); }
-  >.include {
-    @include span-columns(6);
-    > span { margin-right: 0.9em; }
-    > span.interests { margin: 0 1em; }
-  }
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+  .select2-container { width: 100%; }
+
+  >.session { @include span-columns(4); }
+  >.include { @include span-columns(3); }
+  >.mode { @include span-columns(2); }
   >.search {
     @include span-columns(3 omega);
+    input {
+      margin-top: 36px;
+      width: 100%;
+    }
   }
+}
+
+.sort {
+  @include adjust-leading-to(1.5);
+  a { margin-right: 1.5em; }
+}
+
+.interests {
+  @include leader(1);
+  @include trailer(1);
+  h5 { @include adjust-leading-to(2, 16px); }
+  .select2-container { width: 100%; }
+}
+
+
+// TODO: Maybe use article tag and avoid this style block?
+#projects {
+  @include leader(1);
+  @include trailer(1);
 }
 
 .project {

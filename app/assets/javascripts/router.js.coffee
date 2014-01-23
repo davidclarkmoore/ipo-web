@@ -2,6 +2,7 @@ ipo =
   common:
     init:
       $(document).ready ->
+        $(".box-grey select").select2({minimumResultsForSearch: -1});
         $('select').not('.no-select2').select2();
 
 window.ipo = ipo

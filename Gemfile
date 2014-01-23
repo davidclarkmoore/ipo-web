@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'pg'
+gem 'jquery-ui-rails'
+gem 'jquery-rails', "~> 2.3.0"
 
 
 gem 'haml'
@@ -14,6 +16,7 @@ gem 'wicked'
 gem 'enumerize'
 gem 'foreigner'
 gem 'activerecord-postgres-hstore'
+gem 'postgres_ext'
 
 gem 'carrierwave'
 gem 'mini_magick'
@@ -41,8 +44,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails', "~> 2.3.0"
-gem 'jquery-ui-rails'
+
 
 group :development do
   gem 'letter_opener'
@@ -53,11 +55,6 @@ group :development do
   gem 'rb-fsevent'
   gem 'zeus'
   gem 'guard-rspec'
-
-  # Debugger and REPL
-  gem 'pry'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
 end
 
 group :test, :development do
@@ -74,4 +71,8 @@ group :test, :development do
 
   gem 'ruby_gntp'
   gem 'fuubar'
+
+  # Debugger and REPL
+  gem "pry"
+  gem "pry-debugger"
 end

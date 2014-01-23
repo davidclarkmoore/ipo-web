@@ -2,9 +2,8 @@ class ProjectsSetupController < ApplicationController
   include Wicked::Wizard
   steps :about_you, :the_project, :location, :content, :agreement, :confirmation
 
-  before_filter :check_step
-  before_filter :clean_select_multiple_params
-
+  before_filter :check_step, :clean_select_multiple_params
+ 
   def show
     @project = current_project
     case step
@@ -30,20 +29,21 @@ class ProjectsSetupController < ApplicationController
     end
 
     params[:project][:wizard_status] = step.to_s
-    params[:project][:wizard_status] = 'complete' if step == steps.last
-
+    params[:project][:wizard_status] = 'complete' if step == steps.last  
     @project.update_attributes params[:project]
     render_wizard @project
     session[:project_id] = @project.id
   end
 
   private
+
   def current_project
     @current_project ||= begin
       project = session[:project_id] && Project.find_by_id(session[:project_id])
       project ||= Project.new
     end
   end
+
   def check_step
     # TODO: Add a validation to make sure user isn't skipping ahead
   end

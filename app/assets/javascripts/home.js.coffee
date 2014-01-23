@@ -21,3 +21,17 @@ window.connect_group_to_select = (group, select) ->
   # Detect pre-initialized values.
   if select.val()
     select_button select.siblings("[data-value='" + select.val() + "']")
+
+$ ->
+  $(".subpages").click ->
+    page = $(this).attr("page")
+    $("#sub_menus_#{page}").slideToggle("slow")
+
+  $("#related_field_of_study").autocomplete
+    source: "/home/autocomplete"
+    select: (event,ui) -> $("#related_field_of_study").val(ui.item.id)
+
+  $("#search-field-study").click (event)->
+    event.preventDefault() if $("#q_address_cont").val().length == 0 and $("#related_field_of_study").val().length == 0
+
+

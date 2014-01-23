@@ -72,8 +72,19 @@ module ApplicationHelper
     end
   end
 
-  def menu_pages
-    Refinery::Page.where(show_in_menu: true)
+  def current_fields_of_study
+    I18n.t("enumerize.project.related_fields_of_study")
   end
 
+  def current_student_passions
+    I18n.t("enumerize.project.related_student_passions")
+  end
+
+  def menu_pages
+    Refinery::Page.in_main_menu
+  end
+
+  def sub_menu_pages parent_page
+    Refinery::Page.pages_related(parent_page.id)
+  end
 end

@@ -14,10 +14,10 @@ describe ProjectsSetupController do
       get :show, id: 'about_you'
       response.should be_success
     end
+
     it 'renders the about_you template' do
       get :show, id: 'about_you'
       response.should render_template("about_you")
     end
   end
-
 end

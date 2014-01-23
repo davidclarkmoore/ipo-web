@@ -1,15 +1,19 @@
 %table.table
   %thead.table-head
     %tr
-      %th Name
-      %th Description
-      %th Start
-      %th End
+      %th= t(:name)
+      %th= t(:description)
+      %th= t(:address)
+      %th= t(:team)
+      %th= t(:student_fields)
+      %th= t(:student_passions)
 
   %tbody.table-body
     - projects.each do |p|
       %tr
         %td= p.name
         %td= p.description
-        %td= p.start_date
-        %td= p.end_date
+        %td= p.address
+        %td= p.team_mode ? "Team" : "Individual"
+        %td= p.get_pretty_properties(p.related_fields_of_study, "related_fields_of_study")
+        %td= p.get_pretty_properties(p.related_student_passions, "related_student_passions")

@@ -375,6 +375,7 @@ DEPENDENCIES
   compass-susy-plugin
   database_cleaner
   databasedotcom
+  devise
   enumerize
   factory_girl (>= 4.2.0)
   factory_girl_rails

@@ -16,6 +16,13 @@
 
 @import "home";
 @import "projects";
+@import "students";
+
+@import "font-awesome";
+
+.fa:before {
+  margin-right: 5px;
+}
 
 .clearfix {
   zoom:1;
@@ -89,7 +96,7 @@ body {
 .header-bg, .header-bg-large {
   background: url(header-bg.png) no-repeat;
   margin-top: -25px;
-  height: 152px;
+  height: 192px;
   width: 100%;
   position: absolute;
   z-index: -1;
@@ -102,7 +109,7 @@ body {
 .main-header { min-height: 700px; }
 
 header {
-  @include adjust-leading-to(5);
+  @include adjust-leading-to(6);
   @include trailer(3);
 
   color: white;
@@ -117,7 +124,7 @@ header {
 
   h1.title {
     color: #4b4b4b;
-    @include span-columns(7);
+    @include span-columns(5);
     font-weight: bold;
   }
 }
@@ -132,9 +139,9 @@ h1.subtitle {
 
 }
 
-nav.main {
+nav {
   color: #4b4b4b;
-  @include span-columns(5 omega);
+  @include span-columns(7 omega);
 
   .link {
     @include adjust-font-size-to(20px);
@@ -145,22 +152,7 @@ nav.main {
     padding-right: 4em;
     &:last-child { padding-right: 0;}
     // font-weight: 300;
-
-    a { color: #4b4b4b; text-decoration: none; }
   }
-}
-
-nav.sub-menu {
-  @include adjust-font-size-to(14px, 1.5);
-  box-shadow: inset -1px -2px 10px rgba(0, 0, 0, .15);
-  border-bottom: 4px solid #696969;
-  background: #8D8A8A;
-  font-weight: 600;
-  -webkit-font-smoothing: antialiased;
-  text-transform: uppercase;
-  margin-top: -66px; // TODO: Responsive? Also rather hacky..
-
-  a { color: white; text-decoration: none; }
 }
 
 #reach-out {
@@ -213,4 +205,9 @@ form {
     font-style: italic;
     color: #e46b66;
   }
+}
+
+/* overflow-x chrome fix */
+.select2-offscreen{
+  display: none!important;
 }

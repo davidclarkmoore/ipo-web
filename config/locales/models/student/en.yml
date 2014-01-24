@@ -1,0 +1,103 @@
+en:
+  enumerize:
+    student:
+      heard_about_ipo:
+        - College Group
+        - YWAM Staff
+        - IPO Advocate
+        - Website
+        - Event
+        - Facebook
+        - YouTube
+        - Twitter
+      overall_education:
+        - High School Graduate
+        - Some College
+        - Associates (2-yr) Degree (AA)
+        - Bachelor's Degree (BA/BS)
+        - Some Post-Graduate Studies
+        - Graduate Degree (MA/MS)
+        - Doctoral Degree or Equivalent
+        - Other
+      phone_type:
+        - Work
+        - Household
+        - Mobile
+        - Other
+      experiences:
+        - Church Group Outreach
+        - College Outreach
+        - YWAM Outreach
+        - Missionary Kid
+        - Other
+      marital_status:
+        - Single
+        - Married
+        - Divorced
+        - Widowed
+      passions:    
+        - Business & Economic Development
+        - Children at Risk
+        - Church Planting
+        - Drug Abuse
+        - Environmental Stewardship
+        - Food Resources
+        - HIV/AIDS Awareness
+        - Human Traffiking
+        - International Students
+        - Malaria Prevention
+        - Other
+        - Poverty
+        - Pure Water Resources
+        - Solar Light &/or Heat
+        - Women & Children Health
+        - Youth & Young Adults
+      spoken_languages:
+        - Mandarin
+        - Spanish
+        - English
+        - Arabic
+        - Hindi
+        - Bengali
+        - Portuguese
+        - Russian
+        - Japanese
+        - German
+        - Other
+      fields_of_study:
+        - Accounting & Finance
+        - Agriculture
+        - Aviation
+        - Business & Management
+        - Child Development
+        - Communications & Journalism
+        - Community Development
+        - Computers & Information Systems
+        - Construction & Civil Engineering
+        - Counseling
+        - Creative Writing
+        - Cultural Anthropology
+        - Education & Teaching
+        - "Engineering: Elec, Chem, Mech"
+        - English
+        - Environmental Studies
+        - Fine Art
+        - Hospitality & Service Mgmt
+        - Intercultural Studies
+        - International Studies
+        - Internet Technology
+        - Languages & Linguistics
+        - Law & Criminal Justice
+        - Marriage & Family
+        - Occupational & Physical Therapy
+        - Organizational Mgmt
+        - Political Science
+        - Public Relations & Marketing
+        - Psychology
+        - Social Work
+        - Sports & Recreation Mgmt
+        - Theology & Religion
+        - Video & Photography
+        - Web Design
+        - Youth Work
+        - Other

@@ -15,6 +15,9 @@ IpoWeb::Application.routes.draw do
 
   match '/home/autocomplete' => "home#autocomplete"
 
+  resources :students_setup, path: "/students/setup", only: [:index, :show, :update]
+  resources :students
+
   mount Refinery::Core::Engine, :at => '/'
 
   Refinery::Core::Engine.routes.draw do

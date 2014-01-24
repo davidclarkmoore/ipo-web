@@ -1,42 +1,42 @@
 .container
   = render 'header', active_step: params[:id]
   %article#photos_and_videos{style: "overflow: hidden;"}
-    %h3.center Add Photos & Videos
+    %h3.center= t(:add_photos_and_videos)
     %fieldset
       .add-images
-        %h4 Add Images
+        %h4= t(:add_images)
         = simple_form_for ProjectMedia.new, url: project_media_index_path(@project) do |f|
-          #drop_zone Drag & Drop Photos Here
-          = f.input :image, label: "Or upload from your computer:"
+          #drop_zone= t(:drag_and_drop_photos_here)
+          = f.input :image, label: t(:or_upload_from_your_computer)
         -# %h4 Add Third Party Image
         -# %h4 Add a YouTube Video
       .saved-images
-        %h4 Saved Project Photos and Videos
+        %h4= t(:saved_projects_photos_and_videos)
         .project_media
           = render @project.project_media
 
   %article#internship_opportunity{style: "overflow: hidden;"}
     = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
-      %h3.center Publish Your Internship Opportunity
+      %h3.center= t(:publish_your_internship_opportunity)
       %fieldset
-        %h4 Internship Project, Community, and Personal Overview
-        = f.input :description, as: :text, label: false, placeholder: 'Describe the project, the project facilities, organization, and project personnel here...', validate: true
+        %h4= t(:internship_project_community_and_personal_overview)
+        = f.input :description, as: :text, label: false, placeholder: t(:describe_the_project_project_facilities), validate: true
 
       %fieldset
-        %h4 Housing & Meals
-        = f.input :housing_type, label: "Student housing type.", validate: true
-        = f.input :dining_location, label: "Student dining location.", validate: true
-        = f.input :housing_description, as: :text, label: false, placeholder: 'Describe the housing, diet, and any health concerns here...', validate: true
+        %h4= t(:housing_and_meals)
+        = f.input :housing_type, label: t(:student_housing_type), validate: true
+        = f.input :dining_location, label: t(:student_dining_location), validate: true
+        = f.input :housing_description, as: :text, label: false, placeholder: t(:describe_the_housing_diet), validate: true
 
       %fieldset
-        %h4 Challenges at your location
-        = f.input :safety_level, label: "Describe the level of safety in your area:", validate: true
-        = f.input :challenges_description, as: :text, label: false, placeholder: 'Describe the specific cultural, safety, and lifestyle challenges at your location...', validate: true
+        %h4= t(:challenges_at_your_location)
+        = f.input :safety_level, label: t(:describe_the_level_of_safety), validate: true
+        = f.input :challenges_description, as: :text, label: false, placeholder: t(:describe_the_specific_cultural_safety), validate: true
 
       %fieldset
-        %h4 What are your community guidelines (Dress, schedule, etc...)
-        = f.input :typical_attire, label: "Describe a students typical attire:", validate: true
-        = f.input :guidelines_description, as: :text, label: false, placeholder: 'Describe your project and/or organization guidelines (such as dress, for personal/interns)...', validate: true
+        %h4= t(:what_are_the_community_guidelines)
+        = f.input :typical_attire, label: t(:describe_a_student_typical), validate: true
+        = f.input :guidelines_description, as: :text, label: false, placeholder: t(:describe_your_project_andor_organization), validate: true
 
-      = f.submit "Save & Continue to Step #5", class: "button button-orange"
+      = f.submit t(:save_and_continue_to_step_5), class: "button button-orange"
   = render 'media_progress'

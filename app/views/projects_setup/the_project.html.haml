@@ -2,35 +2,35 @@
   = render 'header', active_step: params[:id]
   = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
     %article
-      %h3.center The Project
-      = f.input :name, label: 'Internship Project Name:', validate: true
-      %h4.center.teams-individuals Are you interested in teams or individuals?
+      %h3.center= t(:the_project)
+      = f.input :name, label: t(:internship_project_name), validate: true
+      %h4.center.teams-individuals= t(:are_you_intersted_in_teams_or_individuals)
 
-      = f.input :team_mode, as: :button_group, label: false, collection: [['Teams', true], ['Individuals', false]], validate: true
+      = f.input :team_mode, as: :button_group, label: false, collection: [[t(:team), true], [t(:individual), false]], validate: true
       -# = f.input :min_stay_duration
-      = f.input :min_students, label: 'Min. number of students to make this project worthwhile?', validate: true
-      = f.input :max_students, label: 'Max. number of students you can house at any one time?', validate: true
+      = f.input :min_students, label: t(:min_number_of_students), validate: true
+      = f.input :max_students, label: t(:max_number_of_students), validate: true
 
     %article
-      %h3.center Project Sessions
-      %h4 What is the weekly cost for hosting/feeding a student for 1 week?
+      %h3.center= t(:project_sessions)
+      %h4= t(:what_is_the_weekly_cost)
 
       %ul.weekly-cost
-        %li This weekly cost will include all housing and all meal costs for student
-        %li Please include any additional costs for gear or equipment the student will need for the program
+        %li= t(:this_weekly_cost)
+        %li= t(:please_include_any_additional)
 
-      = f.input :per_week_cost, label: 'Per Week Cost for Each Student:', validate: true
-      = f.input :per_week_cost_final, as: :boolean, label: "Is this final?", validate: true
+      = f.input :per_week_cost, label: t(:per_week_cost), validate: true
+      = f.input :per_week_cost_final, as: :boolean, label: t(:is_this_final), validate: true
 
     %article
-      %h3.center Student Requirements
+      %h3.center= t(:student_requirements)
       .student-requirements-illustration.center
-        %h4 Define the Right Students
+        %h4= t(:define_the_right_students)
         %img(src="http://placehold.it/300x340")
       .student-requirements-fields
-        = f.input :required_languages, label: 'Select Required Languages Students Must Speak', validate: true
-        = f.input :related_student_passions, as: :select, label: 'Tag All Related Student Passions'
-        = f.input :related_fields_of_study, as: :select, label: 'Tag all related fields of study that would benefit this project'
-        = f.input :student_educational_requirement, label: 'Student Educational Requirement', validate: true
+        = f.input :required_languages, label: t(:select_required_languages_students), validate: true
+        = f.input :related_student_passions, as: :select, label: t(:tag_all_related_passions)
+        = f.input :related_fields_of_study, as: :select, label: t(:tag_all_related_fields_of_study)
+        = f.input :student_educational_requirement, label: t(:student_educational_requirement), validate: true
 
-      = f.submit "Save & Continue to Step #3", class: "button button-orange"
+      = f.submit t(:save_and_continue_to_step_3), class: "button button-orange"

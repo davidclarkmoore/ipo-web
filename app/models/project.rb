@@ -6,8 +6,9 @@ class Project < ActiveRecord::Base
   belongs_to :organization
   belongs_to :field_host
   has_many :project_media
-
+  has_many :project_sessions
   serialize :properties, ActiveRecord::Coders::Hstore
+  after_save :create_project_sessions
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, 
     :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement, 
@@ -95,6 +96,13 @@ class Project < ActiveRecord::Base
     end
 
     pretty_properties.join(", ")
+  end
+
+  #Temporal
+  def create_project_sessions
+    return unless self.wizard_status == 'agreement' && self.project_sessions.empty?
+    self.project_sessions.create(title: "Session #1", start_date: Date.new(2014, 1, 1), end_date: Date.new(2014, 6, 1))
+    self.project_sessions.create(title: "Session #2", start_date: Date.new(2014, 6, 2), end_date: Date.new(2014, 12, 1))
   end
 
   # TODO: Partial validations with wizard steps

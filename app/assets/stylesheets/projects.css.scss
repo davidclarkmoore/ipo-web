@@ -23,7 +23,6 @@
 
   .new-project { margin-left: 1.5em; }
   .button-group { display: inline; }
-
   >.options {
     @include adjust-leading-to(1.5, 16px);
     @include span-columns(4);
@@ -56,23 +55,12 @@
   }
 }
 
-.sort {
-  @include adjust-leading-to(1.5);
-  a { margin-right: 1.5em; }
-}
 
 .interests {
   @include leader(1);
   @include trailer(1);
   h5 { @include adjust-leading-to(2, 16px); }
   .select2-container { width: 100%; }
-}
-
-
-// TODO: Maybe use article tag and avoid this style block?
-#projects {
-  @include leader(1);
-  @include trailer(1);
 }
 
 .project {
@@ -117,7 +105,7 @@
 // =============
 
 
-form#new_project, form.edit_project {
+form#new_project, form.edit_project, form#new_student, form.edit_student {
   @include prefix(2);
   @include suffix(2);
   @include span-columns(12 omega);

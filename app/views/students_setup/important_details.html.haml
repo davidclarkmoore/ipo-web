@@ -1,0 +1,53 @@
+.container
+  = render 'header', active_step: params[:id]
+
+  .info-box
+    .first-column
+      %h8= t(:desired_project)
+      %p=@current_student_application.project_session.project.name
+
+    .second-column
+      %h8= t(:start_date)
+      %p=@current_student_application.project_session.select_label
+
+    .clearfix
+
+  .important-details
+    %h2
+      %i.fa.fa-exclamation-triangle= t(:important_note)
+    %p= t(:after_initial_acceptance_addictional_information_will_be_required)
+
+    %h2
+      %i.fa.fa-hand-o-right= t(:whats_next)
+
+    %p= t(:once_accepted_we_will_send_a_supplemental_information)
+   
+    %p
+      %strong= t(:suplemental_information_form)
+      %br= t(:when_your_application_file_is_complete)
+    %p
+      %strong= t(:tuition)
+      %br= t(:the_tuition_fees_varies_according_to_our_international_fee_scale)
+    %p
+      = t(:the_ipo_course_tuition_does_not_include_field_fees)
+    %p
+      %strong= t(:field_fees)
+      %br= t(:field_fees_include_housing_food_and_local_travel) 
+    %p
+      %strong= t(:travel_expenses_and_personal_spendings)
+      %br= t(:the_ipo_tuition_and_field_fees_do_not_include_tral_expenses)
+    %p
+      %strong= t(:making_the_ipo_connection)
+      %br= t(:the_field_project_host_has_agreed_to_arrange_for_your_arrival_pick_up)
+
+    %h2= t(:terms_and_conditions)
+
+    .terms-and-conditions
+      %p= t(:these_would_be_the_terms_and_conditions_including_privacy_information)
+
+    = simple_form_for @student, url: wizard_path, method: :put, validate: true do |f|
+      = f.input :agree_terms, as: :boolean, label: t(:i_agree_to_the_terms_and_conditions)
+
+      = f.submit t(:save_and_finish), class: "button button-orange"
+
+    .clearfix

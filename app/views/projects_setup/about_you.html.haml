@@ -8,7 +8,7 @@
       .field-host-fields
         = f_field_host.input :salutation
         = f_field_host.input :first_name
-        = f_field_host.input :middle_initial, label: "Initial"
+        = f_field_host.input :middle_initial, label: t(:initial)
         = f_field_host.input :last_name
         = f_field_host.input :email
         = f_field_host.input :preferred_phone
@@ -17,16 +17,16 @@
       .field-host-profile &nbsp;
 
     .background.c12.omega
-      %h3.center Your Background
+      %h3.center= t(:your_background)
 
       %fieldset#organizations
         = hidden_field_tag 'is_new_organization', false
         %ul.tab-list.small
-          %li.tab.active(data-box="#existing-organization") Choose Existing
-          %li.tab(data-box="#new-organization") New Organization
+          %li.tab.active(data-box="#existing-organization")= t(:choose_existing)
+          %li.tab(data-box="#new-organization")= t(:new_organization)
         #existing-organization.tab-box.w-padding
-          = f.association :organization, include_blank: true, label: "Select Organization"
-          %p If you can't find your organization please choose the "New Organization" tab and fill it out
+          = f.association :organization, include_blank: true, label: t(:select_organization)
+          %p= t(:if_you_cant_find_your_organization)
         #new-organization.tab-box.w-padding(style="display: none")
           = f.fields_for :organization, Organization.new, validate: true do |f_organization|
             = f_organization.input :name
@@ -40,10 +40,10 @@
           = f_field_host.input :overall_education
 
           %fieldset
-            %h4 What has your experience been with YWAM?
+            %h4= t(:what_has_been_your_experiencie_with_ywam)
             = f_field_host.input :experience_with_ywam, as: :check_boxes, label: false
 
-            %h4 How did you hear about the IPO Connection?
+            %h4= t(:how_did_your_hear_about_ipo_connection)
             = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false
 
-    = f.submit "Save & Continue to Step #2", class: "button button-orange"
+    = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"

@@ -16,6 +16,13 @@
 
 @import "home";
 @import "projects";
+@import "students";
+
+@import "font-awesome";
+
+.fa:before {
+  margin-right: 5px;
+}
 
 .clearfix {
   zoom:1;
@@ -117,7 +124,7 @@ header {
 
   h1.title {
     color: #4b4b4b;
-    @include span-columns(7);
+    @include span-columns(5);
     font-weight: bold;
   }
 }
@@ -134,7 +141,7 @@ h1.subtitle {
 
 nav.main {
   color: #4b4b4b;
-  @include span-columns(5 omega);
+  @include span-columns(7 omega);
 
   .link {
     @include adjust-font-size-to(20px);
@@ -145,10 +152,9 @@ nav.main {
     padding-right: 4em;
     &:last-child { padding-right: 0;}
     // font-weight: 300;
-
-    a { color: #4b4b4b; text-decoration: none; }
   }
 }
+
 
 nav.sub-menu {
   @include adjust-font-size-to(14px, 1.5);
@@ -213,4 +219,9 @@ form {
     font-style: italic;
     color: #e46b66;
   }
+}
+
+/* overflow-x chrome fix */
+.select2-offscreen{
+  display: none!important;
 }

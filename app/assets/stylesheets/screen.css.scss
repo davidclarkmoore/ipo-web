@@ -153,6 +153,11 @@ nav.main {
     &:last-child { padding-right: 0;}
     // font-weight: 300;
   }
+
+  .link a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 

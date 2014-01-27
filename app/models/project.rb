@@ -10,17 +10,17 @@ class Project < ActiveRecord::Base
   serialize :properties, ActiveRecord::Coders::Hstore
   after_save :create_project_sessions
 
-  hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, 
-    :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement, 
-    :internet_distance, :location_type, :transportation_available, :location_description, 
-    :culture_description, :housing_type, :dining_location, :housing_description, :safety_level, 
+  hstore_accessor :properties, :min_stay_duration, :min_students, :max_students,
+    :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement,
+    :internet_distance, :location_type, :transportation_available, :location_description,
+    :culture_description, :housing_type, :dining_location, :housing_description, :safety_level,
     :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 
-  attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, 
+  attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students,
     :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
     :student_educational_requirement, :address, :internet_distance, :location_private, :location_type, :transportation_available,
-    :location_description, :culture_description, :housing_type, :dining_location, :housing_description, 
-    :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport, 
+    :location_description, :culture_description, :housing_type, :dining_location, :housing_description,
+    :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport,
     :field_host_attributes, :organization_attributes, :organization_id, :wizard_status
 
 
@@ -52,7 +52,8 @@ class Project < ActiveRecord::Base
   validates :team_mode, inclusion: {in: [true, false]}, :if => :complete_or_the_project?
   validates :min_students, :max_students, :numericality => true, :if => :complete_or_the_project?
   # -- Location
-  validates :location_private, :address, :internet_distance,
+  validates :location_private, inclusion: {in: [true, false]}, :if => :complete_or_location?
+  validates :address, :internet_distance,
       :location_description, :culture_description, :presence => true, :if => :complete_or_location?
   # -- Content
   validates :description, :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description,

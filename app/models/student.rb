@@ -5,7 +5,7 @@ class Student < ActiveRecord::Base
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :experiences, :heard_about_ipo, :overall_education, :passions, :spoken_languages,
-  :fields_of_study, :graduation_year
+  :fields_of_study, :graduation_year, :agree_terms
 
   attr_accessible :first_name, :last_name, :birthday, :gender, :street_address, :city, :postal_code,
     :country, :preferred_phone, :phone_type, :marital_status, :organization, :applied_ipo_before,
@@ -13,13 +13,6 @@ class Student < ActiveRecord::Base
     :heard_about_ipo, :overall_education, :passions, :spoken_languages, :graduation_year, :agree_terms,
     :login_attributes, :student_applications_attributes, :spiritual_reference_attributes, :academic_reference_attributes,
     :wizard_status
-
-
-  attr_accessor :agree_terms
-
-  # DOES NOT WORK:
-  # Is removed once model is saved. Models saved when loaded have valid? false
-  # validates_presence_of :agree_terms, if: :complete?
 
   belongs_to :academic_reference, class_name: "Reference", dependent: :destroy
   belongs_to :spiritual_reference, class_name: "Reference", dependent: :destroy
@@ -36,8 +29,6 @@ class Student < ActiveRecord::Base
     :country, :preferred_phone, :organization, :birthday
 
   validates_inclusion_of :applied_ipo_before, in: [true, false]
-
-  # -- About You
   validates :login, :student_applications, :associated => true, :if => :about_you?
   validates :graduation_year, numericality: {allow_nil: true}
 

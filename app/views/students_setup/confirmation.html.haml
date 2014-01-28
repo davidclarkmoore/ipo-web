@@ -4,11 +4,11 @@
   .info-box
     .first-column
       %h8= t(:desired_project)
-      %p=@current_student_application.project_session.project.name
+      %p=@student_application.project_session.project.name
 
     .second-column
       %h8= t(:start_date)
-      %p=@current_student_application.project_session.select_label
+      %p=@student_application.project_session.select_label
 
     .clearfix
 
@@ -18,23 +18,23 @@
 
     .first-column
       %h8= t(:name)
-      %p=@student.full_name
+      %p=@student_application.student.full_name
 
     .second-column
       %h8= t(:confirmation_has_been_mail_to)
-      %p=@student.login.email
+      %p=@student_application.student.login.email
 
     .first-column
       %h8= t(:desired_project)
-      %p=@current_student_application.project_session.project.name
+      %p=@student_application.project_session.project.name
 
     .second-column
       %h8= t(:session)
-      %p=@current_student_application.project_session.select_label
+      %p=@student_application.project_session.select_label
 
     .first-column
       %h8= t(:your_address)
-      %p=@student.full_address
+      %p=@student_application.student.full_address
 
     .clearfix
     .spacer

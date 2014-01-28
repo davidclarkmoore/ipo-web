@@ -105,7 +105,7 @@
 // =============
 
 
-form#new_project, form.edit_project, form#new_student, form.edit_student {
+form#new_project, form.edit_project, form.new_student_application, form.edit_student_application {
   @include prefix(2);
   @include suffix(2);
   @include span-columns(12 omega);
@@ -114,7 +114,8 @@ form#new_project, form.edit_project, form#new_student, form.edit_student {
   /* Prevent collapsing margins when defining form blocks */
   article { overflow: auto; }
   .select2-container, input, textarea { width: 100%; }
-  input[type="checkbox"] { width: auto; }
+  input[type="checkbox"], input[type="radio"] { width: auto; }
+
   textarea {
     font-size: 1em;
     height: 5em;

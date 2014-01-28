@@ -1,6 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :student_application do
+    project_session_id 1
+    student_id 1
   end
 end

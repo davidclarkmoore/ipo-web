@@ -5,5 +5,6 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     preferred_phone { Faker::PhoneNumber.short_phone_number }
     phone_type { FieldHost.phone_type.values.sample }
+    overall_education "Some College"
   end
 end

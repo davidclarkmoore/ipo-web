@@ -1,51 +1,53 @@
 .container
   = render 'header', active_step: params[:id]
 
-  = simple_form_for @student, url: wizard_path, method: :put, validate: true, html: {id: "new_student"} do |f|
-    = render partial: 'shared/errors', locals: {object: @student}
+  = simple_form_for @student_application, url: wizard_path, method: :put, validate: true, html: {id: "new_student"} do |f|
+    = render partial: 'shared/errors', locals: {object: @student_application}
 
     .background.c12.omega
       %h3.center= t(:your_project)
       = f.input :project, as: :select, label: false do
         = select_tag 'your_project_select', options_from_collection_for_select(Project.all, "id", "name"), include_blank: true
         
-      = f.fields_for :student_applications, @student.student_applications.new, validate: true do |f_student_application|
-        %h3.center= t(:your_session)
-        = f_student_application.association :project_session, include_blank: true, label: false, label_method: :select_label
-    %fieldset
-      %br
-      .student-fields
-        = f.input :first_name, label: t(:first_name_nickname)
-        = f.input :last_name
+      %h3.center= t(:your_session)
+      = f.association :project_session, include_blank: true, label: false, label_method: :select_label
 
-        = f.fields_for :login, @student.login, validate: true do |f_login|
-          = f_login.input :email
-          = f_login.input :password
-          %p.register-description= t(:we_setup_an_account_for_you_so_you_can_check_your_application_status)
-          = f_login.input :password_confirmation, label: t(:confirm_password)
+    = f.fields_for :student, @student_application.student, validate: true do |f_student|  
+      %fieldset
+        %br
+        .student-fields
 
-        = f.input :birthday, as: :date, start_year: Date.today.year - 50, label: t(:date_of_birth) 
-        = f.input :gender, collection: [:female, :male], as: :radio_buttons
-        = f.input :marital_status, as: :select
+          = f_student.input :first_name, label: t(:first_name_nickname)
+          = f_student.input :last_name
 
-    %fieldset
-      .student-fields
-        = f.input :street_address
-        = f.input :city
-        = f.input :postal_code
-        = f.input :country
+          = f_student.fields_for :login, @student_application.student.login, validate: true do |f_login|
+            = f_login.input :email
+            = f_login.input :password
+            %p.register-description= t(:we_setup_an_account_for_you_so_you_can_check_your_application_status)
+            = f_login.input :password_confirmation, label: t(:confirm_password)
 
-        = f.input :preferred_phone
-        = f.input :phone_type
+          = f_student.input :birthday, as: :date, start_year: Date.today.year - 50, label: t(:date_of_birth) 
+          = f_student.input :gender, collection: [:female, :male], as: :radio_buttons
+          = f_student.input :marital_status, as: :select
 
-        = f.input :organization, label: t(:school_church_organization)
+      %fieldset
+        .student-fields
+          = f_student.input :street_address
+          = f_student.input :city
+          = f_student.input :postal_code
+          = f_student.input :country
 
-    %fieldset
-      %h4 How did you hear about the IPO Connection?
-      = f.input :heard_about_ipo, as: :check_boxes, label: false
+          = f_student.input :preferred_phone
+          = f_student.input :phone_type
 
-    %fieldset
-      %h4 Had you ever applied to an IPO Connection program before?
-      = f.input :applied_ipo_before, as: :radio_buttons, label: false
+          = f_student.input :organization, label: t(:school_church_organization)
+
+      %fieldset
+        %h4 How did you hear about the IPO Connection?
+        = f_student.input :heard_about_ipo, as: :check_boxes, label: false
+
+      %fieldset
+        %h4 Had you ever applied to an IPO Connection program before?
+        = f_student.input :applied_ipo_before, as: :radio_buttons, label: false
 
     = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"

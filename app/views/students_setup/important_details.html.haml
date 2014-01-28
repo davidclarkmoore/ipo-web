@@ -4,11 +4,11 @@
   .info-box
     .first-column
       %h8= t(:desired_project)
-      %p=@current_student_application.project_session.project.name
+      %p=@student_application.project_session.project.name
 
     .second-column
       %h8= t(:start_date)
-      %p=@current_student_application.project_session.select_label
+      %p=@student_application.project_session.select_label
 
     .clearfix
 
@@ -45,7 +45,8 @@
     .terms-and-conditions
       %p= t(:these_would_be_the_terms_and_conditions_including_privacy_information)
 
-    = simple_form_for @student, url: wizard_path, method: :put, validate: true do |f|
+    = simple_form_for @student_application, url: wizard_path, method: :put, validate: true do |f|
+
       = f.input :agree_terms, as: :boolean, label: t(:i_agree_to_the_terms_and_conditions)
 
       = f.submit t(:save_and_finish), class: "button button-orange"

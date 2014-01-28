@@ -6,14 +6,14 @@
 
     .background.c12.omega
       %h3.center= t(:your_project)
-      = f.input :project, as: :select, include_blank: true, label: false do
-        = text_field_tag 'project'
+      = f.input :project, as: :select, label: false do
+        = select_tag 'your_project_select', options_from_collection_for_select(Project.all, "id", "name"), include_blank: true
         
       = f.fields_for :student_applications, @student.student_applications.new, validate: true do |f_student_application|
         %h3.center= t(:your_session)
         = f_student_application.association :project_session, include_blank: true, label: false, label_method: :select_label
-
     %fieldset
+      %br
       .student-fields
         = f.input :first_name, label: t(:first_name_nickname)
         = f.input :last_name

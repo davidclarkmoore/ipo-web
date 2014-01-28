@@ -4,15 +4,14 @@ class Student < ActiveRecord::Base
   salesforce "Student", [:first_name, :last_name, :birthday, :gender]
   serialize :properties, ActiveRecord::Coders::Hstore
 
-  hstore_accessor :properties, :experiences, :heard_about_ipo, :overall_education, :passions, :spoken_languages,
-  :fields_of_study, :graduation_year, :agree_terms
+  hstore_accessor :properties, :overall_education, :graduation_year, :agree_terms
 
   attr_accessible :first_name, :last_name, :birthday, :gender, :street_address, :city, :postal_code,
     :country, :preferred_phone, :phone_type, :marital_status, :organization, :applied_ipo_before,
-    :description, :academic_reference_id, :spiritual_reference_id, :experiences, :fields_of_study,
-    :heard_about_ipo, :overall_education, :passions, :spoken_languages, :graduation_year, :agree_terms,
-    :login_attributes, :student_applications_attributes, :spiritual_reference_attributes, :academic_reference_attributes,
-    :wizard_status
+    :description, :academic_reference_id, :spiritual_reference_id, :graduation_year, :agree_terms,
+    :login_attributes, :student_applications_attributes, :spiritual_reference_attributes, 
+    :academic_reference_attributes, :wizard_status, :fields_of_study, :passions, :experiences, 
+    :spoken_languages, :heard_about_ipo, :overall_education
 
   belongs_to :academic_reference, class_name: "Reference", dependent: :destroy
   belongs_to :spiritual_reference, class_name: "Reference", dependent: :destroy
@@ -26,24 +25,19 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :academic_reference
 
   validates_presence_of :first_name, :last_name, :gender, :marital_status, :street_address, :city, :postal_code,
-    :country, :preferred_phone, :organization, :birthday
+    :country, :preferred_phone, :organization, :birthday, :heard_about_ipo
 
   validates_inclusion_of :applied_ipo_before, in: [true, false]
   validates :login, :student_applications, :associated => true, :if => :about_you?
   validates :graduation_year, numericality: {allow_nil: true}
+  validates :passions, :spoken_languages, :fields_of_study, :presence => true, :if => :important_details?
 
   %w(overall_education marital_status phone_type).each do |f|
     enumerize f, in: I18n.t("enumerize.student.#{f}")
   end
 
-  %w(heard_about_ipo experiences passions spoken_languages fields_of_study).each do |f|
-    enumerize f, in: I18n.t("enumerize.student.#{f}"), multiple: true
-
-    define_method "#{f}_with_deserialize" do
-      value = send("#{f}_without_deserialize")
-      value = JSON.parse(send("#{f}_without_deserialize")) if value && value.is_a?(String)
-    end
-    alias_method_chain f, :deserialize
+  %w(fields_of_study passions experiences spoken_languages heard_about_ipo).each do |f|
+    enumerize f, in: I18n.t("enumerize.student." + f), multiple: true
   end
 
   def full_name

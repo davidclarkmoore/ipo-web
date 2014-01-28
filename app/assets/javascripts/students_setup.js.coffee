@@ -11,3 +11,4 @@ $ ->
         $.each data, (index, value) ->
           $("#student_application_project_session_id").append "<option value=\"" + data[index].id + "\">" + data[index].text + "</option>"
 
+

@@ -27,10 +27,17 @@ class StudentsSetupController < ApplicationController
     session[:student_id] = @student.id 
   end
 
+  def project_sessions
+    @projects_sessions = ProjectSession.where(project_id: params[:project])
+    @projects_sessions.map! { |project| {id: project.id, text: project.select_label}}
+    respond_to do |format|
+      format.json { render :json => @projects_sessions }
+    end
+  end
+
   private
 
   def current_student
-    #binding.pry
     @current_student ||= begin
       student = session[:student_id] && Student.find(session[:student_id])
       student ||= Student.new
@@ -38,7 +45,6 @@ class StudentsSetupController < ApplicationController
   end
 
   def current_student_application
-   # binding.pry
     @student.student_applications.find_by_project_session_id(session[:project_session].to_i)
   end
 

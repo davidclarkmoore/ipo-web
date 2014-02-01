@@ -61,6 +61,10 @@
 .pre1 { @include pre(1); }
 .post1 { @include post(1); }
 
+
+
+
+
 /* ===========
    Main Styles
    =========== */
@@ -85,7 +89,7 @@ span.small { @include adjust-font-size-to(14px); }
 }
 
 body {
-  background: #f4f3f3;
+  background: $extra-light-grey;
   color: $color;
 }
 
@@ -199,6 +203,11 @@ footer li {
 }
 
 li { @include adjust-leading-to(1, 16px); }
+
+article {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
 
 /* ===========
    Form Styles

@@ -106,9 +106,11 @@
 
 
 form#new_project, form.edit_project, form.new_student_application, form.edit_student_application {
-  @include prefix(2);
-  @include suffix(2);
-  @include span-columns(12 omega);
+//  @include prefix(2);
+//  @include suffix(2);
+//  @include span-columns(12 omega);
+    
+  margin-bottom: 5%;
 
   h3 { @include leader(1, 25px); }
   /* Prevent collapsing margins when defining form blocks */
@@ -137,6 +139,20 @@ form#new_project, form.edit_project, form.new_student_application, form.edit_stu
   #project_sessions { @include span-columns(12 omega); }
   .student-requirements-illustration { @include span-columns(4, 8); }
   .student-requirements-fields { @include span-columns(4 omega, 8); }
+
+  input[type=text],
+  input[type=email],
+  input[type=url],
+  input[type=search],
+  input[type=tel],
+  input[type=number] textarea {
+    @include adjust-font-size-to(24px);
+    padding: .5em;
+    background-color: rgba(0,0,0,0.1);
+    border: 0em;
+  }
+
+
 
   input[type=submit] {
     @include adjust-font-size-to(16px, 1, 14px);
@@ -168,16 +184,24 @@ ul.weekly-cost {
   @include trailer(1);
 }
 
+label {  
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
 // -----
 // Step 1
 // ------
 
+.lighttext label {
+  color: rgba(0,0,0,.2);
+}
+
+
 .project_field_host_salutation { @include span-columns(1, 6); }
 .project_field_host_first_name { @include span-columns(2, 6); }
 .project_field_host_middle_initial { @include span-columns(1, 6); }
-.project_field_host_last_name {
-  @include span-columns(2 omega, 6);
-}
+.project_field_host_last_name { @include span-columns(2 omega, 6); }
 
 .project_field_host_email {
   @include span-columns(4 omega, 6);
@@ -211,6 +235,21 @@ ul.weekly-cost {
   width: 95%;
   line-height: 3em;
 }
+
+.project_field_host_role_title { @include span-columns(3, 6);}
+.project_field_host_years_associated_with_organization { @include span-columns(2, 6);}
+.project_field_host_overall_education {@include span-columns(4 alpha, 6);  @include post(2, 6);}
+
+// ------
+// Step 2
+// ------
+
+.project_min_students { @include span-columns(3 alpha, 6);}
+.project_max_students { @include span-columns(3 omega, 6);}
+
+.project_per_week_cost { @include span-columns(2 alpha, 6);}
+project_per_week_cost_final { @include span-columns(2 omega, 6); @include post(3, 6);}
+
 
 // ------
 // Step 3

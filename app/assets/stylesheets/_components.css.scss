@@ -284,8 +284,8 @@ input[type=submit] {
     // Select 2 doesn't seem to be sufficiently responsive.
     // Will have to manage manually?
     @include adjust-font-size-to(16px, 1.5);
-
-    height: 36px;
+    line-height: 3.8em;
+    height: 55px;
     font-family: $header-font-family;
     -webkit-font-smoothing: antialiased;
     font-weight: 600;

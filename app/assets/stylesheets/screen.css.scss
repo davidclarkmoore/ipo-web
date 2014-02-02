@@ -61,8 +61,13 @@
 .pre1 { @include pre(1); }
 .post1 { @include post(1); }
 
-
-
+/* ===========
+  Vendor Styles
+   =========== */
+   
+.tab-box {
+  min-height: 300px;
+}
 
 
 /* ===========

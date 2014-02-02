@@ -106,10 +106,9 @@
 
 
 form#new_project, form.edit_project, form.new_student_application, form.edit_student_application {
-//  @include prefix(2);
-//  @include suffix(2);
-//  @include span-columns(12 omega);
-    
+
+  @include span-columns(12 omega);
+
   margin-bottom: 5%;
 
   h3 { @include leader(1, 25px); }
@@ -184,7 +183,7 @@ ul.weekly-cost {
   @include trailer(1);
 }
 
-label {  
+label {
   text-transform: uppercase;
   font-weight: 500;
 }

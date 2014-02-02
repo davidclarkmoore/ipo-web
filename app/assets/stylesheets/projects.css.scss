@@ -188,16 +188,22 @@ label {
   font-weight: 500;
 }
 
+
+
+
 // -----
 // Step 1
 // ------
+
+
+
 
 .lighttext label {
   color: rgba(0,0,0,.2);
 }
 
 
-.project_field_host_salutation { @include span-columns(1, 6); }
+.project_field_host_salutation { @include span-columns(1 alpha, 6); }
 .project_field_host_first_name { @include span-columns(2, 6); }
 .project_field_host_middle_initial { @include span-columns(1, 6); }
 .project_field_host_last_name { @include span-columns(2 omega, 6); }
@@ -235,17 +241,23 @@ label {
   line-height: 3em;
 }
 
+.ywam_experience_and_connection { @include trailer(2);
+}
+
+
 .project_field_host_role_title { @include span-columns(3, 6);}
 .project_field_host_years_associated_with_organization { @include span-columns(2, 6);}
 .project_field_host_overall_education {@include span-columns(4 alpha, 6);  @include post(2, 6);}
+
+
+
 
 // ------
 // Step 2
 // ------
 
-.project_min_students { @include span-columns(3 alpha, 6);}
-.project_max_students { @include span-columns(3 omega, 6);}
-
+.project_min_students {@include pre(1, 6); @include span-columns(2, 6);}
+.project_max_students { @include span-columns(2, 6); @include post(1, 6);}
 .project_per_week_cost { @include span-columns(2 alpha, 6);}
 project_per_week_cost_final { @include span-columns(2 omega, 6); @include post(3, 6);}
 

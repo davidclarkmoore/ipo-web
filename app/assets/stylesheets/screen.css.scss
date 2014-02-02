@@ -1,14 +1,19 @@
 @import "reset";
-@import "base";
 @import "compass/css3";
+@import "compass/css3/font-face";
 @import "compass/typography/vertical_rhythm";
+@import "base";
 
-// TODO: Eventually remove all dependencies on flat-ui.
+// TODO: Eventually remove all dependencies on flat-ui
+
 @import "mixins";
 @import "tables";
 @import "button-dropdowns";
+
 // @import "button-groups";
+
 // ====================================================
+
 @import "select2";
 
 @import "typography";
@@ -62,13 +67,10 @@
 .post1 { @include post(1); }
 
 /* ===========
-  Vendor Styles
+   Local Fonts
    =========== */
-   
-.tab-box {
-  min-height: 300px;
-}
 
+@include font-face("'Flat-UI-Icons", font-files("../fonts/Flat-UI-Icons.eot", "../fonts/Flat-UI-Icons.woff", "../fonts/Flat-UI-Icons.ttf","../fonts/Flat-UI-Icons.svg"));
 
 /* ===========
    Main Styles
@@ -213,6 +215,11 @@ article {
   padding-top: 1.5em;
   padding-bottom: 1.5em;
 }
+
+.inset-shadow {
+  @include box-shadow (inset 0px 1px 2px $dark-grey);
+}
+
 
 /* ===========
    Form Styles

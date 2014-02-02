@@ -1,52 +1,62 @@
-.container
-  = render 'header', active_step: params[:id]
+%article
+  .container
+    = render 'header', active_step: params[:id]
 
   = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
-    %h3.center= t(:about_you)
-    = f.fields_for :field_host do |f_field_host|
-      .field-host-fields
-        = f_field_host.input :salutation
-        = f_field_host.input :first_name
-        = f_field_host.input :middle_initial, label: t(:initial), input_html: { maxlength: 1 }
-        = f_field_host.input :last_name
-        - unless current_fieldhost
-          = f_field_host.fields_for :login, @project.field_host.login, validate: true do |f_h_login|
-            = f_h_login.input :email
-            = f_h_login.input :password
-            = f_h_login.input :password_confirmation
-        = f_field_host.input :preferred_phone
-        = f_field_host.input :phone_type
 
-      .field-host-profile &nbsp;
+    %article.bkg-green.light-text.inset-shadow
+      .container
+        .background
+          %h3.center.light-text= t(:about_you)
+          = f.fields_for :field_host do |f_field_host|
+            .field-host-fields
+              = f_field_host.input :salutation
+              = f_field_host.input :first_name
+              = f_field_host.input :middle_initial, label: t(:initial), input_html: { maxlength: 1 }
+              = f_field_host.input :last_name
+              - unless current_fieldhost
+                = f_field_host.fields_for :login, @project.field_host.login, validate: true do |f_h_login|
+                  = f_h_login.input :email
+                  = f_h_login.input :password
+                  = f_h_login.input :password_confirmation
+              = f_field_host.input :preferred_phone
+              = f_field_host.input :phone_type
 
-    .background.c12.omega
-      %h3.center= t(:your_background)
+            .field-host-profile &nbsp;
 
-      %fieldset#organizations
-        = hidden_field_tag 'is_new_organization', false
-        %ul.tab-list.small
-          %li.tab.active(data-box="#existing-organization")= t(:choose_existing)
-          %li.tab(data-box="#new-organization")= t(:new_organization)
-        #existing-organization.tab-box.w-padding
-          = f.association :organization, include_blank: true, label: t(:select_organization)
-          %p= t(:if_you_cant_find_your_organization)
-        #new-organization.tab-box.w-padding(style="display: none")
-          = f.fields_for :organization, Organization.new, validate: true do |f_organization|
-            = f_organization.input :name
-            = f_organization.input :organization_type
-            = f_organization.input :website
+    %article
+      .container
+        .background.c12.omega
+          %h3.center= t(:your_background)
 
-      %fieldset
-        = f.fields_for :field_host, @project.field_host, validate: true do |f_field_host|
-          = f_field_host.input :role_title
-          = f_field_host.input :years_associated_with_organization
-          = f_field_host.input :overall_education
+          %fieldset#organizations
+            = hidden_field_tag 'is_new_organization', false
 
-          %fieldset
-            %h4= t(:what_has_been_your_experiencie_with_ywam)
-            = f_field_host.input :experience_with_ywam, as: :check_boxes, label: false
+            %ul.tab-list.small
+              %li.tab.active(data-box="#existing-organization")= t(:choose_existing)
+              %li.tab(data-box="#new-organization")= t(:new_organization)
 
-            %h4= t(:how_did_your_hear_about_ipo_connection)
-            = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false
+            #existing-organization.tab-box.w-padding
+              = f.association :organization, include_blank: true, label: t(:select_organization)
+              %p= t(:if_you_cant_find_your_organization)
 
-    = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"
+            #new-organization.tab-box.w-padding(style="display: none")
+              = f.fields_for :organization, Organization.new, validate: true do |f_organization|
+                = f_organization.input :name
+                = f_organization.input :organization_type
+                = f_organization.input :website
+
+          %fieldset.ywam_experience_and_connection
+            = f.fields_for :field_host, @project.field_host, validate: true do |f_field_host|
+              = f_field_host.input :role_title
+              = f_field_host.input :years_associated_with_organization
+              = f_field_host.input :overall_education
+
+              %fieldset
+                %h4= t(:what_has_been_your_experiencie_with_ywam)
+                = f_field_host.input :experience_with_ywam, as: :check_boxes, label: false
+
+                %h4= t(:how_did_your_hear_about_ipo_connection)
+                = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false
+
+        = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"

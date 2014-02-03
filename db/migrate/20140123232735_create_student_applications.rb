@@ -4,8 +4,6 @@ class CreateStudentApplications < ActiveRecord::Migration
       t.integer :project_session_id
       t.integer :student_id
       t.string  :status
-      t.string :application_status
-      t.date    :application_deadline
       t.timestamps
     end
   end

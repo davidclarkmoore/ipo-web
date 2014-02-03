@@ -5,6 +5,8 @@ class CreateProjectSessions < ActiveRecord::Migration
       t.date :start_date
       t.date :end_date
       t.integer :project_id
+      t.date :application_deadline
+      t.string :status
       t.timestamps
     end
   end

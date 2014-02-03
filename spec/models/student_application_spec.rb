@@ -12,8 +12,7 @@ describe StudentApplication do
 
     it "should set to pending, status and application_status" do
       @student_application = FactoryGirl.create(:student_application)
-      expect(@student_application.status).to eq(StudentApplication::PENDING)
-      expect(@student_application.application_status).to eq(StudentApplication::PENDING)
+      expect(@student_application.status).to eq(StudentApplication::INCOMPLETE)
     end
   end
 end

@@ -1,21 +1,22 @@
 class StudentApplication < ActiveRecord::Base
   belongs_to :student
   belongs_to :project_session
-  before_save :set_to_pending
   
-  attr_accessible :student_id, :project_session_id, :wizard_status, :student_attributes, :student, :agree_terms
+  COMPLETE = "complete" 
+  INCOMPLETE = "incomplete"
+
+  attr_accessible :student_id, :project_session_id, :wizard_status, :student_attributes, :student, :agree_terms, :status
+  accepts_nested_attributes_for :student
 
   validates_uniqueness_of :project_session_id, scope: :student_id
   validates_presence_of :project_session_id
+  before_create :set_incomplete_status
 
-  accepts_nested_attributes_for :student
+  scope :approved, where(status: COMPLETE)
+  scope :unapproved, where(status: INCOMPLETE)
 
-  APPROVED = "approved"
-  UNAPPROVED = "unapproved"
-  PENDING = "pending"
 
-  def set_to_pending
-    self.status = PENDING
-    self.application_status = PENDING
+  def set_incomplete_status
+    self.status = INCOMPLETE
   end
 end

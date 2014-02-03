@@ -5,7 +5,14 @@ class ProjectSession < ActiveRecord::Base
 
   belongs_to :project
 
+  after_save :set_application_deadline
+
   def select_label
     "#{title} (Start: #{start_date}, End: #{end_date})"
+  end
+
+  private 
+  def set_application_deadline
+    self.application_deadline = Date.today + 60.days
   end
 end

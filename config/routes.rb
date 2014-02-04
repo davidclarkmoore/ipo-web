@@ -30,6 +30,7 @@ IpoWeb::Application.routes.draw do
   get "dashboards/fieldhost" => "dashboards#fieldhost"
   get "dashboards/student" => "dashboards#student"
   put "dashboards/update_fieldhost" => "dashboards#update_fieldhost"
+  put "dashboards/update_student" => "dashboards#update_student"
 
   mount Refinery::Core::Engine, :at => '/'
 

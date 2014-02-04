@@ -293,6 +293,7 @@ GEM
       acts_as_indexed (~> 0.8.0)
       dragonfly (~> 0.9.12)
       refinerycms-core (= 2.1.0)
+    rmagick (2.13.2)
     routing-filter (0.3.1)
       actionpack
     rr (1.1.2)
@@ -407,6 +408,7 @@ DEPENDENCIES
   ransack
   rb-fsevent
   refinerycms (~> 2.1.0)
+  rmagick
   rr
   rspec
   rspec-rails (>= 2.0)

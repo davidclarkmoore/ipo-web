@@ -20,6 +20,7 @@ gem 'postgres_ext'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rmagick'
 gem 'jquery-fileupload-rails'
 
 gem 'unicorn' # Use unicorn as the app server

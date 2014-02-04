@@ -5,7 +5,7 @@ class FieldHost < ActiveRecord::Base
 
   attr_accessible :first_name, :middle_initial, :last_name, :salutation, :role_title, :years_associated_with_organization, 
     :preferred_phone, :phone_type, :experience_with_ywam, :heard_about_ipo, :overall_education, :role_title, 
-    :login_attributes
+    :login_attributes, :profile_picture
 
   serialize :properties, ActiveRecord::Coders::Hstore
 
@@ -35,6 +35,8 @@ class FieldHost < ActiveRecord::Base
   has_one :login, as: :entity
   accepts_nested_attributes_for :login
   delegate :email, to: :login
+
+  mount_uploader :profile_picture, LoginImageUploader
 
   validates_presence_of :first_name, :last_name, :preferred_phone, :phone_type, :overall_education
   validates :years_associated_with_organization, :numericality => {:allow_nil => true}

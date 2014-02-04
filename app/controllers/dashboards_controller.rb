@@ -28,14 +28,19 @@ class DashboardsController < ApplicationController
   def update_fieldhost
     @fieldhost = FieldHost.find(params[:id])
 
-    if @fieldhost.update_attributes(params[:field_host])
-      flash[:notice] = "Fieldhost was successfully updated." 
-    else
-      flash[:error] = "There was some problem with your data, please review" 
+    notice = @fieldhost.update_attributes(params[:field_host]) ? "Fieldhost was successfully updated." : "There was some problem with your data, please review"
+    respond_with(@fieldhost) do |format|
+      format.html { redirect_to dashboards_fieldhost_path(view: 'settings'), notice: notice }
     end
 
+  end
+
+  def update_student
+    @student = Student.find(params[:id])
+
+    notice = @student.update_attributes(params[:student]) ? "Student was successfully updated" : "There was some problem with your data, please review"
     respond_with(@fieldhost) do |format|
-      format.html { redirect_to(action: 'fieldhost', view: 'settings') }
+      format.html { redirect_to dashboards_student_path(view: params[:view]), notice: notice }
     end
   end
 end

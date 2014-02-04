@@ -2,6 +2,7 @@
   %h2= t(:personal_information)
   = form_for @fieldhost, url: dashboards_update_fieldhost_path, :builder => SimpleForm::FormBuilder, method: :put, validate: true do |field_host|
     = hidden_field_tag :id, @fieldhost.id
+    = render partial: 'shared/errors', locals: {object: @fieldhost}
     .field-host-fields
       = field_host.input :first_name
       = field_host.input :last_name
@@ -15,7 +16,7 @@
 
       %br
       %br
-      #drop_zone
       %h2= t(:edit_profile_picture)
+      = field_host.file_field :profile_picture
 
     = field_host.submit t(:save), class: "button button-orange"

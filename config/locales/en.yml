@@ -16,6 +16,7 @@ en:
   applications_waiting_for_your_approval: "Applications waiting for your approval: "
   are_you_intersted_in_teams_or_individuals: "Are you interested in teams or individuals?"
 
+  background_image: "Background Image"
   by_name: "By Name"
 
   challenges_at_your_location: "Challenges at your location"
@@ -41,6 +42,7 @@ en:
   describe_your_region: "Describe your region"
   description: "Description"
   desired_project: "Desired Project"
+  draft: "Draft"
   drag_and_drop_photos_here: "Drag & Drop Photos Here"
 
   edit_profile_picture: "Edit profile picture"
@@ -118,8 +120,10 @@ en:
   project_sessions: "Project Sessions"
   project_setup_application: "Project Setup Application"
   publish_your_internship_opportunity: "Publish Your Internship Opportunity"
+  published: "Published"
 
   quick_info: "Quick Info"
+  
   recent: "Recent"
   reset_password: "Reset Password"
 
@@ -198,6 +202,7 @@ en:
   you_dont_have_any_project_related: "You don't have any project related."
   youll_get_this_confirmation_in_your_email: "You'll get this confirmation in your email, so no need to print."
   your_address: "Your Address: "
+  your_image: "Your Image"
   your_project: "Your Project: "
   your_projects: "Your Projects: "
   your_session: "Your Session: "

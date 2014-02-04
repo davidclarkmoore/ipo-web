@@ -1,0 +1,4 @@
+.button-group
+  = button_link_to t(:dashboard), dashboards_student_path(view: 'dashboard'), :grey, id: 'dashboard_button', class: view_active?('dashboard'), remote: true
+  = button_link_to t(:manage_account), dashboards_student_path(view: 'manage_account'), :grey, id: 'manage_button', class: view_active?('manage_account'), remote: true
+  = button_link_to t(:profile_page), dashboards_student_path(view: 'profile_page'), :grey, id: 'profile_button', class: view_active?('profile_page'), remote: true

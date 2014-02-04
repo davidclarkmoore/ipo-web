@@ -10,7 +10,10 @@
         = f_field_host.input :first_name
         = f_field_host.input :middle_initial, label: t(:initial)
         = f_field_host.input :last_name
-        = f_field_host.input :email
+        = f_field_host.fields_for :login, @project.field_host.login, validate: true do |f_h_login|
+          = f_h_login.input :email
+          = f_h_login.input :password
+          = f_h_login.input :password_confirmation
         = f_field_host.input :preferred_phone
         = f_field_host.input :phone_type
 

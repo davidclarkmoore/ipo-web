@@ -54,7 +54,6 @@ CREATE TABLE field_hosts (
     last_name character varying(255) NOT NULL,
     salutation character varying(255),
     role_title character varying(255),
-    email character varying(255) NOT NULL,
     preferred_phone character varying(255),
     phone_type character varying(255),
     organization_id integer,
@@ -1314,3 +1313,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140123234917');
 INSERT INTO schema_migrations (version) VALUES ('20140128150533');
 
 INSERT INTO schema_migrations (version) VALUES ('20140128155054');
+
+INSERT INTO schema_migrations (version) VALUES ('20140204154042');

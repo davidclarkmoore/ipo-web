@@ -12,6 +12,7 @@ class StudentApplication < ActiveRecord::Base
   validates_presence_of :project_session_id
   before_create :set_incomplete_status
 
+
   scope :approved, where(status: COMPLETE)
   scope :unapproved, where(status: INCOMPLETE)
 

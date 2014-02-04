@@ -1,10 +1,17 @@
 IpoWeb::Application.routes.draw do
+
+  authenticated :login do
+    root :to => "dashboards#index"
+  end
+
   root :to => "home#index"
   devise_for :logins do
     post 'logins/sign_up'  => "devise/registrations#create"
     get 'logins/sign_in' => 'devise/sessions#new'
     post 'logins/sign_in' => 'devise/sessions#create'
     get 'logins/sign_out' => 'devise/sessions#destroy'
+    get 'logins/edit' => 'devise/registrations#edit', as: 'edit_login_registration'
+    put 'logins/:id' => 'devise/registrations#update', as: 'login_registration'
   end
 
   resources :projects_setup, path: "/projects/setup", only: [:index, :show, :update]
@@ -19,6 +26,10 @@ IpoWeb::Application.routes.draw do
   get '/students_setup/project_sessions/:project' => 'students_setup#project_sessions'
 
   resources :students
+
+  get "dashboards/fieldhost" => "dashboards#fieldhost"
+  get "dashboards/student" => "dashboards#student"
+  put "dashboards/update_fieldhost" => "dashboards#update_fieldhost"
 
   mount Refinery::Core::Engine, :at => '/'
 

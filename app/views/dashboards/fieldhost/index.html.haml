@@ -1,0 +1,10 @@
+.container
+  .new-project-header
+    %h1.center= t(:welcome, complete_name: @fieldhost.complete_name)
+
+  #option_buttons
+    = render partial: "dashboards/fieldhost/button_group"
+
+  .body
+    #dashboard
+      = render "dashboards/fieldhost/#{params[:view]}", project_sessions: @project_sessions

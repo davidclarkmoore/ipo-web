@@ -152,7 +152,7 @@ en:
   student_fields: "Student Fields"
   student_housing_type: "Student housing type."
   student_passions: "Student Passions"
-  student_profile: "Student Profile - "
+  student_profile: "Student Profile - %{status}"
   student_requirements: "Student Requirements"
   student_setup_application: "Student Setup Application"
   students_approved: "Students Approved: "

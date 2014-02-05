@@ -48,4 +48,8 @@ class Student < ActiveRecord::Base
   def full_address
     "#{street_address} #{city} #{postal_code} #{country}"
   end
+
+  def published_status_to_string
+    self.published_status ? "published" : "draft"
+  end
 end

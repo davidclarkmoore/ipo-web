@@ -26,11 +26,9 @@ IpoWeb::Application.routes.draw do
   get '/students_setup/project_sessions/:project' => 'students_setup#project_sessions'
 
   resources :students
+  resources :dashboards, only: [:index]
 
-  get "dashboards/fieldhost" => "dashboards#fieldhost"
-  get "dashboards/student" => "dashboards#student"
-  put "dashboards/update_fieldhost" => "dashboards#update_fieldhost"
-  put "dashboards/update_student" => "dashboards#update_student"
+  put "dashboards/update_login" => "dashboards#update_login"
 
   mount Refinery::Core::Engine, :at => '/'
 

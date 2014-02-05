@@ -8,5 +8,9 @@ class Login < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
-  validates_presence_of :email, :password, :password_confirmation
+  validates_presence_of :email
+  validates_presence_of :password, :password_confirmation, on: :create
+
+
+  belongs_to :entity, polymorphic: true
 end

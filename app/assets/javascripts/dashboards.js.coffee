@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+ipo['dashboards'] = {}
+ipo['dashboards']['index'] = ->
+
+  connect_group_to_select $(".student_published_status.button_group") , $("#student_published_status")
+
+ipo['dashboards']['update'] = ipo['dashboards']['index']

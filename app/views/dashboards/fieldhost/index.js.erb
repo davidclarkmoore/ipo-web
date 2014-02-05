@@ -1,7 +1,0 @@
-$("#option_buttons").html("<%= escape_javascript(render 'dashboards/fieldhost/button_group') %>");
-
-<% if params[:view] == 'dashboard' %>
-  $("#dashboard").html("<%= escape_javascript(render 'dashboards/fieldhost/dashboard', project_sessions: @project_sessions) %>");
-<% else %>
-  $("#dashboard").html("<%= escape_javascript(render 'dashboards/fieldhost/settings') %>");
-<% end %>

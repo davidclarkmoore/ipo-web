@@ -1,9 +1,8 @@
 .fieldset
   %h2= t(:personal_information)
-  = simple_form_for @student, url: dashboards_update_student_path, method: :put, validate: true do |student|
-    = hidden_field_tag :id, @student.id
+  = simple_form_for @login, url: dashboards_update_login_path, method: :put, validate: true do |student|
     = hidden_field_tag :view, "profile_page"
-    = render partial: 'shared/errors', locals: {object: @student}
+    = render partial: 'shared/errors', locals: {object: @login}
     .student-fields
       = student.label t(:background_image)
       = student.file_field :cover_photo

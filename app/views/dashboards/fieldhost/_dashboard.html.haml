@@ -1,6 +1,0 @@
-%h3= t(:your_projects)
-- if project_sessions
-  - project_sessions.each do |project_session|
-    = render 'dashboards/fieldhost/project', project_session: project_session
-- else
-  %h5= t(:you_dont_have_any_project_related)

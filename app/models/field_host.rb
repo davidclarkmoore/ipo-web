@@ -41,8 +41,8 @@ class FieldHost < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :preferred_phone, :phone_type, :overall_education
   validates :years_associated_with_organization, :numericality => {:allow_nil => true}
 
-  def complete_name
-    self.first_name + " " + self.last_name
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
 end

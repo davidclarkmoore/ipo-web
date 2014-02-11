@@ -49,6 +49,7 @@ class Project < ActiveRecord::Base
   validates :field_host, :organization, :associated => true, :if => :complete_or_about_you?
   # -- The Project
   validates :name, :student_educational_requirement, :presence => true, :if => :complete_or_the_project?
+  validates :name, uniqueness: true, :if => :complete_or_the_project?
   validates :team_mode, inclusion: {in: [true, false]}, :if => :complete_or_the_project?
   validates :min_students, :max_students, :numericality => true, :if => :complete_or_the_project?
   # -- Location

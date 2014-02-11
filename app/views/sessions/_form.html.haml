@@ -1,0 +1,9 @@
+= simple_form_for @session, validate: true do |f|
+
+  = render partial: 'shared/errors', locals: {object: @session}
+  = f.input :title
+  = f.input :start_date, as: :date, order: [:day, :month, :year]
+  = f.input :end_date, as: :date, order: [:day, :month, :year]
+  = f.input :duration
+
+  = f.submit t(:save), class: "button button-orange"

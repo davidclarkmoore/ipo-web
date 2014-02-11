@@ -1,0 +1,11 @@
+.container
+  .header
+    %h3= t(:session, title: @session.title)
+
+  .body
+    %h5= t(:start_date_session, date: @session.start_date)
+    %h5= t(:end_date_session, date: @session.end_date)
+    %h5= t(:duration_session, duration: @session.duration)
+    %br
+    %br
+    = link_to t(:back), :back

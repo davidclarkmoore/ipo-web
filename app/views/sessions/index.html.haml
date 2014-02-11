@@ -1,0 +1,35 @@
+.container
+  .header
+    %h3= t(:sessions)
+
+  #new_session
+    = link_to t(:new_session), new_session_path
+    %br
+    %br
+
+  #sessions
+    %table.table
+      %thead.table-head
+        %th= t(:session_id)
+        %th= t(:title)
+        %th= t(:start_date)
+        %th= t(:end_date)
+        %th= t(:duration)
+        %th= t(:application_deadline)
+        %th
+        %th
+        %th
+      %tbody.table-body
+        - @sessions.each do |session|
+          %tr
+            %td= session.id
+            %td= session.title
+            %td= session.start_date.to_formatted_s(:long_ordinal)
+            %td= session.end_date.to_formatted_s(:long_ordinal)
+            %td= session.duration
+            %td= session.application_deadline.to_formatted_s(:long_ordinal)
+            %td= link_to t(:edit), edit_session_path(session.id)
+            %td= link_to t(:show), session_path(session.id)
+            %td= link_to t(:delete), session_path(session.id), confirm: t(:are_you_sure), method: :delete
+
+  %br

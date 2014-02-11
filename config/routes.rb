@@ -27,6 +27,7 @@ IpoWeb::Application.routes.draw do
 
   resources :students
   resources :dashboards, only: [:index]
+  resources :sessions
 
   put "dashboards/update_login" => "dashboards#update_login"
 

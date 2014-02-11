@@ -197,12 +197,10 @@ ALTER SEQUENCE project_media_id_seq OWNED BY project_media.id;
 
 CREATE TABLE project_sessions (
     id integer NOT NULL,
-    title character varying(255),
-    start_date date,
-    end_date date,
     project_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    session_id integer
 );
 
 
@@ -680,6 +678,40 @@ ALTER SEQUENCE seo_meta_id_seq OWNED BY seo_meta.id;
 
 
 --
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sessions (
+    id integer NOT NULL,
+    title character varying(255),
+    start_date date,
+    end_date date,
+    duration character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sessions_id_seq OWNED BY sessions.id;
+
+
+--
 -- Name: student_applications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -896,6 +928,13 @@ ALTER TABLE ONLY seo_meta ALTER COLUMN id SET DEFAULT nextval('seo_meta_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sessions ALTER COLUMN id SET DEFAULT nextval('sessions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY student_applications ALTER COLUMN id SET DEFAULT nextval('student_applications_id_seq'::regclass);
 
 
@@ -1040,6 +1079,14 @@ ALTER TABLE ONLY refinery_users
 
 ALTER TABLE ONLY seo_meta
     ADD CONSTRAINT seo_meta_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1325,3 +1372,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140204154042');
 INSERT INTO schema_migrations (version) VALUES ('20140204221915');
 
 INSERT INTO schema_migrations (version) VALUES ('20140204231710');
+
+INSERT INTO schema_migrations (version) VALUES ('20140211152146');
+
+INSERT INTO schema_migrations (version) VALUES ('20140211153034');

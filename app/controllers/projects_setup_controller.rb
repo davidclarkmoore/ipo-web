@@ -10,6 +10,7 @@ class ProjectsSetupController < ApplicationController
     when :about_you
       @project.build_field_host unless @project.field_host
       @project.build_organization unless @project.organization
+      @project.field_host.build_login unless @project.field_host && @project.field_host.login
     end
     @project.wizard_status = step.to_s # For client-side validations
     render_wizard
@@ -27,9 +28,10 @@ class ProjectsSetupController < ApplicationController
         params[:project].delete(:organization_attributes)
       end
     end
-
+    
     params[:project][:wizard_status] = step.to_s
     params[:project][:wizard_status] = 'complete' if step == steps.last  
+    
     @project.update_attributes params[:project]
     render_wizard @project
     session[:project_id] = @project.id

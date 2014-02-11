@@ -135,8 +135,8 @@ a.button { text-decoration: none; }
 // ============
 
 input[type=text], input[type=email], input[type=url],
-input[type=search], input[type=tel], input[type=number]
-textarea {
+input[type=search], input[type=tel], input[type=number],
+input[type=password], textarea {
   font-size: 1em;
   line-height: 2em;
   display: inline-block;
@@ -171,7 +171,7 @@ textarea {
 
 .invalid {
   input[type=text], input[type=email], input[type=url],
-  input[type=search], input[type=tel], textarea {
+  input[type=search], input[type=tel], input[type=password], textarea {
     border-color: $orange;
     color: darken($orange, 10%);
     background: white url(error-x.png) no-repeat right;
@@ -454,6 +454,28 @@ $step-percent: 100/($steps);
       width: $step-percent * $i * 1%;
       .circle {
         left: ($step-percent * $i) - ($step-percent * 0.5) * 1%;
+      }
+    }
+  }
+}
+
+$steps: 4;
+$step-percent: 100/($steps);
+
+.new-student-header{
+  .wizard-steps{
+    ul li {
+      width: $step-percent * 1%;
+    }
+  }
+
+  .wizard-bar{
+    @for $i from 1 through $steps {
+      .step#{$i} {
+        width: $step-percent * $i * 1%;
+        .circle {
+          left: ($step-percent * $i) - ($step-percent * 0.5) * 1%;
+        }
       }
     }
   }

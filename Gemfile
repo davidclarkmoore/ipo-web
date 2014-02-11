@@ -4,7 +4,7 @@ gem 'pg'
 gem 'jquery-ui-rails'
 gem 'jquery-rails', "~> 2.3.0"
 
-
+gem "devise"
 gem 'haml'
 gem 'simple_form'
 gem 'ransack'
@@ -20,6 +20,7 @@ gem 'postgres_ext'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rmagick'
 gem 'jquery-fileupload-rails'
 
 gem 'unicorn' # Use unicorn as the app server
@@ -28,7 +29,8 @@ gem 'capistrano' # Deploy with Capistrano
 
 gem 'http_accept_language'
 gem 'select2-rails'
-
+gem 'font-awesome-rails'
+gem 'country_select'
 gem 'globalize3', '0.3.0'
 gem 'refinerycms', '~> 2.1.0'
 

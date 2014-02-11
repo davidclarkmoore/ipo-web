@@ -13,4 +13,5 @@ describe FieldHost do
   it { should ensure_inclusion_of(:phone_type).in_array(%w(Work Household Mobile Other)) }
 
   it { should belong_to :organization }
+  it { should have_many :projects}
 end

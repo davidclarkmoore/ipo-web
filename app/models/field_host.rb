@@ -3,9 +3,9 @@ class FieldHost < ActiveRecord::Base
   include SFRails::ActiveRecord
   salesforce "Contact", [:first_name, :last_name, :salutation, :preferred_phone, :phone_type]
 
-  attr_accessible :first_name, :middle_initial, :last_name, :salutation, 
-    :email, :role_title, :years_associated_with_organization, :preferred_phone, :phone_type,
-    :experience_with_ywam, :heard_about_ipo, :overall_education, :role_title
+  attr_accessible :first_name, :middle_initial, :last_name, :salutation, :role_title, :years_associated_with_organization, 
+    :preferred_phone, :phone_type, :experience_with_ywam, :heard_about_ipo, :overall_education, :role_title, 
+    :login_attributes, :profile_picture
 
   serialize :properties, ActiveRecord::Coders::Hstore
 
@@ -31,8 +31,18 @@ class FieldHost < ActiveRecord::Base
 
   belongs_to :organization
   has_many :projects
+  has_many :project_sessions, through: :projects
+  has_one :login, as: :entity
+  accepts_nested_attributes_for :login
+  delegate :email, to: :login
 
-  validates_presence_of :first_name, :last_name, :email, :preferred_phone, :phone_type, :overall_education
+  mount_uploader :profile_picture, LoginImageUploader
+
+  validates_presence_of :first_name, :last_name, :preferred_phone, :phone_type, :overall_education
   validates :years_associated_with_organization, :numericality => {:allow_nil => true}
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
 end

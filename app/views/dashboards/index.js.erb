@@ -1,0 +1,4 @@
+$("#option_buttons").html("<%= escape_javascript(render 'button_group') %>");
+
+<% view =  params[:view]  %>
+$("#show_subsection").html("<%= escape_javascript(render view) %>");

@@ -1,0 +1,5 @@
+.button-group
+  = button_link_to t(:project_dashboard), dashboards_path(view: 'dashboard'), :grey, id: 'dashboard_button', class: view_active?('dashboard'), remote: true
+  = button_link_to t(:account_settings), dashboards_path(view: 'account_settings'), :grey, id: 'account_button', class: view_active?('account_settings'), remote: true
+  - if @login.class.name == "Student"
+    = button_link_to t(:profile_page), dashboards_path(view: 'profile_page'), :grey, id: 'profile_button', class: view_active?('profile_page'), remote: true

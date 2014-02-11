@@ -1,0 +1,23 @@
+.fieldset
+  %h2= t(:personal_information)
+  = form_for @login, url: dashboards_update_login_path, :builder => SimpleForm::FormBuilder, method: :put, validate: true do |login|
+    = hidden_field_tag :view, "account_settings"
+    = render partial: 'shared/errors', locals: {object: @login}
+    .field-host-fields
+      = login.input :first_name
+      = login.input :last_name
+      = login.fields_for :login, @login.login, validate: true do |f_login|
+        = f_login.input :email
+      %h5= link_to t(:reset_password), edit_login_registration_path 
+      = login.input :preferred_phone
+      = login.input :phone_type
+      = label_tag t(:user_language)
+      = text_field_tag "user_language"
+
+      %br
+      %br
+      - if @login.class.name == "FieldHost"
+        %h2= t(:edit_profile_picture)
+        = login.file_field :profile_picture
+
+    = login.submit t(:save), class: "button button-orange"

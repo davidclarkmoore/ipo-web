@@ -1,0 +1,20 @@
+- if @login.class.name == "FieldHost"
+  %h3= t(:your_projects)
+  - if @login.project_sessions
+    - @login.project_sessions.each do |project_session|
+      = render 'project', project_session: project_session
+  - else
+    %h5= t(:you_dont_have_any_project_related)
+- else
+  .fieldset
+    %h3= t(:quick_info)
+    %h5= t(:application_status, status: @student_application.status)
+    %h5= t(:project_and_session, project: @student_application.project_session.project.name, start: @student_application.project_session.start_date, end: @student_application.project_session.end_date)
+    %h5= t(:student_profile, status: @login.published_status_to_string)
+
+  %br
+  .fieldset
+    %h3= t(:course_sites_info)
+    %h5= link_to t(:login_to_course_sites), "#"
+    %h5= t(:user, user: @login.email)
+    %h5= t(:password, password: "ABCDE")

@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
-  accepts_nested_attributes_for :project_sessions, allow_destroy: true
+  accepts_nested_attributes_for :project_sessions, reject_if: :all_blank, allow_destroy: true
 
   %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")

@@ -32,20 +32,16 @@ ipo['projects_setup']['show'] = ->
 ipo['projects_setup']['update'] = ipo['projects_setup']['show']
 
 jQuery ->
-  $('form').on 'click', '.remove_fields', (event) ->
-    $(this).prev('input[type=hidden]').val('1')
-    $(this).closest('.fieldset').hide()
-    event.preventDefault()
+  $("form").on "cocoon:after-insert", ->
+    chooser_sessions = $('.session_chooser')
+    last_one = chooser_sessions[chooser_sessions.length-1]
+    $("#" + last_one.id).select2()
 
-  $('form').on 'click', '.add_fields', (event) ->
-    $(this).before($(this).data('fields'))
-    event.preventDefault()
-
-  $('.session_chooser').change (event) ->
+  $(document).on "change", "select.session_chooser", {}, (e) ->
     chooser = $(this)
     session_code = chooser.val()
     $.ajax
       type: "GET"
       url: "/projects_setup/application_deadline/" + session_code
       success: (data) ->
-        chooser.closest('.fieldset').find('h5#field_for_deadline').html(data)
+        chooser.closest('.nested-fields').find('h5#field_for_deadline').html(data)  

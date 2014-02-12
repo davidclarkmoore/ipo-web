@@ -1,10 +1,8 @@
-.fieldset#project_session
+.nested-fields
   .student-requirements-illustration.center
     %h5= t(:choose_a_session_period)
-    = f.association :session, include_blank: true, label: false, label_method: :select_label, input_html: {class: "session_chooser"}
-
+    = f.association :session, include_blank: true, label: false, label_method: :select_label, input_html: { class: "session_chooser"}
   .student-requirements-fields
     %h5= t(:student_application_deadline)
     %h5{id: "field_for_deadline"}
-    = f.hidden_field :_destroy
-    = link_to t(:remove), '#', class: "remove_fields"
+    = link_to_remove_association t(:remove), f

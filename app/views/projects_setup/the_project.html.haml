@@ -17,11 +17,11 @@
       %ul.weekly-cost
         %li= t(:we_require_that_projects_are_established_6_months)
         %li= t(:length_of_combined_sessions)
-        = f.fields_for :project_sessions, @project.project_sessions, validate: true do | f_project_session |
-          = render 'project_session_fields', f: f_project_session
-          %br
-          %br
-      = link_to_add_fields(t(:add_consecutive_project_session), f, :project_sessions)
+        #project_sessions
+          = f.simple_fields_for :project_sessions do | f_project_session |
+            = render 'project_session_fields', f: f_project_session
+          .links
+            = link_to_add_association t(:add_consecutive_project_session), f, :project_sessions
     
     %article  
       %h4= t(:what_is_the_weekly_cost)

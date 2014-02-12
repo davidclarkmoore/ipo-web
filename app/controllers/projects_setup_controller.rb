@@ -11,7 +11,10 @@ class ProjectsSetupController < ApplicationController
       @project.build_field_host unless @project.field_host
       @project.build_organization unless @project.organization
       @project.field_host.build_login unless @project.field_host && @project.field_host.login
+    when :the_project
+      @project.project_sessions.build if @project.project_sessions.empty?
     end
+
     @project.wizard_status = step.to_s # For client-side validations
     render_wizard
   end
@@ -35,6 +38,13 @@ class ProjectsSetupController < ApplicationController
     @project.update_attributes params[:project]
     render_wizard @project
     session[:project_id] = @project.id
+  end
+
+  def application_deadline
+    @session = Session.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @session.application_deadline }
+    end
   end
 
   private

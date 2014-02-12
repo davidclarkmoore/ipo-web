@@ -5,6 +5,7 @@ en:
   about_you: "About You"
   academic_reference: "Academic Reference"
   account_settings: "Account Settings"
+  add_consecutive_project_session: "Add consecutive Project Session"
   add_photos_and_videos: "Add Photos & Videos"
   add_images: "Add Images"
   address: "Address"
@@ -24,6 +25,7 @@ en:
   by_name: "By Name"
 
   challenges_at_your_location: "Challenges at your location"
+  choose_a_session_period: "Choose a session period"
   choose_existing: "Choose Existing"
   city_province_postal_code: "City, Province or Postal Code.."
   confirm_password: "Confirm Password"
@@ -142,6 +144,7 @@ en:
   quick_info: "Quick Info"
   
   recent: "Recent"
+  remove: "Remove"
   reset_password: "Reset Password"
 
   save: "Save"
@@ -171,6 +174,7 @@ en:
   start_date_session: "Start Date %{date}"
   status: "Status - %{status}"
   street_address_include: "Street Address (include Street Address, City, Province, Country)"
+  student_application_deadline: "Student Application Deadline"
   student_educational_requirement: "Student Educational Requirement"
   student_dining_location: "Student dining location"
   student_fields: "Student Fields"

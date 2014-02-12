@@ -20,4 +20,25 @@ describe ProjectsSetupController do
       response.should render_template("about_you")
     end
   end
+
+  describe "GET 'application_deadline'" do
+    before(:each) do
+      @session = FactoryGirl.create(:session)
+    end
+
+    it "finds the requested session" do
+      get :application_deadline, id: @session.id
+      assigns(:session).should eq(@session)
+    end
+
+    it "should get a succesful response" do
+      get :application_deadline, id: @session.id, format: :json
+      response.should be_success
+    end
+
+    it "should return correct JSON" do
+      get :application_deadline, id: @session.id, format: :json
+      response.body.should eq(@session.application_deadline.to_json)
+    end
+  end
 end

@@ -24,6 +24,7 @@ IpoWeb::Application.routes.draw do
 
   resources :students_setup, path: "/students/setup", only: [:index, :show, :update]
   get '/students_setup/project_sessions/:project' => 'students_setup#project_sessions'
+  get '/projects_setup/application_deadline/:id' => 'projects_setup#application_deadline'
 
   resources :students
   resources :dashboards, only: [:index]

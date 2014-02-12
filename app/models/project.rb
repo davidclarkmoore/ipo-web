@@ -8,7 +8,6 @@ class Project < ActiveRecord::Base
   has_many :project_media
   has_many :project_sessions
   serialize :properties, ActiveRecord::Coders::Hstore
-  after_save :create_project_sessions
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students,
     :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement,
@@ -21,11 +20,12 @@ class Project < ActiveRecord::Base
     :student_educational_requirement, :address, :internet_distance, :location_private, :location_type, :transportation_available,
     :location_description, :culture_description, :housing_type, :dining_location, :housing_description,
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport,
-    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status
+    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :project_sessions_attributes
 
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
+  accepts_nested_attributes_for :project_sessions, allow_destroy: true
 
   %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")
@@ -98,13 +98,6 @@ class Project < ActiveRecord::Base
     end
 
     pretty_properties.join(", ")
-  end
-
-  #Temporal
-  def create_project_sessions
-    return unless self.wizard_status == 'agreement' && self.project_sessions.empty?
-    self.project_sessions.create(title: "Session #1", start_date: Date.new(2014, 1, 1), end_date: Date.new(2014, 6, 1))
-    self.project_sessions.create(title: "Session #2", start_date: Date.new(2014, 6, 2), end_date: Date.new(2014, 12, 1))
   end
 
   # TODO: Partial validations with wizard steps

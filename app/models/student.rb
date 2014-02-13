@@ -27,6 +27,8 @@ class Student < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :gender, :marital_status, :street_address, :city, :postal_code,
     :country, :preferred_phone, :organization, :birthday, :heard_about_ipo
 
+  validates :spiritual_reference, associated: true
+
   validates_inclusion_of :applied_ipo_before, in: [true, false]
   validates :graduation_year, numericality: {allow_nil: true}
 

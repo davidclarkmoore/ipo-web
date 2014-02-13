@@ -20,6 +20,13 @@ class StudentsSetupController < ApplicationController
 
   def update
     @student_application.attributes = params[:student_application]
+    case step
+    when :interests_and_fields_of_study
+      remove_extra_attributes("spiritual_reference", params[:is_new_spiritual_reference])
+      remove_extra_attributes("academic_reference", params[:is_new_academic_reference])
+    end
+
+    @student_application.update_attributes params[:student_application]
 
     render_wizard @student_application
     session[:student_application] = @student_application.id 
@@ -56,6 +63,15 @@ class StudentsSetupController < ApplicationController
       when Array then v.reject!(&:blank?)
       when Hash then clean_select_multiple_params(v)
       end
+    end
+  end
+
+  def remove_extra_attributes(reference, value)
+    if value == "true"
+      params[:student_application][:student_attributes].delete((reference + "_id").to_sym)
+      reference == "spiritual_reference" ? @student_application.student.build_spiritual_reference : @student_application.student.build_academic_reference
+    else
+      params[:student_application][:student_attributes].delete((reference + "_attributes").to_sym)
     end
   end
 end

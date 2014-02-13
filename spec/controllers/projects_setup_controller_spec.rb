@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe ProjectsSetupController do
 
+  before(:each) do
+    signin
+  end
+  
   describe "GET 'index'" do
     it "redirects to first step" do
       get 'index'
@@ -23,7 +27,7 @@ describe ProjectsSetupController do
 
   describe "GET 'application_deadline'" do
     before(:each) do
-      @session = FactoryGirl.create(:session)
+      @session = create(:session)
     end
 
     it "finds the requested session" do

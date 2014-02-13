@@ -5,7 +5,10 @@ IpoWeb::Application.routes.draw do
   end
 
   root :to => "home#index"
-  devise_for :logins do
+
+  devise_for :logins, class_name: "Login"
+
+  devise_scope :login do
     post 'logins/sign_up'  => "devise/registrations#create"
     get 'logins/sign_in' => 'devise/sessions#new'
     post 'logins/sign_in' => 'devise/sessions#create'

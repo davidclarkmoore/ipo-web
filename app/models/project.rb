@@ -22,7 +22,6 @@ class Project < ActiveRecord::Base
     :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport,
     :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :project_sessions_attributes
 
-
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
   accepts_nested_attributes_for :project_sessions, reject_if: :all_blank, allow_destroy: true
@@ -47,6 +46,7 @@ class Project < ActiveRecord::Base
 
   # -- About You
   validates :field_host, :organization, :associated => true, :if => :complete_or_about_you?
+ # before_save :relate_fieldhost_to_organization, :if => :complete_or_about_you?
   # -- The Project
   validates :name, :student_educational_requirement, :presence => true, :if => :complete_or_the_project?
   validates :name, uniqueness: true, :if => :complete_or_the_project?
@@ -60,7 +60,7 @@ class Project < ActiveRecord::Base
   validates :description, :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description,
       :typical_attire, :guidelines_description, :presence => true, :if => :complete_or_content?
   # -- Agreement
-  validates :agree_memo, :agree_to_transport, inclusion: { in: [true, 1, 'true', 'T', '1'] }, :if => :complete_or_agreement?
+  validates :agree_memo, :agree_to_transport, inclusion: { in: [true, 1, 'true', 'T', '1'], message: "You must agree the terms in order to continue" }, :if => :complete_or_agreement?
 
   scope :recent, order('created_at desc')
   scope :oldest, order('created_at asc')
@@ -88,6 +88,10 @@ class Project < ActiveRecord::Base
 
   def complete_or_agreement?
     wizard_status.include?('agreement') || complete?
+  end
+
+  def relate_fieldhost_to_organization
+    self.field_host.organization_id = self.organization_id
   end
 
   def get_pretty_properties(properties, type)

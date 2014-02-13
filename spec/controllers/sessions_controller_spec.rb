@@ -2,9 +2,13 @@ require 'spec_helper'
 
 describe SessionsController do
 
+  before(:each) do
+    signin
+  end
+
   describe "GET 'index'" do
     before :each do 
-      @sessions = FactoryGirl.create_list(:session, rand(2..10))
+      @sessions = create_list(:session, rand(2..10))
     end
 
     it "returns http success" do
@@ -32,12 +36,12 @@ describe SessionsController do
     context "With valid attributes" do
       it "saves the new session in database" do
         expect{
-          post :create, session: FactoryGirl.attributes_for(:session)
+          post :create, session: attributes_for(:session)
         }.to change(Session, :count).by (1)
       end
 
       it "redirects to the index page" do
-        post :create, session: FactoryGirl.attributes_for(:session)
+        post :create, session: attributes_for(:session)
         response.should redirect_to sessions_path
       end
     end
@@ -45,12 +49,12 @@ describe SessionsController do
     context "With unvalid attributes" do  
       it "does not save the new session to the database" do
         expect{
-          post :create, session: FactoryGirl.attributes_for(:invalid_session)
+          post :create, session: attributes_for(:invalid_session)
         }.to_not change(Session, :count)
       end
 
       it "renders the form" do
-        post :create, session: FactoryGirl.attributes_for(:invalid_session)
+        post :create, session: attributes_for(:invalid_session)
         response.should render_template :new
       end
     end
@@ -58,13 +62,13 @@ describe SessionsController do
 
   describe "GET 'show'" do
     it "assigns the request session to @session" do
-      session = FactoryGirl.create(:session)
+      session = create(:session)
       get :show, id: session.id
       assigns(:session).should eq(session)
     end
 
     it "renders the show view" do
-      get :show, id: FactoryGirl.create(:session)
+      get :show, id: create(:session)
       response.should render_template :show
     end
   end
@@ -78,13 +82,13 @@ describe SessionsController do
 
   describe "PUT 'update'" do
     before(:each) do
-      @session = FactoryGirl.create(:session)
+      @session = create(:session)
       @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/#{@session.id}/edit'
     end
 
     context "With valid attributes" do
       it "finds the request sesssion" do
-        put 'update', id: @session.id, session: FactoryGirl.attributes_for(:session)
+        put 'update', id: @session.id, session: attributes_for(:session)
         assigns(:session).should eq(@session)
       end
 
@@ -116,7 +120,7 @@ describe SessionsController do
 
   describe "DELETE 'destroy'" do
     before(:each) do
-      @session = FactoryGirl.create(:session)
+      @session = create(:session)
       @request.env['HTTP_REFERER'] = 'http://localhost:3000/sessions/'
     end
 

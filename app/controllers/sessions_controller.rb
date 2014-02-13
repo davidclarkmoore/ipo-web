@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_filter :authenticate_login!
   respond_to :html, :js
 
   def index

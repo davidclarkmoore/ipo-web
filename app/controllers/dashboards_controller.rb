@@ -1,5 +1,6 @@
 class DashboardsController < ApplicationController
-   respond_to :html
+  before_filter :authenticate_login!
+  respond_to :html
 
   def index
     @login = current_login.entity

@@ -1,8 +1,9 @@
 class StudentsSetupController < ApplicationController
+  before_filter :authenticate_login!, :set_student_application, :clean_select_multiple_params
+  before_filter :update_wizard_status, only: :update
   include Wicked::Wizard  
   steps :about_you, :interests_and_fields_of_study, :important_details, :confirmation
-  before_filter :set_student_application, :clean_select_multiple_params
-  before_filter :update_wizard_status, only: :update
+  
 
   def show
     @student_application.build_student unless @student_application.student

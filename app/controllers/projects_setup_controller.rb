@@ -1,8 +1,7 @@
 class ProjectsSetupController < ApplicationController
+  before_filter :authenticate_login!, :check_step, :clean_select_multiple_params
   include Wicked::Wizard
   steps :about_you, :the_project, :location, :content, :agreement, :confirmation
-
-  before_filter :check_step, :clean_select_multiple_params
  
   def show
     @project = current_project

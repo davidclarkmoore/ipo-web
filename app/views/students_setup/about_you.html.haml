@@ -43,11 +43,11 @@
           = f_student.input :organization, label: t(:school_church_organization)
 
       %fieldset
-        %h4 How did you hear about the IPO Connection?
+        %h4= t(:how_did_your_hear_about_ipo_connection)
         = f_student.input :heard_about_ipo, as: :check_boxes, label: false
 
       %fieldset
-        %h4 Had you ever applied to an IPO Connection program before?
+        %h4= t(:had_you_event_applied_to_an_ipo_connection_program_before)
         = f_student.input :applied_ipo_before, as: :radio_buttons, label: false
 
     = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"

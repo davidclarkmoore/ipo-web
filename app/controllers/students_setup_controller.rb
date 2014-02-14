@@ -1,5 +1,5 @@
 class StudentsSetupController < ApplicationController
-  before_filter :authenticate_login!, :set_student_application, :clean_select_multiple_params
+  before_filter :current_student_application, :clean_select_multiple_params
   before_filter :update_wizard_status, only: :update
   include Wicked::Wizard  
   steps :about_you, :interests_and_fields_of_study, :important_details, :confirmation
@@ -27,7 +27,7 @@ class StudentsSetupController < ApplicationController
     end
 
     @student_application.update_attributes params[:student_application]
-
+    create_login_session unless login_signed_in?
     render_wizard @student_application
     session[:student_application] = @student_application.id 
   end
@@ -43,14 +43,19 @@ class StudentsSetupController < ApplicationController
   private
 
   def current_student_application
-    @current_student_application ||= begin
+    @student_application ||= begin
       student_application = session[:student_application] && StudentApplication.find(session[:student_application])
-      student_application ||= StudentApplication.new
+      student_application ||= associate_to_student
     end
   end
 
-  def set_student_application
-    @student_application = current_student_application
+  def associate_to_student
+    return StudentApplication.new unless current_student
+    StudentApplication.new(student_id: current_student.id)
+  end
+
+  def create_login_session
+    sign_in @student_application.student.login
   end
 
   def update_wizard_status

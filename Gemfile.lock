@@ -326,6 +326,7 @@ GEM
       thor (~> 0.14)
     seo_meta (1.4.0)
       railties (>= 3.0.0)
+    settingslogic (2.0.9)
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
     simple_form (2.1.0)
@@ -417,6 +418,7 @@ DEPENDENCIES
   ruby_gntp
   sass-rails (~> 3.2.3)
   select2-rails
+  settingslogic
   shoulda-matchers
   simple_form
   susy

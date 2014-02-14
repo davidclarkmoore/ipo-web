@@ -12,6 +12,7 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'databasedotcom'
 gem "cocoon"
+gem 'settingslogic'
 
 gem 'wicked'
 gem 'enumerize'

@@ -201,8 +201,6 @@ CREATE TABLE project_sessions (
     start_date date,
     end_date date,
     project_id integer,
-    application_deadline date,
-    status character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -690,6 +688,8 @@ CREATE TABLE student_applications (
     project_session_id integer,
     student_id integer,
     status character varying(255),
+    application_status character varying(255),
+    application_deadline date,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     wizard_status character varying(255),

@@ -26,7 +26,7 @@
 
         .include
           %h5= t(:fields_of_study)
-          = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, field_of_study), include_blank: true, multiple: true
+          = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, @field_of_study), include_blank: true, multiple: true
 
         .mode
           %h5= t(:project_mode)

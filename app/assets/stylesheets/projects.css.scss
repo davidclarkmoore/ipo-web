@@ -145,10 +145,11 @@ form#new_project, form.edit_project, form.new_student_application, form.edit_stu
 
   .project_location_type { margin-top: 0; }
 
-  fieldset {
-    @include leader(2);
-    @include trailer(2);
-  }
+}
+
+fieldset {
+  @include leader(2);
+  @include trailer(2);
 }
 
 .project_per_week_cost_final {

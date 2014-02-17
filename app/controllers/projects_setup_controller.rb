@@ -2,7 +2,7 @@ class ProjectsSetupController < ApplicationController
   before_filter :check_step, :clean_select_multiple_params
   include Wicked::Wizard
   steps :about_you, :the_project, :location, :content, :agreement, :confirmation
- 
+
   def show
     @project = current_project
     case step
@@ -30,13 +30,14 @@ class ProjectsSetupController < ApplicationController
         params[:project].delete(:organization_attributes)
       end
     end
-    
-    params[:project][:wizard_status] = step.to_s
-    params[:project][:wizard_status] = 'complete' if step == steps.last  
-    
-    @project.update_attributes params[:project]
 
-    create_login_session unless login_signed_in?
+    params[:project][:wizard_status] = step.to_s
+    params[:project][:wizard_status] = 'complete' if step == steps.last
+
+    if @project.update_attributes(params[:project])
+      create_login_session unless login_signed_in?
+    end
+
     render_wizard @project
     session[:project_id] = @project.id
   end

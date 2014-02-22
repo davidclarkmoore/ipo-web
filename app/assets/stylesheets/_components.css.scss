@@ -421,7 +421,7 @@ li.tab {
 }
 .checkbox.checked,
 .radio.checked {
-  color: #1abc9c;
+  color: #ffb17e;
 }
 .checkbox.checked .first-icon,
 .radio.checked .first-icon {
@@ -432,7 +432,7 @@ li.tab {
 .radio.checked .second-icon {
   opacity: 1;
   filter: alpha(opacity=100);
-  color: #1abc9c;
+  color: #ffb17e;
   -webkit-transition: color 0.25s linear;
   transition: color 0.25s linear;
 }

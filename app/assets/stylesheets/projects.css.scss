@@ -308,3 +308,9 @@ ul.weekly-cost li {
   @include adjust-font-size-to(13px);
   margin-left: 2em;
 }
+
+.student-requirements-fields span.small { display: block; }
+.field_for_deadline {
+  @include adjust-font-size-to(16px, 1.5);
+  padding-right: 0.5em;
+}

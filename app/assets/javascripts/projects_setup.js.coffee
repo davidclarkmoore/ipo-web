@@ -42,6 +42,12 @@ jQuery ->
     session_code = chooser.val()
     $.ajax
       type: "GET"
-      url: "/projects_setup/application_deadline/" + session_code
+      url: "/projects_setup/application_deadline/" + session_code + ".json"
       success: (data) ->
-        chooser.closest('.nested-fields').find('h5#field_for_deadline').html(data)  
+
+        # TODO: This line is too fickle. Any slight change to the design/html
+        # of session choosing breaks the find.
+        chooser.closest('.student-requirements-illustration')
+               .siblings('.student-requirements-fields')
+               .find('.field_for_deadline')
+               .html(data)

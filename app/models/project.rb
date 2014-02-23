@@ -28,6 +28,27 @@ class Project < ActiveRecord::Base
 
   %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")
+
+    # =================
+    # TEMPORARY KLUDGE:
+    # =================
+    # Postgresql array/hstore serialization is interfering with ‘enumerize’.
+    # Enumerize creates customer getters for its enumerated properties to return objects of type Enumerize::Value
+    # instead of the raw value stored to the database. When object.value is accessed, enumerize returns an object
+    # of type Enumerize::Value.
+    #
+    #
+    # When combined with hstore serialization, the serialization "undoes" the getters defined by enumerize, so
+    # object.value just returns the raw string saved to the database.
+    # Since our getters no longer return an object of type Enumerize::Value, we do not have automatic access
+    # to the translated value.
+    #
+    # The kludge below basically does what enumerize would do for us, and will work in the interim until someone
+    # can get enumerize to play well with our hstores.
+    #
+    define_method "#{f}_text" do
+      I18n.t("enumerize.project.#{f}." + send(f))
+    end
   end
 
   %w(required_languages transportation_available).each do |f|

@@ -268,6 +268,10 @@ footer li {
   @include nth-omega(3n);
 }
 
+footer {
+  margin-top: 2.5em;
+}
+
 li { @include adjust-leading-to(1, 16px); }
 
 article {

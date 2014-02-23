@@ -9,7 +9,6 @@
   %p An internship is a three-way relationship between you, the FIELD HOST, the INTERN(s), and the MENTOR (SMC's Academic Coordinator).
 
 
-
   %h3= t(:the_internet)
   %p The intern will be equipped through a series of training modules, assignments, and Mentor interviews before he/she arrives at the Field Project location. The Intern will function as if he/she were a member of the Field Project personnel. The intern is expected to be punctual and abide by cultural, community, and project etiquette, including dress code and safety/security requirements. The Intern will meet with the Field Host for weekly one-on-one interviews.
 
@@ -41,8 +40,8 @@
   %p I have read the entire Memo. of Understanding and I agree to its terms
 
   = simple_form_for @project, url: wizard_path, method: :put, validate: true, html: {style: "padding: 0;"} do |f|
-    = f.input :agree_memo, as: :boolean
+    = f.input :agree_memo, as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
     %p= t(:i_agree_to_arrange_transport_and_meed)
-    = f.input :agree_to_transport, as: :boolean
+    = f.input :agree_to_transport, as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
 
     = f.submit t(:save_and_finish), class: "button button-orange"

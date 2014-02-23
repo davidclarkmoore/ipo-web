@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_login!
   before_filter :convert_to_datetime, :validate_home_search, :only => [:index]
   respond_to :html, :js
 

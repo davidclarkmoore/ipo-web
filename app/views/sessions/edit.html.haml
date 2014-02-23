@@ -1,0 +1,5 @@
+.container
+  .header
+    %h3= t(:edit_session, title: @session.title)
+
+  = render 'form', session: @session

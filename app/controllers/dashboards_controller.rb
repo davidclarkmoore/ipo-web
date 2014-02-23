@@ -1,9 +1,10 @@
 class DashboardsController < ApplicationController
-   respond_to :html
+  before_filter :authenticate_login!
+  respond_to :html
 
   def index
     @login = current_login.entity
-    @student_application = @login.student_applications.active.last if @login.class.name == "Student"
+    @student_application = @login.student_applications.active if @login.class.name == "Student"
     params[:view] ||= "dashboard"
   end
 

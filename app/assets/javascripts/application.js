@@ -20,4 +20,5 @@
 //= require rails.validations.simple_form
 //= require select2
 //= require router
+//= require cocoon
 //= require_tree .

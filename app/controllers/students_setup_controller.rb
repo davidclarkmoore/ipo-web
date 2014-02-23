@@ -1,8 +1,9 @@
 class StudentsSetupController < ApplicationController
+  before_filter :current_student_application, :clean_select_multiple_params
+  before_filter :update_wizard_status, only: :update
   include Wicked::Wizard  
   steps :about_you, :interests_and_fields_of_study, :important_details, :confirmation
-  before_filter :set_student_application, :clean_select_multiple_params
-  before_filter :update_wizard_status, only: :update
+  
 
   def show
     @student_application.build_student unless @student_application.student
@@ -19,7 +20,14 @@ class StudentsSetupController < ApplicationController
 
   def update
     @student_application.attributes = params[:student_application]
+    case step
+    when :interests_and_fields_of_study
+      remove_extra_attributes("spiritual_reference", params[:is_new_spiritual_reference])
+      remove_extra_attributes("academic_reference", params[:is_new_academic_reference])
+    end
 
+    @student_application.update_attributes params[:student_application]
+    create_login_session unless login_signed_in?
     render_wizard @student_application
     session[:student_application] = @student_application.id 
   end
@@ -35,14 +43,19 @@ class StudentsSetupController < ApplicationController
   private
 
   def current_student_application
-    @current_student_application ||= begin
+    @student_application ||= begin
       student_application = session[:student_application] && StudentApplication.find(session[:student_application])
-      student_application ||= StudentApplication.new
+      student_application ||= associate_to_student
     end
   end
 
-  def set_student_application
-    @student_application = current_student_application
+  def associate_to_student
+    return StudentApplication.new unless current_student
+    StudentApplication.new(student_id: current_student.id)
+  end
+
+  def create_login_session
+    sign_in @student_application.student.login
   end
 
   def update_wizard_status
@@ -55,6 +68,15 @@ class StudentsSetupController < ApplicationController
       when Array then v.reject!(&:blank?)
       when Hash then clean_select_multiple_params(v)
       end
+    end
+  end
+
+  def remove_extra_attributes(reference, value)
+    if value == "true"
+      params[:student_application][:student_attributes].delete((reference + "_id").to_sym)
+      reference == "spiritual_reference" ? @student_application.student.build_spiritual_reference : @student_application.student.build_academic_reference
+    else
+      params[:student_application][:student_attributes].delete((reference + "_attributes").to_sym)
     end
   end
 end

@@ -537,3 +537,12 @@ article.no-margin{
     a { color: white; }
   }
 }
+
+
+// =====================
+// Cocooon form wrappers
+// =====================
+
+.remove_fields {
+  @include adjust-font-size-to(14px, 0.75);
+}

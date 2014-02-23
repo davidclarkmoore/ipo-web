@@ -134,6 +134,7 @@ form#new_project, form.edit_project, form.new_student_application, form.edit_stu
     @include span-columns(5 omega, 8);
   }
 
+  #project_sessions { @include span-columns(12 omega); }
   .student-requirements-illustration { @include span-columns(4, 8); }
   .student-requirements-fields { @include span-columns(4 omega, 8); }
 
@@ -299,3 +300,17 @@ input[type='submit'].delete-project-media {
 }
 
 #photos_and_videos h3 { @include leader(1, 25px); }
+
+
+// TODO: Probably should be global styles for UL and LI elements.
+ul.weekly-cost { list-style-type: square; }
+ul.weekly-cost li {
+  @include adjust-font-size-to(13px);
+  margin-left: 2em;
+}
+
+.student-requirements-fields span.small { display: block; }
+.field_for_deadline {
+  @include adjust-font-size-to(16px, 1.5);
+  padding-right: 0.5em;
+}

@@ -78,6 +78,8 @@
 .hide { display: none; }
 .right { float: right; }
 
+span.small { @include adjust-font-size-to(14px); }
+
 .offscreen {
   @extend .select2-offscreen;
 }

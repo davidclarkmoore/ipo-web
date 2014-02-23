@@ -87,4 +87,18 @@ module ApplicationHelper
   def sub_menu_pages parent_page
     Refinery::Page.pages_related(parent_page.id)
   end
+
+  def current_fieldhost
+    return unless login_signed_in?
+    if current_login.entity_type == "FieldHost"
+      current_login.entity
+    end
+  end
+
+  def current_student
+    return unless login_signed_in?
+    if current_login.entity_type == "Student"
+      current_login.entity
+    end
+  end
 end

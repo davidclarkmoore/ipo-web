@@ -2,18 +2,18 @@
   = render 'header', active_step: params[:id]
 
   = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
-    %h3.center About You
+    %h3.center= t(:about_you)
     = f.fields_for :field_host do |f_field_host|
-
       .field-host-fields
         = f_field_host.input :salutation
         = f_field_host.input :first_name
-        = f_field_host.input :middle_initial, label: t(:initial)
+        = f_field_host.input :middle_initial, label: t(:initial), input_html: { maxlength: 1 }
         = f_field_host.input :last_name
-        = f_field_host.fields_for :login, @project.field_host.login, validate: true do |f_h_login|
-          = f_h_login.input :email
-          = f_h_login.input :password
-          = f_h_login.input :password_confirmation
+        - unless current_fieldhost
+          = f_field_host.fields_for :login, @project.field_host.login, validate: true do |f_h_login|
+            = f_h_login.input :email
+            = f_h_login.input :password
+            = f_h_login.input :password_confirmation
         = f_field_host.input :preferred_phone
         = f_field_host.input :phone_type
 
@@ -37,7 +37,7 @@
             = f_organization.input :website
 
       %fieldset
-        = f.fields_for :field_host, validate: true do |f_field_host|
+        = f.fields_for :field_host, @project.field_host, validate: true do |f_field_host|
           = f_field_host.input :role_title
           = f_field_host.input :years_associated_with_organization
           = f_field_host.input :overall_education

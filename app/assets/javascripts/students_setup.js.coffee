@@ -1,4 +1,14 @@
 $ ->
+  $('#spiritual_reference .tab').click (e) ->
+    $(@).addClass('active').siblings().first().removeClass 'active'
+    $($(@).data('box')).show().siblings('.tab-box').first().hide()
+    $('#is_new_spiritual_reference').val(($(@).data('box') == "#new_spiritual_reference"))
+
+  $('#academic_reference .tab').click (e) ->
+    $(@).addClass('active').siblings().first().removeClass 'active'
+    $($(@).data('box')).show().siblings('.tab-box').first().hide()
+    $('#is_new_academic_reference').val(($(@).data('box') == "#new_academic_reference"))
+
   $("#student_application_project_session_id").empty()
   $("#your_project_select").change (event) ->
     project_code = $(this).val()

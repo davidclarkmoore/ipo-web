@@ -1,0 +1,15 @@
+defaults: &defaults
+  sessions:
+    days_to_application_deadline: 60
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+staging:
+  <<: *defaults

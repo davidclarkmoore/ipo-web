@@ -30,3 +30,24 @@ ipo['projects_setup']['show'] = ->
       $(this).remove()
 
 ipo['projects_setup']['update'] = ipo['projects_setup']['show']
+
+jQuery ->
+  $("form").on "cocoon:after-insert", ->
+    chooser_sessions = $('.session_chooser')
+    last_one = chooser_sessions[chooser_sessions.length-1]
+    $("#" + last_one.id).select2()
+
+  $(document).on "change", "select.session_chooser", {}, (e) ->
+    chooser = $(this)
+    session_code = chooser.val()
+    $.ajax
+      type: "GET"
+      url: "/projects_setup/application_deadline/" + session_code + ".json"
+      success: (data) ->
+
+        # TODO: This line is too fickle. Any slight change to the design/html
+        # of session choosing breaks the find.
+        chooser.closest('.student-requirements-illustration')
+               .siblings('.student-requirements-fields')
+               .find('.field_for_deadline')
+               .html(data)

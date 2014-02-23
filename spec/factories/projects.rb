@@ -3,6 +3,7 @@ FactoryGirl.define do
   factory :project do
     name { Faker::Lorem.words(3).join.capitalize }
     description { Faker::Lorem.paragraphs 2 }
+    address Faker::Address.street_name 
     team_mode true
     location_private true
     properties {{
@@ -10,7 +11,6 @@ FactoryGirl.define do
       "min_students" => rand(1..2), 
       "max_students" => rand(3..10),
       "location" => Faker::Address.city,
-      "address" => Faker::Address.street_name,
       "internet_distance" => "On-site (Free)",
       "location_description" => Faker::Lorem.sentence(10),
       "culture_description" => Faker::Lorem.sentence(10),

@@ -61,6 +61,7 @@ GEM
     client_side_validations-simple_form (2.1.0)
       client_side_validations (~> 3.2.5)
       simple_form (~> 2.1.0)
+    cocoon (1.2.5)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -325,6 +326,7 @@ GEM
       thor (~> 0.14)
     seo_meta (1.4.0)
       railties (>= 3.0.0)
+    settingslogic (2.0.9)
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
     simple_form (2.1.0)
@@ -374,6 +376,7 @@ DEPENDENCIES
   carrierwave
   client_side_validations
   client_side_validations-simple_form
+  cocoon
   coffee-rails (~> 3.2.1)
   compass-rails
   compass-susy-plugin
@@ -415,6 +418,7 @@ DEPENDENCIES
   ruby_gntp
   sass-rails (~> 3.2.3)
   select2-rails
+  settingslogic
   shoulda-matchers
   simple_form
   susy

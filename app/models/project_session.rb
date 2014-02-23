@@ -1,23 +1,26 @@
 class ProjectSession < ActiveRecord::Base
-  attr_accessible :end_date, :project_id, :start_date, :title, :application_deadline, :status
-  
-  validates_presence_of :title, :start_date, :end_date, :project_id
-  before_create :set_application_deadline_and_status
-
-  belongs_to :project
-  has_many :student_applications
 
   COMPLETE = 'complete'
   INCOMPLETE = 'incomplete'
 
+  attr_accessible :project_id, :session_id, :application_deadline, :status
+  delegate :start_date, :end_date, :title, :application_deadline, to: :session
+
+  belongs_to :project
+  belongs_to :session
+  has_many :student_applications
+  
+  validates_presence_of :project_id, :session_id
+  validates_uniqueness_of :session_id, scope: :project_id, message: "Must be a different session"
+  before_create :set_status_to_incomplete
+
   def select_label
-    "#{title} (Start: #{start_date}, End: #{end_date})"
+    "#{self.session.title} - (Start: #{self.session.start_date}, End #{self.session.end_date})"
   end
 
   private 
 
-  def set_application_deadline_and_status
-    self.application_deadline = Date.today + 60.days
+  def set_status_to_incomplete
     self.status = INCOMPLETE
   end
 end

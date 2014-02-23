@@ -33,26 +33,14 @@
 
           = f_student.input :description, label: t(:tell_us_about_yourself)
 
-      %fieldset.reference
+      %fieldset#spiritual_reference
         %h2= t(:spiritual_reference)
         %p= t(:we_require_one_spiritual_reference)
-        .student_fields    
-          = f_student.fields_for :spiritual_reference, @student_application.student.spiritual_reference, validate: true do |f_s|
-            = f_s.input :first_name
-            = f_s.input :last_name
-            = f_s.input :email, label: t(:email_address)
-            = f_s.input :phone
-            = f_s.input :description, label: t(:how_do_you_know_this_person)
-
-      %fieldset.reference
+        = render partial: "reference", locals: { f_student: f_student, type: "spiritual_reference" }
+  
+      %fieldset#academic_reference
         %h2= t(:academic_reference)
         %p= t(:we_require_one_academic_reference)
-        .student_fields     
-          = f_student.fields_for :academic_reference, @student_application.student.academic_reference, validate: true do |f_r|
-            = f_r.input :first_name
-            = f_r.input :last_name
-            = f_r.input :email, label: t(:email_address)
-            = f_r.input :phone
-            = f_r.input :description, label: t(:how_do_you_know_this_person)
+        = render partial: "reference", locals: { f_student: f_student, type: "academic_reference" }
 
     = f.submit t(:save_and_continue_to_step_3), class: "button button-orange"

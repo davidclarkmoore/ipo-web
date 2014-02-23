@@ -10,5 +10,5 @@ class Organization < ActiveRecord::Base
 
   attr_accessible :name, :organization_type, :website
 
-  validates_presence_of :name, :website, :organization_type
+  validates_presence_of :name, :organization_type
 end

@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe ProjectsController do
 
+  before(:each) do
+    signin
+  end
+
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'

@@ -365,3 +365,15 @@ ul.weekly-cost li {
   @include adjust-font-size-to(16px, 1.5);
   padding-right: 0.5em;
 }
+
+// -------------
+// Project Detail
+// -------------
+
+.primary {
+  @include span-columns(alpha 8);
+}
+
+.secondary {
+  @include span-columns(omega 4);
+}

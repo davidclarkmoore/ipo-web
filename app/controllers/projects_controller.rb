@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
 
   def show
     @p = Project.find(params[:id])
-
+    @project_media = ProjectMedia.where(params[:project])
   end
 
   private

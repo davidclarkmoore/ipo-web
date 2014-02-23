@@ -25,16 +25,16 @@
 	.secondary
 
 		%h3 Quick Details
-
+		
 		%p= @p.team_mode ? "Team" : "Individual"
+
+		%h5= t(:max_students)
 		%p= @p.max_students
-		%p= t(@p.safety_level)
+
+		%p=	t(@p.safety_level)
 		%p= @p.location_type
 		%p= t @p.transportation_available
 		%p= @p.per_week_cost
-
-		%h3 Day-to-day
-
 		%p= t @p.typical_attire
 		%p= t @p.dining_location
 		%p= t @p.internet_distance

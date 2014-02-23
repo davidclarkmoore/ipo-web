@@ -2,6 +2,6 @@
   - menu_pages.each do |page|
     %span.link.heading= link_to page.menu_title, page.slug
   - if current_login
-    %span.link.heading=link_to "log out", destroy_login_session_path   
+    %span.link.heading=link_to "log out", main_app.destroy_login_session_path
   - else
-    %span.link.heading=link_to "log in", new_login_session_path
+    %span.link.heading=link_to "log in", main_app.new_login_session_path

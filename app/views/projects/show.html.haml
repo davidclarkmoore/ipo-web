@@ -1,18 +1,23 @@
 .container
 
 	.primary
+		%label= t(:project)
 		%h1= @p.name
 		
 		- @p.project_media.each do |m|
 			%img{:src => m.image.url(:thumb)}
-
-		%p= @p.description
 		
 		%h3 Overview
+
+		%label= t(:description)
+		%p= @p.description
+
+		%label= t(:related_fields_of_study)
 		%p= @p.get_pretty_properties(@p.related_fields_of_study, "related_fields_of_study")
+		%label= t(:related_student_passions)
 		%p= @p.get_pretty_properties(@p.related_student_passions, "related_student_passions")
+		%label= t(:required_languages)
 		%p= @p.get_pretty_properties(@p.required_languages, "required_languages")
-		%p= t @p.student_educational_requirement
 		
 		%h3 Internship Location & Culture
 
@@ -29,12 +34,12 @@
 
 	.secondary
 
-		.box
+		.info
 			%h3 Get Started
-			%a.button.button-orange{:href => '#'} Apply Now
+			=link_to "Apply", students_setup_index_path, class: "button button-orange"
 
-		.box
-			%h3 Quick Details
+		.info
+			%h3 Project Details
 			
 			%label= t(:team_mode) 
 			%p= @p.team_mode ? "Team" : "Individual"
@@ -42,26 +47,33 @@
 			%label= t(:max_students)
 			%p= @p.max_students
 
-			%label= t(:safety_level)
-			%p=	t(@p.safety_level)
+			%label= t(:student_educational_requirement)
+			%p= @p.student_educational_requirement_text
+
+			%label= t(:typical_attire)
+			%p= @p.typical_attire_text
+
+			%label= t(:dining_location)
+			%p= @p.dining_location_text
+
+			%label= t(:per_week_cost)
+			%p= @p.per_week_cost
+
+		.info
+			%h3 Location
 			
 			%label= t(:location_type)
 			%p= @p.location_type
 			
 			%label= t(:transportation_available)
-			%p= t @p.transportation_available
+			%p= @p.transportation_available
 
-			%label= t(:per_week_cost)
-			%p= @p.per_week_cost
-
-			%label= t(:typical_attire)
-			%p= t @p.typical_attire
-
-			%label= t(:dining_location)
-			%p= t @p.dining_location
+			%label= t(:safety_level)
+			%p=	@p.safety_level_text
+		
 
 			%label= t(:internet_distance)
-			%p= t @p.internet_distance
+			%p= @p.internet_distance_text
 
 
 

@@ -186,7 +186,9 @@ ul.weekly-cost {
 
 label {
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 80%;
+  color: $grey;
 }
 
 
@@ -377,3 +379,14 @@ ul.weekly-cost li {
 .secondary {
   @include span-columns(omega 4);
 }
+
+.info {
+
+  margin-bottom: 2em;
+
+  p {
+  @include adjust-font-size-to(20px);
+  }
+  
+}
+

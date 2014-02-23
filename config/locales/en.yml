@@ -133,6 +133,7 @@ en:
   prepared_your_passport_and_read_our: "Prepare your passport and read our "
   primary_phone: "Primary phone"
   profile_page: "Profile page"
+  project: "Project"
   project_and_session: "Project and Session - %{project} - %{start} - %{end}"
   project_dashboard: "Project Dashboard"
   project_location_can_be_public: "Project location can be public"

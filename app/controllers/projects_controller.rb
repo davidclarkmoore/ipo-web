@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     params[:order] ||= 'name'
   end
 
+
   def new
     @project = Project.new
   end
@@ -22,6 +23,12 @@ class ProjectsController < ApplicationController
     respond_with(@project) do |format|
       format.html { redirect_to projects_path }
     end
+  end
+
+
+  def show
+    @p = Project.find(params[:id])
+
   end
 
   private

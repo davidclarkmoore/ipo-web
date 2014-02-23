@@ -16,28 +16,52 @@
 		
 		%h3 Internship Location & Culture
 
+		%label= t(:culture_description)
 		%p= @p.culture_description
+		%label= t(:location_description)
 		%p= @p.location_description
+		%label= t(:challenges_description)
 		%p= @p.challenges_description
+		%label= t(:guidelines_description)
 		%p= @p.guidelines_description
+		%label= t(:housing_description)
 		%p= @p.housing_description
 
 	.secondary
 
-		%h3 Quick Details
-		
-		%p= @p.team_mode ? "Team" : "Individual"
+		.box
+			%h3 Get Started
+			%a.button.button-orange{:href => '#'} Apply Now
 
-		%h5= t(:max_students)
-		%p= @p.max_students
+		.box
+			%h3 Quick Details
+			
+			%label= t(:team_mode) 
+			%p= @p.team_mode ? "Team" : "Individual"
 
-		%p=	t(@p.safety_level)
-		%p= @p.location_type
-		%p= t @p.transportation_available
-		%p= @p.per_week_cost
-		%p= t @p.typical_attire
-		%p= t @p.dining_location
-		%p= t @p.internet_distance
+			%label= t(:max_students)
+			%p= @p.max_students
+
+			%label= t(:safety_level)
+			%p=	t(@p.safety_level)
+			
+			%label= t(:location_type)
+			%p= @p.location_type
+			
+			%label= t(:transportation_available)
+			%p= t @p.transportation_available
+
+			%label= t(:per_week_cost)
+			%p= @p.per_week_cost
+
+			%label= t(:typical_attire)
+			%p= t @p.typical_attire
+
+			%label= t(:dining_location)
+			%p= t @p.dining_location
+
+			%label= t(:internet_distance)
+			%p= t @p.internet_distance
 
 
 

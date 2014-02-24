@@ -383,9 +383,17 @@ ul.weekly-cost li {
 .third {
   width: 33%;
   float: left;
+  padding-right: 1.5em;
 
 }
 
+#callout-overview {
+   clear:both;
+   margin-bottom: 2em;
+   overflow:hidden;
+   padding: none;
+
+}
 
 .info {
 
@@ -393,14 +401,17 @@ ul.weekly-cost li {
   padding: .75em;
   clear:both;
   overflow:hidden;
-  @include border-radius(5px);
-  background-color: white;
 
   p {
   @include adjust-font-size-to(20px);
   line-height: 1.8em;
   }
   
+}
+
+.rounded {
+  @include border-radius(3px);
+  background-color: white;
 }
 
 // -------------

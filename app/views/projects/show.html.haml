@@ -13,7 +13,7 @@
 		%label= t(:description)
 		%p= @p.description
 
-		.info
+		#callout-overview
 			.third
 				%label= t(:fields_of_study)
 				%p= @p.get_pretty_properties(@p.related_fields_of_study, "related_fields_of_study")
@@ -47,12 +47,12 @@
 
 	.secondary
 
-		.info
+		.info.rounded
 			%h3 Get Started
 			=link_to "Apply", students_setup_index_path, class: "button button-orange"
 			.fb-share-button{:data => {:type => "button"}}
 
-		.info
+		.info.rounded
 			%h3 Project Details
 			
 			%label= t(:team_mode) 
@@ -73,7 +73,7 @@
 			%label= t(:per_week_cost)
 			%p= @p.per_week_cost
 
-		.info
+		.info.rounded
 			%h3 Location
 			
 			%label= t(:location_and_region)

@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
   def show
     @p = Project.find(params[:id])
     @project_media = ProjectMedia.where(params[:project])
+    @host = FieldHost.find(Project.find(params[:id]).field_host_id)
   end
 
   private

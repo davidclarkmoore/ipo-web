@@ -380,12 +380,25 @@ ul.weekly-cost li {
   @include span-columns(omega 4);
 }
 
+.third {
+  width: 33%;
+  float: left;
+
+}
+
+
 .info {
 
   margin-bottom: 2em;
+  padding: .75em;
+  clear:both;
+  overflow:hidden;
+  @include border-radius(5px);
+  background-color: white;
 
   p {
   @include adjust-font-size-to(20px);
+  line-height: 1.8em;
   }
   
 }

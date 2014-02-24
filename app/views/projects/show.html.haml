@@ -4,20 +4,27 @@
 		%label= t(:project)
 		%h1= @p.name
 		
-		- @p.project_media.each do |m|
-			%img{:src => m.image.url(:thumb)}
+		.box
+			- @p.project_media.each do |m|
+				%img{:src => m.image.url(:thumb)}
 		
 		%h3 Overview
 
 		%label= t(:description)
 		%p= @p.description
 
-		%label= t(:related_fields_of_study)
-		%p= @p.get_pretty_properties(@p.related_fields_of_study, "related_fields_of_study")
-		%label= t(:related_student_passions)
-		%p= @p.get_pretty_properties(@p.related_student_passions, "related_student_passions")
-		%label= t(:required_languages)
-		%p= @p.get_pretty_properties(@p.required_languages, "required_languages")
+		.info
+			.third
+				%label= t(:fields_of_study)
+				%p= @p.get_pretty_properties(@p.related_fields_of_study, "related_fields_of_study")
+
+			.third
+				%label= t(:student_passions)
+				%p= @p.get_pretty_properties(@p.related_student_passions, "related_student_passions")
+
+			.third
+				%label= t(:needed_lanaguages)
+				%p= @p.get_pretty_properties(@p.required_languages, "required_languages")
 		
 		%h3 Internship Location & Culture
 
@@ -32,11 +39,18 @@
 		%label= t(:housing_description)
 		%p= @p.housing_description
 
+		%h3 Project Staff
+
+		%label= @host.organization
+		%p= @host.first_name + ", " + @host.role_title
+		%p= @host.experience_with_ywam
+
 	.secondary
 
 		.info
 			%h3 Get Started
 			=link_to "Apply", students_setup_index_path, class: "button button-orange"
+			.fb-share-button{:data => {:type => "button"}}
 
 		.info
 			%h3 Project Details
@@ -44,16 +58,16 @@
 			%label= t(:team_mode) 
 			%p= @p.team_mode ? "Team" : "Individual"
 
-			%label= t(:max_students)
-			%p= @p.max_students
-
 			%label= t(:student_educational_requirement)
 			%p= @p.student_educational_requirement_text
+
+			%label= t(:housing)
+			%p= @p.housing_type_text
 
 			%label= t(:typical_attire)
 			%p= @p.typical_attire_text
 
-			%label= t(:dining_location)
+			%label= t(:student_dining_location)
 			%p= @p.dining_location_text
 
 			%label= t(:per_week_cost)
@@ -62,11 +76,11 @@
 		.info
 			%h3 Location
 			
-			%label= t(:location_type)
-			%p= @p.location_type
+			%label= t(:location_and_region)
+			%p= @p.location_type_text
 			
-			%label= t(:transportation_available)
-			%p= @p.transportation_available
+			%label= t(:area_transportation)
+			%p= @p.get_pretty_properties(@p.transportation_available,"transportation_available")
 
 			%label= t(:safety_level)
 			%p=	@p.safety_level_text

@@ -10,7 +10,7 @@
 
   %tbody.table-body
     - projects.each do |p|
-      %tr
+      %tr.project-result{'data' => {'project' => p.id}}
         %td= p.name
         %td= p.description
         %td= p.address

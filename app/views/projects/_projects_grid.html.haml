@@ -1,8 +1,8 @@
 - projects.each do |p|
-  .project.c4
-    %h3= p.name
-    %p= p.description
-    %p= p.address
-    %p= p.team_mode ? "Team" : "Individual"
-    %p= p.get_pretty_properties(p.related_fields_of_study, "related_fields_of_study")
-    %p= p.get_pretty_properties(p.related_student_passions, "related_student_passions")
+	.project.c4.project-result{'data' => {'project' => p.id}}
+		%h3= p.name
+		%p= p.description
+		%p= p.address
+		%p= p.team_mode ? "Team" : "Individual"
+		%p= p.get_pretty_properties(p.related_fields_of_study, "related_fields_of_study")
+		%p= p.get_pretty_properties(p.related_student_passions, "related_student_passions")

@@ -1,5 +1,5 @@
-.container
 
+.container
 	.primary
 		%label= t(:project)
 		%h1= @p.name
@@ -46,6 +46,8 @@
 		%p= @host.experience_with_ywam
 
 	.secondary
+		.info.rounded
+			=link_to "Back to Projects", projects_path, 'class' => "clr"
 
 		.info.rounded
 			%h3 Get Started

@@ -4,9 +4,15 @@
 		%label= t(:project)
 		%h1= @p.name
 		
-		.box
+		.box.bxslider
 			- @p.project_media.each do |m|
-				%img{:src => m.image.url(:thumb)}
+				%li
+					%img.imagesize{:src => m.image.url}
+
+		.box#bx-pager
+			- @p.project_media.each do |m|
+				%a{:href => "#", :data => {:slide => {:index => m.order - 1}}}
+					%img{:src => m.image.url(:thumb)}
 		
 		%h3 Overview
 

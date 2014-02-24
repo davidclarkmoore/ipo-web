@@ -409,6 +409,11 @@ ul.weekly-cost li {
   
 }
 
+.imagesize {
+  max-width: 100%;
+  max-height: 400px
+}
+
 .rounded {
   @include border-radius(3px);
   background-color: white;

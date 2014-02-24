@@ -19,6 +19,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require flatui-checkbox
 //= require flatui-radio
+//= require jquery.bxslider.min
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require select2

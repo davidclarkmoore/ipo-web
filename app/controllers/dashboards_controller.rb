@@ -4,13 +4,13 @@ class DashboardsController < ApplicationController
 
   def index
     @login = current_login.entity
-    @student_application = @login.student_applications.active if @login.class.name == "Student"
+    @student_application = @login.student_applications.active if is_student?
     params[:view] ||= "dashboard"
   end
 
   def update_login
     @login = current_login.entity
-    param = @login.class.name == "FieldHost" ? :field_host : :student
+    param = is_fieldhost? ? :field_host : :student
 
     respond_to do |format|
       notice =  @login.update_attributes(params[param]) ? "Success" : "Error"

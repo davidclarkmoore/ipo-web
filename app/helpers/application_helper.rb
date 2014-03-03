@@ -88,17 +88,23 @@ module ApplicationHelper
     Refinery::Page.pages_related(parent_page.id)
   end
 
+  def is_student?
+    current_login.entity_type == "Student"
+  end
+
+  def is_fieldhost?
+    current_login.entity_type == "FieldHost"
+  end
+
   def current_fieldhost
     return unless login_signed_in?
-    if current_login.entity_type == "FieldHost"
-      current_login.entity
-    end
+
+    current_login.entity_type if is_fieldhost?
   end
 
   def current_student
     return unless login_signed_in?
-    if current_login.entity_type == "Student"
-      current_login.entity
-    end
+
+    current_login.entity if is_student?
   end
 end

@@ -1,12 +1,14 @@
 $ ->
   $('#spiritual_reference .tab').click (e) ->
-    $(@).addClass('active').siblings().first().removeClass 'active'
-    $($(@).data('box')).show().siblings('.tab-box').first().hide()
+    value =  $(@).data('box') == '#existing_spiritual_reference'
+    handleTabs("new", "spiritual_reference", !value)
+    handleTabs("existing", "spiritual_reference", value)
     $('#is_new_spiritual_reference').val(($(@).data('box') == "#new_spiritual_reference"))
-
+      
   $('#academic_reference .tab').click (e) ->
-    $(@).addClass('active').siblings().first().removeClass 'active'
-    $($(@).data('box')).show().siblings('.tab-box').first().hide()
+    value = $(@).data('box') == '#existing_academic_reference'
+    handleTabs("new", "academic_reference", !value)
+    handleTabs("existing", "academic_reference", value)
     $('#is_new_academic_reference').val(($(@).data('box') == "#new_academic_reference"))
 
   $("#student_application_project_session_id").empty()
@@ -22,3 +24,13 @@ $ ->
           $("#student_application_project_session_id").append "<option value=\"" + data[index].id + "\">" + data[index].text + "</option>"
 
 
+handleTabs = (type, reference, display) ->
+  tab = $("#tab_" + type + "_" + reference)
+  content = $("#" + type + "_" + reference)
+
+  if display
+    content.show()
+    tab.addClass 'active'
+  else
+    content.hide()
+    tab.removeClass 'active'

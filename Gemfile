@@ -8,8 +8,6 @@ gem "devise"
 gem 'haml'
 gem 'simple_form'
 gem 'ransack'
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
 gem 'databasedotcom'
 gem "cocoon"
 gem 'settingslogic'

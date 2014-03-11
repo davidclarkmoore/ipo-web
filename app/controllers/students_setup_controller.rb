@@ -26,6 +26,9 @@ class StudentsSetupController < ApplicationController
       remove_extra_attributes("academic_reference", params[:is_new_academic_reference])
     end
 
+    params[:student_application][:wizard_status] = step.to_s
+    params[:student_application][:wizard_status] = 'complete' if step == steps.last
+    
     @student_application.update_attributes params[:student_application]
     create_login_session unless login_signed_in?
     render_wizard @student_application

@@ -11,7 +11,7 @@ class StudentApplication < ActiveRecord::Base
 
   validates_uniqueness_of :project_session_id, scope: :student_id, message: "You already applied for this session"
   validates_presence_of :project_session_id
-  validates_presence_of :agree_terms, message: "You must agree the terms in order to continue"
+  validates :agree_terms, inclusion: { in: [true, 1, 'true', 'T', '1'] , message: "You must agree the terms in order to continue" }, :if => :complete_or_important_details?
   before_create :set_incomplete_status
 
   scope :approved, where(status: COMPLETE)
@@ -21,4 +21,13 @@ class StudentApplication < ActiveRecord::Base
   def set_incomplete_status
     self.status = INCOMPLETE
   end
+
+  def complete?
+    wizard_status == COMPLETE
+  end
+
+  def complete_or_important_details?
+    wizard_status.include?('important_details') || complete?
+  end
+
 end

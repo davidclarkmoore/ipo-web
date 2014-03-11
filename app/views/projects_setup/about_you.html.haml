@@ -1,7 +1,7 @@
 %article
   .container= render 'header', active_step: params[:id]
 
-  = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+  = simple_form_for @project, url: wizard_path, method: :put do |f|
 
     %article.bkg-green.light-text.inset-shadow
       .container.background
@@ -13,7 +13,7 @@
             = f_field_host.input :middle_initial, label: t(:initial), input_html: { maxlength: 1 }
             = f_field_host.input :last_name
             - unless current_fieldhost
-              = f_field_host.fields_for :login, @project.field_host.login, validate: true do |f_h_login|
+              = f_field_host.fields_for :login, @project.field_host.login do |f_h_login|
                 = f_h_login.input :email
                 = f_h_login.input :password
                 = f_h_login.input :password_confirmation
@@ -38,13 +38,13 @@
             %p= t(:if_you_cant_find_your_organization)
 
           #new-organization.tab-box.w-padding(style="display: none")
-            = f.fields_for :organization, Organization.new, validate: true do |f_organization|
+            = f.fields_for :organization, Organization.new do |f_organization|
               = f_organization.input :name
               = f_organization.input :organization_type
               = f_organization.input :website
 
         %fieldset.ywam_experience_and_connection
-          = f.fields_for :field_host, @project.field_host, validate: true do |f_field_host|
+          = f.fields_for :field_host, @project.field_host do |f_field_host|
             = f_field_host.input :role_title
             = f_field_host.input :years_associated_with_organization
             = f_field_host.input :overall_education

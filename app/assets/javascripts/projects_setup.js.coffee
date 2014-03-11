@@ -51,3 +51,5 @@ jQuery ->
                .siblings('.student-requirements-fields')
                .find('.field_for_deadline')
                .html(data)
+
+  $("#new_project").validate()

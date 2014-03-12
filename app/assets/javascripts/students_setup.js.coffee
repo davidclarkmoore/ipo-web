@@ -23,6 +23,12 @@ $ ->
         $.each data, (index, value) ->
           $("#student_application_project_session_id").append "<option value=\"" + data[index].id + "\">" + data[index].text + "</option>"
 
+  $("#new_student").validate
+    errorElement: 'span'
+    highlight: (element, errorClass) ->
+      $(element).parent().addClass "invalid"
+    unhighlight: (element, errorClass) ->
+      $(element).parent().removeClass "invalid"
 
 handleTabs = (type, reference, display) ->
   tab = $("#tab_" + type + "_" + reference)

@@ -52,4 +52,27 @@ jQuery ->
                .find('.field_for_deadline')
                .html(data)
 
-  $("#new_project").validate({errorElement: 'span'})
+  $("#new_project").validate
+    errorElement: 'span'
+    ignore: null
+    highlight: (element, errorClass) ->
+      $(element).parent().addClass "invalid"
+    unhighlight: (element, errorClass) ->
+      $(element).parent().removeClass "invalid"
+    onfocusout: (element) ->
+      $(element).valid()
+  $("#project_field_host_attributes_login_attributes_password").rules "add",
+    required: true
+    minlength: 8
+  $("#project_field_host_attributes_login_attributes_password_confirmation").rules "add",
+    required: true
+    minlength: 8
+    equalTo: "#project_field_host_attributes_login_attributes_password"
+  $("#project_field_host_attributes_years_associated_with_organization").rules "add",
+    required: true
+    number: true
+  $("#project_field_host_attributes_phone_type").rules "add",
+    required: true
+  $("#project_organization_id").rules "add",
+    required: true
+  

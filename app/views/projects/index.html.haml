@@ -4,6 +4,8 @@
       %h3= t(:explore_ipo_connection_projects)
       .total-projects= @total_projects.to_s + t(:total_projects)
 
+
+
     .options
       %h4.explore-by= t(:explore_by)
 
@@ -51,6 +53,8 @@
     - else
       #related_projects
         = render "projects_#{params[:view]}", projects: @projects.result.order("#{params[:order]}")
+
+        =link_to "Create a New Project", projects_setup_index_path, class: "button button-orange"
 
 :javascript
   $("#q_created_at_gt").datepicker({ dateFormat: "yy/mm/dd" });

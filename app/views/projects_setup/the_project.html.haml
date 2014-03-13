@@ -4,7 +4,9 @@
     %article
       %h3.center= t(:the_project)
       = f.input :name, label: t(:internship_project_name), validate: true
-      %h4.center.teams-individuals= t(:are_you_interested_in_teams_or_individuals)
+
+      .teams_or_individuals
+        %h4.center.teams-individual= t(:are_you_interested_in_teams_or_individuals)
 
       = f.input :team_mode, as: :button_group, label: false, collection: [[t(:team), true], [t(:individual), false]], validate: true
       -# = f.input :min_stay_duration

@@ -1,14 +1,20 @@
 @import "reset";
-@import "base";
 @import "compass/css3";
+@import "compass/css3/font-face";
 @import "compass/typography/vertical_rhythm";
+@import "base";
+@import "fonts";
 
-// TODO: Eventually remove all dependencies on flat-ui.
+// TODO: Eventually remove all dependencies on flat-ui
+
 @import "mixins";
 @import "tables";
 @import "button-dropdowns";
+
 // @import "button-groups";
+
 // ====================================================
+
 @import "select2";
 
 @import "typography";
@@ -61,6 +67,70 @@
 .pre1 { @include pre(1); }
 .post1 { @include post(1); }
 
+
+/* ===========
+   Checkbox Styles
+
+   =========== */
+
+$optionInputSize: 18px; // Keep even
+$optionInputMarkColor: #ff9855;
+$focusColor: #ff9855;
+
+.fui-arrow-right, .fui-arrow-left, .fui-cmd, .fui-check-inverted, .fui-heart, .fui-location, .fui-plus, .fui-check, .fui-cross, .fui-list, .fui-new, .fui-video, .fui-photo, .fui-volume, .fui-time, .fui-eye, .fui-chat, .fui-search, .fui-user, .fui-mail, .fui-lock, .fui-gear, .fui-radio-unchecked, .fui-radio-checked, .fui-checkbox-unchecked, .fui-checkbox-checked, .fui-calendar-solid, .fui-pause, .fui-play, .fui-check-inverted-2 {
+display: inline-block;
+font-family: 'Flat-UI-Icons';
+speak: none;
+font-style: normal;
+font-weight: normal;
+font-variant: normal;
+text-transform: none;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+.checkbox {
+  @extend %option-box;
+
+  &:before {
+    $width: round(($optionInputSize - 4px) / 2); // 50% of input inner width
+    $height: round($width * .4);
+    position: absolute;
+    top: floor(($optionInputSize - $height * 2 - 2px) / 2);
+    left: floor(($optionInputSize - $width - 2px) / 2);
+    width: $width;
+    height: $height;
+    border: solid $optionInputMarkColor;
+    border-width: 0 0 3px 3px;
+    @include transform(rotate(-45deg));
+
+    input:focus + &,
+    input.focus + & {
+      border-color: darken($focusColor, 8%);
+    }
+  }
+}
+
+.fui-checkbox-checked:before {
+content: "\e034";
+}
+
+.fui-checkbox-unchecked:before {
+content: "\e033";
+}
+
+.lt-ie9 {
+  .option > input {
+    position: static;
+    padding: 0;
+  }
+
+  .checkbox,
+  .radio {
+    display: none;
+  }
+}
+
 /* ===========
    Main Styles
    =========== */
@@ -85,7 +155,7 @@ span.small { @include adjust-font-size-to(14px); }
 }
 
 body {
-  background: #f4f3f3;
+  background: $extra-light-grey;
   color: $color;
 }
 
@@ -198,7 +268,21 @@ footer li {
   @include nth-omega(3n);
 }
 
+footer {
+  margin-top: 2.5em;
+}
+
 li { @include adjust-leading-to(1, 16px); }
+
+article {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.inset-shadow {
+  @include box-shadow (inset 0px 1px 2px $dark-grey);
+}
+
 
 /* ===========
    Form Styles

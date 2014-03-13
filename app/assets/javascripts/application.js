@@ -10,12 +10,15 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.autocomplete
 //= require jquery.ui.datepicker
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
+//= require flatui-checkbox
+//= require flatui-radio
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require select2

@@ -27,12 +27,14 @@ $baseline           : 11px;
 $header-font-family : "Comfortaa", "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $body-font-family   : "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
+
+
 $header-color : black;
 $color        : #565555;
 $focus-color  : #3fb6f2;
 
 // ---------------------------------------------------------------------------
-// Buttons
+// Buttons and Colors
 
 $orange : #ff9855;
 $blue   : #80c8d4;
@@ -40,6 +42,7 @@ $green  : #a2d49a;
 $grey   : #999;
 $shaded-grey: #ebedef;
 $light-yellow: #fefff5;
+$dark-grey: #7c7b7b;
 
 $btn-colors: default   $grey,
              green     $green,
@@ -54,3 +57,47 @@ $box-colors: grey          #565656,
 
 
 $light-grey: #c1c1c1;
+$extra-light-grey: #f9f9f9;
+
+
+// Color styles
+
+.bkg-green {
+	background-color: $green;
+}
+
+.bkg-white {
+	background-color: white;
+}
+
+.bkg-yellow {
+	background-color: $light-yellow;
+}
+
+.bkg-blue {
+	background-color: $blue;
+}
+
+.light-text {
+	color: white;
+
+	input[type=text],
+	input[type=text]:focus,
+	input[type=email],
+	input[type=email]:focus,
+	input[type=url],
+	input[type=url]:focus,
+	input[type=search],
+	input[type=search]:focus,
+	input[type=tel],
+	input[type=tel]:focus,
+	input[type=number] textarea,
+	input[type=number] textarea:focus,{
+	color: white;
+	}
+
+
+}
+.dark-text { color: $dark-grey;}
+
+

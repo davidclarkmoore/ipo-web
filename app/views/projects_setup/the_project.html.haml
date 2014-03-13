@@ -1,17 +1,17 @@
 .container
   = render 'header', active_step: params[:id]
-  = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+  = simple_form_for @project, url: wizard_path, method: :put do |f|
     %article
       %h3.center= t(:the_project)
-      = f.input :name, label: t(:internship_project_name), validate: true
+      = f.input :name, label: t(:internship_project_name)
 
       .teams_or_individuals
         %h4.center.teams-individual= t(:are_you_interested_in_teams_or_individuals)
 
       = f.input :team_mode, as: :button_group, label: false, collection: [[t(:team), true], [t(:individual), false]], validate: true
       -# = f.input :min_stay_duration
-      = f.input :min_students, label: t(:min_number_of_students), validate: true
-      = f.input :max_students, label: t(:max_number_of_students), validate: true
+      = f.input :min_students, label: t(:min_number_of_students)
+      = f.input :max_students, label: t(:max_number_of_students)
 
     %article.box
       %h3.center= t(:project_sessions)
@@ -33,8 +33,8 @@
         %li= t(:this_weekly_cost)
         %li= t(:please_include_any_additional)
 
-      = f.input :per_week_cost, label: t(:per_week_cost), validate: true
-      = f.input :per_week_cost_final, as: :boolean, label: t(:is_this_final), validate: true
+      = f.input :per_week_cost, label: t(:per_week_cost)
+      = f.input :per_week_cost_final, as: :boolean, label: t(:is_this_final)
 
     %article
       %h3.center= t(:student_requirements)
@@ -42,9 +42,9 @@
         %h4= t(:define_the_right_students)
         %img(src="http://placehold.it/300x340")
       .student-requirements-fields
-        = f.input :required_languages, label: t(:select_required_languages_students), validate: true
+        = f.input :required_languages, label: t(:select_required_languages_students)
         = f.input :related_student_passions, as: :select, label: t(:tag_all_related_passions)
         = f.input :related_fields_of_study, as: :select, label: t(:tag_all_related_fields_of_study)
-        = f.input :student_educational_requirement, label: t(:student_educational_requirement), validate: true
+        = f.input :student_educational_requirement, label: t(:student_educational_requirement)
 
       = f.submit t(:save_and_continue_to_step_3), class: "button button-orange"

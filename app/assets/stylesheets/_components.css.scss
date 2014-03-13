@@ -270,7 +270,10 @@ li.tab {
   span.error { display: block; }
   .button { outline: none; }
 }
-.button_group { @extend .button-group; }
+.button_group { 
+  @extend .button-group; 
+  font-size: 1.1em;
+}
 
 
 

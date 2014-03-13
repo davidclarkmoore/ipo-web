@@ -3,11 +3,12 @@
 
 # Connects button group to combobox. When button group is selected,
 # value in hidden combobox is chosen.
-window.connect_group_to_select = (group, select) ->
+window.connect_group_to_select = (group, select, onclick) ->
   selected_button = null
   $(group).find("button").click (e) ->
     e.preventDefault()
     select_button(@)
+    onclick(select) if onclick
 
   select_button = (btn) ->
     select.val $(btn).data('value').toString()

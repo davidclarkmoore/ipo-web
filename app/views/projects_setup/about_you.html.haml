@@ -1,6 +1,5 @@
 %article
-  .container
-    = render 'header', active_step: params[:id]
+  .container= render 'header', active_step: params[:id]
 
   = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
 
@@ -54,10 +53,9 @@
 
               %fieldset
                 %h4= t(:what_has_been_your_experiencie_with_ywam)
-              = f_field_host.input :experience_with_ywam, as: :check_boxes, label: false, :input_html => {:data => {:toggle => "checkbox"}}
+                = f_field_host.input :experience_with_ywam, as: :check_boxes, label: false, :input_html => {:data => {:toggle => "checkbox"}}
 
                 %h4= t(:how_did_your_hear_about_ipo_connection)
-              = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false, :input_html => {:data => {:toggle => "checkbox"}}
+                = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false, :input_html => {:data => {:toggle => "checkbox"}}
 
-  .container
-        = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"
+    .container= f.submit t(:save_and_continue_to_step_2), class: "button button-orange"

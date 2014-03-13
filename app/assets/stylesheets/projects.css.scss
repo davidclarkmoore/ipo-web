@@ -104,10 +104,11 @@
 // New Form Style
 // =============
 
+form.new_student_application, form.edit_student_application {
+  @include span-columns(12 omega);
+}
 
 form#new_project, form.edit_project, form.new_student_application, form.edit_student_application {
-
-  @include span-columns(12 omega);
 
   margin-bottom: 5%;
 

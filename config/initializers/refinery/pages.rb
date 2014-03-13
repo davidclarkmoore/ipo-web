@@ -34,7 +34,7 @@ Refinery::Pages.configure do |config|
   # If false, page slugs are global, and are, in effect, custom routes that may contain slashes.
   # By default, these routes will be flattened to the root, using the slugged page title,
   # and will no longer be nested as children.
-  # config.scope_slug_by_parent = true
+  config.scope_slug_by_parent = false
 
   # Set this to true if you want backend pages to be cached
   # config.cache_pages_backend = false

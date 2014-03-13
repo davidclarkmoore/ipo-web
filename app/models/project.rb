@@ -65,6 +65,9 @@ class Project < ActiveRecord::Base
     enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
   end
 
+  
+  enumerize :sex, in: [:male, :female]
+
   # -- About You
   validates :field_host, :organization, :associated => true, :if => :complete_or_about_you?
  # before_save :relate_fieldhost_to_organization, :if => :complete_or_about_you?
@@ -124,6 +127,8 @@ class Project < ActiveRecord::Base
 
     pretty_properties.join(", ")
   end
+
+
 
   # TODO: Partial validations with wizard steps
   # validates_presence_of :name, :description

@@ -75,6 +75,7 @@ group :test, :development do
 
   gem 'ruby_gntp'
   gem 'fuubar'
+  gem 'railroady'
 
   # Debugger and REPL
   gem "pry"

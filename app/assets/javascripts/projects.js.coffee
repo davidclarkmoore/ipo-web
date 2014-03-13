@@ -5,3 +5,6 @@ $ ->
 
   $("#properties_related_fields_of_study, #properties_related_student_passions").select2
   	closeOnSelect: false
+  	
+  $('.bxslider').bxSlider
+    pagerCustom: '#bx-pager'

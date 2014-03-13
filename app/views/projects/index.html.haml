@@ -54,8 +54,16 @@
       #related_projects
         = render "projects_#{params[:view]}", projects: @projects.result.order("#{params[:order]}")
 
-        =link_to "Create a New Project", projects_setup_index_path, class: "button button-orange"
+.container.center
+  =link_to "Create a New Project", projects_setup_index_path, class: "button button-orange"
 
 :javascript
   $("#q_created_at_gt").datepicker({ dateFormat: "yy/mm/dd" });
   $("#q_created_at_lt").datepicker({ dateFormat: "yy/mm/dd" });
+  $(document).on("click", ".project-result", (function() {
+    $(location).attr('href', "/projects/" + $(this).data('project'));
+  }));
+
+//    $(location).attr('href', "/projects/" + $(this).data('project'));     alert( "Goodbye!" ); // jQuery 1.4.3+
+
+

@@ -19,6 +19,7 @@ en:
   applications_waiting_for_your_approval: "Applications waiting for your approval: "
   are_you_interested_in_teams_or_individuals: "Are you interested in teams or individuals?"
   are_you_sure: "Are you sure?"
+  area_transportation: "Area Transportaion"
 
   back: "Back"
   background_image: "Background Image"
@@ -81,6 +82,7 @@ en:
   had_you_event_applied_to_an_ipo_connection_program_before: "Had you ever applied to an IPO Connection program before?"
   highest_education_completed: "Highest education completed"
   housing_and_meals: "Housing & Meals"
+  housing: "Housing"
   how_did_your_hear_about_ipo_connection: "How did you hear about the IPO Connection?"
   how_do_you_know_this_person: "How do you know this person?"
   how_far_away_is_the_internet: "How far away is the Internet?"
@@ -95,6 +97,7 @@ en:
   individuals: "Individuals"
   initial: "Initial"
   interests_and_fields_of_study: "Interests and Fields of Study"
+  internet_distance: "Distance to Nearest Internet Access"
   internship_project_name: "Internship Project Name"
   internship_project_community_and_personal_overview: "Internship Project, Community, and Personal Overview"
   is_this_final: "Is this final?"
@@ -115,6 +118,7 @@ en:
   min_number_of_students: "Min. number of students to make this project worthwhile?"
 
   name: "Name"
+  needed_lanaguages: "Needed Languages"
   new_organization: "New Organization"
   new_reference: "New Reference"
   new_session: "New Session"
@@ -133,6 +137,7 @@ en:
   prepared_your_passport_and_read_our: "Prepare your passport and read our "
   primary_phone: "Primary phone"
   profile_page: "Profile page"
+  project: "Project"
   project_and_session: "Project and Session - %{project} - %{start} - %{end}"
   project_dashboard: "Project Dashboard"
   project_location_can_be_public: "Project location can be public"
@@ -150,6 +155,8 @@ en:
   remove: "Remove"
   reset_password: "Reset Password"
 
+
+  safety_level: "Safety Level"
   save: "Save"
   save_and_continue_to_step_2: "Save & Continue to Step #2"
   save_and_continue_to_step_3: "Save & Continue to Step #3"
@@ -195,6 +202,7 @@ en:
   tag_all_related_fields_of_study: "Tag all related fields of study that would benefit this project"
   talk_soon_ipo_support_staff: "Talk soon! ~ IPO Support Staff*"
   team: "Team"
+  team_mode: "Team Mode"
   terms_and_conditions: "Terms and Conditions"
   tell_us_about_yourself: "Tell us about yourself..."
   text_search: "Text search.."
@@ -215,6 +223,7 @@ en:
   total_projects: "Total Projects"
   travel_expenses_and_personal_spendings: "*Travel Expenses & Personal Spending*"
   tuition: "*Tuition*"
+  typical_attire: "Typical Attire"
 
   user_language: "User Language"
   user: "User: %{user}"

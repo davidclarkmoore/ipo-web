@@ -71,7 +71,7 @@ jQuery ->
     onfocusout: (element) ->
       $(element).valid()
   
-  if $('form[action$="about_you"]').length > 0
+  if $('form[action="/projects/setup/about_you"]').length > 0
     if $("#project_field_host_attributes_login_attributes_password").length > 0
       $("#project_field_host_attributes_login_attributes_password").rules "add",
         required: true

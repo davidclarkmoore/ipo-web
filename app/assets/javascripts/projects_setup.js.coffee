@@ -61,6 +61,19 @@ jQuery ->
     $("#project_agree_to_transport").is(":checked")
   ), jQuery.validator.format("You must agree the terms in order to continue")
 
+  jQuery.validator.addMethod "uniqueness", ((value, element, params) ->
+    result = $.ajax(
+      type: "GET"
+      url: "#{params[0]}/#{value}"
+      data: "case_sentive=false"
+      dataType: "text"
+      cache: false
+      async: false
+    ).responseText
+    if result == "true" then true else false
+  ), jQuery.validator.format("This {1} is already taken")
+
+
   $('form[action^="/projects/setup"]').validate
     errorElement: 'span'
     ignore: null
@@ -81,6 +94,8 @@ jQuery ->
         required: true
         minlength: 8
         equalTo: "#project_field_host_attributes_login_attributes_password"
+    $("#project_field_host_attributes_login_attributes_email").rules "add",
+      uniqueness: ["/unique/login/email","email"]
     $("#project_field_host_attributes_years_associated_with_organization").rules "add",
       required: true
       number: true

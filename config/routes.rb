@@ -32,6 +32,7 @@ IpoWeb::Application.routes.draw do
   resources :students
   resources :dashboards, only: [:index]
   resources :sessions
+  get '/unique/:model/:attribute/:value' => 'uniqueness#validate', constraints: { value: /[^\/?]+/ }
 
   put "dashboards/update_login" => "dashboards#update_login"
 

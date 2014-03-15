@@ -61,19 +61,6 @@ jQuery ->
     $("#project_agree_to_transport").is(":checked")
   ), jQuery.validator.format("You must agree the terms in order to continue")
 
-  jQuery.validator.addMethod "uniqueness", ((value, element, params) ->
-    result = $.ajax(
-      type: "GET"
-      url: "#{params[0]}/#{value}"
-      data: "case_sentive=false"
-      dataType: "text"
-      cache: false
-      async: false
-    ).responseText
-    if result == "true" then true else false
-  ), jQuery.validator.format("This {1} is already taken")
-
-
   $('form[action^="/projects/setup"]').validate
     errorElement: 'span'
     ignore: null
@@ -83,6 +70,7 @@ jQuery ->
       $(element).parent().removeClass "invalid"
     onfocusout: (element) ->
       $(element).valid()
+    errorPlacement: errorPlacement
   
   if $('form[action="/projects/setup/about_you"]').length > 0
     if $("#project_field_host_attributes_login_attributes_password").length > 0
@@ -94,8 +82,9 @@ jQuery ->
         required: true
         minlength: 8
         equalTo: "#project_field_host_attributes_login_attributes_password"
-    $("#project_field_host_attributes_login_attributes_email").rules "add",
-      uniqueness: ["/unique/login/email","email"]
+    if $("#project_field_host_attributes_login_attributes_email").length > 0
+      $("#project_field_host_attributes_login_attributes_email").rules "add",
+        uniqueness: ["/unique/login/email","email"]
     $("#project_field_host_attributes_years_associated_with_organization").rules "add",
       required: true
       number: true
@@ -113,6 +102,7 @@ jQuery ->
       required: true
     $("#project_name").rules "add",
       required: true
+      uniqueness: ["/unique/project/name", "project name"]
     $("#project_min_students").rules "add",
       required: true
       number: true

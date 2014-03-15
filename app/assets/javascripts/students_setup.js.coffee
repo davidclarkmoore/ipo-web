@@ -24,9 +24,9 @@ $ ->
           $("#student_application_project_session_id").append "<option value=\"" + data[index].id + "\">" + data[index].text + "</option>"
         $("#student_application_project_session_id").valid()
 
-  jQuery.validator.addMethod "student_application_agree_terms_accepted", (() ->
-    $("#student_application_agree_terms").is(":checked")
-  ), jQuery.validator.format("You must agree the terms in order to continue")
+  jQuery.validator.addMethod "student_application_agree_terms_accepted", ((value, element) ->
+    @.optional(element) || $("#student_application_agree_terms").is(":checked")
+  ), "You must agree the terms in order to continue"
 
   $('form[action^="/students/setup"]').validate
     errorElement: 'span'
@@ -37,12 +37,16 @@ $ ->
       $(element).parent().removeClass "invalid"
     onfocusout: (element) ->
       $(element).valid()
+    errorPlacement: errorPlacement
 
   if $('form[action="/students/setup/about_you"]').length > 0
     $("#your_project_select").rules "add",
       required: true
     $("#student_application_project_session_id").rules "add",
       required: true
+    if $("#student_application_student_attributes_login_attributes_email").length > 0
+      $("#student_application_student_attributes_login_attributes_email").rules "add",
+        uniqueness: ["/unique/login/email", "email"]
     if $("#student_application_student_attributes_login_attributes_password").length > 0
       $("#student_application_student_attributes_login_attributes_password").rules "add",
         required: true
@@ -78,6 +82,7 @@ $ ->
   
   if $('form[action="/students/setup/important_details"]').length > 0      
     $("#student_application_agree_terms").rules "add",
+      required: true
       student_application_agree_terms_accepted: true
 
 

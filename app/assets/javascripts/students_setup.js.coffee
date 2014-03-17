@@ -46,7 +46,7 @@ $ ->
       required: true
     if $("#student_application_student_attributes_login_attributes_email").length > 0
       $("#student_application_student_attributes_login_attributes_email").rules "add",
-        uniqueness: ["/unique/login/email", "email"]
+        uniqueness: ["/unique/login/email", "email", true]
     if $("#student_application_student_attributes_login_attributes_password").length > 0
       $("#student_application_student_attributes_login_attributes_password").rules "add",
         required: true

@@ -2,7 +2,7 @@ jQuery.validator.addMethod "uniqueness", ((value, element, params) ->
     result = $.ajax(
       type: "GET"
       url: "#{params[0]}/#{value}"
-      data: "case_sentive=false"
+      data: if params[2] then "case_sensitive=#{params[2]}" else ""
       dataType: "text"
       cache: false
       async: false

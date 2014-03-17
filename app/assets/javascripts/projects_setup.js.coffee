@@ -84,7 +84,7 @@ jQuery ->
         equalTo: "#project_field_host_attributes_login_attributes_password"
     if $("#project_field_host_attributes_login_attributes_email").length > 0
       $("#project_field_host_attributes_login_attributes_email").rules "add",
-        uniqueness: ["/unique/login/email","email"]
+        uniqueness: ["/unique/login/email","email",true]
     $("#project_field_host_attributes_years_associated_with_organization").rules "add",
       required: true
       number: true

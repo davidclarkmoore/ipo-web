@@ -33,17 +33,13 @@
       %ul
         - Project.related_fields_of_study.values.each do |value|
           %li
-            = image_sprite :briefcase
             %span.text= value.text
-            = image_sprite :blue_arrow
 
     #passion_areas.tab-box(style="display: none")
       %ul
         - Project.related_student_passions.values.each do |value|
           %li
-            = image_sprite :briefcase
-            %span.text= value.text
-            = image_sprite :blue_arrow
+            %span= value.text
 
   %article#search_projects.box.box-green
     .container

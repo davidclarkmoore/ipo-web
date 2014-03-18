@@ -5,9 +5,14 @@
     = render partial: 'shared/errors', locals: {object: @student_application}
 
     .background.c12.omega
-      %h3.center= t(:your_project)
-      = f.input :project, as: :select, label: false do
-        = select_tag 'your_project_select', options_from_collection_for_select(Project.all, "id", "name"), include_blank: true
+      - if @project_selected 
+        %h3.center= "#{t(:your_project)} #{@project_selected.name}"  
+        = f.input :id, as: :hidden, input_html: { id: 'your_project_select', value: @project_selected.id }
+      - else
+        %h3.center= t(:your_project)
+        = f.input :project, as: :select, label: false do
+          = select_tag 'your_project_select', options_from_collection_for_select(Project.all, "id", "name", @project_selected), include_blank: true
+
         
       %h3.center= t(:your_session)
       = f.association :project_session, include_blank: true, label: false, label_method: :select_label

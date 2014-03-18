@@ -57,7 +57,7 @@
 
 		.info.rounded
 			%h3 Get Started
-			=link_to "Apply", students_setup_index_path, class: "button button-orange"
+			=link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange"
 			.fb-share-button{:data => {:type => "button"}}
 
 		.info.rounded

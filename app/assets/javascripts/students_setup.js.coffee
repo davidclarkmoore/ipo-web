@@ -23,6 +23,7 @@ $ ->
         $.each data, (index, value) ->
           $("#student_application_project_session_id").append "<option value=\"" + data[index].id + "\">" + data[index].text + "</option>"
 
+  $("#your_project_select").trigger("change")
 
 handleTabs = (type, reference, display) ->
   tab = $("#tab_" + type + "_" + reference)

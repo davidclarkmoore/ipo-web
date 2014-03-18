@@ -60,31 +60,37 @@
 
 #fields_and_areas {
 
-  .tab-list {
-    .active {
-      color: $blue;
+  .tab-list .active { color: $blue; }
+
+  .tab-box ul li {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+
+    width: 30%;
+    height: 4em;
+    margin: 1em;
+    line-height: 4em;
+
+    background-color: $extra-light-grey;
+    color: $blue;
+
+    .sprite {
+      position: absolute;
+      top: 50%;
+      margin-top: -16px; // half of height of sprite.
     }
-  }
 
-  .tab-box ul {
-    li {
+    .briefcase { left: 7px; }
+    .blue_arrow { right: 7px; }
+
+    span.text {
+      padding: 0 2.5em 0 3.5em;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       display: inline-block;
-      width: 30%;
-      min-height: 4em;
-      background-color: $extra-light-grey;
-      vertical-align: middle;
-      margin: 1em;
-      color: $blue;
-      text-transform: uppercase;
-      padding: 1.2% 1%;
-
-      span {
-        display: inline-block;
-        vertical-align: middle;
-        width: 20%;
-        height: 100%;
-      }
-
+      overflow: hidden;
     }
   }
 }

@@ -58,6 +58,37 @@
   }
 }
 
+#fields_and_areas {
+
+  .tab-list {
+    .active {
+      color: $blue;
+    }
+  }
+
+  .tab-box ul {
+    li {
+      display: inline-block;
+      width: 30%;
+      min-height: 4em;
+      background-color: $extra-light-grey;
+      vertical-align: middle;
+      margin: 1em;
+      color: $blue;
+      text-transform: uppercase;
+      padding: 1.2% 1%;
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20%;
+        height: 100%;
+      }
+
+    }
+  }
+}
+
 .we-are-unique {
   .col1 {
     @include span-columns(5);

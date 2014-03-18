@@ -34,4 +34,6 @@ $ ->
   $("#search-field-study").click (event)->
     event.preventDefault() if $("#q_address_cont").val().length == 0 and $("#related_field_of_study").val().length == 0
 
-
+  $('#fields_and_areas .tab').click (e) ->
+    $(@).addClass('active').siblings().first().removeClass 'active'
+    $($(@).data('box')).show().siblings('.tab-box').first().hide()

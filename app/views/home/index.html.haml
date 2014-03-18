@@ -25,11 +25,24 @@
         70% of Christ’s followers live in the Global South.
         70% of Christ’s followers live in the Global South.
 
-  %article.box.container
+  %article#fields_and_areas.box.container
     %ul.tab-list
-      %li.tab.active Fields of Study
-      %li.tab Passion Areas
-    .tab-box
+      %li.tab.active(data-box="#fields_of_study") Fields of Study
+      %li.tab(data-box="#passion_areas") Passion Areas
+    #fields_of_study.tab-box
+      %ul
+        - Project.related_fields_of_study.values.each do |value|
+          %li 
+            =image_sprite :briefcase
+            =value.text
+            =image_sprite :blue_arrow
+    #passion_areas.tab-box(style="display: none")
+      %ul
+        - Project.related_student_passions.values.each do |value|
+          %li
+            =image_sprite :briefcase
+            =value.text
+            =image_sprite :blue_arrow
 
   %article#search_projects.box.box-green
     .container

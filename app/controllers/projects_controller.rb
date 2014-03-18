@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     projects = ProjectLoader.load_projects(params[:properties])
     @projects = projects.search(params[:q])
     @total_projects = @projects.result.count
-    
+
     params[:view] ||= 'grid'
     params[:order] ||= 'name'
   end
@@ -34,10 +34,10 @@ class ProjectsController < ApplicationController
 
   private
 
-  def validate_home_search 
+  def validate_home_search
     return if params[:related_field_of_study].blank?
     field = params[:related_field_of_study]
-    
+
     params[:properties] = {}
     params[:properties][:related_fields_of_study] = current_fields_of_study.invert[field].to_s.split
     @field_of_study = params[:properties][:related_fields_of_study]

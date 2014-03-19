@@ -5,7 +5,9 @@ module ApplicationHelper
       pencil: {w: 27, h: 27, x: 0, y: 0},
       arrow_right: {w: 27, h: 23, x: 145, y: 72},
       search: {w: 32, h: 32, x: 0, y: 72},
-      thumbs_up: {w: 24, h: 29, x: 79, y: 72}
+      thumbs_up: {w: 24, h: 29, x: 79, y: 72},
+      briefcase: {w: 40, h: 32, x: 30, y: 0},
+      blue_arrow: {w: 24, h: 32, x: 27, y: 116}
     }
     raw %(<span class="sprite #{image}"
       title="#{options[:title]}"

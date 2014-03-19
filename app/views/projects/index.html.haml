@@ -2,9 +2,7 @@
   .explore
     .c8
       %h3= t(:explore_ipo_connection_projects)
-      .total-projects= @total_projects.to_s + t(:total_projects)
-
-
+      .total-projects= "#{@total_projects.to_s} #{t(:total_projects)}"
 
     .options
       %h4.explore-by= t(:explore_by)
@@ -50,9 +48,10 @@
 
       = f.submit t(:search), class: "button button-orange"
 
+
   #projects
     - if @projects.result.empty?
-      %h2.not-available= t(:no_projects_available)
+      = render "no_projects_available"
     - else
       #related_projects
         = render "projects_#{params[:view]}", projects: @projects.result.order("#{params[:order]}")
@@ -66,7 +65,6 @@
   $(document).on("click", ".project-result", (function() {
     $(location).attr('href', "/projects/" + $(this).data('project'));
   }));
-
 //    $(location).attr('href', "/projects/" + $(this).data('project'));     alert( "Goodbye!" ); // jQuery 1.4.3+
 
 

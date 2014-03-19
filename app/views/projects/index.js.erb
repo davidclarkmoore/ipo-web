@@ -1,9 +1,19 @@
 
 $("#option_buttons").html("<%= escape_javascript(render 'button_group') %>");
 $("#sort_links").html("<%= escape_javascript(render 'sort_links') %>");
-<% view = params[:view] 
-  projects = "projects_#{view}"
-  order = params[:order]  %>
-$("#related_projects").html("<%= escape_javascript(render projects, projects: @projects.result.order(order)) %>");
+$(".total-projects").html('<%= "#{@total_projects.to_s} #{t(:total_projects)}" %>')
+<% if @projects.result.empty? %>
+	$("#related_projects").html("<%= escape_javascript(render 'no_projects_available') %>")
+	$('#browse_all_projects').on('click', function() {
+    	$("#project_search input[type='text']").val('');
+    	$("#project_search input[type='checkbox']").removeAttr('checked');
+    	$("#properties_related_fields_of_study").select2('data', null)
+    });
+<% else
+   	view = params[:view] 
+  	projects = "projects_#{view}"
+  	order = params[:order]  %>
+	$("#related_projects").html("<%= escape_javascript(render projects, projects: @projects.result.order(order)) %>");
+<% end %>
 
 $("#view").val("<%=view%>");

@@ -1,3 +1,4 @@
+
 $("#option_buttons").html("<%= escape_javascript(render 'button_group') %>");
 $("#sort_links").html("<%= escape_javascript(render 'sort_links') %>");
 <% view = params[:view] 
@@ -5,3 +6,4 @@ $("#sort_links").html("<%= escape_javascript(render 'sort_links') %>");
   order = params[:order]  %>
 $("#related_projects").html("<%= escape_javascript(render projects, projects: @projects.result.order(order)) %>");
 
+$("#view").val("<%=view%>");

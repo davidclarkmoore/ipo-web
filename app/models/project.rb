@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   belongs_to :field_host
   has_many :project_media
   has_many :project_sessions
+  has_many :sessions, through: :project_sessions
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students,

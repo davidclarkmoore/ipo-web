@@ -81,6 +81,23 @@
       %label= t(:per_week_cost)
       %p= @p.per_week_cost
 
+      %label= t(:project_sessions)
+      %table
+        %thead
+          %tr
+            %th= t(:title)
+            %th= t(:start_date)
+            %th= t(:end_date)
+            %th= t(:duration)
+            %th= t(:application_deadline)
+        %tbody
+          - @p.sessions.each do |session|
+            %tr
+              %td= session.title
+              %td= session.start_date
+              %td= session.end_date
+              %td= session.duration
+              %td= session.application_deadline
     .info.rounded
       %h3 Location
 

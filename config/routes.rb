@@ -4,8 +4,6 @@ IpoWeb::Application.routes.draw do
     root :to => "dashboards#index"
   end
 
-  root :to => "home#index"
-
   devise_for :logins, class_name: "Login"
 
   devise_scope :login do

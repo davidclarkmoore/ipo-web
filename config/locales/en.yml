@@ -128,6 +128,7 @@ en:
   once_accepted_we_will_send_a_supplemental_information: "Once accepted, we will send a Supplemental Information Form with instructions for participation, including fund raising, insurance, and the IPO online course. "
   or_upload_from_your_computer: "Or upload from your computer"
 
+  passion_areas: "Passion Areas"
   parties_of_this_internship: "PARTIES TO THIS INTERNSHIP: "
   password: "Password: %{password}"
   per_week_cost: "Per Week Cost for Each Student"
@@ -166,6 +167,7 @@ en:
   saved_projects_photos_and_videos: "Saved Project Photos and Videos"
   school_church_organization: "School, Church, Student Organization"
   search: "Search!"
+  search_projects: "Search Projects"
   search_your_field_of_study: "Search your Field of Study: "
   select_organization: "Select Organization"
   select_reference: "Select Reference"

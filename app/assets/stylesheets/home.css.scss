@@ -2,17 +2,6 @@
 // Home Page
 // ---------
 
-#search-field-study {
-
-}
-
-#lightbulbs {
-  display: block;
-  width: 268px; // TODO: Make responsive.
-  margin: auto;
-  @include trailer(2);
-}
-
 .title-search {
   @include span-columns(12 omega);
   @include trailer(4);
@@ -55,6 +44,12 @@
     @include adjust-font-size-to(25px);
     @include pre(1);
     @include post(1);
+  }
+  img {
+    display: block;
+    width: 268px; // TODO: Make responsive.
+    margin: auto;
+    @include trailer(2);
   }
 }
 
@@ -149,6 +144,7 @@
 
   #search_projects {
     border-bottom: 0.5em solid desaturate( darken($green, 20), 10);
+    h2 { text-align: center; }
   }
 
   #home-description {
@@ -168,10 +164,62 @@
     @include trailer(1);
 
     color: white;
-    img { width: 100%; }
-    .title {
+    img { width: 100%;
+    height: auto; }
+    .title, h1 {
       font-weight: 600;
       @include adjust-font-size-to(22px, 2);
     }
+  
+    h1, p {
+      margin-bottom: 0;
+    }
   }
+
+  h3 { color: $color; }
+}
+
+
+article.description-section h2, #pre-footer h3 {
+  font-family: $body-font-family;
+  font-weight: 300;
+  @include adjust-font-size-to(22px, 1.5);
+  color: $color;
+}
+
+.img-right {
+
+  img {
+    float: right;
+    margin-right: 0;
+    margin-left: 8.4507%;
+    width: 40.84507%;
+    height: auto;
+  }
+
+}
+
+.img-left {
+  img {
+    float: left;
+    margin-right: 8.4507%;
+    margin-left: 0;
+    width: 40.84507%;
+    height: auto;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1.5em;
+    margin-bottom: 1.5em;
+    font-family: $body-font-family;
+    color: $color;
+    margin-bottom: 0;
+  }
+
+  p, h2, h3 {
+    margin-left: 50%;
+  }
+
 }

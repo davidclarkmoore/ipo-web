@@ -1,5 +1,5 @@
 Refinery::PagePart.class_eval do
-  attr_accessible :color, :display_type, :margin
+  attr_accessible :color, :display_type, :margin, :title
 
   def self.color_options
     [['Default', nil],

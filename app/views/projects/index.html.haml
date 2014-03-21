@@ -21,29 +21,32 @@
       = hidden_field_tag :view, params[:view]
       .filter
         .session
-          %h5= t(:session_timeframe)
+          %h4= t(:session_timeframe)
           = f.text_field :created_at_gt, size: 15, class: "date_picker"
           %span -
           = f.text_field :created_at_lt, size: 15, class: "date_picker"
 
         .include
-          %h5= t(:fields_of_study)
+          %h4= t(:fields_of_study)
           = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, @field_of_study), include_blank: true, multiple: true
 
         .mode
-          %h5= t(:project_mode)
-          %span= t(:team)
-          = f.check_box :team_mode_true
-          %span= t(:individual)
-          = f.check_box :team_mode_false
+          %h4= t(:project_mode)
+          %label.checkbox
+            = t(:team)
+            = f.check_box :team_mode_true, { :data => {:toggle => "checkbox"} }
+          %label.checkbox
+            = t(:individual)
+            = f.check_box :team_mode_false, { :data => {:toggle => "checkbox"} }
 
         .search= f.text_field :name_or_address_cont, size: 15, placeholder: t(:text_search), value: @name_or_address
 
       .interests.clr
-        %h5= t(:filter_by_passion)
+        %h4= t(:filter_by_passion)
         - student_passions.each do |key, value|
-          = check_box_tag "properties[related_student_passions][]", value
-          = key
+          %label.checkbox
+            = check_box_tag "properties[related_student_passions][]", value, false, :data => {:toggle => "checkbox"}
+            = key
 
       = f.submit t(:search), class: "button button-orange"
 

@@ -49,7 +49,7 @@
   >.search {
     @include span-columns(3 omega);
     input {
-      margin-top: 36px;
+      margin-top: 48px;
       width: 100%;
     }
   }
@@ -431,4 +431,38 @@ form.project_search {
 .project-result {
   cursor: pointer;
 }
+
+form.project_search {
+  label.checkbox { 
+    display: inline-block;
+    margin-right: 2em;
+    margin-bottom: 0; 
+    width: 22%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .mode label.checkbox {
+    width: auto;
+  }
+
+  .include .select2-container {
+    font-size: 1em;
+    line-height: 2em;
+    display: inline-block;
+    vertical-align: top;
+    color: #7c7b7b;
+    background: white;
+    border-style: solid;
+    border: 2px solid #d9d9d9;
+    border-radius: 2px;
+    .select2-choices {
+      border: none;
+    }
+  }
+
+}
+
+
 

@@ -91,7 +91,7 @@ text-transform: none;
 .checkbox {
   @extend %option-box;
 
-/*  &:before {
+  &:before {
     $width: round(($optionInputSize - 4px) / 2); // 50% of input inner width
     $height: round($width * .4);
     position: absolute;
@@ -107,7 +107,7 @@ text-transform: none;
     input.focus + & {
       border-color: darken($focusColor, 8%);
     }
-  }*/
+  }
 }
 
 .fui-checkbox-checked:before {

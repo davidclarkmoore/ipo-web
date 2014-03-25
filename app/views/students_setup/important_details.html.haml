@@ -45,7 +45,7 @@
     .terms-and-conditions
       %p= t(:these_would_be_the_terms_and_conditions_including_privacy_information)
 
-    = simple_form_for @student_application, url: wizard_path, method: :put, validate: true do |f|
+    = simple_form_for @student_application, url: wizard_path, method: :put do |f|
 
       = f.input :agree_terms, as: :boolean, label: t(:i_agree_to_the_terms_and_conditions)
 

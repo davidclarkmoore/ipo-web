@@ -1,21 +1,21 @@
 .container
   = render 'header', active_step: params[:id]
-  = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+  = simple_form_for @project, url: wizard_path, method: :put do |f|
     %article
       %h3.center= t(:the_location)
       = f.input :location_private, as: :button_group, label: false, |
                 collection: [[t(:project_location_can_be_public), false], [t(:project_location_must_be_private), true]] |
-      = f.input :address, label: t(:street_address_include), validate: true
+      = f.input :address, label: t(:street_address_include)
 
     %article
       %h3.center= t(:describe_your_region)
-      .location-col1= f.input :internet_distance, label: t(:how_far_away_is_the_internet), validate: true
+      .location-col1= f.input :internet_distance, label: t(:how_far_away_is_the_internet)
       .location-col2
         %label= t(:is_your_location_urban_suburban_rural)
         = f.input :location_type, label: false, as: :button_group
-        = f.input :transportation_available, label: t(:describe_the_types_of_transportation), validate: true
+        = f.input :transportation_available, label: t(:describe_the_types_of_transportation)
 
-    = f.input :location_description, as: :text, label: t(:describe_your_city_area), placeholder: t(:enter_few_sentences_on_your_area), validate: true
-    = f.input :culture_description, as: :text, label: t(:describe_the_culture_area), placeholder: t(:enter_few_sentences_on_your_culture), validate: true
+    = f.input :location_description, as: :text, label: t(:describe_your_city_area), placeholder: t(:enter_few_sentences_on_your_area)
+    = f.input :culture_description, as: :text, label: t(:describe_the_culture_area), placeholder: t(:enter_few_sentences_on_your_culture)
 
     = f.submit t(:save_and_continue_to_step_4), class: "button button-orange"

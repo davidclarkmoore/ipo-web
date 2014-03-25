@@ -1,13 +1,14 @@
 # Override client side validations to work with select2 initialize client side validations to
-ClientSideValidations.selectors.validate_inputs += ', .select2-container:visible ~ :input:enabled[data-validate]';
+# ClientSideValidations.selectors.validate_inputs += ', .select2-container:visible ~ :input:enabled[data-validate]';
 
 # Connects button group to combobox. When button group is selected,
 # value in hidden combobox is chosen.
-window.connect_group_to_select = (group, select) ->
+window.connect_group_to_select = (group, select, onclick) ->
   selected_button = null
   $(group).find("button").click (e) ->
     e.preventDefault()
     select_button(@)
+    onclick(select) if onclick
 
   select_button = (btn) ->
     select.val $(btn).data('value').toString()

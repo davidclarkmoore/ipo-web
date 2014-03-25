@@ -15,7 +15,7 @@ class ButtonGroupInput <  SimpleForm::Inputs::CollectionInput
     input_html_options[:class].push "no-select2"
     input_html_options[:class].push "offscreen"
 
-    html += @builder.collection_select_with_client_side_validations(
+    html += @builder.collection_select(
               attribute_name, collection, value_method, label_method,
               input_options, input_html_options
             )

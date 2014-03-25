@@ -47,6 +47,6 @@
 
       %fieldset
         %h4= t(:had_you_event_applied_to_an_ipo_connection_program_before)
-        = f_student.input :applied_ipo_before, as: :radio_buttons, label: false, :input_html => {:data => {:toggle => "checkbox"}}
+        = f_student.input :applied_ipo_before, as: :radio_buttons, label: false, required: true, :input_html => {:data => {:toggle => "checkbox"}}
 
     = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"

@@ -16,27 +16,27 @@
           = render @project.project_media
 
   %article#internship_opportunity{style: "overflow: hidden;"}
-    = simple_form_for @project, url: wizard_path, method: :put, validate: true do |f|
+    = simple_form_for @project, url: wizard_path, method: :put do |f|
       %h3.center= t(:publish_your_internship_opportunity)
       %fieldset
         %h4= t(:internship_project_community_and_personal_overview)
-        = f.input :description, as: :text, label: false, placeholder: t(:describe_the_project_project_facilities), validate: true
+        = f.input :description, as: :text, label: false, placeholder: t(:describe_the_project_project_facilities)
 
       %fieldset
         %h4= t(:housing_and_meals)
-        = f.input :housing_type, label: t(:student_housing_type), validate: true
-        = f.input :dining_location, label: t(:student_dining_location), validate: true
-        = f.input :housing_description, as: :text, label: false, placeholder: t(:describe_the_housing_diet), validate: true
+        = f.input :housing_type, label: t(:student_housing_type)
+        = f.input :dining_location, label: t(:student_dining_location)
+        = f.input :housing_description, as: :text, label: false, placeholder: t(:describe_the_housing_diet)
 
       %fieldset
         %h4= t(:challenges_at_your_location)
-        = f.input :safety_level, label: t(:describe_the_level_of_safety), validate: true
-        = f.input :challenges_description, as: :text, label: false, placeholder: t(:describe_the_specific_cultural_safety), validate: true
+        = f.input :safety_level, label: t(:describe_the_level_of_safety)
+        = f.input :challenges_description, as: :text, label: false, placeholder: t(:describe_the_specific_cultural_safety)
 
       %fieldset
         %h4= t(:what_are_the_community_guidelines)
-        = f.input :typical_attire, label: t(:describe_a_student_typical), validate: true
-        = f.input :guidelines_description, as: :text, label: false, placeholder: t(:describe_your_project_andor_organization), validate: true
+        = f.input :typical_attire, label: t(:describe_a_student_typical)
+        = f.input :guidelines_description, as: :text, label: false, placeholder: t(:describe_your_project_andor_organization)
 
       = f.submit t(:save_and_continue_to_step_5), class: "button button-orange"
   = render 'media_progress'

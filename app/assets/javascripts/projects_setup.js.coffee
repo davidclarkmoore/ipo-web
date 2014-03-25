@@ -1,9 +1,9 @@
 ipo['projects_setup'] = {}
 ipo['projects_setup']['show'] = ->
 
-  connect_group_to_select $(".project_location_type.button_group")   , $("#project_location_type")
-  connect_group_to_select $(".project_team_mode.button_group")       , $("#project_team_mode")
-  connect_group_to_select $(".project_location_private.button_group"), $("#project_location_private")
+  connect_group_to_select $(".project_location_type.button_group")   , $("#project_location_type"), (select) -> select.valid()
+  connect_group_to_select $(".project_team_mode.button_group")       , $("#project_team_mode"), (select) -> select.valid()
+  connect_group_to_select $(".project_location_private.button_group"), $("#project_location_private"), (select) -> select.valid()
 
   $('#organizations .tab').click (e) ->
     $(@).addClass('active').siblings().first().removeClass 'active'
@@ -51,3 +51,101 @@ jQuery ->
                .siblings('.student-requirements-fields')
                .find('.field_for_deadline')
                .html(data)
+
+  # Validation method for agreements acceptation
+  jQuery.validator.addMethod "project_agree_memo_accepted", (() ->
+    $("#project_agree_memo").is(":checked")
+  ), jQuery.validator.format("You must agree the terms in order to continue")
+
+  jQuery.validator.addMethod "project_agree_to_transport_accepted", (() ->
+    $("#project_agree_to_transport").is(":checked")
+  ), jQuery.validator.format("You must agree the terms in order to continue")
+
+  $('form[action^="/projects/setup"]').validate
+    errorElement: 'span'
+    ignore: null
+    highlight: (element, errorClass) ->
+      $(element).parent().addClass "invalid"
+    unhighlight: (element, errorClass) ->
+      $(element).parent().removeClass "invalid"
+    onfocusout: (element) ->
+      $(element).valid()
+    errorPlacement: errorPlacement
+  
+  if $('form[action="/projects/setup/about_you"]').length > 0
+    if $("#project_field_host_attributes_login_attributes_password").length > 0
+      $("#project_field_host_attributes_login_attributes_password").rules "add",
+        required: true
+        minlength: 8
+    if $("#project_field_host_attributes_login_attributes_password").length > 0
+      $("#project_field_host_attributes_login_attributes_password_confirmation").rules "add",
+        required: true
+        minlength: 8
+        equalTo: "#project_field_host_attributes_login_attributes_password"
+    if $("#project_field_host_attributes_login_attributes_email").length > 0
+      $("#project_field_host_attributes_login_attributes_email").rules "add",
+        uniqueness: ["/unique/login/email","email",true]
+    $("#project_field_host_attributes_years_associated_with_organization").rules "add",
+      required: true
+      number: true
+    $("#project_field_host_attributes_phone_type").rules "add",
+      required: true  
+    $("#project_organization_id").rules "add",
+      required: "#is_new_organization[value='false']"
+    $("#project_organization_attributes_name").rules "add",
+      required: "#is_new_organization[value='true']"
+    $("#project_organization_attributes_organization_type").rules "add",
+      required: "#is_new_organization[value='true']"
+
+  if $('form[action$="the_project"]').length > 0
+    $("#project_team_mode").rules "add",
+      required: true
+    $("#project_name").rules "add",
+      required: true
+      uniqueness: ["/unique/project/name", "project name"]
+    $("#project_min_students").rules "add",
+      required: true
+      number: true
+    $("#project_max_students").rules "add",
+      required: true
+      number: true
+    $("#project_student_educational_requirement").rules "add",
+      required: true
+
+  if $('form[action$="location"]').length > 0
+    $("#project_location_private").rules "add",
+      required: true
+    $("#project_address").rules "add",
+      required: true
+    $("#project_internet_distance").rules "add",
+      required: true
+    $("#project_location_description").rules "add",
+      required: true
+    $("#project_culture_description").rules "add",
+      required: true
+
+  if $('form[action$="content"]').length > 0
+    $("#project_description").rules "add",
+      required: true
+    $("#project_housing_type").rules "add",
+      required: true
+    $("#project_dining_location").rules "add",
+      required: true
+    $("#project_housing_description").rules "add",
+      required: true
+    $("#project_safety_level").rules "add",
+      required: true
+    $("#project_challenges_description").rules "add",
+      required: true
+    $("#project_typical_attire").rules "add",
+      required: true
+    $("#project_guidelines_description").rules "add",
+      required: true
+
+  if $('form[action$="agreement"]').length > 0
+    $("#project_agree_memo").rules "add",
+      project_agree_memo_accepted: true
+    $("#project_agree_to_transport").rules "add",
+      project_agree_to_transport_accepted: true 
+
+  

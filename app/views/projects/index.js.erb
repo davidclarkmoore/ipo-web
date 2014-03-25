@@ -14,6 +14,7 @@ $(".total-projects").html('<%= "#{@total_projects.to_s} #{t(:total_projects)}" %
   	projects = "projects_#{view}"
   	order = params[:order]  %>
 	$("#related_projects").html("<%= escape_javascript(render projects, projects: @projects.result.order(order)) %>");
+  $("#view").val("<%=view%>");
 <% end %>
 
-$("#view").val("<%=view%>");
+

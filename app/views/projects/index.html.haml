@@ -56,8 +56,6 @@
       #related_projects
         = render "projects_#{params[:view]}", projects: @projects.result.order("#{params[:order]}")
 
-.container.center
-  =link_to "Create a New Project", projects_setup_index_path, class: "button button-orange"
 
 :javascript
   $("#q_created_at_gt").datepicker({ dateFormat: "yy/mm/dd" });

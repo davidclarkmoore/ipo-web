@@ -1,101 +1,101 @@
 
 .container
-	.primary
-		%label= t(:project)
-		%h1= @p.name
-		
-		.box.bxslider
-			- @p.project_media.each do |m|
-				%li
-					%img.imagesize{:src => m.image.url}
+  .primary
+    %label= t(:project)
+    %h1= @p.name
 
-		.box#bx-pager
-			- @p.project_media.each do |m|
-				%a{:href => "#", :data => {:slide => {:index => m.order - 1}}}
-					%img{:src => m.image.url(:thumb)}
-		
-		%h3 Overview
+    .box.bxslider
+      - @p.project_media.each do |m|
+        %li
+          %img.imagesize{:src => m.image.url}
 
-		%label= t(:description)
-		%p= @p.description
+    .box#bx-pager
+      - @p.project_media.each do |m|
+        %a{:href => "#", :data => {:slide => {:index => m.order - 1}}}
+          %img{:src => m.image.url(:thumb)}
 
-		#callout-overview
-			.third
-				%label= t(:fields_of_study)
-				%p= @p.get_pretty_properties(@p.related_fields_of_study, "related_fields_of_study")
+    %h3 Overview
 
-			.third
-				%label= t(:student_passions)
-				%p= @p.get_pretty_properties(@p.related_student_passions, "related_student_passions")
+    %label= t(:description)
+    %p= @p.description
 
-			.third
-				%label= t(:needed_lanaguages)
-				%p= @p.get_pretty_properties(@p.required_languages, "required_languages")
-		
-		%h3 Internship Location & Culture
+    #callout-overview
+      .third
+        %label= t(:fields_of_study)
+        %p= @p.get_pretty_properties(@p.related_fields_of_study, "related_fields_of_study")
 
-		%label= t(:culture_description)
-		%p= @p.culture_description
-		%label= t(:location_description)
-		%p= @p.location_description
-		%label= t(:challenges_description)
-		%p= @p.challenges_description
-		%label= t(:guidelines_description)
-		%p= @p.guidelines_description
-		%label= t(:housing_description)
-		%p= @p.housing_description
+      .third
+        %label= t(:student_passions)
+        %p= @p.get_pretty_properties(@p.related_student_passions, "related_student_passions")
 
-		%h3 Project Staff
+      .third
+        %label= t(:needed_lanaguages)
+        %p= @p.get_pretty_properties(@p.required_languages, "required_languages")
 
-		%label= @host.organization
-		%p= @host.first_name + ", " + @host.role_title
-		%p= @host.experience_with_ywam
+    %h3 Internship Location & Culture
 
-	.secondary
-		.info.rounded
-			=link_to "Back to Projects", projects_path, 'class' => "clr"
+    %label= t(:culture_description)
+    %p= @p.culture_description
+    %label= t(:location_description)
+    %p= @p.location_description
+    %label= t(:challenges_description)
+    %p= @p.challenges_description
+    %label= t(:guidelines_description)
+    %p= @p.guidelines_description
+    %label= t(:housing_description)
+    %p= @p.housing_description
 
-		.info.rounded
-			%h3 Get Started
-			=link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange"
-			.fb-share-button{:data => {:type => "button"}}
+    %h3 Project Staff
 
-		.info.rounded
-			%h3 Project Details
-			
-			%label= t(:team_mode) 
-			%p= @p.team_mode ? "Team" : "Individual"
+    %label= @host.organization
+    %p= @host.first_name + ", " + @host.role_title
+    %p= @host.experience_with_ywam
 
-			%label= t(:student_educational_requirement)
-			%p= @p.student_educational_requirement_text
+  .secondary
+    .info.rounded
+      =link_to "Back to Projects", projects_path, 'class' => "clr"
 
-			%label= t(:housing)
-			%p= @p.housing_type_text
+    .info.rounded
+      %h3 Get Started
+      =link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange"
+      .fb-share-button{:data => {:type => "button"}}
 
-			%label= t(:typical_attire)
-			%p= @p.typical_attire_text
+    .info.rounded
+      %h3 Project Details
 
-			%label= t(:student_dining_location)
-			%p= @p.dining_location_text
+      %label= t(:team_mode)
+      %p= @p.team_mode ? "Team" : "Individual"
 
-			%label= t(:per_week_cost)
-			%p= @p.per_week_cost
+      %label= t(:student_educational_requirement)
+      %p= @p.student_educational_requirement_text
 
-		.info.rounded
-			%h3 Location
-			
-			%label= t(:location_and_region)
-			%p= @p.location_type_text
-			
-			%label= t(:area_transportation)
-			%p= @p.get_pretty_properties(@p.transportation_available,"transportation_available")
+      %label= t(:housing)
+      %p= @p.housing_type_text
 
-			%label= t(:safety_level)
-			%p=	@p.safety_level_text
-		
+      %label= t(:typical_attire)
+      %p= @p.typical_attire_text
 
-			%label= t(:internet_distance)
-			%p= @p.internet_distance_text
+      %label= t(:student_dining_location)
+      %p= @p.dining_location_text
+
+      %label= t(:per_week_cost)
+      %p= @p.per_week_cost
+
+    .info.rounded
+      %h3 Location
+
+      %label= t(:location_and_region)
+      %p= @p.location_type_text
+
+      %label= t(:area_transportation)
+      %p= @p.get_pretty_properties(@p.transportation_available,"transportation_available")
+
+      %label= t(:safety_level)
+      %p= @p.safety_level_text
+
+
+      %label= t(:internet_distance)
+      %p= @p.internet_distance_text
 
 
 

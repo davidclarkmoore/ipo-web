@@ -2,4 +2,5 @@
   alert("Failed to upload image");
 <% else %>
   $('.project_media').append("<%= j render(@project_media) %>");
+  $('#image_order').val( parseInt($('#image_order').val()) + 1 );
 <% end %>

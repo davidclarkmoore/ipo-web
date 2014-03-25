@@ -8,7 +8,8 @@
         = simple_form_for ProjectMedia.new, url: project_media_index_path(@project) do |f|
           #drop_zone= t(:drag_and_drop_photos_here)
           = f.input :image, label: t(:or_upload_from_your_computer)
-        -# %h4 Add Third Party Image
+          = f.input_field :order, as: :hidden, value: 1, id: "image_order"
+        -# %h4 Add Third Party Image 
         -# %h4 Add a YouTube Video
       .saved-images
         %h4= t(:saved_projects_photos_and_videos)

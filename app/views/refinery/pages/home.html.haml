@@ -1,87 +1,72 @@
-.container 
-  %h1.center.subtitle Global customized internships in your field of study
+- content_for :header do
+  %h1.center.subtitle= t(:global_customized_internships_in_your_field)
   .title-search
     = form_tag(IpoWeb::Application.routes.url_helpers.projects_path, method: "get") do
       .c5 
-        %label Search your Field of Study:
-        = text_field_tag 'related_field_of_study', nil, placeholder: "Engineering, Medicine, Marketing, etc..."
+        %label= t(:search_your_field_of_study)
+        = text_field_tag 'related_field_of_study', nil, placeholder: t(:engineering_medicine_marketing)
 
       .c4
-        %label And where you want to go:
-        = text_field_tag "q[address_cont]", nil, placeholder: "City, Province or Postal Code.."
+        %label= t(:and_where_you_want_to_go)
+        = text_field_tag "q[address_cont]", nil, placeholder: t(:city_province_postal_code)
 
       .c2.omega
-        = button_tag "Go", class: "x-large", id: 'search-field-study'
+        = button "Go", :green, class: "x-large", id: 'search-field-study' do
+          = image_sprite :thumbs_up
+          = t(:go)
 
 #home
   %article.motto.box.box-light-yellow
     .container
       = raw @page.content_for :motto
 
-  %article.box.container
+  %article#fields_and_areas.box.container
     %ul.tab-list
-      %li.tab.active Fields of Study
-      %li.tab Passion Areas
-    .tab-box
+      %li.tab.active(data-box="#fields_of_study")=t(:fields_of_study)
+      %li.tab(data-box="#passion_areas")=t(:passion_areas)
+
+    #fields_of_study.tab-box
+      %ul= render partial: 'field_box', collection: @fields_of_study
+
+    #passion_areas.tab-box(style="display: none")
+      %ul= render partial: 'field_box', collection: @student_passions
 
   %article#search_projects.box.box-green
     .container
-      %h2.center.medium
-        = raw @page.content_for :search
+      = raw @page.content_for :search
 
       = button "Search Our Projects", :orange, id: "search-projects" do
         = image_sprite :search
-        Search Projects
+        = t(:search_projects)
 
   %article#home-description
-    .container
+    .container{ class: @page.part_with_title(:ipo).display_type }
       %article.description-section
-        .c6
-          = raw @page.content_for :ipo_title
-          = raw @page.content_for :ipo_description
-        .omega.c5.pre1
-          = raw @page.content_for :ipo_image
-
+        = raw @page.content_for :ipo
+    .container{ class: @page.part_with_title(:internship).display_type }
       %article.description-section
-        .c5.post1
-          = raw @page.content_for :internship_image
-
-        .c6.omega
-          = raw @page.content_for :internship_title
-          = raw @page.content_for :internship_description	
-          = raw @page.content_for :internship_items
+        = raw @page.content_for :internship
 
   %article#stories-from-field.box.box-blue
     .container
       %h2.center.medium= raw @page.content_for :stories_title
       .field_experience
-        = raw @page.content_for :story_image
-        .title= raw @page.content_for :story_name
-        = raw @page.content_for :story_description
-
+        = raw @page.content_for :story1
       .field_experience
-        = raw @page.content_for :story_image
-        .title= raw @page.content_for :story_name
-        = raw @page.content_for :story_description
-
+        = raw @page.content_for :story2
       .field_experience
-        = raw @page.content_for :story_image
-        .title= raw @page.content_for :story_name
-        = raw @page.content_for :story_description
-
+        = raw @page.content_for :story3
       .field_experience
-        = raw @page.content_for :story_image
-        .title= raw @page.content_for :story_name
-        = raw @page.content_for :story_description
+        = raw @page.content_for :story4
+
 
       = button "See All", :green, class: 'x-large right' do
         See All
         = image_sprite :arrow_right
 
-  %article.box.container
+  %article#pre-footer.box.container
     .c4
-      = raw @page.content_for :share_title
-      = raw @page.content_for :share_image
+      = raw @page.content_for :share
 
     .c4
       = raw @page.content_for :events

@@ -24,6 +24,7 @@ en:
   back: "Back"
   background_image: "Background Image"
   by_name: "By Name"
+  browse_all_projects: "Browse All Projects"
 
   challenges_at_your_location: "Challenges at your location"
   choose_a_session_period: "Choose a session period"
@@ -122,7 +123,7 @@ en:
   new_organization: "New Organization"
   new_reference: "New Reference"
   new_session: "New Session"
-  no_projects_available: "No Projects Available"
+  no_projects_available: "Oops, there are too many filters and we don't have any projects to show"
 
   oldest: "Oldest"
   once_accepted_we_will_send_a_supplemental_information: "Once accepted, we will send a Supplemental Information Form with instructions for participation, including fund raising, insurance, and the IPO online course. "

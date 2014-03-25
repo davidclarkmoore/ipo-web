@@ -34,7 +34,7 @@
         %li= t(:please_include_any_additional)
 
       = f.input :per_week_cost, label: t(:per_week_cost)
-      = f.input :per_week_cost_final, as: :boolean, label: t(:is_this_final)
+      = f.input :per_week_cost_final, as: :boolean, label: t(:is_this_final), input_html: { data: { toggle: "checkbox"} }
 
     %article
       %h3.center= t(:student_requirements)

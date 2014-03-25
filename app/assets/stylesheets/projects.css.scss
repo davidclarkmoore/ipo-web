@@ -430,6 +430,32 @@ form.project_search {
 
 .project-result {
   cursor: pointer;
+  position: relative;
+  padding: 0;
+  color: $grey;
+  
+  .project-description {
+    padding: 1em;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  h1, h2, h3, p { 
+    color: $grey; 
+  }
+  
+  .team_mode {
+    @include adjust-font-size-to(20px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $orange;
+    color: white;
+    padding: 0.1em 0.8em;
+  }
 }
 
 form.project_search {

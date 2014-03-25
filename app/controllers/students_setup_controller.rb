@@ -9,6 +9,8 @@ class StudentsSetupController < ApplicationController
     @student_application.build_student unless @student_application.student
     case step
     when :about_you
+      # This is used for the apply button in project/show.html.haml
+      @project_selected = Project.find(params[:project_id]) if params[:project_id]
       @student_application.student.build_login unless @student_application.student && @student_application.student.login
     when :interests_and_fields_of_study
       @student_application.student.build_spiritual_reference unless @student_application.student.spiritual_reference

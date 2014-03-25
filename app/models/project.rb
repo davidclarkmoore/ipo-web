@@ -47,7 +47,12 @@ class Project < ActiveRecord::Base
     # can get enumerize to play well with our hstores.
     #
     define_method "#{f}_text" do
-      I18n.t("enumerize.project.#{f}." + send(f))
+      key = send(f)
+      if key
+        I18n.t("enumerize.project.#{f}." + key)
+      else
+        ""
+      end
     end
   end
 
@@ -65,7 +70,7 @@ class Project < ActiveRecord::Base
     enumerize f, in: I18n.t("enumerize.project." + f), multiple: true
   end
 
-  
+
   enumerize :sex, in: [:male, :female]
 
   # -- About You
@@ -119,6 +124,8 @@ class Project < ActiveRecord::Base
   end
 
   def get_pretty_properties(properties, type)
+    properties = [] if properties.nil?
+
     all_properties = I18n.t("enumerize.project." + type)
     pretty_properties = []
     properties.each do |property|

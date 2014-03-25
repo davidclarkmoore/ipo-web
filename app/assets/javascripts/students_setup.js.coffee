@@ -85,6 +85,7 @@ $ ->
       required: true
       student_application_agree_terms_accepted: true
 
+  $("#your_project_select").trigger("change")
 
 handleTabs = (type, reference, display) ->
   tab = $("#tab_" + type + "_" + reference)

@@ -79,7 +79,6 @@ jQuery ->
         minlength: 8
     if $("#project_field_host_attributes_login_attributes_password").length > 0
       $("#project_field_host_attributes_login_attributes_password_confirmation").rules "add",
-        required: true
         minlength: 8
         equalTo: "#project_field_host_attributes_login_attributes_password"
     if $("#project_field_host_attributes_login_attributes_email").length > 0

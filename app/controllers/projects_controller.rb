@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     projects = ProjectLoader.load_projects(params[:properties])
     @projects = projects.search(params[:q])
     @total_projects = @projects.result.count
-
+    @sessions = Session.order(:start_date)
     params[:view] ||= 'grid'
     params[:order] ||= 'name'
   end

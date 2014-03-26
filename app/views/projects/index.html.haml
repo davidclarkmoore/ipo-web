@@ -20,13 +20,11 @@
       .filter
         .session
           %h4= t(:session_timeframe)
-          = f.text_field :created_at_gt, size: 15, class: "date_picker"
-          %span -
-          = f.text_field :created_at_lt, size: 15, class: "date_picker"
+          = f.collection_select :sessions_id_in, @sessions, :id, :select_label, {}, include_blank: true, multiple: true
 
         .include
           %h4= t(:fields_of_study)
-          = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, @field_of_study), include_blank: true, multiple: true
+          = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, @field_of_study), include_blank: true , multiple: true 
 
         .mode
           %h4= t(:project_mode)

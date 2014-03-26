@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   include SFRails::ActiveRecord
   salesforce "Project__c", [:name, :description]
 
+  COMPLETE = "complete"
+
   belongs_to :organization
   belongs_to :field_host
   has_many :project_media
@@ -95,6 +97,7 @@ class Project < ActiveRecord::Base
   scope :recent, order('created_at desc')
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
+  scope :completed, where(wizard_status: COMPLETE)
 
   def complete?
     wizard_status == 'complete'

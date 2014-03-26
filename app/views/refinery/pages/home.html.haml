@@ -35,7 +35,7 @@
     .container
       = raw @page.content_for :search
 
-      = button "Search Our Projects", :orange, id: "search-projects" do
+      = link_to IpoWeb::Application.routes.url_helpers.projects_path, class: "button button-orange", id: "search-projects" do
         = image_sprite :search
         = t(:search_projects)
 

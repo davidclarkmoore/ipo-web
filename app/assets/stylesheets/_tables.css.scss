@@ -1,0 +1,47 @@
+table {
+
+	width: 100%;
+	margin: 2% 0% 2% 0%;
+	border-right: 1px solid white;
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+	text-align: left;
+
+	thead {
+
+		tr {
+			background-color: $blue;
+			color: white;
+			margin: 1% 0% 1% 0%;
+
+			th {
+
+				padding: 2% 1%;
+				font-size: 90%;
+				font-weight: 600;
+				text-transform: uppercase;
+
+			}
+
+		}
+
+	}
+
+	tbody {
+
+		td {
+			padding: 1.5% 1%;
+		}
+
+		tr:nth-child(odd) {
+			background-color: white;
+		}
+
+		tr:nth-child(even) {
+			background-color: $light-blue;
+		}
+	}
+	
+		
+	
+}

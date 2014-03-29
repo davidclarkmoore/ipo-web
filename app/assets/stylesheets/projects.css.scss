@@ -216,6 +216,17 @@ label {
   @include post(2, 6);
 }
 
+.project_field_host_login_password{
+  @include span-columns(2 alpha, 6);
+
+}
+
+.project_field_host_login_password_confirmation {
+  @include span-columns(2 omega, 6);
+  @include post(2, 6);
+
+}
+
 .project_field_host_preferred_phone {
   @include span-columns(2, 6);
 }

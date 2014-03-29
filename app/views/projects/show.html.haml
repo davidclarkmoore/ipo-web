@@ -45,10 +45,10 @@
           - @p.sessions.each do |session|
             %tr
               %td= session.title
-              %td= session.start_date.to_formatted_s(:short_ordinal)
-              %td= session.end_date.to_formatted_s(:short_ordinal)
+              %td= session.start_date.to_formatted_s(:rfc822)
+              %td= session.end_date.to_formatted_s(:rfc822)
               %td= session.duration
-              %td= session.application_deadline.to_formatted_s(:long_ordinal)
+              %td= session.application_deadline.to_formatted_s(:rfc822)
 
     %h3 Internship Location & Culture
 

@@ -4,6 +4,36 @@ describe Project do
 
   it { should belong_to :organization }
   it { should belong_to :field_host }
+  it { should have_many :project_media }
+  it { should have_many :project_sessions }
+  it { should have_many :sessions }
+  it { should serialize(:properties).as(ActiveRecord::Coders::Hstore) }
+  
+  [:name, :description, :team_mode, :min_stay_duration, :min_students, :max_students,
+    :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
+    :student_educational_requirement, :address, :internet_distance, :location_private, :location_type, :transportation_available,
+    :location_description, :culture_description, :housing_type, :dining_location, :housing_description,
+    :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport,
+    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id]
+  .each do |attr|
+    it { should allow_mass_assignment_of(attr)}
+  end
+
+  it { should accept_nested_attributes_for(:field_host) }
+  it { should accept_nested_attributes_for(:organization) }
+  it { should accept_nested_attributes_for(:project_sessions).allow_destroy(true) }
+
+  %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |key|
+    it { should enumerize(key).in(*I18n.t("enumerize.project.#{key}").keys) }
+  end
+
+  %w(required_languages transportation_available).each do |key|
+    it { should enumerize(key).in(*I18n.t("enumerize.project.#{key}").keys) }
+  end
+  
+  %w(related_fields_of_study related_student_passions).each do |key|
+    it { should enumerize(key).in(*I18n.t("enumerize.project.#{key}").keys) }
+  end
 
   let (:project) { Project.new }
 

@@ -32,7 +32,7 @@ class ProjectsSetupController < ApplicationController
     end
 
     params[:project][:wizard_status] = step.to_s
-    params[:project][:wizard_status] = 'complete' if step == steps.last
+    params[:project][:wizard_status] = 'complete' if step == :agreement
 
     if @project.update_attributes(params[:project])
       create_login_session unless login_signed_in?

@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 
   def index
     projects = ProjectLoader.load_projects(params[:properties])
-    @projects = projects.search(params[:q])
+    @projects = projects.completed.search(params[:q])
     @total_projects = @projects.result.count
 
     params[:view] ||= 'grid'

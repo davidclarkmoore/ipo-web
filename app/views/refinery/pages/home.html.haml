@@ -26,10 +26,10 @@
       %li.tab(data-box="#passion_areas")=t(:passion_areas)
 
     #fields_of_study.tab-box
-      %ul= render partial: 'field_box', collection: @fields_of_study
+      %ul= render partial: '/refinery/pages/field_box', collection: @fields_of_study
 
     #passion_areas.tab-box(style="display: none")
-      %ul= render partial: 'field_box', collection: @student_passions
+      %ul= render partial: '/refinery/pages/field_box', collection: @student_passions
 
   %article#search_projects.box.box-green
     .container

@@ -45,4 +45,18 @@ class FieldHost < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def get_pretty_properties(properties, type)
+    properties = [] if properties.nil?
+
+    all_properties = I18n.t("enumerize.field_host." + type)
+    pretty_properties = []
+    properties.each do |property|
+      pretty_properties << all_properties[property.to_sym]
+    end
+
+    pretty_properties.join(", ")
+  end
+
 end
+
+

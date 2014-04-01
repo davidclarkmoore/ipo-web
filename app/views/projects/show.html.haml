@@ -42,14 +42,14 @@
     %p= @p.challenges_description
     %label= t(:guidelines_description)
     %p= @p.guidelines_description
-    %label= t(:housing_description)
+    %label= t(:housing)
     %p= @p.housing_description
 
     %h3 Project Staff
 
     %label= @host.organization
     %p= @host.first_name + ", " + @host.role_title
-    %p= @host.experience_with_ywam
+    %p= @host.get_pretty_properties(@host.experience_with_ywam, "experience_with_ywam")
 
   .secondary
     .info.rounded

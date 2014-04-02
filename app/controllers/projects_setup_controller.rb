@@ -32,7 +32,14 @@ class ProjectsSetupController < ApplicationController
     end
 
     params[:project][:wizard_status] = step.to_s
-    params[:project][:wizard_status] = 'complete' if step == :agreement
+    if step == :agreement
+      params[:project][:wizard_status] = 'complete'
+      @project.save_to_sf
+      #sf_project.create({
+      #    "Name" => @project.name,
+      #    "Description__c" => @project.description,
+      #})
+    end  
 
     if @project.update_attributes(params[:project])
       create_login_session unless login_signed_in?

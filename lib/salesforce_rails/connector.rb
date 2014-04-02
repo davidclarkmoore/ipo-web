@@ -6,7 +6,8 @@ module SFRails
   # -- TODO: Extract connector values to YML file.
   def self.connection
     return @client if @client.present?
-    @client = Databasedotcom::Client.new client_id: SF_API_CONFIG["client_id"],
+    @client = Databasedotcom::Client.new :host => "test.salesforce.com",
+                                         client_id: SF_API_CONFIG["client_id"],
                                          client_secret: SF_API_CONFIG["client_secret"],
                                          verify_mode: OpenSSL::SSL::VERIFY_NONE
 
@@ -25,6 +26,21 @@ module SFRails
 
     def sf_class; self.class.sf; end
     def sf_model_name; self.class.sf_model_name; end
+    def sf_mapping; self.class.sf_mapping; end
+
+    def create_to_sf
+      values = sf_mapping.inject({}) { |hash, key|
+        hash[sf_key(key)] = self.send(key)
+        hash
+      }
+      sf_class.create(values)
+    end
+
+    def sf_key(key)
+      camelize_key = key.to_s.camelize
+      index = sf_class.attributes.index(camelize_key) || sf_class.attributes.index(camelize_key + "__c")
+      return sf_class.attributes[ index ]
+    end
 
     included do
       class_eval do
@@ -49,6 +65,8 @@ module SFRails
       end
 
     end
+
+    private
   end
 
   module Adapter

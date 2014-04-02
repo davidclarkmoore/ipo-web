@@ -136,8 +136,6 @@ class Project < ActiveRecord::Base
     pretty_properties.join(", ")
   end
 
-
-
   # TODO: Partial validations with wizard steps
   # validates_presence_of :name, :description
   # validates_uniqueness_of :name

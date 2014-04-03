@@ -1,7 +1,14 @@
 class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
-  salesforce "Project__c", [:name, :description]
+  salesforce "Project__c", 
+             [ :name, :description, :location_private, :min_students, 
+               :min_stay_duration, :created_at, :culture_description, 
+               :team_mode, :related_student_passions, :agree_to_transport,
+               :agree_memo ], 
+             { address: "Location_Street_Address__c",
+               related_fields_of_study: "Related_Fields_of_Study__c",
+                organization_id: "Organization_ID__c"} 
 
   COMPLETE = "complete"
 
@@ -28,6 +35,9 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
   accepts_nested_attributes_for :project_sessions, reject_if: :all_blank, allow_destroy: true
+
+  def agree_memo; properties["agree_memo"] == "1" ? true : false; end;
+  def agree_to_transport; properties["agree_to_transport"] == "1" ? true : false; end;
 
   %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")

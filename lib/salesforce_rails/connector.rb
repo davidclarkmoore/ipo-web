@@ -27,19 +27,19 @@ module SFRails
     def sf_class; self.class.sf; end
     def sf_model_name; self.class.sf_model_name; end
     def sf_mapping; self.class.sf_mapping; end
+    def sf_mapping_hash; self.class.sf_mapping_hash; end
 
     def create_to_sf
       values = sf_mapping.inject({}) { |hash, key|
-        hash[sf_key(key)] = self.send(key)
+        hash[sf_key(key)] = sf_value(key)
         hash
       }
-      sf_class.create(values)
-    end
-
-    def sf_key(key)
-      camelize_key = key.to_s.camelize
-      index = sf_class.attributes.index(camelize_key) || sf_class.attributes.index(camelize_key + "__c")
-      return sf_class.attributes[ index ]
+      sf_mapping_hash.each { |key, value|
+        values[value] = sf_value(key)
+      }
+      sf_object = sf_class.create(values)
+      self.sf_object_id = sf_object.Id
+      self.save
     end
 
     included do
@@ -49,11 +49,12 @@ module SFRails
     end
 
     module ClassMethods
-      attr_accessor :sf_model_name, :sf_mapping
+      attr_accessor :sf_model_name, :sf_mapping, :sf_mapping_hash
 
-      def salesforce(model_name, mapping)
+      def salesforce(model_name, mapping = [], mapping_hash = {})
         self.sf_model_name = model_name;
         self.sf_mapping = mapping
+        self.sf_mapping_hash = mapping_hash
       end
 
       def sf
@@ -67,6 +68,18 @@ module SFRails
     end
 
     private
+
+    def sf_key(key)
+      sf_key = key.to_s.titleize.gsub(' ', '_')
+      index = sf_class.attributes.index(sf_key) || sf_class.attributes.index(sf_key + "__c")
+      return sf_class.attributes[ index ]
+    end
+
+    def sf_value(key)
+      value = self.send(key)
+      value.is_a?(Enumerize::Set) ? value.map(&:titleize).join(", ") : value
+    end
+
   end
 
   module Adapter

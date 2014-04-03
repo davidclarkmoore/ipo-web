@@ -24,7 +24,8 @@ IpoWeb::Application.routes.draw do
   resources :project_media, only: [:show, :destroy]
 
   match '/home/autocomplete' => "home#autocomplete"
-
+  match '/search' => 'home#wide_search', :as => :wide_search
+  match '/autocomplete' => 'home#elastic_autocomplete'
   resources :students_setup, path: "/students/setup", only: [:index, :show, :update]
   get '/students_setup/project_sessions/:project' => 'students_setup#project_sessions'
   get '/projects_setup/application_deadline/:id' => 'projects_setup#application_deadline'

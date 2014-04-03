@@ -8,7 +8,7 @@ gem "devise"
 gem "cancan"
 gem 'haml'
 gem 'simple_form'
-gem 'ransack'
+
 gem 'databasedotcom'
 gem "cocoon"
 gem 'settingslogic'
@@ -40,6 +40,8 @@ gem 'country_select'
 gem 'globalize3', '0.3.0'
 gem 'refinerycms', '~> 2.1.0'
 
+gem "searchkick"
+gem 'ransack'
 
 # Gems used only for assets and not required
 # in production environments by default.

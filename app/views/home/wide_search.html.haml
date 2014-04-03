@@ -1,0 +1,15 @@
+.container
+  %h1 Pages
+  .results
+    - @parts.with_details.each do |part,details|
+      .result
+        = link_to part.page.title, part.page.slug
+        .body
+          =strip_tags details[:highlight][:body]
+  %h1 Projects
+  .results
+    - @projects.with_details.each do |project,details|
+      .result
+        = link_to project.name, project_path(project)
+        .body
+          =h ( details[:highlight][:description] || project.description).html_safe

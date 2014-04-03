@@ -38,3 +38,5 @@ $ ->
   $('#fields_and_areas .tab').click (e) ->
     $(@).addClass('active').siblings().first().removeClass 'active'
     $($(@).data('box')).show().siblings('.tab-box').first().hide()
+#  $('#search').autocomplete
+#    source: "/autocomplete"

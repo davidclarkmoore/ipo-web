@@ -30,6 +30,7 @@ module SFRails
     def sf_mapping_hash; self.class.sf_mapping_hash; end
 
     def create_to_sf
+      binding.pry
       values = sf_mapping.inject({}) { |hash, key|
         hash[sf_key(key)] = sf_value(key)
         hash
@@ -77,7 +78,7 @@ module SFRails
 
     def sf_value(key)
       value = self.send(key)
-      value.is_a?(Enumerize::Set) ? value.map(&:titleize).join(", ") : value
+      value.class.include?(Enumerable) ? value.map(&:titleize).join(", ") : value
     end
 
   end

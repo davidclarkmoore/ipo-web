@@ -34,6 +34,7 @@ class ProjectsSetupController < ApplicationController
     params[:project][:wizard_status] = step.to_s
     if step == :agreement
       params[:project][:wizard_status] = 'complete'
+      # create project in SF
       project_sf = @project.create_to_sf
     end  
 

@@ -2,13 +2,19 @@ class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
   salesforce "Project__c", 
-             [ :name, :description, :location_private, :min_students, 
-               :min_stay_duration, :created_at, :culture_description, 
-               :team_mode, :related_student_passions, :agree_to_transport,
-               :agree_memo ], 
-             { address: "Location_Street_Address__c",
-               related_fields_of_study: "Related_Fields_of_Study__c",
-                organization_id: "Organization_ID__c"} 
+    [ :name, :description, :location_private, :min_students, 
+      :min_stay_duration, :student_educational_requirement, :dining_location, 
+      :housing_type, :internet_distance, :location_type,
+      :safety_level, :transportation_available, :typical_attire,
+      :max_students, :related_student_passions, :created_at, :culture_description, 
+      :challenges_description, :guidelines_description, :housing_description, 
+      :location_description, :agree_to_transport, :updated_at,
+      :team_mode, :wizard_status, :per_week_cost, :per_week_cost_final, 
+      :agree_memo ], 
+    { address: "Location_Street_Address__c",
+      related_fields_of_study: "Related_Fields_of_Study__c",
+      organization_id: "Organization_ID__c",
+      field_host_id: "Field_Host_ID__c" } 
 
   COMPLETE = "complete"
 
@@ -38,6 +44,7 @@ class Project < ActiveRecord::Base
 
   def agree_memo; properties["agree_memo"] == "1" ? true : false; end;
   def agree_to_transport; properties["agree_to_transport"] == "1" ? true : false; end;
+  def per_week_cost_final; properties["per_week_cost_final"] == "1" ? true : false; end;
 
   %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")

@@ -1,7 +1,13 @@
 class Student < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
-  salesforce "Student", [:first_name, :last_name, :birthday, :gender]
+  salesforce "Student__c", 
+    [ :first_name, :last_name, :birthday, :gender, 
+      :street_address, :city, :postal_code, :country,
+      :preferred_phone, :phone_type, :created_at, :description,
+      :published_status, :updated_at, :biography, :public_contact_information 
+    ]
+  
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :overall_education, :graduation_year, :agree_terms

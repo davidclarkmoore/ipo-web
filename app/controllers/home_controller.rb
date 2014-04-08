@@ -8,15 +8,15 @@ class HomeController < ApplicationController
   
   def wide_search
     @search = params[:search]
-    @parts = Refinery::PagePart.includes(:page).search(@search, :autocomplete => false,:fields => [:body], :highlight => true)
-    @projects = Project.search(@search, :autocomplete => false,:fields => [:name, :description], :highlight => true)
+    @pages = Refinery::Page.search(@search, :autocomplete => false,:fields => [:bodies], :highlight => true)
+    @projects = Project.search(@search, :autocomplete => false,:fields => [ :description], :highlight => true)
   end
   
   def elastic_autocomplete
     @search = params[:term]
-    parts = Refinery::PagePart.search(@search, :autocomplete => false,:fields => [:body], :highlight => true).map(&:title)
-    projects = Project.search(@search, :autocomplete => false,:fields => [:name], :highlight => true).map(&:name)
-    render json: parts+projects
+    pages = Refinery::Page.search(@search, :autocomplete => true,:fields => [:title], :highlight => false).map(&:title)
+    projects = Project.search(@search, :autocomplete => true,:fields => [:name], :highlight => false).map(&:name)
+    render json: pages+projects
   end
   
 end

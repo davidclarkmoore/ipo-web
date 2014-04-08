@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord

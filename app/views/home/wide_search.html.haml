@@ -5,7 +5,7 @@
       .result
         = link_to page.title, page.slug
         .body
-          =strip_tags details[:highlight][:bodies]
+          = details[:highlight][:bodies].html_safe
   %h1 Projects
   .results
     - @projects.with_details.each do |project,details|

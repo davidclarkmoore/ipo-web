@@ -1,4 +1,3 @@
-
 FactoryGirl.define do
   factory :project do
     name { Faker::Lorem.words(3).join.capitalize }
@@ -52,4 +51,37 @@ FactoryGirl.define do
     factory :projects_with_student_passions,    traits: [:complete, :with_student_passions]
     factory :projects_with_fields_and_passions, traits: [:complete, :with_fields_of_study, :with_student_passions]
   end
+
+  factory :project_for_about_you_step, class: Project do
+    organization_attributes { FactoryGirl.attributes_for(:organization) }
+    field_host_attributes { FactoryGirl.attributes_for(:field_host) } 
+    
+    trait :invalid do
+      organization_attributes { FactoryGirl.attributes_for(:invalid_organization) }
+      field_host_attributes { FactoryGirl.attributes_for(:invalid_field_host) }
+    end
+
+    factory :invalid_project_for_about_you_step, traits: [:invalid]
+  end
+
+  factory :project_for_the_project_step, parent: :project_for_about_you_step do
+    name "Test project"
+    team_mode true
+    min_students 5
+    max_students 10
+    per_week_cost 50
+    per_week_cost_final 1
+    required_languages ["","spanish", "english"]
+    related_student_passions ["","children_at_risk"]
+    related_fields_of_study ["","aviation", "business_and_management"]
+    student_educational_requirement "some_college"
+  
+    trait :invalid do
+        name nil
+        team_mode nil
+    end
+
+    factory :invalid_project_for_the_project_step, traits: [:invalid]
+  end
+
 end

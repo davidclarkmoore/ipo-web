@@ -143,10 +143,9 @@ describe ProjectsSetupController do
       end
 
       it "redirects to next step: the_project" do
-        put :update, id: 'about_you', project: {
-          field_host_attributes: FactoryGirl.attributes_for(:field_host),
-          organization_attributes: FactoryGirl.attributes_for(:organization)
-        }, is_new_organization: "true"
+        put :update, id: 'about_you', 
+          project: FactoryGirl.attributes_for(:project_for_about_you_step), 
+          is_new_organization: "true"
         response.should redirect_to subject.send(:wizard_path, :the_project)
       end
 
@@ -162,7 +161,7 @@ describe ProjectsSetupController do
         }.to_not change(FieldHost,:count)
       end
 
-      it "does not create a organization" do
+      it "does not create an organization" do
         expect {
           put :update, id: 'about_you',
             project: { organization_attributes: FactoryGirl.attributes_for(:invalid_organization) }, 
@@ -171,11 +170,50 @@ describe ProjectsSetupController do
       end
 
       it "redirects to same step: about_you" do
-        put :update, id: 'about_you', project: {
-          field_host_attributes: FactoryGirl.attributes_for(:invalid_field_host),
-          organization_attributes: FactoryGirl.attributes_for(:invalid_organization)
-        }, is_new_organization: "true"
+        put :update, id: 'about_you', project: 
+          FactoryGirl.attributes_for(:invalid_project_for_about_you_step), 
+          is_new_organization: "true"
         response.should render_template("about_you")
+      end
+    end
+  end
+
+  describe "PUT '#update the_project'" do
+
+    context "when valid attributes" do
+      it "updates project" do
+        put :update, id: 'the_project', 
+          project: FactoryGirl.attributes_for(:project_for_the_project_step)
+        assigns(:project).name.should eq("Test project")
+        assigns(:project).min_students.should eq("5")
+        assigns(:project).max_students.should eq("10")
+        assigns(:project).per_week_cost.should eq("50")
+        assigns(:project).per_week_cost_final.should eq("1")
+        #assigns(:project).required_languages.should =~ ["spanish", "english"]
+        assigns(:project).related_student_passions.should =~ ["children_at_risk"]
+        assigns(:project).related_fields_of_study.should =~ ["aviation", "business_and_management"]
+        assigns(:project).student_educational_requirement.should eq("some_college")
+      end
+
+      it "redirects to next step: location" do
+        put :update, id: 'the_project', 
+          project: FactoryGirl.attributes_for(:project_for_the_project_step)
+        response.should redirect_to subject.send(:wizard_path, :location)
+      end
+    end
+
+    context "when invalid attributes" do
+      it "does not update project" do
+        put :update, id: 'the_project', 
+          project: FactoryGirl.attributes_for(:invalid_project_for_the_project_step)
+        assigns(:project).name.should eq(nil)
+        assigns(:project).team_mode.should eq(nil)
+      end
+
+      it "redirects to same step: the_project" do
+        put :update, id: 'the_project', 
+          project: FactoryGirl.attributes_for(:invalid_project_for_the_project_step)
+        response.should render_template("the_project")
       end
     end
   end

@@ -84,4 +84,55 @@ FactoryGirl.define do
     factory :invalid_project_for_the_project_step, traits: [:invalid]
   end
 
+  factory :project_for_location_step, parent: :project_for_the_project_step do
+    location_private false
+    address "street address"
+    internet_distance "on_site_free"
+    location_type "urban"
+    transportation_available ["", "private_team_vehicle"]
+    location_description "describe your city/area"
+    culture_description "describe the culture of the area"
+  
+    trait :invalid do
+      location_private nil
+      address nil
+    end
+  
+    factory :invalid_project_for_location_step, traits: [:invalid]
+
+  end
+
+  factory :project_for_content_step, parent: :project_for_location_step do
+    description "project description"
+    housing_type "dormitory"
+    dining_location "cafeteria"
+    housing_description "housing description"
+    safety_level "never_walk_alone"
+    challenges_description "challenges description"
+    typical_attire "very_modest"
+    guidelines_description "guidelines description"
+
+    trait :invalid do
+      description nil
+      housing_description ""
+      challenges_description ""
+    end
+
+    factory :invalid_project_for_content_step, traits: [:invalid]
+
+  end
+
+  factory :project_for_agreement_step, parent: :project_for_content_step do
+    agree_memo "1"
+    agree_to_transport "1"
+
+    trait :invalid do
+      agree_memo "0"
+      agree_to_transport "0"
+    end
+
+    factory :invalid_project_for_agreement_step, traits: [:invalid]
+
+  end
+
 end

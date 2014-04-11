@@ -106,7 +106,7 @@ describe ProjectsSetupController do
     end
   end
 
-  describe "PUT '#update about_you'" do
+  describe "PUT '#update project step: about_you'" do
      
     it "creates a project by default" do
       expect {
@@ -178,7 +178,7 @@ describe ProjectsSetupController do
     end
   end
 
-  describe "PUT '#update the_project'" do
+  describe "PUT '#update project step: the_project'" do
 
     context "when valid attributes" do
       it "updates project" do
@@ -214,6 +214,120 @@ describe ProjectsSetupController do
         put :update, id: 'the_project', 
           project: FactoryGirl.attributes_for(:invalid_project_for_the_project_step)
         response.should render_template("the_project")
+      end
+    end
+  end
+
+  describe "PUT '#update project step: location" do
+    context "when valid attributes" do
+
+      it "updates project" do
+        put :update, id: 'location',
+          project: FactoryGirl.attributes_for(:project_for_location_step)
+        assigns(:project).location_private.should eq(false)
+        assigns(:project).address.should eq("street address")
+        assigns(:project).internet_distance.should eq("on_site_free")
+        assigns(:project).location_type.should eq("urban")
+        #assigns(:project).transportation_available.should =~ ["private_team_vehicle"]
+        assigns(:project).location_description.should eq("describe your city/area")
+        assigns(:project).culture_description.should eq("describe the culture of the area")
+      end
+
+      it "redirects to next step: content" do
+        put :update, id: 'location', 
+          project: FactoryGirl.attributes_for(:project_for_location_step)
+        response.should redirect_to subject.send(:wizard_path, :content)
+      end
+    end
+
+    context "when invalid attributes" do
+
+      it "does not update project" do
+        put :update, id: 'the_project', 
+          project: FactoryGirl.attributes_for(:invalid_project_for_location_step)
+        assigns(:project).location_private.should eq(nil)
+        assigns(:project).address.should eq(nil)
+      end
+
+      it "redirects to same step: location" do
+        put :update, id: 'location', 
+          project: FactoryGirl.attributes_for(:invalid_project_for_location_step)
+        response.should render_template("location")
+      end
+    end
+  end
+
+  describe "PUT '#update project step: content" do
+    context "when valid attributes" do
+
+      it "updates project" do
+        put :update, id: 'content',
+          project: FactoryGirl.attributes_for(:project_for_content_step)
+        assigns(:project).description.should eq("project description")
+        assigns(:project).housing_type.should eq("dormitory")
+        assigns(:project).dining_location.should eq("cafeteria")
+        assigns(:project).housing_description.should eq("housing description")
+        assigns(:project).safety_level.should eq("never_walk_alone")
+        assigns(:project).challenges_description.should eq("challenges description")
+        assigns(:project).typical_attire.should eq("very_modest")
+        assigns(:project).guidelines_description.should eq("guidelines description")
+      end
+
+      it "redirects to next step: agreement" do
+        put :update, id: 'content', 
+          project: FactoryGirl.attributes_for(:project_for_content_step)
+        response.should redirect_to subject.send(:wizard_path, :agreement)
+      end
+    end
+
+    context "when invalid attributes" do
+
+      it "does not update project" do
+        put :update, id: 'content', 
+          project: FactoryGirl.attributes_for(:invalid_project_for_content_step)
+        assigns(:project).description.should eq(nil)
+        assigns(:project).housing_description.should eq("")
+        assigns(:project).challenges_description.should eq("")
+      end
+
+      it "redirects to same step: content" do
+        put :update, id: 'content', 
+          project: FactoryGirl.attributes_for(:invalid_project_for_content_step)
+        response.should render_template("content")
+      end
+    end
+  end
+
+  describe "PUT '#update project step: agreement" do
+    context "when valid attributes" do
+
+      it "updates project" do
+        put :update, id: 'agreement',
+          project: FactoryGirl.attributes_for(:project_for_agreement_step)
+        assigns(:project).agree_memo.should eq("1")
+        assigns(:project).agree_to_transport.should eq("1")
+      end
+
+      it "redirects to next step: confirmation" do
+        put :update, id: 'agreement', 
+          project: FactoryGirl.attributes_for(:project_for_agreement_step)
+        response.should redirect_to subject.send(:wizard_path, :confirmation)
+      end
+    end
+
+    context "when invalid attributes" do
+
+      it "does not update project" do
+        put :update, id: 'agreement', 
+          project: FactoryGirl.attributes_for(:invalid_project_for_agreement_step)
+        assigns(:project).agree_memo.should eq("0")
+        assigns(:project).agree_to_transport.should eq("0")
+      end
+
+      it "redirects to same step: agreement" do
+        put :update, id: 'agreement', 
+          project: FactoryGirl.attributes_for(:invalid_project_for_agreement_step)
+        response.should render_template("agreement")
       end
     end
   end

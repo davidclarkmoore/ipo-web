@@ -166,7 +166,7 @@ describe ProjectsSetupController do
           put :update, id: 'about_you',
             project: { organization_attributes: FactoryGirl.attributes_for(:invalid_organization) }, 
             is_new_organization: "true"
-        }.to_not change(FieldHost,:count)
+        }.to_not change(Organization,:count)
       end
 
       it "redirects to same step: about_you" do

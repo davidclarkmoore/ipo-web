@@ -27,7 +27,6 @@ en:
   browse_all_projects: "Browse All Projects"
 
   challenges_at_your_location: "Challenges at your location"
-  challenges_description: "Challenges at project"
   choose_a_session_period: "Choose a session period"
   choose_existing: "Choose Existing"
   city_province_postal_code: "City, Province or Postal Code.."
@@ -36,7 +35,6 @@ en:
   confirmation_has_been_mail_to: "Confirmation has been mailed to"
   course_sites_info: "Course Sites Info"
   cross_cultural_experience_requirement: "Cross-Cultural Experience Requirement"
-  culture_description: "Cultural Description"
 
   date_of_birth: "Date of birth"
   dashboard: "Dashboard"
@@ -81,7 +79,6 @@ en:
   global_customized_internships_in_your_field: "Global customized internships in your field of study"
   grid: "Grid"
   go: "Go"
-  guidelines_description: "Guidelines"
 
   had_you_event_applied_to_an_ipo_connection_program_before: "Had you ever applied to an IPO Connection program before?"
   highest_education_completed: "Highest education completed"
@@ -111,7 +108,6 @@ en:
   length_of_combined_sessions: "Length of combined sessions must not exceed 1 year"
   list: "List"
   location_and_region: "Location & Region"
-  location_description: "Location Description"
   login_to_course_sites: "Login to Course Sites"
 
   making_the_ipo_connection: "*Making the IPO Connection*"

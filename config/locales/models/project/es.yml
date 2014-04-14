@@ -111,3 +111,8 @@ es:
         casual_work: "Casual"
         very_informal: "Informal"
         culturally_appropiate_dress_required: "Culturalmente apropiado"
+  culture_description: "Descripción de la Cultura"
+  location_description: "Descripción del Lugar"
+  challenges_description: "Descripción de los Retos"
+  guidelines_description: "Descripción de las Guías"
+  housing_description: "Descripción del Hospedaje"

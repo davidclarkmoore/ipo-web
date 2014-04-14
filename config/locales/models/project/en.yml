@@ -110,3 +110,8 @@ en:
         casual_work: "Casual Work"
         very_informal: "Very Informal"
         culturally_appropiate_dress_required: "Culturally Appropriate Dress Required"
+  culture_description: "Culture Description"
+  location_description: "Location Description"
+  challenges_description: "Challenges Description"
+  guidelines_description: "Guidelines Description"
+  housing_description: "Housing Description"

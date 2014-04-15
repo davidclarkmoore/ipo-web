@@ -56,4 +56,7 @@
               %h4= t(:how_did_your_hear_about_ipo_connection)
               = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false, :input_html => {:data => {:toggle => "checkbox"}}
 
-    .container= f.submit t(:save_and_continue_to_step_2), class: "button button-orange"
+    .container
+      = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"
+      - if flash[:editing_mode]
+        = render 'save_and_finish_button', f: f

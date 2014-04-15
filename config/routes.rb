@@ -15,7 +15,7 @@ IpoWeb::Application.routes.draw do
     put 'logins/:id' => 'devise/registrations#update', as: 'login_registration'
   end
 
-  resources :projects_setup, path: "/projects/setup", only: [:index, :show, :update]
+  resources :projects_setup, path: "/projects/setup", only: [:index, :show, :update, :edit]
   resources :projects do
     resources :project_media, as: 'media', path: 'media', only: [:create]
   end

@@ -25,6 +25,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    authorize! :edit, Project.find(params[:id])
+    session[:project_id] = params[:id]
+    session[:editing_project] = true
+    redirect_to projects_setup_path(:about_you)
+  end
 
   def show
     @p = Project.find(params[:id])

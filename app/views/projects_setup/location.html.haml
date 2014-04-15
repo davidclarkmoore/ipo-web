@@ -19,3 +19,5 @@
     = f.input :culture_description, as: :text, label: t(:describe_the_culture_area), placeholder: t(:enter_few_sentences_on_your_culture)
 
     = f.submit t(:save_and_continue_to_step_4), class: "button button-orange"
+    - if flash[:editing_mode]
+      = render 'save_and_finish_button', f: f

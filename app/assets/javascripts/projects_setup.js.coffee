@@ -101,7 +101,7 @@ jQuery ->
       required: true
     $("#project_name").rules "add",
       required: true
-      uniqueness: ["/unique/project/name", "project name"]
+      uniqueness: ["/unique/project/name", "project name"] 
     $("#project_min_students").rules "add",
       required: true
       number: true

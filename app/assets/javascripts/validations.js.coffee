@@ -1,4 +1,6 @@
 jQuery.validator.addMethod "uniqueness", ((value, element, params) ->
+    #if value already exists in the database do not validate (for editing)
+    return true if ($(element).data("name") == $(element).val())
     result = $.ajax(
       type: "GET"
       url: "#{params[0]}/#{value}"

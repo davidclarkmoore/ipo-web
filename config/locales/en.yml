@@ -256,3 +256,9 @@ en:
   your_session: "Your Session: "
   your_student_applications: "Your Student Applications"
   your_background: "Your Background"
+  
+  activerecord:
+    errors:
+      models:
+        refinery/image:
+          too_smaller: The %{dimension} is smaller than %{size} px

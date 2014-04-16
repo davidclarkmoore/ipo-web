@@ -13,75 +13,18 @@ describe ProjectsSetupController do
     end
   end
 
-  describe "GET '#show about_you'" do
-    it "returns http success" do
-      get :show, id: 'about_you'
-      response.should be_success
-    end
+  %w(about_you the_project location content 
+    agreement confirmation).each do |step|
+    describe "GET '#show #{step}'" do
+      it "returns http success" do
+        get :show, id: step
+        response.should be_success
+      end
 
-    it 'renders the about_you template' do
-      get :show, id: 'about_you'
-      response.should render_template("about_you")
-    end
-  end
-
-  describe "GET #show the_project" do
-    it "return http success" do
-      get :show, id: 'the_project'
-      response.should be_success
-    end
-
-    it "return the the_project template" do
-      get :show, id: 'the_project'
-      response.should render_template("the_project")
-    end
-  end
-
-  describe "GET #show location" do
-    it "return http success" do
-      get :show, id: 'location'
-      response.should be_success
-    end
-
-    it "return the location template" do
-      get :show, id: 'location'
-      response.should render_template("location")
-    end
-  end
-
-  describe "GET #show content" do
-    it "return http success" do
-      get :show, id: 'content'
-      response.should be_success
-    end
-
-    it "return the content template" do
-      get :show, id: 'content'
-      response.should render_template("content")
-    end
-  end
-
-  describe "GET #show agreement" do
-    it "return http success" do
-      get :show, id: 'agreement'
-      response.should be_success
-    end
-
-    it "return the agreement template" do
-      get :show, id: 'agreement'
-      response.should render_template("agreement")
-    end
-  end
-
-  describe "GET #show confirmation" do
-    it "return http success" do
-      get :show, id: 'confirmation'
-      response.should be_success
-    end
-
-    it "return the confirmation template" do
-      get :show, id: 'confirmation'
-      response.should render_template("confirmation")
+      it 'renders the #{step} template' do
+        get :show, id: step
+        response.should render_template(step)
+      end
     end
   end
 

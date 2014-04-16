@@ -323,3 +323,10 @@ en:
       models:
         refinery/image:
           too_smaller: The %{dimension} is smaller than %{size} px
+
+  enumerize:
+    refinery/image:
+      footer_category:
+        explore: explore
+        about: about ipo
+        resources: resources

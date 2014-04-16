@@ -542,7 +542,8 @@ CREATE TABLE refinery_pages (
     view_template character varying(255),
     layout_template character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    footer_category character varying(255)
 );
 
 
@@ -1489,35 +1490,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140204231710');
 INSERT INTO schema_migrations (version) VALUES ('20140211152146');
 
 INSERT INTO schema_migrations (version) VALUES ('20140211153034');
-
-INSERT INTO schema_migrations (version) VALUES ('20140404193239');
-
 INSERT INTO schema_migrations (version) VALUES ('20140414193121');
 
-INSERT INTO schema_migrations (version) VALUES ('20140429005540');
-
-INSERT INTO schema_migrations (version) VALUES ('20140501000237');
-
-INSERT INTO schema_migrations (version) VALUES ('20140502160507');
-
-INSERT INTO schema_migrations (version) VALUES ('20140519154629');
-
-INSERT INTO schema_migrations (version) VALUES ('20140520235541');
-
-INSERT INTO schema_migrations (version) VALUES ('20140603015231');
-
-INSERT INTO schema_migrations (version) VALUES ('20140620000441');
-
-INSERT INTO schema_migrations (version) VALUES ('20140621005243');
-
-INSERT INTO schema_migrations (version) VALUES ('20140625131247');
-
-INSERT INTO schema_migrations (version) VALUES ('20140626000629');
-
-INSERT INTO schema_migrations (version) VALUES ('20140711005939');
-
-INSERT INTO schema_migrations (version) VALUES ('20140718195026');
-
-INSERT INTO schema_migrations (version) VALUES ('20140718195600');
-
-INSERT INTO schema_migrations (version) VALUES ('20140719215236');
+INSERT INTO schema_migrations (version) VALUES ('20140416192542');

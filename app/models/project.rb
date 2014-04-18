@@ -2,19 +2,20 @@ class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
   salesforce "Project__c", 
-    [ :name, :description, :location_private, :min_students, 
-      :min_stay_duration, :student_educational_requirement, :dining_location, 
-      :housing_type, :internet_distance, :location_type,
-      :safety_level, :transportation_available, :typical_attire,
-      :max_students, :related_student_passions, :created_at, :culture_description, 
-      :challenges_description, :guidelines_description, :housing_description, 
-      :location_description, :agree_to_transport, :updated_at,
-      :team_mode, :wizard_status, :per_week_cost, :per_week_cost_final, 
-      :agree_memo ], 
-    { address: "Location_Street_Address__c",
-      related_fields_of_study: "Related_Fields_of_Study__c",
-      organization_id: "Organization_ID__c",
-      field_host_id: "Field_Host_ID__c" } 
+    [ :agree_memo, :agree_to_transport, :challenges_description,
+      :created_at, :culture_description, :description, 
+      :dining_location, :guidelines_description, :housing_description,
+      :housing_type, :internet_distance, :location_description,
+      :location_private, :location_type, :max_students,
+      :min_stay_duration, :min_students, :name, 
+      :per_week_cost, :per_week_cost_final, :related_fields_of_study, 
+      :related_student_passions, :required_languages, :safety_level, 
+      :student_educational_requirement, :team_mode, :transportation_available, 
+      :typical_attire, :updated_at ], #:wizard_status
+    { address: "Location_Street_Address__c" }
+    #  field_host_id: "Field_Host_ID__c"
+
+#TODO: location_city, location_country, location_state_or_province, location_street_address
 
   COMPLETE = "complete"
 
@@ -156,4 +157,9 @@ class Project < ActiveRecord::Base
   # TODO: Partial validations with wizard steps
   # validates_presence_of :name, :description
   # validates_uniqueness_of :name
+
+  def save_to_sf
+    SFRails.connection.http_post("https://cs18.salesforce.com/services/apexrest/ProjectApplication", 
+      "{ #{self.sf_json}, #{self.organization.sf_json}, #{self.field_host.sf_json} }" )
+  end
 end

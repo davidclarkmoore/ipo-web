@@ -30,17 +30,30 @@ module SFRails
     def sf_mapping_hash; self.class.sf_mapping_hash; end
 
     def create_to_sf
-      binding.pry
+      sf_object = sf_class.create(sf_values)
+      self.sf_object_id = sf_object.Id
+      self.save
+    end
+    
+    #sf_values with __c by default, send false for active_record keys
+    def sf_values( sf_keys = true )
       values = sf_mapping.inject({}) { |hash, key|
-        hash[sf_key(key)] = sf_value(key)
+        new_key = sf_keys ? sf_key(key) : key
+        hash[new_key] = sf_value(key)
         hash
       }
       sf_mapping_hash.each { |key, value|
         values[value] = sf_value(key)
       }
-      sf_object = sf_class.create(values)
-      self.sf_object_id = sf_object.Id
-      self.save
+      values
+    end
+
+    def coerced_json 
+      SFRails.connection.send(:coerced_json, sf_values, sf_class)
+    end
+
+    def sf_json
+      "\"#{self.class.name.underscore}\" : #{coerced_json}"
     end
 
     included do
@@ -78,7 +91,8 @@ module SFRails
 
     def sf_value(key)
       value = self.send(key)
-      value.class.include?(Enumerable) ? value.map(&:titleize).join(", ") : value
+      #value.class.include?(Enumerable) ? value.map(&:titleize).join(", ") : value
+      value.class.include?(Enumerable) ? value.map(&:titleize) : value
     end
 
   end

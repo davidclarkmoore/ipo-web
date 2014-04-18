@@ -1,7 +1,7 @@
 class Organization < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
-  salesforce "Organization", [:name, :organization_type]
+  salesforce "Account", [:name]
 
   enumerize :organization_type, in: %w(Nonprofit Business Individual)
 

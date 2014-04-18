@@ -57,6 +57,7 @@ class ProjectsSetupController < ApplicationController
     end
   end
 
+
   def application_deadline
     @session = Session.find(params[:id])
     respond_to do |format|

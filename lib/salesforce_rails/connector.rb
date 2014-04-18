@@ -6,7 +6,7 @@ module SFRails
   # -- TODO: Extract connector values to YML file.
   def self.connection
     return @client if @client.present?
-    @client = Databasedotcom::Client.new :host => "test.salesforce.com",
+    @client = Databasedotcom::Client.new host: SF_API_CONFIG["host"],
                                          client_id: SF_API_CONFIG["client_id"],
                                          client_secret: SF_API_CONFIG["client_secret"],
                                          verify_mode: OpenSSL::SSL::VERIFY_NONE
@@ -35,11 +35,9 @@ module SFRails
       self.save
     end
     
-    #sf_values with __c by default, send false for active_record keys
-    def sf_values( sf_keys = true )
+    def sf_values
       values = sf_mapping.inject({}) { |hash, key|
-        new_key = sf_keys ? sf_key(key) : key
-        hash[new_key] = sf_value(key)
+        hash[sf_key(key)] = sf_value(key)
         hash
       }
       sf_mapping_hash.each { |key, value|
@@ -91,7 +89,6 @@ module SFRails
 
     def sf_value(key)
       value = self.send(key)
-      #value.class.include?(Enumerable) ? value.map(&:titleize).join(", ") : value
       value.class.include?(Enumerable) ? value.map(&:titleize) : value
     end
 

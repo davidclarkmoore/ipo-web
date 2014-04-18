@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
     #  field_host_id: "Field_Host_ID__c"
 
 #TODO: location_city, location_country, location_state_or_province, location_street_address
-
+  SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
   COMPLETE = "complete"
 
   belongs_to :organization
@@ -159,7 +159,7 @@ class Project < ActiveRecord::Base
   # validates_uniqueness_of :name
 
   def save_to_sf
-    SFRails.connection.http_post("https://cs18.salesforce.com/services/apexrest/ProjectApplication", 
+    SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, 
       "{ #{self.sf_json}, #{self.organization.sf_json}, #{self.field_host.sf_json} }" )
   end
 end

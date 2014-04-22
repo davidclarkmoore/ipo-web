@@ -15,6 +15,12 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+Braintree::Configuration.environment = :sandbox
+Braintree::Configuration.merchant_id = "dpgdj56q4k48yf6t"
+Braintree::Configuration.public_key = "6bwd3s9m8jtpchhr"
+Braintree::Configuration.private_key = "b41f16fcd3acadce926f8ae142fdc5a1"
+BRAINTREE_CONFIG = {}
+BRAINTREE_CONFIG[:client_side_encryption_key] = 'MIIBCgKCAQEAuFLoPgLPluvE7opHyBqTZZzrQ5Qr4csM+qLeGz5stt7f2FJ7bPIc093JNkWr4cq1U6WEjilBhAdHcrMUIZa3jNm0U7OgHf1/BOFU7owJfplHMcU1eE8hpEJjK1jhZWS8Bjki1lDiFf3dZy41JT3oM2omwaoY8sS0uNPt+gI3U9ymN6uTfxBw5kMcp3+jVRRSeF1QpFNzFsOAZMj+wVAQUEyOPk0ZuQmSDD/fkodvQVysjXON4SNC2yduQePNsDUg+37XOFcipk3fpysIFJ1ytErhVWvtt0gfSVw+0fE61wND3VbcQZSM/GSqihY5wJhgojT+16lu0dgNTMjhLwFkywIDAQAB'
 module IpoWeb
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

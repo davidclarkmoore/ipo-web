@@ -109,9 +109,13 @@ module ApplicationHelper
 
     current_login.entity if is_student?
   end
-
   def current_user
     current_login
+  end
+
+  def available_countries
+    braintree_country_alpha_2_codes = Braintree::Address::CountryNames.map {|country| country[1]}
+    Carmen::Country.all.select { |country| braintree_country_alpha_2_codes.include?(country.alpha_2_code) }.sort_by(&:name)
   end
 
 end

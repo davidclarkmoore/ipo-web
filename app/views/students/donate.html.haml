@@ -1,0 +1,61 @@
+.container
+  %h1 Donate
+  =form_tag student_donating_path(@student), :id => 'donate_form' do
+    %fieldset
+      %p.c6
+        %label Your first name:
+        = text_field_tag 'customer[first_name]', '', required: true
+      %p.c6.omega
+        %label Your last name:
+        = text_field_tag 'customer[last_name]', '', required: true
+      %p.c6
+        %label Card Number:
+        = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[number]", value: "", required: true
+      %p.c6.omega
+        %label CVV:
+        = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[cvv]", value: "", required: true
+      %p.c6
+        %label Amount:
+        = number_field_tag :amount, '', min: 1, required: true
+      %p.c6.omega
+        %label Expiration Date:
+        = select_month(Date.today, field_name: "expiration_month", add_month_numbers: true, prefix: "card")
+        = select_year(Date.today, field_name: "expiration_year", start_year: 2005, prefix: "card")
+      %p.c6
+        %label Cardholder Name:
+        = text_field_tag 'card[cardholder_name]'
+    %fieldset
+      %h2 Billing Information
+      %p.c6
+        %label Phone:
+        = phone_field_tag 'customer[phone]'
+      %p.c6.omega
+        %label Email:
+        = email_field_tag 'customer[email]'
+      %p.c6
+        %label Address #1:
+        = text_field_tag 'billing[street_address]'
+      %p.c6.omega
+        %label Address #2:
+        = text_field_tag 'billing[extended_address]'
+      %p.c6
+        %label Locality:
+        = text_field_tag 'billing[locality]'
+      %p.c6.omega
+        %label Region:
+        = text_field_tag 'billing[region]'
+      %p.c6
+        %label Country:
+        = country_select :billing, :country_code_alpha2, priority: %w(CA)
+      %p.c6.omega
+        %label Postal Code
+        = text_field_tag 'billing[postal_code]'
+      %p.c6
+        = submit_tag "Donate", class: 'button button-blue'
+
+:plain
+  <script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js"></script>
+
+:javascript
+  var braintree = Braintree.create("#{BRAINTREE_CONFIG[:client_side_encryption_key]}");
+  braintree.onSubmitEncryptForm('donate_form');

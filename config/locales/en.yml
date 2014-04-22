@@ -261,7 +261,29 @@ en:
   your_session: "Your Session: "
   your_student_applications: "Your Student Applications"
   your_background: "Your Background"
-  
+
+  # Profile Page
+  about_me: "About me"
+  my_project: "My Project %{project}, %{address}"
+  spread_word: "Spread the word"
+  give_to_the_project: "Give to the project"
+  donate_to_this_project: "Donate to this Project"
+  donation_cover_the_following: "Donation cover the following costs: "
+  housing_and_food: "Housing and Food for Student"
+  cost_associated_with_rutine: "Costs associated with running project"
+  training_costs: "Training costs for Students"
+  quick_details: "Quick Details"
+  project: "Project: %{project}, %{address}"
+  session: "Session: %{range}"
+  internet_access: "Internet Access: %{internet}"
+  project_type: "Project Type: %{type}"
+  how_to_contact_me: "How to contact me"
+  share_this: "Share this!"
+  events: "Events"
+  checkout_one_of_our_mobilization_events: "Checkout one of our mobilization events, webinars or fundraisers!"
+  support_ipo: "Support IPO"
+  give_to_students_or_projects: "Give to students & projects or tell the world about us!"
+
   activerecord:
     errors:
       models:

@@ -24,7 +24,8 @@ class Student < ActiveRecord::Base
   belongs_to :spiritual_reference, class_name: "Reference", dependent: :destroy
   has_one :login, as: :entity, dependent: :destroy
   has_many :student_applications, dependent: :destroy
-  has_many :projects, through: :student_applications
+  has_many :project_sessions, through: :student_applications
+  has_many :projects, through: :project_sessions
   delegate :email, to: :login
 
   accepts_nested_attributes_for :login

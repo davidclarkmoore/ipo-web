@@ -431,6 +431,7 @@ DEPENDENCIES
   capistrano
   capistrano-sidekiq
   capybara
+  carmen-rails
   carrierwave
   cocoon
   coffee-rails (~> 3.2.1)

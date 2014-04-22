@@ -44,9 +44,9 @@ gem "searchkick"
 gem 'ransack'
 
 gem 'braintree'
+
 gem 'faraday'
 
-#gem 'carmen-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -90,7 +90,10 @@ group :test, :development do
   gem "pry"
   gem "pry-debugger"
 end
+<<<<<<< HEAD
 
 group :test do
   gem 'fake_braintree'
 end
+=======
+>>>>>>> Add integration with braintree in student show page

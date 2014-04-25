@@ -68,7 +68,7 @@ en:
   enter_few_sentences_on_your_area: "Enter a few sentences on your area, region or city. What will students experience while they\'re at your location?"
   enter_few_sentences_on_your_culture: "Enter a few sentences on your culture, events, the people, history, art, people\'s interests, their living, etc..."
   explore_by: "Explore By"
-  explore_ipo_connection_projects: "Explore IPO Connection Projects"
+  explore_ipo_connection_projects: "Explore Converge Projects"
 
   field_fees: "*Field Fees*"
   field_fees_include_housing_food_and_local_travel: "Field Fees include housing, food, and local travel expenses and they vary according to the length of stay and location of the Project."
@@ -80,11 +80,11 @@ en:
   grid: "Grid"
   go: "Go"
 
-  had_you_event_applied_to_an_ipo_connection_program_before: "Had you ever applied to an IPO Connection program before?"
+  had_you_event_applied_to_an_ipo_connection_program_before: "Had you ever applied to a YWAM Converge program before?"
   highest_education_completed: "Highest education completed"
   housing_and_meals: "Housing & Meals"
   housing: "Housing"
-  how_did_your_hear_about_ipo_connection: "How did you hear about the IPO Connection?"
+  how_did_your_hear_about_ipo_connection: "How did you hear about YWAM Converge?"
   how_do_you_know_this_person: "How do you know this person?"
   how_far_away_is_the_internet: "How far away is the Internet?"
 
@@ -110,7 +110,7 @@ en:
   location_and_region: "Location & Region"
   login_to_course_sites: "Login to Course Sites"
 
-  making_the_ipo_connection: "*Making the IPO Connection*"
+  making_the_ipo_connection: "*Making the Converge Connection*"
   manage_account: "Manage Account"
   map: "Map"
   max_number_of_students: "Max. number of students you can house at any one time?"
@@ -126,7 +126,7 @@ en:
   no_projects_available: "Oops, there are too many filters and we don't have any projects to show"
 
   oldest: "Oldest"
-  once_accepted_we_will_send_a_supplemental_information: "Once accepted, we will send a Supplemental Information Form with instructions for participation, including fund raising, insurance, and the IPO online course. "
+  once_accepted_we_will_send_a_supplemental_information: "Once accepted, we will send a Supplemental Information Form with instructions for participation, including fund raising, insurance, and the Converge online course. "
   or_upload_from_your_computer: "Or upload from your computer"
 
   passion_areas: "Passion Areas"
@@ -203,7 +203,7 @@ en:
 
   tag_all_related_passions: "Tag All Related Student Passions"
   tag_all_related_fields_of_study: "Tag all related fields of study that would benefit this project"
-  talk_soon_ipo_support_staff: "Talk soon! ~ IPO Support Staff*"
+  talk_soon_ipo_support_staff: "Talk soon! ~ Converge Support Staff*"
   team: "Team"
   team_mode: "Team Mode"
   terms_and_conditions: "Terms and Conditions"
@@ -212,9 +212,9 @@ en:
   the_field_host: "THE FIELD HOST"
   the_field_project_host_has_agreed_to_arrange_for_your_arrival_pick_up: "The Field Project Host has agreed to arrange for your arrival pick up and daily oversight during your internship stay. Your Host has also agreed to help you get acquainted with the culture, the community, and the project personnel. Please understand, you will be expected to abide by the community-corporate culture guidelines as outlined by the Host. "
   the_internet: "THE INTERN"
-  the_ipo_course_tuition_does_not_include_field_fees: "The IPO Course Tuition does not include Field Fees, Travel Expenses or Personal Spending Money. "
-  the_ipo_connection_internship_is_designed_to_extend_and_further: "The IPO Connection internship is designed to extend and further your cross-cultural experiences. We require applying students to have at least one cross-cultural experience. If you yet have a cross-cultural experience, we encourage you to find an opportunity before applying."
-  the_ipo_tuition_and_field_fees_do_not_include_tral_expenses: "The IPO Tuition and Field Fees do not include travel expenses to and from your home, passport and visa fees, and/or personal travel and personal items. "
+  the_ipo_course_tuition_does_not_include_field_fees: "The Converge Course Tuition does not include Field Fees, Travel Expenses or Personal Spending Money. "
+  the_ipo_connection_internship_is_designed_to_extend_and_further: "The Converge Fellowship is designed to extend and further your cross-cultural experiences. We require applying students to have at least one cross-cultural experience. If you yet have a cross-cultural experience, we encourage you to find an opportunity before applying."
+  the_ipo_tuition_and_field_fees_do_not_include_tral_expenses: "The Converge Tuition and Field Fees do not include travel expenses to and from your home, passport and visa fees, and/or personal travel and personal items. "
   the_location: "The Location"
   the_smc_mentor: "THE MENTOR"
   the_project: "The Project"
@@ -233,8 +233,8 @@ en:
 
   we_setup_an_account_for_you_so_you_can_check_your_application_status: "We'll setup an account for you so you can check your application status, update your info, access important material and setup a funraising page!"
   we_require_that_projects_are_established_6_months: "We require that projects are established 6 months in advanced, but no earlier than 1 year"
-  we_require_one_academic_reference: "*We require one academic reference (professor/teacher, academic advisor, etc.). We will send them an email when you complete this application to verify their contact information and setup a quick call with an IPO Staff member.*"
-  we_require_one_spiritual_reference: "*We require one spiritual reference (pastor, campus leader, etc.). We will send them an email when you complete this application to verify their contact information and setup a quick call with an IPO Staff member.*"
+  we_require_one_academic_reference: "*We require one academic reference (professor/teacher, academic advisor, etc.). We will send them an email when you complete this application to verify their contact information and setup a quick call with an Converge Staff member.*"
+  we_require_one_spiritual_reference: "*We require one spiritual reference (pastor, campus leader, etc.). We will send them an email when you complete this application to verify their contact information and setup a quick call with an Converge Staff member.*"
   we_review_your_application_in_3_business_days: "We'll review your application in 3 business days and send an email with your status. If we need anything, we'll email or call you up."
   welcome: "Welcome, %{complete_name}"
   weve_signed_you_up_for_your_enewsletter: "We've signed you up for our eNewsletter (unsubscribe any time)"
@@ -244,7 +244,7 @@ en:
   what_has_been_your_experiencie_with_ywam: "What has your experience been with YWAM?"
   what_is_the_weekly_cost: "What is the weekly cost for hosting/feeding a student for 1 week?"
   whats_next: "What's Next!"
-  when_your_application_file_is_complete: "When your application file is complete, the Field Host will confirm your acceptance. Then your IPO Mentor will enroll you in the IPO Course online. The IPO Course has nine pre-departure lessons comprised of fifty short video interviews."
+  when_your_application_file_is_complete: "When your application file is complete, the Field Host will confirm your acceptance. Then your Converge Mentor will enroll you in the Converge Course online. The Converege Course has nine pre-departure lessons comprised of fifty short video interviews."
 
   you_dont_have_any_project_related: "You don't have any project related."
   you_dont_have_any_student_application_related: "You don't have any student application related."

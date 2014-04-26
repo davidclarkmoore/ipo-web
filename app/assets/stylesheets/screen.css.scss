@@ -167,23 +167,28 @@ body {
 }
 
 .header-bg, .header-bg-large {
-  background: url(header-bg.png) no-repeat;
-  margin-top: -25px;
-  height: 152px;
+ // background: url(header-bg.png) no-repeat;
+  background-color: white;
+  height: 100px;
   width: 100%;
   position: absolute;
   z-index: -1;
+  border-bottom: 3px solid $extra-light-grey;
 }
+
 .header-bg-large {
   background: url(header-bg-large.jpg) no-repeat;
   height: 730px;
+  margin-top: -25px;
 }
 
 .main-header { min-height: 700px; }
 
+
 header {
-  @include adjust-leading-to(5);
-  @include trailer(3);
+  @include adjust-leading-to(4);
+  @include trailer(2);
+
 
   color: white;
   -webkit-font-smoothing: antialiased;
@@ -200,6 +205,17 @@ header {
     @include span-columns(5);
     font-weight: bold;
   }
+
+// main converge logo
+
+  a {
+     img {
+        width: 250px;
+        margin-top: 1.5em;
+      }
+  }
+
+ 
 }
 
 h1.subtitle {

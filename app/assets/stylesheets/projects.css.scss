@@ -420,6 +420,32 @@ ul.weekly-cost li {
   background-color: white;
 }
 
+.bx-wrapper {
+  position: relative;
+}
+
+.bx-controls {
+  
+}
+
+.bx-controls-direction a {
+  position: absolute;
+  font-family: "comfortaa";
+  @include adjust-font-size-to(45px);
+  color: white;
+  text-decoration: none;
+  top: 50%;
+  @include text-shadow($grey 0px 0px 3px);
+}
+
+.bx-prev {
+  left: .5em;
+}
+
+.bx-next {
+  right: .5em;
+}
+
 // -------------
 // Project Search
 // -------------

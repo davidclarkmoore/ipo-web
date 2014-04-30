@@ -13,6 +13,10 @@ gem 'databasedotcom'
 gem "cocoon"
 gem 'settingslogic'
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+
 gem 'wicked'
 gem 'enumerize'
 gem 'foreigner'

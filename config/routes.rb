@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 IpoWeb::Application.routes.draw do
 
   authenticated :login do
@@ -33,6 +35,8 @@ IpoWeb::Application.routes.draw do
   get '/unique/:model/:attribute/:value' => 'uniqueness#validate', constraints: { value: /[^\/?]+/ }
 
   put "dashboards/update_login" => "dashboards#update_login"
+
+  mount Sidekiq::Web, at: '/sidekiq'
 
   mount Refinery::Core::Engine, :at => '/'
 

@@ -136,7 +136,8 @@ CREATE TABLE organizations (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
     organization_type character varying(255) NOT NULL,
-    website character varying(255)
+    website character varying(255),
+    sf_object_id character varying(255)
 );
 
 
@@ -1381,3 +1382,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140211152146');
 INSERT INTO schema_migrations (version) VALUES ('20140211153034');
 
 INSERT INTO schema_migrations (version) VALUES ('20140404193239');
+
+INSERT INTO schema_migrations (version) VALUES ('20140429005540');

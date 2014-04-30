@@ -159,7 +159,32 @@ class Project < ActiveRecord::Base
   # validates_uniqueness_of :name
 
   def save_to_sf
-    SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, 
+    # add sf_object_id to the SF mapping 
+    self.organization.class.sf_mapping_hash[:sf_object_id] = "Id" if self.organization.sf_object_id
+    self.field_host.class.sf_mapping_hash[:sf_object_id] = "Id"  if self.field_host.sf_object_id
+    self.class.sf_mapping_hash[:sf_object_id] = "Id" if self.sf_object_id
+   
+    # Databasedotcom::SalesForceError must be handled by the caller
+    response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, 
       "{ #{self.sf_json}, #{self.organization.sf_json}, #{self.field_host.sf_json} }" )
+    
+    # If no error is raised, parse the reponse and save the SF Ids
+    parsed = JSON.parse(response.body)
+    self.sf_object_id = parsed["Id"]
+    self.organization.sf_object_id = parsed["Organization__c"]
+    self.field_host.sf_object_id = parsed["FieldHost__c"]
+    self.save
+    
+    # remove sf_object_id from the SF mapping 
+    self.organization.class.sf_mapping_hash.delete(:sf_object_id)
+    self.field_host.class.sf_mapping_hash.delete(:sf_object_id)
+    self.class.sf_mapping_hash.delete(:sf_object_id)
+  end
+
+  def update_to_sf
+    self.class.sf_mapping_hash[:sf_object_id] = "Id"
+    response = SFRails.connection.http_patch( SF_PROJECT_APPLICATION_URL, 
+     "{ #{self.sf_json} }")
+    self.class.sf_mapping_hash.delete(:sf_object_id)
   end
 end

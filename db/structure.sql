@@ -247,7 +247,10 @@ CREATE TABLE projects (
     location_private boolean,
     related_fields_of_study character varying(255)[],
     related_student_passions character varying(255)[],
-    address character varying(255)
+    location_street_address character varying(255),
+    location_city character varying(255),
+    location_state_or_province character varying(255),
+    location_country character varying(255)
 );
 
 
@@ -1384,3 +1387,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140211153034');
 INSERT INTO schema_migrations (version) VALUES ('20140404193239');
 
 INSERT INTO schema_migrations (version) VALUES ('20140429005540');
+
+INSERT INTO schema_migrations (version) VALUES ('20140501000237');

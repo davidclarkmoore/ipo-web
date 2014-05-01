@@ -5,7 +5,10 @@
       %h3.center= t(:the_location)
       = f.input :location_private, as: :button_group, label: false, |
                 collection: [[t(:project_location_can_be_public), false], [t(:project_location_must_be_private), true]] |
-      = f.input :address, label: t(:street_address_include)
+      = f.input :location_street_address, label: t(:location_street_address)
+      = f.input :location_city, label: t(:location_city)
+      = f.input :location_state_or_province, label: t(:location_state_or_province)
+      = f.input :location_country, label: t(:location_country)
 
     %article
       %h3.center= t(:describe_your_region)

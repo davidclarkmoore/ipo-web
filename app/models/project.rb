@@ -5,17 +5,15 @@ class Project < ActiveRecord::Base
     [ :agree_memo, :agree_to_transport, :challenges_description,
       :created_at, :culture_description, :description, 
       :dining_location, :guidelines_description, :housing_description,
-      :housing_type, :internet_distance, :location_description,
-      :location_private, :location_type, :max_students,
+      :housing_type, :internet_distance, :location_city, :location_country,
+      :location_description, :location_private, :location_state_or_province,
+      :location_street_address, :location_type, :max_students,
       :min_stay_duration, :min_students, :name, 
       :per_week_cost, :per_week_cost_final, :related_fields_of_study, 
       :related_student_passions, :required_languages, :safety_level, 
       :student_educational_requirement, :team_mode, :transportation_available, 
-      :typical_attire, :updated_at ], #:wizard_status
-    { address: "Location_Street_Address__c" }
-    #  field_host_id: "Field_Host_ID__c"
+      :typical_attire, :updated_at ] #:wizard_status
 
-#TODO: location_city, location_country, location_state_or_province, location_street_address
   SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
   COMPLETE = "complete"
 
@@ -34,10 +32,11 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students,
     :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
-    :student_educational_requirement, :address, :internet_distance, :location_private, :location_type, :transportation_available,
-    :location_description, :culture_description, :housing_type, :dining_location, :housing_description,
-    :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport,
-    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id
+    :student_educational_requirement, :location_street_address, :location_city, :location_state_or_province, :location_country, 
+    :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description, 
+    :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description, :typical_attire, 
+    :guidelines_description, :agree_memo, :agree_to_transport, :field_host_attributes, :organization_attributes, 
+    :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
@@ -101,8 +100,8 @@ class Project < ActiveRecord::Base
   validates :min_students, :max_students, :numericality => true, :if => :complete_or_the_project?
   # -- Location
   validates :location_private, inclusion: {in: [true, false]}, :if => :complete_or_location?
-  validates :address, :internet_distance,
-      :location_description, :culture_description, :presence => true, :if => :complete_or_location?
+  validates :location_street_address, :location_city, :location_state_or_province, :location_country,
+   :internet_distance, :location_description, :culture_description, :presence => true, :if => :complete_or_location?
   # -- Content
   validates :description, :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description,
       :typical_attire, :guidelines_description, :presence => true, :if => :complete_or_content?

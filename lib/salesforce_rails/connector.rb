@@ -50,8 +50,8 @@ module SFRails
       SFRails.connection.send(:coerced_json, sf_values, sf_class)
     end
 
-    def sf_json
-      "\"#{self.class.name.underscore}\" : #{coerced_json}"
+    def sf_json( name = self.class.name.underscore )
+      "\"#{name}\" : #{coerced_json}"
     end
 
     included do

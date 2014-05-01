@@ -114,7 +114,13 @@ jQuery ->
   if $('form[action$="location"]').length > 0
     $("#project_location_private").rules "add",
       required: true
-    $("#project_address").rules "add",
+    $("#project_location_street_address").rules "add",
+      required: true
+    $("#project_location_city").rules "add",
+      required: true
+    $("#project_location_state_or_province").rules "add",
+      required: true
+    $("#project_location_country").rules "add",
       required: true
     $("#project_internet_distance").rules "add",
       required: true

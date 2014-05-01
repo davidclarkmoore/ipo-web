@@ -153,10 +153,16 @@ class Project < ActiveRecord::Base
     pretty_properties.join(", ")
   end
 
+  def full_address
+    "#{location_street_address}, #{location_city}, 
+    #{location_state_or_province}, #{location_country}"
+  end
+
   # TODO: Partial validations with wizard steps
   # validates_presence_of :name, :description
   # validates_uniqueness_of :name
 
+  #create/update object in SF
   def save_to_sf
     # add sf_object_id to the SF mapping 
     self.organization.class.sf_mapping_hash[:sf_object_id] = "Id" if self.organization.sf_object_id
@@ -180,10 +186,4 @@ class Project < ActiveRecord::Base
     self.class.sf_mapping_hash.delete(:sf_object_id)
   end
 
-  def update_to_sf
-    self.class.sf_mapping_hash[:sf_object_id] = "Id"
-    response = SFRails.connection.http_patch( SF_PROJECT_APPLICATION_URL, 
-     "{ #{self.sf_json} }")
-    self.class.sf_mapping_hash.delete(:sf_object_id)
-  end
 end

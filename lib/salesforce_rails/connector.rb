@@ -6,10 +6,12 @@ module SFRails
   # -- TODO: Extract connector values to YML file.
   def self.connection
     return @client if @client.present?
-    @client = Databasedotcom::Client.new host: SF_API_CONFIG["host"],
+    #TODO: Add exception handling
+    options = { host: SF_API_CONFIG["host"],
                                          client_id: SF_API_CONFIG["client_id"],
                                          client_secret: SF_API_CONFIG["client_secret"],
-                                         verify_mode: OpenSSL::SSL::VERIFY_NONE
+                                         verify_mode: OpenSSL::SSL::VERIFY_NONE  }
+    @client = Databasedotcom::Client.new options
 
     @client.authenticate username: SF_API_CONFIG["username"],
                          password: SF_API_CONFIG["password"] + SF_API_CONFIG["security_token"]
@@ -84,7 +86,11 @@ module SFRails
     def sf_key(key)
       sf_key = key.to_s.titleize.gsub(' ', '_')
       index = sf_class.attributes.index(sf_key) || sf_class.attributes.index(sf_key + "__c")
-      return sf_class.attributes[ index ]
+      if index
+        return sf_class.attributes[ index ]
+      else
+        return nil
+      end
     end
 
     def sf_value(key)

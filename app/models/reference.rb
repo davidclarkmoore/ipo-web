@@ -1,6 +1,10 @@
 class Reference < ActiveRecord::Base
   has_many :students
 
+  include SFRails::ActiveRecord
+  salesforce "Contact", 
+    [:phone, :created_at, :created_at, :updated_at],
+    {first_name: 'FirstName', last_name: 'LastName', sf_object_id: 'Id'}
   attr_accessible :description, :email, :first_name, :last_name, :phone
   
   validates_presence_of :first_name, :last_name, :email

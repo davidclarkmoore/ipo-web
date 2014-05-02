@@ -1,7 +1,11 @@
 class StudentApplication < ActiveRecord::Base
   COMPLETE = "complete" 
   INCOMPLETE = "incomplete"
-
+  include SFRails::ActiveRecord
+  salesforce "Opportunity", [], {end_date: 'CloseDate', name: 'Name', stage_name: 'StageName', sf_object_id: 'Id'}
+    
+  SF_STUDENT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/StudentApplication"
+  
   belongs_to :student
   belongs_to :project_session
  
@@ -17,7 +21,7 @@ class StudentApplication < ActiveRecord::Base
   scope :approved, where(status: COMPLETE)
   scope :unapproved, where(status: INCOMPLETE)
   scope :active, order(:created_at)
-
+  
   def set_incomplete_status
     self.status = INCOMPLETE
   end
@@ -30,4 +34,35 @@ class StudentApplication < ActiveRecord::Base
     wizard_status.include?('important_details') || complete?
   end
 
+  def name
+    "#{self.student.full_name} #{self.project_session.title}"
+  end
+  
+  def stage_name
+    return name
+  end
+  
+  def save_to_sf!
+    begin
+    c = SFRails.connection
+    #TODO: get a better way to compose the parameters string
+    parameters = "{\"student\" : #{self.student.coerced_json},"+
+                  " \"academic_reference\" : #{ self.student.academic_reference.coerced_json} ,"+
+                  " \"spiritual_reference\" : #{self.student.spiritual_reference.coerced_json}," +
+                  " \"student_application\" : #{self.coerced_json}, "+
+                  " \"project\" : \"#{self.project_session.project.sf_object_id}\" }"
+    response = c.http_post( SF_STUDENT_APPLICATION_URL , parameters )
+    parsed = JSON.parse(response.body)
+    self.sf_object_id = parsed["Id"]
+    self.student.sf_object_id = parsed["Contact__c"]
+    self.student.academic_reference.sf_object_id = parsed["Academic_Reference__c"]
+    self.student.spiritual_reference.sf_object_id = parsed["Spiritual_Reference__c"]
+    self.save
+    rescue Databasedotcom::SalesForceError => e
+      Rails.logger.warn "SalesForceError saving StudentApplication #{self.id}: #{e.message}"
+      return false
+    end
+    self
+  end
+  
 end

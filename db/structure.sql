@@ -285,7 +285,8 @@ CREATE TABLE "references" (
     phone character varying(255),
     description character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    sf_object_id character varying(255)
 );
 
 
@@ -731,7 +732,8 @@ CREATE TABLE student_applications (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     wizard_status character varying(255),
-    agree_terms boolean
+    agree_terms boolean,
+    sf_object_id character varying(255)
 );
 
 
@@ -1389,3 +1391,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140404193239');
 INSERT INTO schema_migrations (version) VALUES ('20140429005540');
 
 INSERT INTO schema_migrations (version) VALUES ('20140501000237');
+
+INSERT INTO schema_migrations (version) VALUES ('20140502160507');

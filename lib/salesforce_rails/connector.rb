@@ -18,6 +18,21 @@ module SFRails
     @client
   end
 
+  def self.format_parameters(parameters = {})
+      output = "{"
+      parameters.each do |key,value|
+        case value
+        when ::SFRails::ActiveRecord
+          output += " \"#{key}\" : #{value.coerced_json} ,"
+        when ::String
+          output += " \"#{key}\" : \"#{value}\" ,"
+        when ::Numeric
+          output += " \"#{key}\" : #{value} ,"
+        end
+      end
+      output[0..-2] + " }"
+    end
+  
   module ActiveRecord
     extend ActiveSupport::Concern
 
@@ -63,7 +78,7 @@ module SFRails
     def sf_json( name = self.class.name.underscore )
       "\"#{name}\" : #{coerced_json}"
     end
-
+    
     included do
       class_eval do
         attr_accessible :sf_object_id

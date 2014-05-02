@@ -4,7 +4,7 @@ class Reference < ActiveRecord::Base
   include SFRails::ActiveRecord
   salesforce "Contact", 
     [:phone, :created_at, :created_at, :updated_at],
-    {first_name: 'FirstName', last_name: 'LastName', sf_object_id: 'Id'}
+    {first_name: 'FirstName', last_name: 'LastName'}
   attr_accessible :description, :email, :first_name, :last_name, :phone
   
   validates_presence_of :first_name, :last_name, :email

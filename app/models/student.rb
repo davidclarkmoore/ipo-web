@@ -6,7 +6,7 @@ class Student < ActiveRecord::Base
     :spoken_languages, :created_at, :updated_at],
     {first_name: 'FirstName', last_name: 'LastName', birthday: 'Birthdate',
     fields_of_study: 'Fields_of_Study__c', preferred_phone: 'Phone',
-    agree_terms: 'Agree_to_Terms__c', sf_object_id: 'Id' #, heard_about_ipo: 'Heard_about_IPO__c'
+    agree_terms: 'Agree_to_Terms__c' #, heard_about_ipo: 'Heard_about_IPO__c'
     }
   
   serialize :properties, ActiveRecord::Coders::Hstore

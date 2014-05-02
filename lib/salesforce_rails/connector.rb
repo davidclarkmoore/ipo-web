@@ -36,6 +36,13 @@ module SFRails
       self.sf_object_id = sf_object.Id
       self.save
     end
+
+    def update_to_sf
+      sf.save(sf_values)
+      sf
+    end
+
+    def upsert_to_sf; sf ? update_to_sf : create_to_sf; end
     
     def sf_values
       values = sf_mapping.inject({}) { |hash, key|
@@ -45,6 +52,7 @@ module SFRails
       sf_mapping_hash.each { |key, value|
         values[value] = sf_value(key)
       }
+      values["Id"] = self.sf_object_id if self.sf_object_id
       values
     end
 

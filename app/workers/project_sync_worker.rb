@@ -6,7 +6,7 @@ class ProjectSyncWorker
 
   def perform(project_id)
     project = Project.find(project_id)
-    project.save_to_sf
+    project.save_to_sf!
   end
 
 end

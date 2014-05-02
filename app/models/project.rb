@@ -163,11 +163,7 @@ class Project < ActiveRecord::Base
   # validates_uniqueness_of :name
 
   #create/update object in SF
-  def save_to_sf
-    # add sf_object_id to the SF mapping 
-    self.organization.class.sf_mapping_hash[:sf_object_id] = "Id" if self.organization.sf_object_id
-    self.field_host.class.sf_mapping_hash[:sf_object_id] = "Id"  if self.field_host.sf_object_id
-    self.class.sf_mapping_hash[:sf_object_id] = "Id" if self.sf_object_id
+  def save_to_sf!
    
     # Databasedotcom::SalesForceError must be handled by the caller
     response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, 
@@ -180,10 +176,6 @@ class Project < ActiveRecord::Base
     self.field_host.sf_object_id = parsed["FieldHost__c"]
     self.save
     
-    # remove sf_object_id from the SF mapping 
-    self.organization.class.sf_mapping_hash.delete(:sf_object_id)
-    self.field_host.class.sf_mapping_hash.delete(:sf_object_id)
-    self.class.sf_mapping_hash.delete(:sf_object_id)
   end
 
 end

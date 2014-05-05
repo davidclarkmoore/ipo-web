@@ -166,8 +166,12 @@ class Project < ActiveRecord::Base
   def save_to_sf!
    
     # Databasedotcom::SalesForceError must be handled by the caller
-    response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, 
-      "{ #{self.sf_json}, #{self.organization.sf_json}, #{self.field_host.sf_json} }" )
+    parameters = SFRails.format_parameters({
+      project: self,
+      organization: self.organization,
+      field_host: self.field_host
+    })
+    response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, parameters )
     
     # If no error is raised, parse the reponse and save the SF Ids
     parsed = JSON.parse(response.body)

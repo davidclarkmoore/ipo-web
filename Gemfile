@@ -14,6 +14,7 @@ gem "cocoon"
 gem 'settingslogic'
 
 gem 'sidekiq'
+gem 'sidekiq-failures'
 gem 'sinatra', require: false
 gem 'slim'
 

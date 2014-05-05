@@ -8,9 +8,9 @@ module SFRails
     return @client if @client.present?
     #TODO: Add exception handling
     options = { host: SF_API_CONFIG["host"],
-                                         client_id: SF_API_CONFIG["client_id"],
-                                         client_secret: SF_API_CONFIG["client_secret"],
-                                         verify_mode: OpenSSL::SSL::VERIFY_NONE  }
+                client_id: SF_API_CONFIG["client_id"],
+                client_secret: SF_API_CONFIG["client_secret"],
+                verify_mode: OpenSSL::SSL::VERIFY_NONE }
     @client = Databasedotcom::Client.new options
 
     @client.authenticate username: SF_API_CONFIG["username"],

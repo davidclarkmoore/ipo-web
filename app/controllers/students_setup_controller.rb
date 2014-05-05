@@ -1,6 +1,5 @@
 class StudentsSetupController < ApplicationController
   before_filter :current_student_application, :clean_select_multiple_params
-  before_filter :update_wizard_status, only: :update
   include Wicked::Wizard  
   steps :about_you, :interests_and_fields_of_study, :important_details, :confirmation
   
@@ -29,9 +28,14 @@ class StudentsSetupController < ApplicationController
     end
 
     params[:student_application][:wizard_status] = step.to_s
-    params[:student_application][:wizard_status] = 'complete' if step == steps.last
+    params[:student_application][:wizard_status] = 'complete' if step == :important_details
     
     @student_application.update_attributes params[:student_application]
+    if step == :important_details
+      # create/update SF object
+      StudentApplicationSyncWorker.perform_async(@student_application.id)
+    end
+    
     create_login_session unless login_signed_in?
     render_wizard @student_application
     session[:student_application] = @student_application.id 
@@ -61,10 +65,6 @@ class StudentsSetupController < ApplicationController
 
   def create_login_session
     sign_in @student_application.student.login
-  end
-
-  def update_wizard_status
-    params[:student_application][:wizard_status] = (next_step.to_s == steps.last.to_s ? 'complete' : next_step.to_s) 
   end
 
   def clean_select_multiple_params hash = params

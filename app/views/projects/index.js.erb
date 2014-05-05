@@ -7,6 +7,7 @@ $(".total-projects").html('<%= "#{@total_projects.to_s} #{t(:total_projects)}" %
 	$('#browse_all_projects').on('click', function() {
     	$("#project_search input[type='text']").val('');
     	$("#project_search input[type='checkbox']").removeAttr('checked');
+      $("#project_search .checkbox").removeClass('checked');
     	$("#properties_related_fields_of_study").select2('data', null)
     });
 <% else

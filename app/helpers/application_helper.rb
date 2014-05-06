@@ -101,7 +101,7 @@ module ApplicationHelper
   def current_fieldhost
     return unless login_signed_in?
 
-    current_login.entity_type if is_fieldhost?
+    current_login.entity if is_fieldhost?
   end
 
   def current_student
@@ -109,4 +109,9 @@ module ApplicationHelper
 
     current_login.entity if is_student?
   end
+
+  def current_user
+    current_login
+  end
+
 end

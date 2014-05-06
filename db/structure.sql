@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -135,7 +136,8 @@ CREATE TABLE organizations (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
     organization_type character varying(255) NOT NULL,
-    website character varying(255)
+    website character varying(255),
+    sf_object_id character varying(255)
 );
 
 
@@ -245,7 +247,10 @@ CREATE TABLE projects (
     location_private boolean,
     related_fields_of_study character varying(255)[],
     related_student_passions character varying(255)[],
-    address character varying(255)
+    location_street_address character varying(255),
+    location_city character varying(255),
+    location_state_or_province character varying(255),
+    location_country character varying(255)
 );
 
 
@@ -280,7 +285,8 @@ CREATE TABLE "references" (
     phone character varying(255),
     description character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    sf_object_id character varying(255)
 );
 
 
@@ -723,12 +729,11 @@ CREATE TABLE student_applications (
     project_session_id integer,
     student_id integer,
     status character varying(255),
-    application_status character varying(255),
-    application_deadline date,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     wizard_status character varying(255),
-    agree_terms boolean
+    agree_terms boolean,
+    sf_object_id character varying(255)
 );
 
 
@@ -785,7 +790,8 @@ CREATE TABLE students (
     cover_photo character varying(255),
     biography text,
     public_contact_information text,
-    published_status boolean DEFAULT false
+    published_status boolean DEFAULT false,
+    sf_object_id character varying(255)
 );
 
 
@@ -1379,3 +1385,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140204231710');
 INSERT INTO schema_migrations (version) VALUES ('20140211152146');
 
 INSERT INTO schema_migrations (version) VALUES ('20140211153034');
+
+INSERT INTO schema_migrations (version) VALUES ('20140404193239');
+
+INSERT INTO schema_migrations (version) VALUES ('20140429005540');
+
+INSERT INTO schema_migrations (version) VALUES ('20140501000237');
+
+INSERT INTO schema_migrations (version) VALUES ('20140502160507');

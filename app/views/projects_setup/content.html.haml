@@ -40,4 +40,6 @@
         = f.input :guidelines_description, as: :text, label: false, placeholder: t(:describe_your_project_andor_organization)
 
       = f.submit t(:save_and_continue_to_step_5), class: "button button-orange"
+      - if flash[:editing_mode]
+        = render 'save_and_finish_button', f: f
   = render 'media_progress'

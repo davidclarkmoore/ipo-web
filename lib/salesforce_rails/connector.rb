@@ -6,15 +6,33 @@ module SFRails
   # -- TODO: Extract connector values to YML file.
   def self.connection
     return @client if @client.present?
-    @client = Databasedotcom::Client.new client_id: SF_API_CONFIG["client_id"],
-                                         client_secret: SF_API_CONFIG["client_secret"],
-                                         verify_mode: OpenSSL::SSL::VERIFY_NONE
+    #TODO: Add exception handling
+    options = { host: SF_API_CONFIG["host"],
+                client_id: SF_API_CONFIG["client_id"],
+                client_secret: SF_API_CONFIG["client_secret"],
+                verify_mode: OpenSSL::SSL::VERIFY_NONE }
+    @client = Databasedotcom::Client.new options
 
     @client.authenticate username: SF_API_CONFIG["username"],
                          password: SF_API_CONFIG["password"] + SF_API_CONFIG["security_token"]
     @client
   end
 
+  def self.format_parameters(parameters = {})
+      output = "{"
+      parameters.each do |key,value|
+        case value
+        when ::SFRails::ActiveRecord
+          output += " \"#{key}\" : #{value.coerced_json} ,"
+        when ::String
+          output += " \"#{key}\" : \"#{value}\" ,"
+        when ::Numeric
+          output += " \"#{key}\" : #{value} ,"
+        end
+      end
+      output[0..-2] + " }"
+    end
+  
   module ActiveRecord
     extend ActiveSupport::Concern
 
@@ -25,7 +43,42 @@ module SFRails
 
     def sf_class; self.class.sf; end
     def sf_model_name; self.class.sf_model_name; end
+    def sf_mapping; self.class.sf_mapping; end
+    def sf_mapping_hash; self.class.sf_mapping_hash; end
 
+    def create_to_sf
+      sf_object = sf_class.create(sf_values)
+      self.sf_object_id = sf_object.Id
+      self.save
+    end
+
+    def update_to_sf
+      sf.save(sf_values)
+      sf
+    end
+
+    def upsert_to_sf; sf ? update_to_sf : create_to_sf; end
+    
+    def sf_values
+      values = sf_mapping.inject({}) { |hash, key|
+        hash[sf_key(key)] = sf_value(key)
+        hash
+      }
+      sf_mapping_hash.each { |key, value|
+        values[value] = sf_value(key)
+      }
+      values["Id"] = self.sf_object_id if self.sf_object_id
+      values
+    end
+
+    def coerced_json 
+      SFRails.connection.send(:coerced_json, sf_values, sf_class)
+    end
+
+    def sf_json( name = self.class.name.underscore )
+      "\"#{name}\" : #{coerced_json}"
+    end
+    
     included do
       class_eval do
         attr_accessible :sf_object_id
@@ -33,11 +86,12 @@ module SFRails
     end
 
     module ClassMethods
-      attr_accessor :sf_model_name, :sf_mapping
+      attr_accessor :sf_model_name, :sf_mapping, :sf_mapping_hash
 
-      def salesforce(model_name, mapping)
+      def salesforce(model_name, mapping = [], mapping_hash = {})
         self.sf_model_name = model_name;
         self.sf_mapping = mapping
+        self.sf_mapping_hash = mapping_hash
       end
 
       def sf
@@ -49,6 +103,24 @@ module SFRails
       end
 
     end
+
+    private
+
+    def sf_key(key)
+      sf_key = key.to_s.titleize.gsub(' ', '_')
+      index = sf_class.attributes.index(sf_key) || sf_class.attributes.index(sf_key + "__c")
+      if index
+        return sf_class.attributes[ index ]
+      else
+        return nil
+      end
+    end
+
+    def sf_value(key)
+      value = self.send(key)
+      value.class.include?(Enumerable) ? value.map(&:titleize) : value
+    end
+
   end
 
   module Adapter

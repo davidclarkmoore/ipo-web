@@ -1,7 +1,14 @@
 class Student < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
-  salesforce "Student", [:first_name, :last_name, :birthday, :gender]
+  salesforce "Contact", 
+    [:gender, :created_at, :description,:marital_status,
+    :spoken_languages, :created_at, :updated_at],
+    {first_name: 'FirstName', last_name: 'LastName', birthday: 'Birthdate',
+    fields_of_study: 'Fields_of_Study__c', preferred_phone: 'Phone',
+    agree_terms: 'Agree_to_Terms__c' #, heard_about_ipo: 'Heard_about_IPO__c'
+    }
+  
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :overall_education, :graduation_year, :agree_terms
@@ -54,4 +61,6 @@ class Student < ActiveRecord::Base
   def published_status_to_string
     self.published_status ? "published" : "draft"
   end
+  
+  def agree_terms; properties["agree_terms"] == "1" ? true : false; end;
 end

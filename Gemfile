@@ -5,12 +5,18 @@ gem 'jquery-ui-rails'
 gem 'jquery-rails', "~> 2.3.0"
 
 gem "devise"
+gem "cancan"
 gem 'haml'
 gem 'simple_form'
 gem 'ransack'
 gem 'databasedotcom'
 gem "cocoon"
 gem 'settingslogic'
+
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sinatra', require: false
+gem 'slim'
 
 gem 'wicked'
 gem 'enumerize'

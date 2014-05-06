@@ -3,7 +3,7 @@
   = simple_form_for @project, url: wizard_path, method: :put do |f|
     %article
       %h3.center= t(:the_project)
-      = f.input :name, label: t(:internship_project_name)
+      = f.input :name, label: t(:internship_project_name), input_html: { data: { name: @project.name } }
 
       .teams_or_individuals
         %h4.center.teams-individual= t(:are_you_interested_in_teams_or_individuals)
@@ -48,3 +48,5 @@
         = f.input :student_educational_requirement, label: t(:student_educational_requirement)
 
       = f.submit t(:save_and_continue_to_step_3), class: "button button-orange"
+      - if flash[:editing_mode]
+        = render 'save_and_finish_button', f: f

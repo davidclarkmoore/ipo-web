@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 IpoWeb::Application.routes.draw do
 
   authenticated :login do
@@ -15,7 +17,7 @@ IpoWeb::Application.routes.draw do
     put 'logins/:id' => 'devise/registrations#update', as: 'login_registration'
   end
 
-  resources :projects_setup, path: "/projects/setup", only: [:index, :show, :update]
+  resources :projects_setup, path: "/projects/setup", only: [:index, :show, :update, :edit]
   resources :projects do
     resources :project_media, as: 'media', path: 'media', only: [:create]
   end
@@ -33,6 +35,8 @@ IpoWeb::Application.routes.draw do
   get '/unique/:model/:attribute/:value' => 'uniqueness#validate', constraints: { value: /[^\/?]+/ }
 
   put "dashboards/update_login" => "dashboards#update_login"
+
+  mount Sidekiq::Web, at: '/sidekiq'
 
   mount Refinery::Core::Engine, :at => '/'
 

@@ -11,3 +11,14 @@ Copy the file *config/sf_api.yml.example* to *config/sf_api.yml* and add in the 
       username: example@example.com
       password: password
       security_token: pwd_token
+
+SF integration needs redis and sidekiq to manage project syncs:
+
+1. Install redis
+2. Run redis: 
+
+  redis-server /usr/local/etc/redis.conf
+
+3. Run sidekiq: 
+  
+  sidekiq -q projects 

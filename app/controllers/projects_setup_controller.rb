@@ -13,7 +13,7 @@ class ProjectsSetupController < ApplicationController
     when :the_project
       @project.project_sessions.build if @project.project_sessions.empty?
     end
-
+    flash[:editing_mode] = @project.complete? # For editing projects 
     @project.wizard_status = step.to_s # For client-side validations
     render_wizard
   end
@@ -32,15 +32,31 @@ class ProjectsSetupController < ApplicationController
     end
 
     params[:project][:wizard_status] = step.to_s
-    params[:project][:wizard_status] = 'complete' if step == :agreement
+    if step == :agreement || @project.complete?
+      params[:project][:wizard_status] = Project::COMPLETE 
+      @project.status = Project::COMPLETE
+    end
 
     if @project.update_attributes(params[:project])
       create_login_session unless login_signed_in?
     end
 
-    render_wizard @project
-    session[:project_id] = @project.id
+    if params[:save_and_finish] && @project.save
+      session[:project_id] = nil
+      # create/update SF object
+      ProjectSyncWorker.perform_async(@project.id)
+      redirect_to dashboards_path
+    else
+      render_wizard @project
+      session[:project_id] = @project.id
+      if step == :agreement
+        session[:project_id] = nil 
+      end
+      # create/update SF object
+      ProjectSyncWorker.perform_async(@project.id) if step == :agreement || @project.complete?
+    end
   end
+
 
   def application_deadline
     @session = Session.find(params[:id])

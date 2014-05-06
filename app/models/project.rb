@@ -1,8 +1,20 @@
 class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
-  salesforce "Project__c", [:name, :description]
+  salesforce "Project__c", 
+    [ :agree_memo, :agree_to_transport, :challenges_description,
+      :created_at, :culture_description, :description, 
+      :dining_location, :guidelines_description, :housing_description,
+      :housing_type, :internet_distance, :location_city, :location_country,
+      :location_description, :location_private, :location_state_or_province,
+      :location_street_address, :location_type, :max_students,
+      :min_stay_duration, :min_students, :name, 
+      :per_week_cost, :per_week_cost_final, :related_fields_of_study, 
+      :related_student_passions, :required_languages, :safety_level, 
+      :student_educational_requirement, :team_mode, :transportation_available, 
+      :typical_attire, :updated_at ] #:wizard_status
 
+  SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
   COMPLETE = "complete"
 
   belongs_to :organization
@@ -20,14 +32,19 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students,
     :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
-    :student_educational_requirement, :address, :internet_distance, :location_private, :location_type, :transportation_available,
-    :location_description, :culture_description, :housing_type, :dining_location, :housing_description,
-    :safety_level, :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport,
-    :field_host_attributes, :organization_attributes, :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id
+    :student_educational_requirement, :location_street_address, :location_city, :location_state_or_province, :location_country, 
+    :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description, 
+    :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description, :typical_attire, 
+    :guidelines_description, :agree_memo, :agree_to_transport, :field_host_attributes, :organization_attributes, 
+    :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
   accepts_nested_attributes_for :project_sessions, reject_if: :all_blank, allow_destroy: true
+
+  def agree_memo; properties["agree_memo"] == "1" ? true : false; end;
+  def agree_to_transport; properties["agree_to_transport"] == "1" ? true : false; end;
+  def per_week_cost_final; properties["per_week_cost_final"] == "1" ? true : false; end;
 
   %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")
@@ -83,8 +100,8 @@ class Project < ActiveRecord::Base
   validates :min_students, :max_students, :numericality => true, :if => :complete_or_the_project?
   # -- Location
   validates :location_private, inclusion: {in: [true, false]}, :if => :complete_or_location?
-  validates :address, :internet_distance,
-      :location_description, :culture_description, :presence => true, :if => :complete_or_location?
+  validates :location_street_address, :location_city, :location_state_or_province, :location_country,
+   :internet_distance, :location_description, :culture_description, :presence => true, :if => :complete_or_location?
   # -- Content
   validates :description, :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description,
       :typical_attire, :guidelines_description, :presence => true, :if => :complete_or_content?
@@ -136,9 +153,33 @@ class Project < ActiveRecord::Base
     pretty_properties.join(", ")
   end
 
-
+  def full_address
+    "#{location_street_address}, #{location_city}, 
+    #{location_state_or_province}, #{location_country}"
+  end
 
   # TODO: Partial validations with wizard steps
   # validates_presence_of :name, :description
   # validates_uniqueness_of :name
+
+  #create/update object in SF
+  def save_to_sf!
+   
+    # Databasedotcom::SalesForceError must be handled by the caller
+    parameters = SFRails.format_parameters({
+      project: self,
+      organization: self.organization,
+      field_host: self.field_host
+    })
+    response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, parameters )
+    
+    # If no error is raised, parse the reponse and save the SF Ids
+    parsed = JSON.parse(response.body)
+    self.sf_object_id = parsed["Id"]
+    self.organization.sf_object_id = parsed["Organization__c"]
+    self.field_host.sf_object_id = parsed["FieldHost__c"]
+    self.save
+    
+  end
+
 end

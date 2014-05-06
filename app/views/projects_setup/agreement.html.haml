@@ -44,4 +44,7 @@
     %p= t(:i_agree_to_arrange_transport_and_meed)
     = f.input :agree_to_transport, as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
 
-    = f.submit t(:save_and_finish), class: "button button-orange"
+    - if flash[:editing_mode]
+      = render 'save_and_finish_button', f: f
+    - else
+      = f.submit t(:save_and_finish), class: "button button-orange"

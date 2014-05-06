@@ -121,6 +121,9 @@ jQuery ->
     $("#project_max_students").rules "add",
       required: true
       number: true
+    $("#project_per_week_cost").rules "add",
+      required: true
+      number: true
     $("#project_student_educational_requirement").rules "add",
       required: true
 

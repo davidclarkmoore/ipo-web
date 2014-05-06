@@ -29,13 +29,13 @@ class Project < ActiveRecord::Base
   delegate :references, to: :field_host
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students,
-    :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement,
+    :per_week_cost, :per_week_cost_final, :currency, :required_languages, :student_educational_requirement,
     :internet_distance, :location_type, :transportation_available, :location_description,
     :culture_description, :housing_type, :dining_location, :housing_description, :safety_level,
     :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 
   attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students,
-    :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
+    :per_week_cost, :per_week_cost_final, :currency, :required_languages, :related_student_passions, :related_fields_of_study,
     :student_educational_requirement, :location_street_address, :location_city, :location_state_or_province, :location_country, 
     :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description, 
     :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description, :typical_attire, 
@@ -101,7 +101,7 @@ class Project < ActiveRecord::Base
   validates :name, :student_educational_requirement, :presence => true, :if => :complete_or_the_project?
   validates :name, uniqueness: true, :if => :complete_or_the_project?
   validates :team_mode, inclusion: {in: [true, false]}, :if => :complete_or_the_project?
-  validates :min_students, :max_students, :numericality => true, :if => :complete_or_the_project?
+  validates :min_students, :max_students, :per_week_cost, :numericality => true, :if => :complete_or_the_project?
   # -- Location
   validates :location_private, inclusion: {in: [true, false]}, :if => :complete_or_location?
   validates :location_street_address, :location_city, :location_state_or_province, :location_country,

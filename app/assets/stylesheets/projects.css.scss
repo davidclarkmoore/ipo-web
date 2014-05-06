@@ -255,7 +255,8 @@ label {
 .project_min_students {@include pre(1, 6); @include span-columns(2, 6);}
 .project_max_students { @include span-columns(2, 6); @include post(1, 6);}
 .project_per_week_cost { @include span-columns(2 alpha, 6);}
-project_per_week_cost_final { @include span-columns(2 omega, 6); @include post(3, 6);}
+.project_currency { @include span-columns (2, 6) }
+.project_per_week_cost_final { @include span-columns(2 omega, 6); @include post(3, 6); }
 
 
 // ------

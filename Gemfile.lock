@@ -450,6 +450,7 @@ DEPENDENCIES
   jquery-ui-rails
   letter_opener
   mini_magick
+  money
   pg
   poltergeist
   postgres_ext

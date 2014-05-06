@@ -12,6 +12,7 @@ gem 'simple_form'
 gem 'databasedotcom'
 gem "cocoon"
 gem 'settingslogic'
+gem 'money'
 
 gem 'sidekiq'
 gem 'sidekiq-failures'

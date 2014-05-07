@@ -6,9 +6,10 @@
   .container
     %header
       = link_to root_path do
-        %h1.title Converge
+        / %h1.title Converge
+        =image_tag 'converge-logo.png'
       = render 'shared/navigation'
-      = yield :header
+    = yield :header
 
     .c8
       = raw @page.content_for :body

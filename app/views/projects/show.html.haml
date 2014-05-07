@@ -32,6 +32,24 @@
         %label= t(:needed_lanaguages)
         %p= @p.get_pretty_properties(@p.required_languages, "required_languages")
 
+      %label= t(:project_sessions)
+      %table
+        %thead
+          %tr
+            %th= t(:title)
+            %th= t(:start_date)
+            %th= t(:end_date)
+            %th= t(:duration)
+            %th= t(:application_deadline)
+        %tbody
+          - @p.sessions.each do |session|
+            %tr
+              %td= session.title
+              %td= session.start_date.to_formatted_s(:rfc822)
+              %td= session.end_date.to_formatted_s(:rfc822)
+              %td= session.duration
+              %td= session.application_deadline.to_formatted_s(:rfc822)
+
     %h3 Internship Location & Culture
 
     %label= t(:culture_description)
@@ -58,6 +76,10 @@
     .info.rounded
       %h3 Get Started
       =link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange"
+     
+
+    .info.rounded
+      %h3 Share
       .fb-share-button{:data => {:type => "button"}}
 
     .info.rounded
@@ -81,23 +103,7 @@
       %label= t(:per_week_cost)
       %p= @p.per_week_cost
 
-      %label= t(:project_sessions)
-      %table
-        %thead
-          %tr
-            %th= t(:title)
-            %th= t(:start_date)
-            %th= t(:end_date)
-            %th= t(:duration)
-            %th= t(:application_deadline)
-        %tbody
-          - @p.sessions.each do |session|
-            %tr
-              %td= session.title
-              %td= session.start_date
-              %td= session.end_date
-              %td= session.duration
-              %td= session.application_deadline
+
     .info.rounded
       %h3 Location
 

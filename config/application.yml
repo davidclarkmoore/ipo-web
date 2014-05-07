@@ -1,6 +1,9 @@
 defaults: &defaults
   sessions:
     days_to_application_deadline: 60
+  images:
+    minimum_width: 800
+    minimum_height: 800
 
 development:
   <<: *defaults

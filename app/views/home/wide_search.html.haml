@@ -1,12 +1,14 @@
-.container
-  %h1 Pages
+%article.container
+  %h1 #{pluralize(@pages.count, 'page result')} for "#{params[:search]}"
   .results
-    - @pages.with_details.each do |page,details| 
+    - @pages.with_details.each do |page,details|
       .result
         = link_to page.title, page.slug
         .body
           = details[:highlight][:bodies].html_safe
-  %h1 Projects
+
+%article.container
+  %h1 #{pluralize(@pages.count, 'project result')} for "#{params[:search]}"
   .results
     - @projects.with_details.each do |project,details|
       .result

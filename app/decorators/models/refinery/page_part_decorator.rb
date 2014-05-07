@@ -1,6 +1,19 @@
 Refinery::PagePart.class_eval do
   attr_accessible :color, :display_type, :margin, :title
 
+  #searchkick mappings: {
+  #  'refinery/page_part' => {
+  #    properties: {
+  #      body: {type: "string", analyzer: {myanalyzer: {type: 'custom', char_filter: ['html_strip'], tokenizer: 'standard', filter: ['lowercase','stopwords']}}}
+  #    }
+  #  }
+  #}
+        
+  
+  #def search_data
+  #  as_json only: [:body]
+  #end
+  
   def self.color_options
     [['Default', nil],
      ['Blue', 'blue'],

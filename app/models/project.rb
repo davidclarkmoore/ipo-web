@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
@@ -14,6 +15,7 @@ class Project < ActiveRecord::Base
       :student_educational_requirement, :team_mode, :transportation_available, 
       :typical_attire, :updated_at ] #:wizard_status
 
+  searchkick autocomplete: ['name']
   SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
   COMPLETE = "complete"
 
@@ -112,6 +114,10 @@ class Project < ActiveRecord::Base
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
   scope :completed, where(wizard_status: COMPLETE)
+
+  def search_data
+    as_json only: [:name, :description]
+  end
 
   def complete?
     wizard_status == 'complete'

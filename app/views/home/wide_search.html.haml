@@ -8,7 +8,7 @@
           = details[:highlight][:bodies].html_safe
 
 %article.container
-  %h1 #{pluralize(@pages.count, 'project result')} for "#{params[:search]}"
+  %h1 #{pluralize(@projects.count, 'project result')} for "#{params[:search]}"
   .results
     - @projects.with_details.each do |project,details|
       .result

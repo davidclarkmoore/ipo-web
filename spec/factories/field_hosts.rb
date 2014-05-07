@@ -7,4 +7,9 @@ FactoryGirl.define do
     overall_education "Some College"
     years_associated_with_organization 1
   end
+
+  factory :invalid_field_host, parent: :field_host do
+    first_name nil
+    last_name nil
+  end
 end

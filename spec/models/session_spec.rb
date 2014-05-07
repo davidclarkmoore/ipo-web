@@ -11,7 +11,7 @@ describe Session do
   context "Create a new Session" do
     it "should set the deadline 60 days from the current date" do
       session = create(:session)
-      expect(session.application_deadline).to eq(Date.today + 60.days)
+      expect(session.application_deadline).to eq(session.start_date - 60.days)
     end
 
     it "should not allow multiple sessions for the same period" do

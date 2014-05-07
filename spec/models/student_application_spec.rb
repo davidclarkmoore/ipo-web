@@ -1,10 +1,16 @@
 require 'spec_helper'
 
 describe StudentApplication do
-  it_behaves_like "a model"
 
-  it { should validate_presence_of :project_session_id }
-  it { should belong_to :project_session}
+  context "When complete or important details equal false" do
+    before(:each) do 
+      stub(subject).complete_or_important_details? {false}
+    end
+    it_behaves_like "a model"
+    it { should validate_presence_of :project_session_id }
+  end
+
+  it { should belong_to :project_session }
   it { should belong_to :student }
   it { should accept_nested_attributes_for :student }
 

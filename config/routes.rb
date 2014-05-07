@@ -40,8 +40,9 @@ IpoWeb::Application.routes.draw do
 
   put "dashboards/update_login" => "dashboards#update_login"
 
-  mount Sidekiq::Web, at: '/sidekiq'
+  resources :donations, path: "/donations", only: [:new, :create]
 
+  mount Sidekiq::Web, at: '/sidekiq'
   mount Refinery::Core::Engine, :at => '/'
 
   Refinery::Core::Engine.routes.draw do

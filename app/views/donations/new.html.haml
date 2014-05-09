@@ -1,15 +1,22 @@
 .container
   %h1 Support the IPO Connection
   %p Contributions in support of IPO Connection are 100% tax deductible with the understanding that no goods or services are received by the donor. Donations may be made as scholarships for participant project expenses.
-  =form_tag donations_path, :id => 'donate_form' do
+  %p 
+    =flash[:error]
+  = simple_form_for :donation, url: donations_path, html: { id: 'donate_form', novalidate: false } do |f|
     %fieldset
+      %p.c12
+        = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
+      %p.c6
+        %label Amount:
+        = number_field_tag :custom_amount, '', min: 1
       %p.c6
         %label Your first name:
         = text_field_tag 'customer[first_name]', '', required: true
       %p.c6.omega
         %label Your last name:
         = text_field_tag 'customer[last_name]', '', required: true
-      %p.c12.omega
+      %p.c10
         %label Email:
         = email_field_tag 'customer[email]'
       %p.c6
@@ -22,18 +29,12 @@
         %label Phone:
         = phone_field_tag 'customer[phone]'
       %p.c6
-        %label Cardholder Name:
-        = text_field_tag 'card[cardholder_name]'
-      %p.c6
         %label Card Number:
         = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[number]", value: "", required: true
       %p.c6.omega
         %label CVV:
         = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[cvv]", value: "", required: true
       %p.c6
-        %label Amount:
-        = number_field_tag :amount, '', min: 1, required: true
-      %p.c6.omega
         %label Expiration Date:
         = select_month(Date.today, field_name: "expiration_month", add_month_numbers: true, prefix: "card")
         = select_year(Date.today, field_name: "expiration_year", start_year: 2005, prefix: "card")
@@ -46,3 +47,4 @@
 :javascript
   var braintree = Braintree.create("#{BRAINTREE_CONFIG[:client_side_encryption_key]}");
   braintree.onSubmitEncryptForm('donate_form');
+  connect_group_to_select($(".donation_amount.button_group"), $("#donation_amount"),function(select) { select.valid() })

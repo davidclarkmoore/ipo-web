@@ -1,44 +1,33 @@
-.container
-  %h1 Support the IPO Connection
-  %p Contributions in support of IPO Connection are 100% tax deductible with the understanding that no goods or services are received by the donor. Donations may be made as scholarships for participant project expenses.
-  %p 
-    =flash[:error]
-  = simple_form_for :donation, url: donations_path, html: { id: 'donate_form', novalidate: false } do |f|
-    %fieldset
-      %p.c12
+%article
+  .container
+    %h1 Support the IPO Connection
+    %p Contributions in support of IPO Connection are 100% tax deductible with the understanding that no goods or services are received by the donor. Donations may be made as scholarships for participant project expenses.
+    %p= flash[:error]
+    = simple_form_for :donation, url: donations_path, html: { id: 'donate_form', novalidate: false } do |f|
+      %fieldset
         = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
-      %p.c6
         %label Amount:
         = number_field_tag :custom_amount, '', min: 1
-      %p.c6
         %label Your first name:
         = text_field_tag 'customer[first_name]', '', required: true
-      %p.c6.omega
         %label Your last name:
         = text_field_tag 'customer[last_name]', '', required: true
-      %p.c10
         %label Email:
-        = email_field_tag 'customer[email]'
-      %p.c6
+        = email_field_tag 'customer[email]', '', required: true
         %label Address:
-        = text_field_tag 'billing[street_address]'
-      %p.c6.omega
+        = text_field_tag 'billing[street_address]', '', required: true
         %label Postal Code
-        = text_field_tag 'billing[postal_code]'
-      %p.c6
+        = text_field_tag 'billing[postal_code]', '', required: true
         %label Phone:
-        = phone_field_tag 'customer[phone]'
-      %p.c6
+        = phone_field_tag 'customer[phone]', '', required: true
         %label Card Number:
         = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[number]", value: "", required: true
-      %p.c6.omega
         %label CVV:
         = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[cvv]", value: "", required: true
-      %p.c6
         %label Expiration Date:
         = select_month(Date.today, field_name: "expiration_month", add_month_numbers: true, prefix: "card")
         = select_year(Date.today, field_name: "expiration_year", start_year: 2005, prefix: "card")
-      %p.c6
+        = f.input :recurring, label: t(:recurring), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
         = submit_tag "Donate", class: 'button button-blue'
 
 :plain

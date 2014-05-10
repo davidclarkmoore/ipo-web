@@ -37,12 +37,12 @@
   %h3= t(:signing_the_agreement)
   %p In lieu of a signature, we ask that you acknowledge that you have read this Memorandum of Understanding and agree to fulfill the responsibilities to the intern as outlined above. By clicking the Memorandum of Understanding checkbox below, you are giving the Student Mobilization Centre permission to publish this internship opportunity (including description, dates, fees and photo). The SMC agrees to recruit and qualify student applicants according to the criteria you have created.
   %p By checking this box, I agree to the terms of this Memorandum of Understanding.
-  %p I have read the entire Memo. of Understanding and I agree to its terms
+  %p I have read the entire Memo. of Understanding and I agree to its terms. I also agree to Converge's #{link_to t(:terms_and_conditions), "/terms-and-conditions"} as well as the #{link_to t(:privacy_policy), "/privacy-policy"}
 
   = simple_form_for @project, url: wizard_path, method: :put, html: {style: "padding: 0;"} do |f|
-    = f.input :agree_memo, as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
+    = f.input :agree_memo, label: t(:agree_memo_label),as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
     %p= t(:i_agree_to_arrange_transport_and_meed)
-    = f.input :agree_to_transport, as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
+    = f.input :agree_to_transport, label: t(:agree_to_transport_label), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
 
     - if flash[:editing_mode]
       = render 'save_and_finish_button', f: f

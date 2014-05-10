@@ -290,7 +290,16 @@ footer {
   margin-top: 2.5em;
 }
 
-li { @include adjust-leading-to(1, 16px); }
+ul {
+  padding: .5em 0em .5em 0em;
+}
+
+li { 
+  @include adjust-leading-to(1, 16px); 
+  list-style-type: disc;
+  margin-left: 2em;
+
+  }
 
 article {
   padding-top: 1.5em;

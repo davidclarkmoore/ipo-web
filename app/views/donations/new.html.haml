@@ -1,34 +1,38 @@
 %article
   .container
-    %h1 Support the IPO Connection
-    %p Contributions in support of IPO Connection are 100% tax deductible with the understanding that no goods or services are received by the donor. Donations may be made as scholarships for participant project expenses.
+    %h1= t(:donation_support_ipo_connection)
+    %p= t(:donation_contribution_description) 
     %p= flash[:error]
     = simple_form_for :donation, url: donations_path, html: { id: 'donate_form', novalidate: false } do |f|
       %fieldset
         = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
-        %label Amount:
+        %label= t(:donation_amount)
         = number_field_tag :custom_amount, '', min: 1
-        %label Your first name:
+        %label= t(:donation_first_name)
         = text_field_tag 'customer[first_name]', '', required: true
-        %label Your last name:
+        %label= t(:donation_last_name)
         = text_field_tag 'customer[last_name]', '', required: true
-        %label Email:
+        %label= t(:donation_email)
         = email_field_tag 'customer[email]', '', required: true
-        %label Address:
+        %label= t(:donation_address)
         = text_field_tag 'billing[street_address]', '', required: true
-        %label Postal Code
+        %label= t(:donation_postal_code)
         = text_field_tag 'billing[postal_code]', '', required: true
-        %label Phone:
+        %label= t(:donation_phone)
         = phone_field_tag 'customer[phone]', '', required: true
-        %label Card Number:
+        .box
+          %h3= t(:donation_security) 
+          %p= t(:donation_secure_transaction)
+          %p= t(:donation_secure_transaction_description)
+        %label= t(:donation_card_number)
         = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[number]", value: "", required: true
-        %label CVV:
+        %label= t(:donation_cvv)
         = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[cvv]", value: "", required: true
-        %label Expiration Date:
+        %label= t(:donation_expiration_date) 
         = select_month(Date.today, field_name: "expiration_month", add_month_numbers: true, prefix: "card")
         = select_year(Date.today, field_name: "expiration_year", start_year: 2005, prefix: "card")
         = f.input :recurring, label: t(:recurring), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
-        = submit_tag "Donate", class: 'button button-blue'
+        = submit_tag t(:donation_button), class: 'button button-blue'
 
 :plain
   <script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js"></script>

@@ -5,7 +5,7 @@ class DonationsController < ApplicationController
   end
 
   def create
-    params[:donation][:amount] = params[:custom_amount] if params[:donation][:amount] == "other"
+    params[:donation][:amount] = params[:custom_amount] if params[:custom_amount].present?
     if params[:donation][:recurring] == "1"
       result = recurrent_donation
     else
@@ -29,8 +29,7 @@ class DonationsController < ApplicationController
       ["$50","50"],
       ["$100","100"],
       ["$250","250"],
-      ["$500","500"],
-      ["$ other amount","other"]
+      ["$500","500"]
     ]
   end
 

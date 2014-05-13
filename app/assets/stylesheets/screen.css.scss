@@ -67,6 +67,9 @@
 
 .pre1 { @include pre(1); }
 .post1 { @include post(1); }
+.post4 { @include post(4); }
+.post5 { @include post(4); }
+.post8 { @include post(8); }
 
 
 /* ===========
@@ -135,7 +138,15 @@ content: "\e033";
    Main Styles
    =========== */
 
-   
+p.alert {
+  @include adjust-font-size-to(13px);
+
+  background-color: $orange;
+  font-weight: 600;
+  padding: 1em;
+  color: white;
+}
+
 
 .clr { clear: both; }
 .centered, .center{ text-align: center; }
@@ -164,7 +175,7 @@ body {
 .container {
   @include container;
   // Enable if you want to see grid layout. Useful for development.
-  // @include susy-grid-background;
+  //@include susy-grid-background;
 }
 
 .header-bg, .header-bg-large {
@@ -316,6 +327,28 @@ article {
    =========== */
 
 form {
+
+  input[type=text],
+  input[type=email],
+  input[type=password],
+  input[type=url],
+  input[type=search],
+  input[type=tel],
+  input[type=number], textarea {
+    @include adjust-font-size-to(24px);
+    width: 100%;
+    padding: .5em;
+    background-color: rgba(0,0,0,0.1);
+    border: 0em;
+  }
+
+  input[type='submit'], input[type='submit'].button {
+    @include adjust-font-size-to(16px, 1, 14px);
+    @include leader(1, 16px);
+    @include trailer(1, 16px);
+    width: 100%;
+  }
+
   label {
     display: block;
     @include adjust-font-size-to(14px);
@@ -337,7 +370,36 @@ form {
     font-style: italic;
     color: #e46b66;
   }
+
 }
+
+fieldset {
+  @include leader(2);
+  @include trailer(2);
+}
+
+fieldset:last-child {
+  margin-bottom: 0;
+}
+
+
+
+#donate_form {
+  width: 80%;
+  min-width: 600px;
+}
+.security-container {
+  position: relative;
+}
+
+.security {
+  position: absolute;
+  font-size: 12px;
+  padding: 1.5em;
+  margin-top: 2.5em;
+  border: 2px solid #ccc;
+}
+
 
 /* overflow-x chrome fix */
 .select2-offscreen{

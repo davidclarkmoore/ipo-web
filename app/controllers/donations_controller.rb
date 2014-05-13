@@ -6,25 +6,25 @@ class DonationsController < ApplicationController
 
   def create
     params[:donation][:amount] = params[:custom_amount] if params[:donation][:amount] == "other"
-    if params[:donation][:recurring] == "1" 
+    if params[:donation][:recurring] == "1"
       result = recurrent_donation
     else
       result = one_time_donation
     end
-    
+
     if result.success?
-      render action: "show" , notice: 'Thanks for donate!'
+      render action: "show", notice: 'Thanks for your donation!'
     else
       define_amounts
-      flash[:error] = "Error: #{result.message}"
+      flash.now[:error] = "Error: #{result.message}"
       render action: "new"
     end
   end
 
   private
-  def define_amounts 
+  def define_amounts
     @amounts = [
-      ["$10", "10"], 
+      ["$10", "10"],
       ["$35","35"],
       ["$50","50"],
       ["$100","100"],

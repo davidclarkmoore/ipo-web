@@ -107,22 +107,21 @@ form.new_student_application, form.edit_student_application {
   @include span-columns(12 omega);
 }
 
+
 form#new_project, form.edit_project, form.new_student_application, form.edit_student_application {
-
   margin-bottom: 5%;
-
   h3 { @include leader(1, 25px); }
   /* Prevent collapsing margins when defining form blocks */
   article { overflow: auto; }
-  .select2-container, input, textarea { width: 100%; }
   input[type="checkbox"], input[type="radio"] { width: auto; }
-
   textarea {
     font-size: 1em;
     height: 5em;
   }
 
   label.checkbox { margin-right: 2em; }
+
+  .select2-container, input, textarea { width: 100%; }
 
   .background { @include leader(1); }
 
@@ -139,35 +138,9 @@ form#new_project, form.edit_project, form.new_student_application, form.edit_stu
   .student-requirements-illustration { @include span-columns(4, 8); }
   .student-requirements-fields { @include span-columns(4 omega, 8); }
 
-  input[type=text],
-  input[type=email],
-  input[type=password],
-  input[type=url],
-  input[type=search],
-  input[type=tel],
-  input[type=number] textarea {
-    @include adjust-font-size-to(24px);
-    padding: .5em;
-    background-color: rgba(0,0,0,0.1);
-    border: 0em;
-  }
-
-
-
-  input[type=submit] {
-    @include adjust-font-size-to(16px, 1, 14px);
-    @include leader(1, 16px);
-    @include trailer(1, 16px);
-  }
-
   .project_location_type { margin-top: 0; }
-
 }
 
-fieldset {
-  @include leader(2);
-  @include trailer(2);
-}
 
 .project_per_week_cost_final {
   display: inline;
@@ -192,19 +165,13 @@ label {
 }
 
 
-
-
 // -----
 // Step 1
 // ------
 
-
-
-
 .lighttext label {
   color: rgba(0,0,0,.2);
 }
-
 
 .project_field_host_salutation { @include span-columns(1 alpha, 6); }
 .project_field_host_first_name { @include span-columns(2, 6); }
@@ -417,7 +384,7 @@ ul.weekly-cost li {
   @include adjust-font-size-to(20px);
   line-height: 1.8em;
   }
-  
+
 }
 
 .imagesize {
@@ -473,7 +440,7 @@ form.project_search {
   position: relative;
   padding: 0;
   color: $grey;
-  
+
   .project-description {
     padding: 1em;
   }
@@ -483,10 +450,10 @@ form.project_search {
     height: auto;
   }
 
-  h1, h2, h3, p { 
-    color: $grey; 
+  h1, h2, h3, p {
+    color: $grey;
   }
-  
+
   .team_mode {
     @include adjust-font-size-to(20px);
     position: absolute;
@@ -499,10 +466,10 @@ form.project_search {
 }
 
 form.project_search {
-  label.checkbox { 
+  label.checkbox {
     display: inline-block;
     margin-right: 2em;
-    margin-bottom: 0; 
+    margin-bottom: 0;
     width: 22%;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -529,6 +496,3 @@ form.project_search {
   }
 
 }
-
-
-

@@ -1,38 +1,58 @@
-%article
-  .container
-    %h1= t(:donation_support_ipo_connection)
-    %p= t(:donation_contribution_description) 
-    %p= flash[:error]
-    = simple_form_for :donation, url: donations_path, html: { id: 'donate_form', novalidate: false } do |f|
-      %fieldset
-        = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
-        %label= t(:donation_amount)
-        = number_field_tag :custom_amount, '', min: 1
-        %label= t(:donation_first_name)
-        = text_field_tag 'customer[first_name]', '', required: true
-        %label= t(:donation_last_name)
-        = text_field_tag 'customer[last_name]', '', required: true
-        %label= t(:donation_email)
-        = email_field_tag 'customer[email]', '', required: true
-        %label= t(:donation_address)
-        = text_field_tag 'billing[street_address]', '', required: true
-        %label= t(:donation_postal_code)
-        = text_field_tag 'billing[postal_code]', '', required: true
+%article.container
+  %h1= t(:donation_support_ipo_connection)
+  %p= t(:donation_contribution_description)
+
+  - if flash[:error]
+    %p.alert= flash[:error]
+
+  = simple_form_for :donation, url: donations_path, html: { id: 'donate_form', novalidate: false } do |f|
+    = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
+    .input.c12.omega
+      %label= t(:donation_amount)
+      = number_field_tag :custom_amount, '', min: 1
+    .input.c6
+      %label= t(:donation_first_name)
+      = text_field_tag 'customer[first_name]', '', required: true
+    .input.c6.omega
+      %label= t(:donation_last_name)
+      = text_field_tag 'customer[last_name]', '', required: true
+    .input.c12.omega
+      %label= t(:donation_email)
+      = email_field_tag 'customer[email]', '', required: true
+    .input.c8
+      %label= t(:donation_address)
+      = text_field_tag 'billing[street_address]', '', required: true
+    .input.c4.omega
+      %label= t(:donation_postal_code)
+      = text_field_tag 'billing[postal_code]', '', required: true
+
+    .security-container.c12.omega
+      .input.c7
         %label= t(:donation_phone)
         = phone_field_tag 'customer[phone]', '', required: true
-        .box
-          %h3= t(:donation_security) 
-          %p= t(:donation_secure_transaction)
-          %p= t(:donation_secure_transaction_description)
-        %label= t(:donation_card_number)
-        = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[number]", value: "", required: true
-        %label= t(:donation_cvv)
-        = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[cvv]", value: "", required: true
-        %label= t(:donation_expiration_date) 
-        = select_month(Date.today, field_name: "expiration_month", add_month_numbers: true, prefix: "card")
-        = select_year(Date.today, field_name: "expiration_year", start_year: 2005, prefix: "card")
-        = f.input :recurring, label: t(:recurring), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
-        = submit_tag t(:donation_button), class: 'button button-blue'
+
+      .security.box.c5
+        %h3= t(:donation_security)
+        %p= t(:donation_secure_transaction)
+        %p= t(:donation_secure_transaction_description)
+
+    .input.c4
+      %label= t(:donation_card_number)
+      = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[number]", value: "", required: true
+
+    .input.c3
+      %label= t(:donation_cvv)
+      = text_field_tag :number,'', autocomplete: "off", name: "", "data-encrypted-name" => "card[cvv]", value: "", required: true
+
+    .input.c12
+      %label= t(:donation_expiration_date)
+      = select_month(Date.today, field_name: "expiration_month", add_month_numbers: true, prefix: "card")
+      = select_year(Date.today, field_name: "expiration_year", start_year: 2005, prefix: "card")
+
+    .input.c12.omega{style: 'margin-top: 50px;'}
+      = f.input :recurring, label: t(:recurring), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
+      = submit_tag t(:donation_button), class: 'button button-orange'
+
 
 :plain
   <script type="text/javascript" src="https://js.braintreegateway.com/v1/braintree.js"></script>

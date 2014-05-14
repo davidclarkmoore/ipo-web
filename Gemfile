@@ -81,7 +81,6 @@ group :test, :development do
   gem 'rr'
   gem 'ffaker'
   gem 'database_cleaner'
-
   gem 'ruby_gntp'
   gem 'fuubar'
   gem 'railroady'
@@ -89,4 +88,8 @@ group :test, :development do
   # Debugger and REPL
   gem "pry"
   gem "pry-debugger"
+end
+
+group :test do
+  gem 'fake_braintree'
 end

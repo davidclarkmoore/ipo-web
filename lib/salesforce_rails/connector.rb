@@ -118,7 +118,18 @@ module SFRails
 
     def sf_value(key)
       value = self.send(key)
-      value.class.include?(Enumerable) ? value.map(&:titleize) : value
+      case sf_class.field_type(sf_key(key))
+        when "picklist"
+          t(key, value) 
+        when "multipicklist"
+          value.map { |val| t(key, val) }
+        else
+          value
+      end        
+    end
+
+    def t(key, value)
+      I18n.t "enumerize.#{self.class.name.underscore}.#{key}.#{value}", locale: :en
     end
 
   end

@@ -1,0 +1,7 @@
+en:
+  enumerize:
+    organization:
+      organization_type:
+        nonprofit: "Nonprofit"
+        business: "Business"
+        individual: "Individual"

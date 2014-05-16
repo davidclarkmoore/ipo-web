@@ -61,11 +61,11 @@ module SFRails
     
     def sf_values
       values = sf_mapping.inject({}) { |hash, key|
-        hash[sf_key(key)] = sf_value(key)
+        hash[sf_key(key)] = sf_value(key, sf_key(key))
         hash
       }
       sf_mapping_hash.each { |key, value|
-        values[value] = sf_value(key)
+        values[value] = sf_value(key, value)
       }
       values["Id"] = self.sf_object_id if self.sf_object_id
       values
@@ -116,9 +116,9 @@ module SFRails
       end
     end
 
-    def sf_value(key)
+    def sf_value(key, sf_key)
       value = self.send(key)
-      case sf_class.field_type(sf_key(key))
+      case sf_class.field_type(sf_key)
         when "picklist"
           t(key, value) 
         when "multipicklist"

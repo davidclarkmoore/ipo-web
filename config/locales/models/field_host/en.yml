@@ -6,31 +6,31 @@ en:
         secondary_ywam_schools: Secondary YWAM/UofN Schools
         ywam_short_term_outreach: YWAM Short Term Outreach (Only)
       heard_about_ipo:
-        - College Group
-        - YWAM Staff
-        - IPO Advocate
-        - Website
-        - Event
-        - Facebook
-        - YouTube
-        - Twitter
+        college_group: College Group
+        ywam_staff: YWAM Staff
+        ipo_advocate: IPO Advocate
+        website: Website
+        event: Event
+        facebook: Facebook
+        youtube: YouTube
+        twitter: Twitter
       overall_education:
-        - High School Graduate
-        - Some College
-        - Associates (2-yr) Degree (AA)
-        - Bachelor's Degree (BA/BS)
-        - Some Post-Graduate Studies
-        - Graduate Degree (MA/MS)
-        - Doctoral Degree or Equivalent
-        - Other
+        high_school_graduate: High School Graduate
+        some_college: Some College
+        associates_2yr_degree_aa: Associates (2-yr) Degree (AA)
+        bachelors_degree: Bachelor's Degree (BA/BS)
+        some_post_graduate_studies: Some Post-Graduate Studies
+        graduate_degree: Graduate Degree (MA/MS)
+        doctoral_degree_or_equivalent: Doctoral Degree or Equivalent
+        other: Other
       phone_type:
-        - Work
-        - Household
-        - Mobile
-        - Other
+        work: "Work"
+        household: "Household"
+        mobile: "Mobile"
+        other: "Other"
       salutation:
-        - Mr.
-        - Ms.
-        - Dr.
-        - Prof. 
-        - Rev.
+        mr: "Mr."
+        ms: "Ms."
+        dr: "Dr."
+        prof: "Prof." 
+        rev: "Rev."

@@ -2,12 +2,16 @@ class Student < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
   salesforce "Contact", 
-    [:gender, :created_at, :description,:marital_status,
-    :spoken_languages, :created_at, :updated_at],
+    [:gender, :created_at, :description, :email, :experiences, :marital_status, :phone_type,
+    :public_contact_information, :published_status, :spoken_languages, :created_at, :updated_at],
     {first_name: 'FirstName', last_name: 'LastName', birthday: 'Birthdate',
-    fields_of_study: 'Fields_of_Study__c', preferred_phone: 'Phone',
-    agree_terms: 'Agree_to_Terms__c' #, heard_about_ipo: 'Heard_about_IPO__c'
-    }
+    fields_of_study: 'Fields_of_Study__c', preferred_phone: 'Phone', passions: "Passion_Focus__c",
+    agree_terms: 'Agree_to_Terms__c', heard_about_ipo: 'Heard_about_IPO__c', 
+    street_address: "MailingStreet", city: "MailingCity", postal_code: "MailingPostalCode",
+    country: "MailingCountry", organization: "School_Church_Student_Organization__c",
+    applied_ipo_before: "Applied_IPO_Before__c", graduation_year: "Graduation__c",
+    overall_education: "Education__c"
+    } #state: "MailingState"
   
   serialize :properties, ActiveRecord::Coders::Hstore
 

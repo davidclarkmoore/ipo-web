@@ -3,7 +3,7 @@ class Reference < ActiveRecord::Base
 
   include SFRails::ActiveRecord
   salesforce "Contact", 
-    [:phone, :created_at, :created_at, :updated_at],
+    [:phone, :created_at, :updated_at, :email],
     {first_name: 'FirstName', last_name: 'LastName'}
   attr_accessible :description, :email, :first_name, :last_name, :phone
   

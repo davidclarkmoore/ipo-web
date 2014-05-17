@@ -1,0 +1,9 @@
+en:
+  enumerize:
+      student_application:
+        stage_name:
+          prospecting: "Prospecting"
+          pledged: "Pledged"
+          posted: "Posted"
+          withdrawn: "Withdrawn"
+          closed_lost: "Closed Lost"

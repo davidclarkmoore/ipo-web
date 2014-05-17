@@ -1,8 +1,10 @@
 class StudentApplication < ActiveRecord::Base
+  extend Enumerize
   COMPLETE = "complete" 
   INCOMPLETE = "incomplete"
   include SFRails::ActiveRecord
-  salesforce "Opportunity", [], {end_date: 'CloseDate', name: 'Name', stage_name: 'StageName'}
+  salesforce "Opportunity", [ :start_date ], 
+            { end_date: 'CloseDate', name: 'Name', stage_name: 'StageName' }
     
   SF_STUDENT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/StudentApplication"
   
@@ -37,9 +39,9 @@ class StudentApplication < ActiveRecord::Base
   def name
     "#{self.student.full_name} #{self.project_session.title}"
   end
-  
+
   def stage_name
-    return name
+    :prospecting
   end
   
   def save_to_sf!

@@ -793,7 +793,8 @@ CREATE TABLE students (
     biography text,
     public_contact_information text,
     published_status boolean DEFAULT false,
-    sf_object_id character varying(255)
+    sf_object_id character varying(255),
+    state character varying(255)
 );
 
 
@@ -1397,3 +1398,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140429005540');
 INSERT INTO schema_migrations (version) VALUES ('20140501000237');
 
 INSERT INTO schema_migrations (version) VALUES ('20140502160507');
+
+INSERT INTO schema_migrations (version) VALUES ('20140519154629');

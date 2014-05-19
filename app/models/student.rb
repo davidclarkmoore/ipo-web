@@ -2,22 +2,22 @@ class Student < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
   salesforce "Contact", 
-    [:gender, :created_at, :description, :email, :experiences, :marital_status, :phone_type,
+    [:gender, :created_at, :description, :email, :marital_status, :phone_type,
     :public_contact_information, :published_status, :spoken_languages, :created_at, :updated_at],
     {first_name: 'FirstName', last_name: 'LastName', birthday: 'Birthdate',
     fields_of_study: 'Fields_of_Study__c', preferred_phone: 'Phone', passions: "Passion_Focus__c",
     agree_terms: 'Agree_to_Terms__c', heard_about_ipo: 'Heard_about_IPO__c', 
-    street_address: "MailingStreet", city: "MailingCity", postal_code: "MailingPostalCode",
+    street_address: "MailingStreet", state: "MailingState", city: "MailingCity", postal_code: "MailingPostalCode",
     country: "MailingCountry", organization: "School_Church_Student_Organization__c",
     applied_ipo_before: "Applied_IPO_Before__c", graduation_year: "Graduation__c",
-    overall_education: "Education__c"
-    } #state: "MailingState"
+    overall_education: "Education__c", experiences: "Experience_with_YWAM__c"
+    } 
   
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :overall_education, :graduation_year, :agree_terms
 
-  attr_accessible :first_name, :last_name, :birthday, :gender, :street_address, :city, :postal_code,
+  attr_accessible :first_name, :last_name, :birthday, :gender, :street_address, :city, :state, :postal_code,
     :country, :preferred_phone, :phone_type, :marital_status, :organization, :applied_ipo_before,
     :description, :academic_reference_id, :spiritual_reference_id, :graduation_year, :agree_terms,
     :login_attributes, :spiritual_reference_attributes,  :academic_reference_attributes, 
@@ -35,8 +35,10 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :spiritual_reference
   accepts_nested_attributes_for :academic_reference
 
-  validates_presence_of :first_name, :last_name, :gender, :marital_status, :street_address, :city, :postal_code,
-    :country, :preferred_phone, :organization, :birthday, :heard_about_ipo
+  validates_presence_of :first_name, :last_name, :gender, :marital_status, 
+                        :street_address, :state, :city, :postal_code,
+                        :country, :preferred_phone, :organization, :birthday, 
+                        :heard_about_ipo
 
   validates :spiritual_reference, associated: true
 
@@ -59,7 +61,7 @@ class Student < ActiveRecord::Base
   end
 
   def full_address
-    "#{street_address} #{city} #{postal_code} #{country}"
+    "#{street_address} #{city} #{postal_code} #{state} #{country}"
   end
 
   def published_status_to_string

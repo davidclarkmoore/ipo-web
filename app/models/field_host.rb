@@ -1,7 +1,9 @@
 class FieldHost < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
-  salesforce "Contact", [ :email, :phone_type, :salutation ],
+  salesforce "Contact", 
+            [ :created_at, :updated_at,
+              :email, :phone_type, :salutation ],
              { first_name: "FirstName", 
                last_name: "LastName",
                preferred_phone: "Phone",

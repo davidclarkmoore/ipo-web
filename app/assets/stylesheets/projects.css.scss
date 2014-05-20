@@ -263,7 +263,11 @@ label {
 .project_field_host_years_associated_with_organization { @include span-columns(2, 6);}
 .project_field_host_overall_education {@include span-columns(4 alpha, 6);  @include post(2, 6);}
 
-
+.project_reference_first_name { @include span-columns(3, 6);  }
+.project_reference_last_name { @include span-columns(3 omega, 6); }
+.project_reference_email { @include span-columns(3, 6); }
+.project_reference_location { @include span-columns(3 omega, 6); }
+.project_reference_know_this_person { @include span-columns(6 omega, 6); }
 
 
 // ------

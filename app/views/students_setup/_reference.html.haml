@@ -3,13 +3,16 @@
   %li.tab.active(id= "tab_existing_#{type}" data-box="#existing_#{type}")= t(:choose_existing)
   %li.tab(id= "tab_new_#{type}" data-box="#new_#{type}")= t(:new_reference)
 %div.tab-box.w-padding{id: "existing_#{type}"}
-  = f_student.association type.to_sym, include_blank: true, label: t(:select_reference), label_method: :select_label
+  = f_student.fields_for :person_references, @student_application.student.person_references.build(reference_type: type.to_sym) do |reference|
+    = reference.association :reference, include_blank: true, label: t(:select_reference), label_method: :select_label
+    = reference.input :reference_type, as: :hidden, input_html: { value: type.to_sym }
   %p= t(:if_you_cant_find_your_reference)
 %div.tab-box.w-padding{id: "new_#{type}", style: "display: none"}
   .student_fields 
-    = f_student.fields_for type.to_sym, Reference.new, validate: true do |f_s|
-      = f_s.input :first_name
-      = f_s.input :last_name
-      = f_s.input :email, label: t(:email_address)
-      = f_s.input :phone
-      = f_s.input :description, label: t(:how_do_you_know_this_person)
+    = f_student.fields_for :person_references, @student_application.student.person_references.build(reference_type: type.to_sym), validate: true do |f_s|
+      = f_s.input :contact_first_name
+      = f_s.input :contact_last_name
+      = f_s.input :contact_email, label: t(:email_address)
+      = f_s.input :contact_phone
+      = f_s.input :contact_description, label: t(:how_do_you_know_this_person)
+      = f_s.input :reference_type, as: :hidden, input_html: { value: type.to_sym }

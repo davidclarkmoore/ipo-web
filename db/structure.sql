@@ -161,6 +161,40 @@ ALTER SEQUENCE organizations_id_seq OWNED BY organizations.id;
 
 
 --
+-- Name: person_references; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE person_references (
+    id integer NOT NULL,
+    reference_type character varying(255),
+    reference_id integer,
+    referencer_id integer,
+    referencer_type character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: person_references_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE person_references_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: person_references_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE person_references_id_seq OWNED BY person_references.id;
+
+
+--
 -- Name: project_media; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -842,6 +876,13 @@ ALTER TABLE ONLY organizations ALTER COLUMN id SET DEFAULT nextval('organization
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY person_references ALTER COLUMN id SET DEFAULT nextval('person_references_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY project_media ALTER COLUMN id SET DEFAULT nextval('project_media_id_seq'::regclass);
 
 
@@ -979,6 +1020,14 @@ ALTER TABLE ONLY logins
 
 ALTER TABLE ONLY organizations
     ADD CONSTRAINT organizations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: person_references_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY person_references
+    ADD CONSTRAINT person_references_pkey PRIMARY KEY (id);
 
 
 --
@@ -1400,3 +1449,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140501000237');
 INSERT INTO schema_migrations (version) VALUES ('20140502160507');
 
 INSERT INTO schema_migrations (version) VALUES ('20140519154629');
+
+INSERT INTO schema_migrations (version) VALUES ('20140520235541');

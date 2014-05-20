@@ -1,5 +1,8 @@
 class Reference < ActiveRecord::Base
-  has_many :students
+  #has_many :students
+  has_many :person_references
+  has_many :students, through: :person_references, source: :referencer, source_type: "Student"
+  has_many :field_hosts, through: :person_references, source: :referencer, source_type: "FieldHost"
 
   include SFRails::ActiveRecord
   salesforce "Contact", 

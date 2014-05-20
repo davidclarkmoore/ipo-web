@@ -16,7 +16,7 @@ class FieldHost < ActiveRecord::Base
               }  
   attr_accessible :first_name, :middle_initial, :last_name, :salutation, :role_title, :years_associated_with_organization, 
     :preferred_phone, :phone_type, :experience_with_ywam, :heard_about_ipo, :overall_education, 
-    :login_attributes, :profile_picture
+    :login_attributes, :profile_picture, :person_references_attributes
 
   serialize :properties, ActiveRecord::Coders::Hstore
 
@@ -40,6 +40,11 @@ class FieldHost < ActiveRecord::Base
   belongs_to :organization
   has_many :projects
   has_many :project_sessions, through: :projects
+
+  has_many :person_references, as: :referencer
+  accepts_nested_attributes_for :person_references
+  has_many :references, through: :person_references
+
   has_one :login, as: :entity
   accepts_nested_attributes_for :login
   delegate :email, to: :login

@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
       :per_week_cost, :per_week_cost_final, :related_fields_of_study, 
       :related_student_passions, :required_languages, :safety_level, 
       :student_educational_requirement, :team_mode, :transportation_available, 
-      :typical_attire, :updated_at ] #:wizard_status
+      :typical_attire, :updated_at ]
 
   searchkick autocomplete: ['name']
   SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"

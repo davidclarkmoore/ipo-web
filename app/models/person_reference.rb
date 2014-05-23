@@ -7,8 +7,6 @@ class PersonReference < ActiveRecord::Base
 
   before_save :save_contact
 
-  accepts_nested_attributes_for :reference
-
   def contact_first_name=(first_name)
     @first_name = first_name
   end

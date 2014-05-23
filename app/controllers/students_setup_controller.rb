@@ -30,7 +30,7 @@ class StudentsSetupController < ApplicationController
     params[:student_application][:wizard_status] = 'complete' if step == :important_details
 
     @student_application.update_attributes params[:student_application]
-
+    
     if step == :important_details
       # create/update SF object
       StudentApplicationSyncWorker.perform_async(@student_application.id)

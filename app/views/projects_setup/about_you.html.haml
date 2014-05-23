@@ -66,7 +66,7 @@
             = field_host.simple_fields_for :person_references do |reference|
               = render 'person_reference_fields', f: reference
             .links
-              = link_to_add_association 'Add Reference', field_host, :person_references
+              = link_to_add_association 'Add Reference', field_host, :person_references, class: "button button-orange"
 
     .container
       = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"

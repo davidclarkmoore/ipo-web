@@ -24,7 +24,7 @@ class Student < ActiveRecord::Base
     :fields_of_study, :passions, :experiences, :spoken_languages, :heard_about_ipo, :overall_education,
     :profile_picture, :cover_photo, :public_contact_information, :published_status, :biography
 
-  has_many :person_references, as: :referencer
+  has_many :person_references, as: :referencer, inverse_of: :referencer
   has_many :references, through: :person_references
 
   has_one :login, as: :entity, dependent: :destroy
@@ -33,16 +33,12 @@ class Student < ActiveRecord::Base
   delegate :email, to: :login
 
   accepts_nested_attributes_for :login
-  accepts_nested_attributes_for :person_references
-  #accepts_nested_attributes_for :spiritual_reference
-  #accepts_nested_attributes_for :academic_reference
+  accepts_nested_attributes_for :person_references 
 
   validates_presence_of :first_name, :last_name, :gender, :marital_status, 
                         :street_address, :state, :city, :postal_code,
                         :country, :preferred_phone, :organization, :birthday, 
                         :heard_about_ipo
-
-  #validates :spiritual_reference, associated: true
 
   validates_inclusion_of :applied_ipo_before, in: [true, false]
   validates :graduation_year, numericality: {allow_nil: true}

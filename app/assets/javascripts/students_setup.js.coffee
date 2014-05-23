@@ -63,21 +63,21 @@ $ ->
     $("#student_application_student_attributes_graduation_year").rules "add",
       required: true
       number: true
-    $("#student_application_student_attributes_spiritual_reference_id").rules "add",
+    $("#student_application_student_attributes_person_references_attributes_0_reference_id").rules "add",
       required: "#is_new_spiritual_reference[value='false']"
-    $("#student_application_student_attributes_spiritual_reference_attributes_first_name").rules "add",
+    $("#student_application_student_attributes_person_references_attributes_1_contact_first_name").rules "add",
       required: "#is_new_spiritual_reference[value='true']"
-    $("#student_application_student_attributes_spiritual_reference_attributes_last_name").rules "add",
+    $("#student_application_student_attributes_person_references_attributes_1_contact_last_name").rules "add",
       required: "#is_new_spiritual_reference[value='true']"
-    $("#student_application_student_attributes_spiritual_reference_attributes_email").rules "add",
+    $("#student_application_student_attributes_person_references_attributes_1_contact_email").rules "add",
       required: "#is_new_spiritual_reference[value='true']"
-    $("#student_application_student_attributes_academic_reference_id").rules "add",
+    $("#student_application_student_attributes_person_references_attributes_2_reference_id").rules "add",
       required: "#is_new_academic_reference[value='false']"
-    $("#student_application_student_attributes_academic_reference_attributes_first_name").rules "add",
+    $("#student_application_student_attributes_person_references_attributes_3_contact_first_name").rules "add",
       required: "#is_new_academic_reference[value='true']"
-    $("#student_application_student_attributes_academic_reference_attributes_last_name").rules "add",
+    $("#student_application_student_attributes_person_references_attributes_3_contact_last_name").rules "add",
       required: "#is_new_academic_reference[value='true']"
-    $("#student_application_student_attributes_academic_reference_attributes_email").rules "add",
+    $("#student_application_student_attributes_person_references_attributes_3_contact_email").rules "add",
       required: "#is_new_academic_reference[value='true']"
   
   if $('form[action="/students/setup/important_details"]').length > 0      

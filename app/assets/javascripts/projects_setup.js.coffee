@@ -32,10 +32,17 @@ ipo['projects_setup']['show'] = ->
 ipo['projects_setup']['update'] = ipo['projects_setup']['show']
 
 jQuery ->
-  $("form").on "cocoon:after-insert", ->
+  $("#project_sessions").on "cocoon:after-insert", ->
     chooser_sessions = $('.session_chooser')
     last_one = chooser_sessions[chooser_sessions.length-1]
     $("#" + last_one.id).select2()
+
+  $("#person_references").on "cocoon:after-insert", ->
+    $(".project_field_host_person_references_contact_first_name input,
+    .project_field_host_person_references_contact_last_name input,
+    .project_field_host_person_references_contact_email input").each (index, element)=> 
+      $(element).rules "add", required: true
+
 
   $(document).on "change", "select.session_chooser", {}, (e) ->
     chooser = $(this)
@@ -95,6 +102,12 @@ jQuery ->
       required: "#is_new_organization[value='true']"
     $("#project_organization_attributes_organization_type").rules "add",
       required: "#is_new_organization[value='true']"
+    $(".project_field_host_person_references_contact_first_name input").rules "add",
+      required: true
+    $(".project_field_host_person_references_contact_last_name input").rules "add",
+      required: true
+    $(".project_field_host_person_references_contact_email input").rules "add",
+      required: true
 
   if $('form[action$="the_project"]').length > 0
     $("#project_team_mode").rules "add",

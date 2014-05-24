@@ -19,19 +19,21 @@ module SFRails
   end
 
   def self.format_parameters(parameters = {})
-      output = "{"
-      parameters.each do |key,value|
-        case value
-        when ::SFRails::ActiveRecord
-          output += " \"#{key}\" : #{value.coerced_json} ,"
-        when ::String
-          output += " \"#{key}\" : \"#{value}\" ,"
-        when ::Numeric
-          output += " \"#{key}\" : #{value} ,"
-        end
+    output = "{"
+    parameters.each do |key,value|
+      case value
+      when ::SFRails::ActiveRecord
+        output += " \"#{key}\" : #{value.coerced_json} ,"
+      when ::String
+        output += " \"#{key}\" : \"#{value}\" ,"
+      when ::Numeric
+        output += " \"#{key}\" : #{value} ,"
+      when ::Array
+        output += " \"#{key}\" : [ #{value.map(&:coerced_json).join(", ")} ] ,"
       end
-      output[0..-2] + " }"
     end
+    output[0..-2] + " }"
+  end
   
   module ActiveRecord
     extend ActiveSupport::Concern
@@ -120,13 +122,13 @@ module SFRails
     def sf_value(key, sf_key)
       value = self.send(key)
       case sf_class.field_type(sf_key)
-        when "picklist"
-          t(key, value) 
-        when "multipicklist"
-          value.map { |val| t(key, val) }
+        when "picklist" 
+          t(key, value) if value.present? 
+        when "multipicklist" 
+          value.map { |val| t(key, val) } if value.present? 
         else
           value
-      end        
+      end    
     end
 
     def t(key, value)

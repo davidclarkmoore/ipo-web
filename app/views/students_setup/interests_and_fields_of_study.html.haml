@@ -36,11 +36,11 @@
       %fieldset#spiritual_reference
         %h2= t(:spiritual_reference)
         %p= t(:we_require_one_spiritual_reference)
-        = render partial: "reference", locals: { f_student: f_student, type: "spiritual_reference" }
+        = render partial: "reference", locals: { f_student: f_student, person_references: @student_application.student.person_references, type: "spiritual_reference" }
   
       %fieldset#academic_reference
         %h2= t(:academic_reference)
         %p= t(:we_require_one_academic_reference)
-        = render partial: "reference", locals: { f_student: f_student, type: "academic_reference" }
+        = render partial: "reference", locals: { f_student: f_student, person_references:  @student_application.student.person_references, type: "academic_reference" }
 
     = f.submit t(:save_and_continue_to_step_3), class: "button button-orange"

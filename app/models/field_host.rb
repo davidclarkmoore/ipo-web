@@ -42,7 +42,7 @@ class FieldHost < ActiveRecord::Base
   has_many :project_sessions, through: :projects
 
   has_many :person_references, as: :referencer
-  accepts_nested_attributes_for :person_references
+  accepts_nested_attributes_for :person_references, allow_destroy: true
   has_many :references, through: :person_references
 
   has_one :login, as: :entity

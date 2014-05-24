@@ -47,7 +47,7 @@
 
     = simple_form_for @student_application, url: wizard_path, method: :put do |f|
 
-      = f.input :agree_terms, as: :boolean, label: t(:i_agree_to_the_terms_and_conditions)
+      = f.input :agree_terms, as: :boolean, label: t(:i_agree_to_the_terms_and_conditions), :input_html => {:data => {:toggle => "checkbox"}}
 
       = f.submit t(:save_and_finish), class: "button button-orange"
 

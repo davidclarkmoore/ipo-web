@@ -23,7 +23,7 @@ Run redis:
 
 Run sidekiq: 
   
-  sidekiq -q projects, students 
+  sidekiq -q projects,1 student_application,2
 
 
 

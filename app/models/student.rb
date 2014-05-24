@@ -33,7 +33,7 @@ class Student < ActiveRecord::Base
   delegate :email, to: :login
 
   accepts_nested_attributes_for :login
-  accepts_nested_attributes_for :person_references 
+  accepts_nested_attributes_for :person_references
 
   validates_presence_of :first_name, :last_name, :gender, :marital_status, 
                         :street_address, :state, :city, :postal_code,
@@ -54,6 +54,14 @@ class Student < ActiveRecord::Base
     enumerize f, in: I18n.t("enumerize.student." + f), multiple: true
   end
 
+  def academic_reference
+    @academic_reference ||= person_references.find_last_by_reference_type(:academic_reference).reference
+  end
+
+  def spiritual_reference
+    @spiritual_reference ||= person_references.find_last_by_reference_type(:spiritual_reference).reference
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -67,20 +75,4 @@ class Student < ActiveRecord::Base
   end
   
   def agree_terms; properties["agree_terms"] == "1" ? true : false; end;
-
-  def academic_reference  
-    PersonReference.find_by_reference_type(:academic_reference)
-  end
-
-  def spiritual_reference
-    PersonReference.find_by_reference_type(:spiritual_reference)
-  end
-
-  def build_academic_reference
-    person_references.build(reference_type: :academic_reference)
-  end
-
-  def build_spiritual_reference
-    person_references.build(reference_type: :spiritual_reference)
-  end
 end

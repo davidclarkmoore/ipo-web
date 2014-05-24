@@ -58,7 +58,9 @@ class StudentApplication < ActiveRecord::Base
       self.sf_object_id = parsed["Id"]
       self.student.sf_object_id = parsed["Contact__c"]
       self.student.academic_reference.sf_object_id = parsed["Academic_Reference__c"]
+      self.student.academic_reference.save
       self.student.spiritual_reference.sf_object_id = parsed["Spiritual_Reference__c"]
+      self.student.spiritual_reference.save
       self.save
     rescue Databasedotcom::SalesForceError => e
       Rails.logger.warn "SalesForceError saving StudentApplication #{self.id}: #{e.message}"

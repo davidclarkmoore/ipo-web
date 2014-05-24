@@ -56,14 +56,10 @@ form#new_student_application, form.edit_student_application, form.new_student_ap
   .student_application_student_spoken_languages { @include span-columns(6, 12); }
   .student_application_student_fields_of_study { @include span-columns(6 omega, 12); }
 
-  .student_application_student_spiritual_reference_first_name { @include span-columns(3, 12); }
-  .student_application_student_spiritual_reference_last_name { @include span-columns(3, 12); }
-  .student_application_student_spiritual_reference_email { @include span-columns(3, 12); }
-  .student_application_student_spiritual_reference_phone { @include span-columns(3 omega, 12); }
-  .student_application_student_academic_reference_first_name { @include span-columns(3, 12); }
-  .student_application_student_academic_reference_last_name { @include span-columns(3, 12); }
-  .student_application_student_academic_reference_email { @include span-columns(3, 12); }
-  .student_application_student_academic_reference_phone { @include span-columns(3 omega, 12); }
+  .student_application_student_person_references_contact_first_name { @include span-columns(3, 12); }
+  .student_application_student_person_references_contact_last_name { @include span-columns(3, 12); }
+  .student_application_student_person_references_contact_email { @include span-columns(3, 12); }
+  .student_application_student_person_references_contact_phone { @include span-columns(3 omega, 12); }
 }
 
 .info-box {

@@ -170,20 +170,23 @@ class Project < ActiveRecord::Base
 
   #create/update object in SF
   def save_to_sf!
-   
     # Databasedotcom::SalesForceError must be handled by the caller
     parameters = SFRails.format_parameters({
       project: self,
       organization: self.organization,
-      field_host: self.field_host
+      field_host: self.field_host,
+      contacts: self.field_host.references.to_a
     })
     response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, parameters )
     
     # If no error is raised, parse the reponse and save the SF Ids
     parsed = JSON.parse(response.body)
-    self.sf_object_id = parsed["Id"]
-    self.organization.sf_object_id = parsed["Organization__c"]
-    self.field_host.sf_object_id = parsed["FieldHost__c"]
+    self.sf_object_id = parsed["project"]["Id"]
+    self.organization.sf_object_id = parsed["project"]["Organization__c"]
+    self.field_host.sf_object_id = parsed["project"]["FieldHost__c"]
+    parsed["contacts"].each do |contact|
+      self.field_host.references.find_by_email(contact["Email"]).update_attribute(:sf_object_id, contact["Id"])
+    end
     self.save
     
   end

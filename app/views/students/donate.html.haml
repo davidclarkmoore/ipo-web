@@ -46,7 +46,7 @@
         = text_field_tag 'billing[region]'
       %p.c6
         %label Country:
-        = country_select :billing, :country_code_alpha2, priority: %w(CA)
+        = country_select :billing, :country_code_alpha2, nil, include_blank: true 
       %p.c6.omega
         %label Postal Code
         = text_field_tag 'billing[postal_code]'

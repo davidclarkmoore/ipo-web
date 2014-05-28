@@ -55,11 +55,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carmen (1.0.1)
-      unicode_utils (~> 1.4.0)
-    carmen-rails (1.0.1)
-      carmen (~> 1.0.0)
-      rails
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -393,7 +388,6 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    unicode_utils (1.4.0)
     unicorn (4.6.3)
       kgio (~> 2.6)
       rack
@@ -417,7 +411,6 @@ DEPENDENCIES
   cancan
   capistrano
   capybara
-  carmen-rails
   carrierwave
   cocoon
   coffee-rails (~> 3.2.1)

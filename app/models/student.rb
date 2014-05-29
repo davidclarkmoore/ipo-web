@@ -55,11 +55,11 @@ class Student < ActiveRecord::Base
   end
 
   def academic_reference
-    @academic_reference ||= person_references.find_last_by_reference_type(:academic_reference).reference
+    @academic_reference ||= references.for_reference_type(:academic_reference)
   end
 
   def spiritual_reference
-    @spiritual_reference ||= person_references.find_last_by_reference_type(:spiritual_reference).reference
+    @spiritual_reference ||= references.for_reference_type(:spiritual_reference)
   end
 
   def full_name

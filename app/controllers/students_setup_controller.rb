@@ -11,6 +11,11 @@ class StudentsSetupController < ApplicationController
       # This is used for the apply button in project/show.html.haml
       @project_selected = Project.find(params[:project_id]) if params[:project_id]
       @student_application.student.build_login unless @student_application.student && @student_application.student.login
+    when :interests_and_fields_of_study
+      @academic_reference = PersonReference.find_or_build_person_reference(@student_application.person_references, :academic_reference)
+      @spiritual_reference = PersonReference.find_or_build_person_reference(@student_application.person_references, :spiritual_reference)
+      @new_academic_reference =  @student_application.person_references.build(reference_type: :academic_reference)
+      @new_spiritual_reference = @student_application.person_references.build(reference_type: :spiritual_reference)
     end
     @student_application.wizard_status = step.to_s
     render_wizard

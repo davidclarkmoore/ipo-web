@@ -14,6 +14,7 @@ class StudentApplication < ActiveRecord::Base
   attr_accessible :student_id, :project_session_id, :wizard_status, :student_attributes, :student, :agree_terms, :status
   accepts_nested_attributes_for :student
   delegate :project, :start_date, :end_date, to: :project_session
+  delegate :person_references, to: :student
 
   validates_uniqueness_of :project_session_id, scope: :student_id, message: "You already applied for this session"
   validates_presence_of :project_session_id

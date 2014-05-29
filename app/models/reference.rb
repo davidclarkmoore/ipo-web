@@ -16,4 +16,8 @@ class Reference < ActiveRecord::Base
   def select_label
     "#{first_name} #{last_name} - #{email}"
   end
+
+  def self.for_reference_type (type)
+    where(person_references: {reference_type: type}).last
+  end
 end

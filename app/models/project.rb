@@ -26,6 +26,8 @@ class Project < ActiveRecord::Base
   has_many :sessions, through: :project_sessions
   serialize :properties, ActiveRecord::Coders::Hstore
 
+  delegate :references, to: :field_host
+
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students,
     :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement,
     :internet_distance, :location_type, :transportation_available, :location_description,
@@ -175,17 +177,17 @@ class Project < ActiveRecord::Base
       project: self,
       organization: self.organization,
       field_host: self.field_host,
-      contacts: self.field_host.references.to_a
+      contacts: self.references.to_a
     })
     response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, parameters )
     
-    # If no error is raised, parse the reponse and save the SF Ids
+    # If no error is raised, parse the response and save the SF Ids
     parsed = JSON.parse(response.body)
     self.sf_object_id = parsed["project"]["Id"]
     self.organization.sf_object_id = parsed["project"]["Organization__c"]
     self.field_host.sf_object_id = parsed["project"]["FieldHost__c"]
     parsed["contacts"].each do |contact|
-      self.field_host.references.find_by_email(contact["Email"]).update_attribute(:sf_object_id, contact["Id"])
+      self.references.find_by_email(contact["Email"]).update_attribute(:sf_object_id, contact["Id"])
     end
     self.save
     

@@ -63,22 +63,13 @@ $ ->
     $("#student_application_student_attributes_graduation_year").rules "add",
       required: true
       number: true
-    $("#student_application_student_attributes_person_references_attributes_0_reference_id").rules "add",
-      required: "#is_new_spiritual_reference[value='false']"
-    $("#student_application_student_attributes_person_references_attributes_1_contact_first_name").rules "add",
-      required: "#is_new_spiritual_reference[value='true']"
-    $("#student_application_student_attributes_person_references_attributes_1_contact_last_name").rules "add",
-      required: "#is_new_spiritual_reference[value='true']"
-    $("#student_application_student_attributes_person_references_attributes_1_contact_email").rules "add",
-      required: "#is_new_spiritual_reference[value='true']"
-    $("#student_application_student_attributes_person_references_attributes_2_reference_id").rules "add",
-      required: "#is_new_academic_reference[value='false']"
-    $("#student_application_student_attributes_person_references_attributes_3_contact_first_name").rules "add",
-      required: "#is_new_academic_reference[value='true']"
-    $("#student_application_student_attributes_person_references_attributes_3_contact_last_name").rules "add",
-      required: "#is_new_academic_reference[value='true']"
-    $("#student_application_student_attributes_person_references_attributes_3_contact_email").rules "add",
-      required: "#is_new_academic_reference[value='true']"
+    reference = "#student_application_student_attributes_person_references_attributes_"
+    required_fields = (index) -> 
+      ["#{reference}#{index}_contact_first_name", "#{reference}#{index}_contact_last_name", "#{reference}#{index}_contact_email"]
+    $("#{reference}0_reference_id").rules "add", required: "#is_new_spiritual_reference[value='false']"
+    $("#{reference}2_reference_id").rules "add", required: "#is_new_academic_reference[value='false']"
+    $(element).rules "add", required: "#is_new_spiritual_reference[value='true']" for element in required_fields(1)
+    $(element).rules "add", required: "#is_new_academic_reference[value='true']" for element in required_fields(3)
   
   if $('form[action="/students/setup/important_details"]').length > 0      
     $("#student_application_agree_terms").rules "add",

@@ -3,7 +3,6 @@ module SFRails
 
   # Database connection module. Used to instantiate new connections to salesforce.
   # -- TODO: Handle connection authentication errors.
-  # -- TODO: Extract connector values to YML file.
   def self.connection
     return @client if @client.present?
     #TODO: Add exception handling
@@ -16,23 +15,6 @@ module SFRails
     @client.authenticate username: SF_API_CONFIG["username"],
                          password: SF_API_CONFIG["password"] + SF_API_CONFIG["security_token"]
     @client
-  end
-
-  def self.format_parameters(parameters = {})
-    output = "{"
-    parameters.each do |key,value|
-      case value
-      when ::SFRails::ActiveRecord
-        output += " \"#{key}\" : #{value.coerced_json} ,"
-      when ::String
-        output += " \"#{key}\" : \"#{value}\" ,"
-      when ::Numeric
-        output += " \"#{key}\" : #{value} ,"
-      when ::Array
-        output += " \"#{key}\" : [ #{value.map(&:coerced_json).join(", ")} ] ,"
-      end
-    end
-    output[0..-2] + " }"
   end
   
   module ActiveRecord
@@ -49,37 +31,30 @@ module SFRails
     def sf_mapping_hash; self.class.sf_mapping_hash; end
 
     def create_to_sf
-      sf_object = sf_class.create(sf_values)
+      sf_object = sf_class.create(sf_object_values)
       self.sf_object_id = sf_object.Id
       self.save
     end
 
     def update_to_sf
       sf.Id = self.sf_object_id
-      sf.attributes = sf_values
+      sf.attributes = sf_object_values
       sf.save
     end
 
     def upsert_to_sf; sf ? update_to_sf : create_to_sf; end
     
-    def sf_values
-      values = sf_mapping.inject({}) { |hash, key|
-        hash[sf_key(key)] = sf_value(key, sf_key(key))
-        hash
+    def sf_object_values
+      sf_object = {}
+      sf_mapping_hash.each { |local_key, sf_key|
+        sf_object[sf_key] = sf_value(local_key, sf_key)
       }
-      sf_mapping_hash.each { |key, value|
-        values[value] = sf_value(key, value)
-      }
-      values["Id"] = self.sf_object_id if self.sf_object_id
-      values
+      sf_object["Id"] = self.sf_object_id if self.sf_object_id
+      sf_object
     end
 
-    def coerced_json 
-      SFRails.connection.send(:coerced_json, sf_values, sf_class)
-    end
-
-    def sf_json( name = self.class.name.underscore )
-      "\"#{name}\" : #{coerced_json}"
+    def convert_to_json
+      SFRails.connection.send(:coerced_json, sf_object_values, sf_class)
     end
     
     included do
@@ -89,11 +64,11 @@ module SFRails
     end
 
     module ClassMethods
-      attr_accessor :sf_model_name, :sf_mapping, :sf_mapping_hash
+      attr_accessor :sf_model_name, :sf_mapping_hash
 
       def salesforce(model_name, mapping = [], mapping_hash = {})
         self.sf_model_name = model_name;
-        self.sf_mapping = mapping
+        mapping.each_with_index { |item, index| mapping_hash[item] = sf_key(item) }
         self.sf_mapping_hash = mapping_hash
       end
 
@@ -105,27 +80,27 @@ module SFRails
         @materialized
       end
 
+      def sf_key(local_key)
+        sf_key = local_key.to_s.titleize.gsub(' ', '_')
+        index = sf.attributes.index(sf_key) || sf.attributes.index(sf_key + "__c")
+        if index
+          return sf.attributes[ index ]
+        else
+          return nil
+        end
+      end
+
     end
 
     private
 
-    def sf_key(key)
-      sf_key = key.to_s.titleize.gsub(' ', '_')
-      index = sf_class.attributes.index(sf_key) || sf_class.attributes.index(sf_key + "__c")
-      if index
-        return sf_class.attributes[ index ]
-      else
-        return nil
-      end
-    end
-
-    def sf_value(key, sf_key)
-      value = self.send(key)
+    def sf_value(local_key, sf_key)
+      value = self.send(local_key)
       case sf_class.field_type(sf_key)
         when "picklist" 
-          t(key, value) if value.present? 
+          t(local_key, value) if value.present? 
         when "multipicklist" 
-          value.map { |val| t(key, val) } if value.present? 
+          value.map { |val| t(local_key, val) } if value.present? 
         else
           value
       end    
@@ -171,13 +146,8 @@ module SFRails
 
     # Fetch the right salesforce field based on the rails field key passed in.
     def sf_field(key)
-      self.attributes[translate_rails_key(key)] || self.attributes[translate_rails_key(key) + "__c"]
-    end
-
-    # Translates rails convention (underscore) into Salesforce convention (camelcase).
-    # -- TODO: Not sure if this is the proper place for this function.
-    def translate_rails_key(key)
-      key.to_s.camelize
+      translated_key = Formatter.translate_rails_key(key)
+      self.attributes.find { |a|  a == translated_key || a == translated_key + "__c" }
     end
 
   end

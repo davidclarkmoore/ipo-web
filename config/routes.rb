@@ -30,15 +30,20 @@ IpoWeb::Application.routes.draw do
   get '/students_setup/project_sessions/:project' => 'students_setup#project_sessions'
   get '/projects_setup/application_deadline/:id' => 'projects_setup#application_deadline'
 
-  resources :students
+  resources :students do
+    get 'donate' => 'students#donate', :as => :donate_form
+    post 'donating' => 'students#donating', :as => :donating
+  end
   resources :dashboards, only: [:index]
   resources :sessions
   get '/unique/:model/:attribute/:value' => 'uniqueness#validate', constraints: { value: /[^\/?]+/ }
 
   put "dashboards/update_login" => "dashboards#update_login"
 
-  mount Sidekiq::Web, at: '/sidekiq'
+  resources :donations, path: "/donations", only: [:new, :create]
+  get '/donate' => 'donations#new'
 
+  mount Sidekiq::Web, at: '/sidekiq'
   mount Refinery::Core::Engine, :at => '/'
 
   Refinery::Core::Engine.routes.draw do

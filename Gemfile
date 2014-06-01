@@ -43,6 +43,8 @@ gem 'refinerycms', '~> 2.1.0'
 gem "searchkick"
 gem 'ransack'
 
+gem 'braintree'
+#gem 'carmen-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -78,7 +80,6 @@ group :test, :development do
   gem 'rr'
   gem 'ffaker'
   gem 'database_cleaner'
-
   gem 'ruby_gntp'
   gem 'fuubar'
   gem 'railroady'
@@ -86,4 +87,8 @@ group :test, :development do
   # Debugger and REPL
   gem "pry"
   gem "pry-debugger"
+end
+
+group :test do
+  gem 'fake_braintree'
 end

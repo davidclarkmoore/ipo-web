@@ -1,8 +1,8 @@
 !!!
 = render 'shared/head'
 %body{'data-controller' => controller_name, 'data-action' => action_name, 'data-application' => 'ipo', 'class' => 'controller-' + controller_name}
-  = render '/shared/segmentio'
-  = render '/layouts/social_button_scripts'
+  = render '/shared/segmentio' if !Rails.env.development?
+  = render '/layouts/social_button_scripts' if !Rails.env.development?
   .header-bg &nbsp;
   .container
     %header
@@ -11,7 +11,6 @@
         =image_tag 'converge-logo.png'
       = render 'shared/navigation'
     = yield :header
-    
 
 
   = render 'shared/sub_menus', page: @page

@@ -44,6 +44,8 @@ gem "searchkick"
 gem 'ransack'
 
 gem 'braintree'
+gem 'faraday'
+
 #gem 'carmen-rails'
 # Gems used only for assets and not required
 # in production environments by default.

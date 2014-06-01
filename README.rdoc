@@ -12,13 +12,35 @@ Copy the file *config/sf_api.yml.example* to *config/sf_api.yml* and add in the 
       password: password
       security_token: pwd_token
 
+
 SF integration needs redis and sidekiq to manage project syncs:
 
-1. Install redis
-2. Run redis: 
+Install redis
+
+Run redis: 
 
   redis-server /usr/local/etc/redis.conf
 
-3. Run sidekiq: 
+Run sidekiq: 
   
-  sidekiq -q projects 
+  sidekiq -q projects,1 student_application,2
+
+
+
+Elasticsearch (1.1.1) installation is also needed.
+
+On Mac OS X
+
+> brew updated
+> brew install elasticsearch
+
+Data:    /usr/local/var/elasticsearch/elasticsearch_user/
+Logs:    /usr/local/var/log/elasticsearch/elasticsearch_user.log
+Plugins: /usr/local/var/lib/elasticsearch/plugins/
+
+To have launchd start elasticsearch at login:
+    ln -sfv /usr/local/opt/elasticsearch/*.plist ~/Library/LaunchAgents
+Then to load elasticsearch now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
+Or, if you don't want/need launchctl, you can just run:
+    elasticsearch --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml

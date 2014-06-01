@@ -2,26 +2,31 @@ class Student < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
   salesforce "Contact", 
-    [:gender, :created_at, :description,:marital_status,
-    :spoken_languages, :created_at, :updated_at],
+    [:gender, :created_at, :description, :email, :marital_status, :phone_type,
+    :public_contact_information, :published_status, :spoken_languages, :created_at, :updated_at],
     {first_name: 'FirstName', last_name: 'LastName', birthday: 'Birthdate',
-    fields_of_study: 'Fields_of_Study__c', preferred_phone: 'Phone',
-    agree_terms: 'Agree_to_Terms__c' #, heard_about_ipo: 'Heard_about_IPO__c'
-    }
+    fields_of_study: 'Fields_of_Study__c', preferred_phone: 'Phone', passions: "Passion_Focus__c",
+    agree_terms: 'Agree_to_Terms__c', heard_about_ipo: 'Heard_about_IPO__c', 
+    street_address: "MailingStreet", state: "MailingState", city: "MailingCity", postal_code: "MailingPostalCode",
+    country: "MailingCountry", organization: "School_Church_Student_Organization__c",
+    applied_ipo_before: "Applied_IPO_Before__c", graduation_year: "Graduation__c",
+    overall_education: "Education__c", experiences: "Experience_with_YWAM__c"
+    } 
   
   serialize :properties, ActiveRecord::Coders::Hstore
 
   hstore_accessor :properties, :overall_education, :graduation_year, :agree_terms
 
-  attr_accessible :first_name, :last_name, :birthday, :gender, :street_address, :city, :postal_code,
+  attr_accessible :first_name, :last_name, :birthday, :gender, :street_address, :city, :state, :postal_code,
     :country, :preferred_phone, :phone_type, :marital_status, :organization, :applied_ipo_before,
-    :description, :academic_reference_id, :spiritual_reference_id, :graduation_year, :agree_terms,
-    :login_attributes, :spiritual_reference_attributes,  :academic_reference_attributes, 
+    :description, :reference_id, :graduation_year, :agree_terms,
+    :login_attributes, :reference_attributes, :person_references_attributes,
     :fields_of_study, :passions, :experiences, :spoken_languages, :heard_about_ipo, :overall_education,
     :profile_picture, :cover_photo, :public_contact_information, :published_status, :biography
 
-  belongs_to :academic_reference, class_name: "Reference", dependent: :destroy
-  belongs_to :spiritual_reference, class_name: "Reference", dependent: :destroy
+  has_many :person_references, as: :referencer, inverse_of: :referencer
+  has_many :references, through: :person_references
+
   has_one :login, as: :entity, dependent: :destroy
   has_many :student_applications, dependent: :destroy
   has_many :project_sessions, through: :student_applications
@@ -29,13 +34,12 @@ class Student < ActiveRecord::Base
   delegate :email, to: :login
 
   accepts_nested_attributes_for :login
-  accepts_nested_attributes_for :spiritual_reference
-  accepts_nested_attributes_for :academic_reference
+  accepts_nested_attributes_for :person_references
 
-  validates_presence_of :first_name, :last_name, :gender, :marital_status, :street_address, :city, :postal_code,
-    :country, :preferred_phone, :organization, :birthday, :heard_about_ipo
-
-  validates :spiritual_reference, associated: true
+  validates_presence_of :first_name, :last_name, :gender, :marital_status, 
+                        :street_address, :state, :city, :postal_code,
+                        :country, :preferred_phone, :organization, :birthday, 
+                        :heard_about_ipo
 
   validates_inclusion_of :applied_ipo_before, in: [true, false]
   validates :graduation_year, numericality: {allow_nil: true}
@@ -51,12 +55,20 @@ class Student < ActiveRecord::Base
     enumerize f, in: I18n.t("enumerize.student." + f), multiple: true
   end
 
+  def academic_reference
+    @academic_reference ||= references.for_reference_type(:academic_reference)
+  end
+
+  def spiritual_reference
+    @spiritual_reference ||= references.for_reference_type(:spiritual_reference)
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
 
   def full_address
-    "#{street_address} #{city} #{postal_code} #{country}"
+    "#{street_address} #{city} #{postal_code} #{state} #{country}"
   end
 
   def published_status_to_string

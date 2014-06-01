@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
       :per_week_cost, :per_week_cost_final, :related_fields_of_study, 
       :related_student_passions, :required_languages, :safety_level, 
       :student_educational_requirement, :team_mode, :transportation_available, 
-      :typical_attire, :updated_at ] #:wizard_status
+      :typical_attire, :updated_at ]
 
   searchkick autocomplete: ['name']
   SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
@@ -25,6 +25,8 @@ class Project < ActiveRecord::Base
   has_many :project_sessions
   has_many :sessions, through: :project_sessions
   serialize :properties, ActiveRecord::Coders::Hstore
+
+  delegate :references, to: :field_host
 
   hstore_accessor :properties, :min_stay_duration, :min_students, :max_students,
     :per_week_cost, :per_week_cost_final, :required_languages, :student_educational_requirement,
@@ -170,20 +172,23 @@ class Project < ActiveRecord::Base
 
   #create/update object in SF
   def save_to_sf!
-   
     # Databasedotcom::SalesForceError must be handled by the caller
     parameters = SFRails.format_parameters({
       project: self,
       organization: self.organization,
-      field_host: self.field_host
+      field_host: self.field_host,
+      contacts: self.references.to_a
     })
     response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, parameters )
     
-    # If no error is raised, parse the reponse and save the SF Ids
+    # If no error is raised, parse the response and save the SF Ids
     parsed = JSON.parse(response.body)
-    self.sf_object_id = parsed["Id"]
-    self.organization.sf_object_id = parsed["Organization__c"]
-    self.field_host.sf_object_id = parsed["FieldHost__c"]
+    self.sf_object_id = parsed["project"]["Id"]
+    self.organization.sf_object_id = parsed["project"]["Organization__c"]
+    self.field_host.sf_object_id = parsed["project"]["FieldHost__c"]
+    parsed["contacts"].each do |contact|
+      self.references.find_by_email(contact["Email"]).update_attribute(:sf_object_id, contact["Id"])
+    end
     self.save
     
   end

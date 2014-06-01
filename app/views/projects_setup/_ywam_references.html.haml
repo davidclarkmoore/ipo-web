@@ -1,0 +1,10 @@
+.container.background
+  %h3.center.light-text= t(:ywam_references)
+  %p= t(:ywam_references_description)
+  %p= t(:we_will_send_an_email)
+  = f.fields_for :field_host, project.field_host do |field_host|
+    #person_references
+      = field_host.simple_fields_for :person_references do |reference|
+        = render 'person_reference_fields', f: reference
+      .links
+        = link_to_add_association 'Add Reference', field_host, :person_references, class: "button button-orange"

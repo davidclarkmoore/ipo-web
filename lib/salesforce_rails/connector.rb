@@ -19,19 +19,21 @@ module SFRails
   end
 
   def self.format_parameters(parameters = {})
-      output = "{"
-      parameters.each do |key,value|
-        case value
-        when ::SFRails::ActiveRecord
-          output += " \"#{key}\" : #{value.coerced_json} ,"
-        when ::String
-          output += " \"#{key}\" : \"#{value}\" ,"
-        when ::Numeric
-          output += " \"#{key}\" : #{value} ,"
-        end
+    output = "{"
+    parameters.each do |key,value|
+      case value
+      when ::SFRails::ActiveRecord
+        output += " \"#{key}\" : #{value.coerced_json} ,"
+      when ::String
+        output += " \"#{key}\" : \"#{value}\" ,"
+      when ::Numeric
+        output += " \"#{key}\" : #{value} ,"
+      when ::Array
+        output += " \"#{key}\" : [ #{value.map(&:coerced_json).join(", ")} ] ,"
       end
-      output[0..-2] + " }"
     end
+    output[0..-2] + " }"
+  end
   
   module ActiveRecord
     extend ActiveSupport::Concern
@@ -53,19 +55,20 @@ module SFRails
     end
 
     def update_to_sf
-      sf.save(sf_values)
-      sf
+      sf.Id = self.sf_object_id
+      sf.attributes = sf_values
+      sf.save
     end
 
     def upsert_to_sf; sf ? update_to_sf : create_to_sf; end
     
     def sf_values
       values = sf_mapping.inject({}) { |hash, key|
-        hash[sf_key(key)] = sf_value(key)
+        hash[sf_key(key)] = sf_value(key, sf_key(key))
         hash
       }
       sf_mapping_hash.each { |key, value|
-        values[value] = sf_value(key)
+        values[value] = sf_value(key, value)
       }
       values["Id"] = self.sf_object_id if self.sf_object_id
       values
@@ -116,9 +119,20 @@ module SFRails
       end
     end
 
-    def sf_value(key)
+    def sf_value(key, sf_key)
       value = self.send(key)
-      value.class.include?(Enumerable) ? value.map(&:titleize) : value
+      case sf_class.field_type(sf_key)
+        when "picklist" 
+          t(key, value) if value.present? 
+        when "multipicklist" 
+          value.map { |val| t(key, val) } if value.present? 
+        else
+          value
+      end    
+    end
+
+    def t(key, value)
+      I18n.t "enumerize.#{self.class.name.underscore}.#{key}.#{value}", locale: :en
     end
 
   end

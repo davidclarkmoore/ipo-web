@@ -1,8 +1,10 @@
 class StudentApplication < ActiveRecord::Base
+  extend Enumerize
   COMPLETE = "complete" 
   INCOMPLETE = "incomplete"
   include SFRails::ActiveRecord
-  salesforce "Opportunity", [], {end_date: 'CloseDate', name: 'Name', stage_name: 'StageName'}
+  salesforce "Opportunity", [ :start_date ], 
+            { end_date: 'CloseDate', name: 'Name', stage_name: 'StageName' }
     
   SF_STUDENT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/StudentApplication"
   
@@ -12,6 +14,7 @@ class StudentApplication < ActiveRecord::Base
   attr_accessible :student_id, :project_session_id, :wizard_status, :student_attributes, :student, :agree_terms, :status
   accepts_nested_attributes_for :student
   delegate :project, :start_date, :end_date, to: :project_session
+  delegate :person_references, to: :student
 
   validates_uniqueness_of :project_session_id, scope: :student_id, message: "You already applied for this session"
   validates_presence_of :project_session_id
@@ -37,9 +40,9 @@ class StudentApplication < ActiveRecord::Base
   def name
     "#{self.student.full_name} #{self.project_session.title}"
   end
-  
+
   def stage_name
-    return name
+    :prospecting
   end
   
   def save_to_sf!
@@ -56,7 +59,9 @@ class StudentApplication < ActiveRecord::Base
       self.sf_object_id = parsed["Id"]
       self.student.sf_object_id = parsed["Contact__c"]
       self.student.academic_reference.sf_object_id = parsed["Academic_Reference__c"]
+      self.student.academic_reference.save
       self.student.spiritual_reference.sf_object_id = parsed["Spiritual_Reference__c"]
+      self.student.spiritual_reference.save
       self.save
     rescue Databasedotcom::SalesForceError => e
       Rails.logger.warn "SalesForceError saving StudentApplication #{self.id}: #{e.message}"

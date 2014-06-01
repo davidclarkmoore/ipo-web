@@ -230,8 +230,23 @@ label {
 .project_field_host_years_associated_with_organization { @include span-columns(2, 6);}
 .project_field_host_overall_education {@include span-columns(4 alpha, 6);  @include post(2, 6);}
 
-
-
+.project_field_host_person_references_contact_first_name { @include span-columns(2, 8);  }
+.project_field_host_person_references_contact_last_name { @include span-columns(2, 8); }
+.project_field_host_person_references_contact_email { @include span-columns(2, 8); }
+.project_field_host_person_references_contact_phone { @include span-columns(2 omega, 8); }
+.project_field_host_person_references_contact_description { @include span-columns(11, 12); }
+.remove_fields { 
+  @include span-columns(1 omega, 12);
+  text-align: center;
+  position: relative;
+  top: 3em;
+  width: auto;
+  margin: 0 auto;
+} 
+.add_fields { 
+  text-align: center;
+  @include pre(2,6); @include span-columns(2, 6); @include post(2,6);
+}
 
 // ------
 // Step 2

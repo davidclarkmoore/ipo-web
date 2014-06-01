@@ -1,8 +1,8 @@
 class StudentsSetupController < ApplicationController
   before_filter :current_student_application, :clean_select_multiple_params
-  include Wicked::Wizard  
+  include Wicked::Wizard
   steps :about_you, :interests_and_fields_of_study, :important_details, :confirmation
-  
+
 
   def show
     @student_application.build_student unless @student_application.student
@@ -12,15 +12,16 @@ class StudentsSetupController < ApplicationController
       @project_selected = Project.find(params[:project_id]) if params[:project_id]
       @student_application.student.build_login unless @student_application.student && @student_application.student.login
     when :interests_and_fields_of_study
-      @student_application.student.build_spiritual_reference unless @student_application.student.spiritual_reference
-      @student_application.student.build_academic_reference unless @student_application.student.academic_reference
+      @academic_reference = PersonReference.find_or_build_person_reference(@student_application.person_references, :academic_reference)
+      @spiritual_reference = PersonReference.find_or_build_person_reference(@student_application.person_references, :spiritual_reference)
+      @new_academic_reference =  @student_application.person_references.build(reference_type: :academic_reference)
+      @new_spiritual_reference = @student_application.person_references.build(reference_type: :spiritual_reference)
     end
     @student_application.wizard_status = step.to_s
     render_wizard
   end
 
   def update
-    @student_application.attributes = params[:student_application]
     case step
     when :interests_and_fields_of_study
       remove_extra_attributes("spiritual_reference", params[:is_new_spiritual_reference])
@@ -29,16 +30,17 @@ class StudentsSetupController < ApplicationController
 
     params[:student_application][:wizard_status] = step.to_s
     params[:student_application][:wizard_status] = 'complete' if step == :important_details
-    
+
     @student_application.update_attributes params[:student_application]
+    
     if step == :important_details
       # create/update SF object
       StudentApplicationSyncWorker.perform_async(@student_application.id)
     end
-    
+
     create_login_session unless login_signed_in?
     render_wizard @student_application
-    session[:student_application] = @student_application.id 
+    session[:student_application] = @student_application.id
   end
 
   def project_sessions
@@ -50,6 +52,14 @@ class StudentsSetupController < ApplicationController
   end
 
   private
+
+  def person_references_params
+    student_params[:person_references_attributes]
+  end
+
+  def student_params
+    params[:student_application][:student_attributes]
+  end
 
   def current_student_application
     @student_application ||= begin
@@ -78,10 +88,9 @@ class StudentsSetupController < ApplicationController
 
   def remove_extra_attributes(reference, value)
     if value == "true"
-      params[:student_application][:student_attributes].delete((reference + "_id").to_sym)
-      reference == "spiritual_reference" ? @student_application.student.build_spiritual_reference : @student_application.student.build_academic_reference
+      person_references_params.reject! { |k, v| !v['reference_id'].nil? && v['reference_type'] == reference }
     else
-      params[:student_application][:student_attributes].delete((reference + "_attributes").to_sym)
+      person_references_params.reject! { |k, v| v['reference_id'].blank? && v['reference_type'] == reference }
     end
   end
 end

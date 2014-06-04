@@ -13,7 +13,7 @@ class StudentApplication < ActiveRecord::Base
 
   attr_accessible :student_id, :project_session_id, :wizard_status, :student_attributes, :student, :agree_terms, :status
   accepts_nested_attributes_for :student
-  delegate :project, :session, :start_date, :end_date, to: :project_session
+  delegate :project, :start_date, :end_date, to: :project_session
   delegate :person_references, to: :student
 
   validates_uniqueness_of :project_session_id, scope: :student_id, message: "You already applied for this session"
@@ -57,10 +57,10 @@ class StudentApplication < ActiveRecord::Base
     begin
       c = SFRails.connection
       parameters = Formatter.format_parameters({
-          student: self.student,
-          academic_reference: self.student.academic_reference,
-          spiritual_reference: self.student.spiritual_reference,
-          student_application: self,
+          student: self.student, 
+          academic_reference: self.student.academic_reference, 
+          spiritual_reference: self.student.spiritual_reference, 
+          student_application: self, 
           project: self.project_session.project.sf_object_id,
           session: self.session.sf_object_id,
           organization: self.project.organization.sf_object_id })
@@ -79,5 +79,5 @@ class StudentApplication < ActiveRecord::Base
     end
     self
   end
-
+  
 end

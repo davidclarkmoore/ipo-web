@@ -178,7 +178,8 @@ class Project < ActiveRecord::Base
       project: self,
       organization: self.organization,
       field_host: self.field_host,
-      contacts: self.references.to_a
+      contacts: self.references.to_a,
+      sessions: self.sessions.to_a
     })
     response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, parameters )
     
@@ -189,6 +190,9 @@ class Project < ActiveRecord::Base
     self.field_host.sf_object_id = parsed["project"]["FieldHost__c"]
     parsed["contacts"].each do |contact|
       self.references.find_by_email(contact["Email"]).update_attribute(:sf_object_id, contact["Id"])
+    end
+    parsed["sessions"].each do |session|
+      self.sessions.find_by_start_date(session["Start_Date__c"]).update_attribute(:sf_object_id, session["Id"])
     end
     self.save
     

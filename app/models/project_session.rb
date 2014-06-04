@@ -1,10 +1,10 @@
 class ProjectSession < ActiveRecord::Base
-
+ 
   COMPLETE = 'complete'
   INCOMPLETE = 'incomplete'
 
   attr_accessible :project_id, :session_id, :application_deadline, :status
-  delegate :start_date, :end_date, :title, :application_deadline, to: :session
+  delegate :title, :start_date, :end_date, :title, :application_deadline, :duration, to: :session
 
   belongs_to :project
   belongs_to :session

@@ -185,6 +185,7 @@ h1.subtitle {
 nav.main {
   color: #4b4b4b;
   @include span-columns(9 omega);
+  text-align: right;
 
   .link {
     //@include adjust-font-size-to(20px);
@@ -203,6 +204,35 @@ nav.main {
     color: inherit;
     text-decoration: none;
   }
+
+  input.submit {
+  display:none;
+  }
+}
+
+.secondary-header {
+    background: #FFF;
+    padding: 1em 0em 1em 0em;
+    width: 100%;
+
+    nav {
+      text-align: right;
+      span {
+        padding: 0em 1em 0em 1em;
+
+        a {
+          text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+      }
+    span:last-child {
+      padding-right: 0em;
+    }
+    }
+
 }
 
 

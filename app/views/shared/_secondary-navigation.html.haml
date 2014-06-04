@@ -1,0 +1,7 @@
+%nav.secondary
+  - if current_login
+    %span.link.heading=link_to "log out", main_app.destroy_login_session_path
+  - else
+    %span.link.heading=link_to "submit a project", main_app.projects_setup_index_path
+    %span.link.heading=link_to "apply", main_app.students_setup_index_path
+    %span.link.heading=link_to "log in", main_app.new_login_session_path

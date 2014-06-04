@@ -3,6 +3,10 @@
 %body{'data-controller' => controller_name, 'data-action' => action_name, 'data-application' => 'ipo'}
   = render '/shared/segmentio'
   .header-bg-large &nbsp;
+
+  .secondary-header
+    .container
+      = render 'shared/secondary-navigation'
   .main-header.container
     %header
       = link_to root_path do

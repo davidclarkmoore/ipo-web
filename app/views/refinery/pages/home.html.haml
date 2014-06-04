@@ -2,7 +2,7 @@
   %h1.center.subtitle= t(:global_customized_internships_in_your_field)
   .title-search
     = form_tag(IpoWeb::Application.routes.url_helpers.projects_path, method: "get") do
-      .c5 
+      .c5
         %label= t(:search_your_field_of_study)
         = text_field_tag 'related_field_of_study', nil, placeholder: t(:engineering_medicine_marketing)
 
@@ -17,8 +17,7 @@
 
 #home
   %article.motto.box.box-light-yellow
-    .container
-      = raw @page.content_for :motto
+    .container= raw @page.content_for :motto
 
   %article#fields_and_areas.box.container
     %ul.tab-list
@@ -34,7 +33,6 @@
   %article#search_projects.box.box-green
     .container
       = raw @page.content_for :search
-
       = link_to IpoWeb::Application.routes.url_helpers.projects_path, class: "button button-orange", id: "search-projects" do
         = image_sprite :search
         = t(:search_projects)

@@ -184,15 +184,17 @@ h1.subtitle {
 
 nav.main {
   color: #4b4b4b;
-  @include span-columns(7 omega);
+  @include span-columns(9 omega);
 
   .link {
-    @include adjust-font-size-to(20px);
+    //@include adjust-font-size-to(20px);
     font-family: $header-font-family;
     line-height: inherit;
     text-align: center;
     padding: 0;
     padding-right: 4em;
+
+    font-weight: bold;
     &:last-child { padding-right: 0;}
     // font-weight: 300;
   }

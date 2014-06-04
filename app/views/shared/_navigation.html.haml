@@ -5,3 +5,9 @@
     %span.link.heading=link_to "log out", main_app.destroy_login_session_path
   - else
     %span.link.heading=link_to "log in", main_app.new_login_session_path
+
+  = form_tag '/search', :method => :get do
+    = search_field_tag :search, @search, :autocomplete => false
+    = submit_tag 'Search', :class => 'button button-green'
+
+  = yield :navigation

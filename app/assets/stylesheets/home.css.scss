@@ -172,7 +172,7 @@
       font-weight: 600;
       @include adjust-font-size-to(22px, 2);
     }
-  
+
     h1, p {
       margin-bottom: 0;
     }
@@ -224,4 +224,19 @@ article.description-section h2, #pre-footer h3 {
     margin-left: 50%;
   }
 
+}
+
+form[action="/search"] {
+  display: inline-block;
+  input[type="search"] {
+    @include leader(1);
+    width: auto;
+    font-size: 1em;
+  }
+  input[type='submit'].button {
+    margin: 0;
+    @include leader(1);
+    width: auto;
+    font-size: 1em;
+  }
 }

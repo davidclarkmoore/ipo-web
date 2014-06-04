@@ -9,9 +9,6 @@
         / %h1.title Converge
         =image_tag 'converge-logo.png'
       = render 'shared/navigation'
-      = form_tag '/search', :method => :get do
-        =search_field_tag :search, @search, :autocomplete => false
-        =submit_tag 'Search', :class => 'button button-green'
     = yield :header
 
   = render 'shared/sub_menus', page: @page

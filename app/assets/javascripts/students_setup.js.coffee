@@ -11,7 +11,6 @@ $ ->
     handleTabs("existing", "academic_reference", value)
     $('#is_new_academic_reference').val(($(@).data('box') == "#new_academic_reference"))
 
-  $("#student_application_project_session_id").empty()
   $("#your_project_select").change (event) ->
     project_code = $(this).val()
     $.ajax
@@ -20,13 +19,18 @@ $ ->
       success: (data) -> 
         $("#s2id_student_application_project_session_id").children().children(".select2-chosen").text("")
         $("#student_application_project_session_id").empty()
+        selected = null
         $.each data, (index, value) ->
-          $("#student_application_project_session_id").append "<option value=\"" + data[index].id + "\">" + data[index].text + "</option>"
+          selected = if data[index].selected then data[index].id else null
+          option = "<option value=\"#{data[index].id}\"> #{data[index].text} </option>"
+          $("#student_application_project_session_id").append option
+        $("#student_application_project_session_id").select2('val',selected)
         $("#student_application_project_session_id").valid()
 
   jQuery.validator.addMethod "student_application_agree_terms_accepted", ((value, element) ->
     @.optional(element) || $("#student_application_agree_terms").is(":checked")
   ), "You must agree the terms in order to continue"
+
 
   $('form[action^="/students/setup"]').validate
     errorElement: 'span'
@@ -58,6 +62,11 @@ $ ->
         equalTo: "#student_application_student_attributes_login_attributes_password"
     $("#student_application_student_attributes_marital_status").rules "add",
       required: true
+    $("#student_application_student_attributes_birthday_3i").removeClass("date")
+    $("#student_application_student_attributes_birthday_3i").rules "add",
+      required: true
+      min_length: 1
+      max_length: 31
   
   if $('form[action="/students/setup/interests_and_fields_of_study"]').length > 0
     $("#student_application_student_attributes_graduation_year").rules "add",

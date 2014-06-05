@@ -2,18 +2,18 @@
 = render 'shared/head'
 %body{'data-controller' => controller_name, 'data-action' => action_name, 'data-application' => 'ipo'}
   = render '/shared/segmentio'
-  .header-bg-large &nbsp;
 
   .secondary-header
     .container
       = render 'shared/secondary-navigation'
-  .main-header.container
+  .main-header
     %header
-      = link_to root_path do
-        / %h1.title Converge
-        =image_tag 'converge-logo.png'
-      = render 'shared/navigation'
-    = yield :header
+      .container
+        = link_to root_path,{:id => "logo"} do
+          / %h1.title Converge
+          =image_tag 'converge-logo.png'
+        = render 'shared/navigation'
+  = yield :hero
 
   = render 'shared/sub_menus', page: @page
   = yield

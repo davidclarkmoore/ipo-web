@@ -122,27 +122,20 @@ body {
 
 .header-bg, .header-bg-large {
  // background: url(header-bg.png) no-repeat;
-  background-color: white;
-  height: 100px;
-  width: 100%;
-  position: absolute;
-  z-index: -1;
+
   border-bottom: 3px solid $extra-light-grey;
 }
 
 .header-bg-large {
   background: url(header-bg-large.jpg) no-repeat;
   height: 730px;
-  margin-top: -25px;
 }
 
-.main-header { min-height: 700px; }
 
 
 header {
   @include adjust-leading-to(4);
-  @include trailer(2);
-
+  background-color: #fff;
 
   color: white;
   -webkit-font-smoothing: antialiased;
@@ -162,11 +155,26 @@ header {
 
 // main converge logo
 
-  a {
+  a#logo {
+      @include span-columns(3 alpha);
+      display:block;
      img {
-        width: 250px;
-        margin-top: 1.5em;
+        max-width: 250px;
+        // margin-top: 1.5em;
+        vertical-align: middle;
       }
+  }
+
+  input#search {
+    background-color: #fff;
+    border: 1px solid $light-grey;
+    @include border-radius (5px);
+    color: $light-grey;
+    margin-left: 3em;
+  }
+
+  input#submit {
+    display:none;
   }
 
 
@@ -187,13 +195,14 @@ nav.main {
   @include span-columns(9 omega);
   text-align: right;
 
+
   .link {
-    //@include adjust-font-size-to(20px);
+    @include adjust-font-size-to(18px);
     font-family: $header-font-family;
     line-height: inherit;
     text-align: center;
     padding: 0;
-    padding-right: 4em;
+    // padding-right: 4em;
 
     font-weight: bold;
     &:last-child { padding-right: 0;}
@@ -203,16 +212,16 @@ nav.main {
   .link a {
     color: inherit;
     text-decoration: none;
+    display: inline-block;
+    padding: 0em 2em;
   }
 
-  input.submit {
-  display:none;
-  }
 }
 
+
 .secondary-header {
-    background: #FFF;
-    padding: 1em 0em 1em 0em;
+    background-color: $extra-light-grey;
+    padding: .7em 0em .7em 0em;
     width: 100%;
 
     nav {
@@ -222,10 +231,13 @@ nav.main {
 
         a {
           text-decoration: none;
+          @include adjust-font-size-to(15px);
+          color: $grey;
         }
 
         a:hover {
             text-decoration: underline;
+            color: $orange;
         }
       }
     span:last-child {
@@ -233,6 +245,11 @@ nav.main {
     }
     }
 
+}
+
+
+.hero {
+  padding-top: 10%;
 }
 
 

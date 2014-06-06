@@ -3,10 +3,9 @@
 %body{'data-controller' => controller_name, 'data-action' => action_name, 'data-application' => 'ipo', 'class' => 'controller-' + controller_name}
   = render '/shared/segmentio' if !Rails.env.development?
   = render '/layouts/social_button_scripts' if !Rails.env.development?
-  .header-bg &nbsp;
-  .container
-    %header
-      = link_to root_path do
+  %header
+    .container
+      = link_to root_path,{:id => "logo"} do
         / %h1.title Converge
         = image_tag 'converge-logo.png'
       = render 'shared/navigation'

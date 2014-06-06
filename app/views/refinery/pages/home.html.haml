@@ -1,19 +1,21 @@
-- content_for :header do
-  %h1.center.subtitle= t(:global_customized_internships_in_your_field)
-  .title-search
-    = form_tag(IpoWeb::Application.routes.url_helpers.projects_path, method: "get") do
-      .c5
-        %label= t(:search_your_field_of_study)
-        = text_field_tag 'related_field_of_study', nil, placeholder: t(:engineering_medicine_marketing)
+- content_for :hero do
+  %div.hero.header-bg-large
+    .container
+      %h1.center.subtitle= t(:global_customized_internships_in_your_field)
+      .title-search
+        = form_tag(IpoWeb::Application.routes.url_helpers.projects_path, method: "get") do
+          .c5
+            %label= t(:search_your_field_of_study)
+            = text_field_tag 'related_field_of_study', nil, placeholder: t(:engineering_medicine_marketing)
 
-      .c4
-        %label= t(:and_where_you_want_to_go)
-        = text_field_tag "q[address_cont]", nil, placeholder: t(:city_province_postal_code)
+          .c4
+            %label= t(:and_where_you_want_to_go)
+            = text_field_tag "q[address_cont]", nil, placeholder: t(:city_province_postal_code)
 
-      .c2.omega
-        = button "Go", :green, class: "x-large", id: 'search-field-study' do
-          = image_sprite :thumbs_up
-          = t(:go)
+          .c2.omega
+            = button "Go", :green, class: "x-large", id: 'search-field-study' do
+              = image_sprite :thumbs_up
+              = t(:go)
 
 #home
   %article.motto.box.box-light-yellow

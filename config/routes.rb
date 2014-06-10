@@ -21,6 +21,7 @@ IpoWeb::Application.routes.draw do
   resources :projects do
     resources :project_media, as: 'media', path: 'media', only: [:create]
   end
+  post '/projects/sync/:sf_object_id', to: 'projects#sync_with_sf'
   resources :project_media, only: [:show, :destroy]
 
   match '/home/autocomplete' => "home#autocomplete"

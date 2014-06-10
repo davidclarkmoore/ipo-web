@@ -20,7 +20,7 @@ module Formatter
     end
 
     # Translates rails convention (underscore) into Salesforce convention (camelcase).
-    def translate_rails_key(key)
+    def self.translate_rails_key(key)
       key.to_s.camelize
     end
 end

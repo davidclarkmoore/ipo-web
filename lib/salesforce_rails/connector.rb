@@ -123,17 +123,24 @@ module SFRails
       rails_record ? update_to_rails : create_to_rails
     end
 
-    #TODO: Implement!
+    def save_to_rails!
+      rails_record ? update_to_rails! : create_to_rails!
+    end
+
+    def update_to_rails!
+      rails_record.update_attributes!(rails_object_values)
+    end
+    
     def update_to_rails
+      rails_record.update_attributes(rails_object_values)
+    end
+
+    def create_to_rails!
+      rails_class.create!(rails_object_values_with_id)
     end
 
     def create_to_rails
-      values =  rails_class.sf_mapping.inject({}) { |hash, key|
-                  hash[key] = sf_field(key)
-                  hash
-                }
-      values[:sf_object_id] = self.Id
-      rails_class.create(values)
+      rails_class.create(rails_object_values_with_id)
     end
 
     def rails_record
@@ -142,7 +149,40 @@ module SFRails
 
     def rails_class; self.class.rails_class; end
 
+    def rails_object_values 
+      rails_object = {}
+      rails_class.sf_mapping_hash.each { |rails_key, sf_key|
+        rails_object[rails_key] = rails_value(rails_key, sf_key)
+      }
+      #sf_object["Id"] = self.sf_object_id if self.sf_object_id
+      rails_object
+    end
+
+    def rails_value(rails_key, sf_key)
+      value = self.send(sf_key)
+      case self.class.field_type(sf_key)
+        when "picklist" 
+          t(rails_key, value) if value.present? 
+        when "multipicklist" 
+          value.map { |val| t(rails_key, val) } if value.present? 
+        when "boolean"
+          value ? "1" : "0"
+        else
+          value
+      end    
+    end
+
     private
+
+    def rails_object_values_with_id
+      values = rails_object_values
+      values[:sf_object_id] = self.Id
+      values
+    end
+
+    def t(key, value)
+      hash = I18n.backend.send(:translations)[:en][:enumerize][rails_class.name.underscore.to_sym][key].key(value).to_s
+    end
 
     # Fetch the right salesforce field based on the rails field key passed in.
     def sf_field(key)

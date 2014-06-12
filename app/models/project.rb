@@ -19,6 +19,7 @@ class Project < ActiveRecord::Base
   searchkick autocomplete: ['name']
   SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
   COMPLETE = "complete"
+  APPROVED = "approved"
 
   belongs_to :organization
   belongs_to :field_host
@@ -117,7 +118,7 @@ class Project < ActiveRecord::Base
   scope :recent, order('created_at desc')
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
-  scope :completed, where(wizard_status: COMPLETE)
+  scope :approved, where("properties -> 'sf_status' = 'approved'")
 
   def search_data
     as_json only: [:name, :description]

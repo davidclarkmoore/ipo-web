@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 
   def index
     projects = ProjectLoader.load_projects(params[:properties])
-    @projects = projects.completed.ransack(params[:q])
+    @projects = projects.approved.ransack(params[:q])
     @total_projects = @projects.result.count
     @sessions = Session.order(:start_date)
     params[:view] ||= 'grid'

@@ -13,7 +13,7 @@
       %tr.project-result{'data' => {'project' => p.id}}
         %td= p.name
         %td= truncate(p.description, :length => 50, :omission => ' ...')
-        %td= p.region
+        %td= truncate(p.full_address, :length => 50, :ommision => '...')
         %td= p.team_mode ? "Team" : "Individual"
-        / %td= p.get_pretty_properties(p.related_fields_of_study, "related_fields_of_study")
-        / %td= p.get_pretty_properties(p.related_student_passions, "related_student_passions")
+        %td= p.get_pretty_properties(p.related_fields_of_study, "related_fields_of_study")
+        %td= p.get_pretty_properties(p.related_student_passions, "related_student_passions")

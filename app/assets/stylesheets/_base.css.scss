@@ -80,3 +80,13 @@ $box-colors: grey          #565656,
   }
 }
 .dark-text { color: $dark-grey;}
+
+// ---------------------------------------------------------------------------
+// Media Queries
+
+// Main header nav bar
+
+@mixin respond-to($breakpoint) {
+  @media only screen and (max-width: $breakpoint + px) { @content;}
+}
+

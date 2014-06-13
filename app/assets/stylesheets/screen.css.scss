@@ -142,7 +142,17 @@ body {
   height: 730px;
 }
 
+//responsive header media queries//
 
+@include respond-to(800) {
+  
+.secondary-header, nav.main {
+  display:none;
+  }
+
+
+
+}
 
 header {
   @include adjust-leading-to(4);

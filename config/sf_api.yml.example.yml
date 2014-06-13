@@ -4,3 +4,6 @@ development:
   username: example@example.com
   password: password
   security_token: pwd_token
+  email_address: 
+    - email1@server.com
+    - eamil2@server.com

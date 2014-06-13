@@ -52,7 +52,7 @@ class StudentApplication < ActiveRecord::Base
   def stage_name
     :prospecting
   end
-
+  
   def save_to_sf!
     begin
       c = SFRails.connection

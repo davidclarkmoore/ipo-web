@@ -50,3 +50,6 @@ $ ->
     onfocusout: (element) ->
       $(element).valid()
     errorPlacement: errorPlacement
+
+  #hamburger transform - main nav header
+  $('nav.main').click (ev) -> $(this).toggleClass 'mobile'

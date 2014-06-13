@@ -40,3 +40,7 @@ $ ->
     $($(@).data('box')).show().siblings('.tab-box').first().hide()
   $('#search').autocomplete
     source: "/autocomplete"
+
+    #hamburger transform - main nav header
+
+$('nav.main').click (ev) -> $(this).toggleClass 'mobile'

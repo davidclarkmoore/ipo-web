@@ -3,7 +3,9 @@
 %body{'data-controller' => controller_name, 'data-action' => action_name, 'data-application' => 'ipo'}
   = render '/shared/segmentio' if !Rails.env.development?
   = render '/layouts/social_button_scripts' if !Rails.env.development?
-  = render 'shared/secondary_navigation'
+  .secondary-header
+    .container
+      = render 'shared/secondary_navigation'
   .main-header
     %header
       .container

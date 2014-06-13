@@ -142,17 +142,7 @@ body {
   height: 730px;
 }
 
-//responsive header media queries//
 
-@include respond-to(800) {
-  
-.secondary-header, nav.main {
-  display:none;
-  }
-
-
-
-}
 
 header {
   @include adjust-leading-to(4);
@@ -458,4 +448,103 @@ fieldset:last-child {
   img{
     display: none;
   }
+}
+
+
+//responsive header media queries//
+
+@include respond-to(800) {
+  
+  .link.heading, nav.main form, .secondary-header{
+    display:none;
+    }
+
+    header {
+    line-height: 4em;
+    }
+
+    header a#logo img {
+    max-width: 200px;
+    vertical-align: middle;
+    }
+
+  nav.main {
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  display: block;
+  width: 22px;
+  height: 19px;
+  cursor:pointer;
+  }
+
+  nav.main:before{
+    display: block;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: grey;
+    -webkit-transform-origin: 0px 1.5px;
+    -moz-transform-origin: 0px 1.5px;
+    -ms-transform-origin: 0px 1.5px;
+    -o-transform-origin: 0px 1.5px;
+    transform-origin: 0px 1.5px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+
+  nav.main:after {
+    display: block;
+    content: ' ';
+    position: absolute;
+    top: 16px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: grey;
+    -webkit-transform-origin: 0px 1.5px;
+    -moz-transform-origin: 0px 1.5px;
+    -ms-transform-origin: 0px 1.5px;
+    -o-transform-origin: 0px 1.5px;
+    transform-origin: 0px 1.5px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+
+  nav.main span{
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: grey;
+    margin: 8px 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    }
+
+    nav.main.mobile:before{
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    nav.main.mobile:after{
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+
+    nav.main.mobile span{
+      opacity:0;
+    }
+
 }

@@ -45,5 +45,5 @@ $ ->
 
   $('nav.main').click -> 
     $(this).toggleClass 'mobile'
-    $('.side-nav').toggleClass 'show'
+    $('.side-nav').toggleClass 'menu-in'
     $('.side').toggleClass 'shift'

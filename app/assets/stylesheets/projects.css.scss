@@ -402,6 +402,19 @@ ul.weekly-cost li {
 
 }
 
+.share {
+  a {
+    text-decoration: none;
+    color: $orange;
+    display: inline-block;
+    font-size: 200%;
+  }
+
+  a:hover {
+    color: $grey;
+  }
+}
+
 .imagesize {
   max-width: 100%;
   max-height: 400px
@@ -426,7 +439,7 @@ ul.weekly-cost li {
 
 .bx-controls-direction a {
   position: absolute;
-  font-family: "comfortaa";
+  font-family: "Entypo";
   @include adjust-font-size-to(45px);
   color: white;
   text-decoration: none;
@@ -436,10 +449,12 @@ ul.weekly-cost li {
 
 .bx-prev {
   left: .5em;
+  content: "\e765"
 }
 
 .bx-next {
   right: .5em;
+  content: "\e766"
 }
 
 // -------------

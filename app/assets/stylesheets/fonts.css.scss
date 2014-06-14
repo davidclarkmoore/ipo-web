@@ -17,3 +17,12 @@
          font-url(('entypo.ttf'))  format('truetype'),
          font-url(('entypo.svg') + "#Entypo") format('svg');
 }
+
+
+@font-face {
+    font-family: 'Entypo Social';
+    src: font-url(('entypo-social.eot') + "?#iefix") format('embedded-opentype'),
+         font-url(('entypo-social.woff')) format('woff'), 
+         font-url(('entypo-social.ttf'))  format('truetype'),
+         font-url(('entypo-social.svg') + "#Entypo-Social") format('svg');
+}

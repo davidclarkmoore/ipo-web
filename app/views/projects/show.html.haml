@@ -1,7 +1,7 @@
 
-.container
+.container.eyebrows
   .primary
-    %label= t(:project)
+    %label= t(:project_header)
     %h1= @p.name
 
     .box.bxslider
@@ -75,12 +75,21 @@
 
     .info.rounded
       %h3 Get Started
-      =link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange"
+      =link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange entypo-apply"
      
 
-    .info.rounded
+    .info.rounded.share
       %h3 Share
-      .fb-share-button{:data => {:type => "button"}}
+      =link_to "<span></span>".html_safe, 'http://www.facebook.com/share.php?u=' + request.original_url, class: "entypo-social-facebook"
+
+      =link_to "<span></span>".html_safe, 'https://twitter.com/intent/tweet?text=' + 'Checkout this @converge fellowship => ' + @p.name + ' ' + request.original_url, class: "entypo-social-twitter"
+
+
+      =link_to "<span></span>".html_safe, ' https://plusone.google.com/share?url=' + request.original_url, class: "entypo-social-google"
+
+
+     
+
 
     .info.rounded
       %h3 Project Details

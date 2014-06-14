@@ -8,5 +8,5 @@ $ ->
   	
   $('.bxslider').bxSlider
     pagerCustom: '#bx-pager'
-    nextText: '>'
-    prevText: '<'
+    nextText: '&#59238;'
+    prevText: '&#59237;'

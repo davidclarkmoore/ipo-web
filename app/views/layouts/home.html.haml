@@ -6,14 +6,17 @@
   .secondary-header
     .container
       = render 'shared/secondary-navigation'
-  .main-header
-    %header
-      .container
-        = link_to root_path,{:id => "logo"} do
-          / %h1.title Converge
-          =image_tag 'converge-logo.png'
-        = render 'shared/navigation' 
-  = yield :hero
+  .side
+    .main-header
+      %header
+        .container
+          = link_to root_path,{:id => "logo"} do
+            / %h1.title Converge
+            =image_tag 'converge-logo.png'
+          = render 'shared/navigation' 
+    = yield :hero
+  .side-nav
+    = render 'shared/side-nav'
 
   = render 'shared/sub_menus', page: @page
   = yield

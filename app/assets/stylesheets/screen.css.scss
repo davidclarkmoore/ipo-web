@@ -434,7 +434,7 @@ fieldset:last-child {
 
 //responsive header media queries//
 
-@include respond-to(800) {
+@include respond-to(750) {
   
   .link.heading, nav.main form, .secondary-header{
     display:none;

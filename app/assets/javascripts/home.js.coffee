@@ -43,4 +43,5 @@ $ ->
 
     #hamburger transform - main nav header
 
-$('nav.main').click (ev) -> $(this).toggleClass 'mobile'
+  $('nav.main').click -> 
+    $(this).toggleClass 'mobile'

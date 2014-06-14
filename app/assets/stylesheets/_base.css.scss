@@ -80,3 +80,26 @@ $box-colors: grey          #565656,
   }
 }
 .dark-text { color: $dark-grey;}
+
+
+[class*="entypo-"]:before {
+font-family: 'Entypo', sans-serif;
+font-size: 2em;
+}
+
+
+.entypo-login:before {
+  content: "\1f464";
+}
+
+.entypo-logout:before {
+  content: "\E741";
+}
+
+.entypo-apply:before {
+  content: "\2713";
+}
+
+.entypo-submit:before {
+  content: "\1f4E4";
+}

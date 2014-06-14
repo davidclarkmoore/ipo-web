@@ -6,3 +6,14 @@
          url(font-path('Flat-UI-Icons.ttf'))  format('truetype'),
          url(font-path('Flat-UI-Icons.svg') + "#MyFont") format('svg');
 }
+
+
+
+
+@font-face {
+    font-family: 'Entypo';
+    src: font-url(('entypo.eot') + "?#iefix") format('embedded-opentype'),
+         font-url(('entypo.woff')) format('woff'), 
+         font-url(('entypo.ttf'))  format('truetype'),
+         font-url(('entypo.svg') + "#Entypo") format('svg');
+}

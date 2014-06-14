@@ -462,19 +462,49 @@ fieldset:last-child {
   .side-nav {
     position: fixed;
     top: 0;
-    right: 0;
-    z-index: 1;
-    visibility: hidden;
-    padding-top: 50px;
+    right: -40%;
+    padding-top: 1em;
     height: 100%;
     width: 40%;
-    background-color: #222326;
     overflow-y: auto;
     -webkit-transition: all 0.7s;
     -moz-transition: all 0.7s;
     transition: all 0.7s;
-    display:none;
+    display: block;
+
+    background-color: $extra-dark-grey;
+
+
+      ul {
+        
+        li {
+          list-style: none;
+          margin: 0;
+
+          a {
+            color: white;
+            text-decoration: none;
+            display:block;
+            cursor: pointer;
+            padding: .5em 2em;
+          }
+
+          a:hover {
+            background-color: rgba(255,255,255,.1)
+          }
+        }
+
+      }
     }
+
+    .menu-in {
+      -webkit-transform: translateX(-100%);
+      -moz-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      -o-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+
 
     .shift {
       -webkit-transform: translateX(-40%);
@@ -485,6 +515,7 @@ fieldset:last-child {
     }
 
     .side {
+
       -webkit-transition-duration: 0.7s;
       -moz-transition-duration: 0.7s;
       transition-duration: 0.7s;

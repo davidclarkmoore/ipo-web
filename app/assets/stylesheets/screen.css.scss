@@ -226,8 +226,11 @@ nav.main {
 
     nav {
       text-align: right;
-      span {
-        padding: 0em 1em 0em 1em;
+      li {
+        padding: 0em .5em 0em .5em;
+        list-style: none;
+        display: inline;
+        margin-left: 1em;
 
         a {
           text-decoration: none;
@@ -240,7 +243,7 @@ nav.main {
             color: $orange;
         }
       }
-    span:last-child {
+    li:last-child {
       padding-right: 0em;
     }
     }

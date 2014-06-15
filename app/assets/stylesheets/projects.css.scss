@@ -457,6 +457,17 @@ ul.weekly-cost li {
   content: "\e766"
 }
 
+
+// -------------
+// Project Map
+// -
+
+html #map-canvas {
+  min-height: 400px;
+  margin: 2em 0em;
+  padding: 0px
+}
+
 // -------------
 // Project Search
 // -------------

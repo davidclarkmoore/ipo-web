@@ -85,6 +85,7 @@ $box-colors: grey          #565656,
 [class*="entypo-"]:before {
 font-family: 'Entypo', sans-serif;
 font-size: 2em;
+margin-right: .2em;
 
 }
 
@@ -112,6 +113,10 @@ margin-right: .2em;
   content: "\1f4E4";
 }
 
+.entypo-back:before {
+  content: "\21B0";
+}
+
 
 .entypo-social-facebook:before {
   content: "\f30E";
@@ -124,3 +129,6 @@ margin-right: .2em;
 .entypo-social-google:before {
   content: "\f30F";
 }
+
+
+

@@ -51,6 +51,7 @@
    ================ */
 
 .omega { @include omega; }
+
 .c1    { @include span-columns(1); }
 .c2    { @include span-columns(2); }
 .c3    { @include span-columns(3); }

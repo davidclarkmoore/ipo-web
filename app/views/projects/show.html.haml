@@ -1,6 +1,5 @@
-
 .container.eyebrows
-  .primary
+  .c8
     %label= t(:project_header)
     %h1= @p.name
 
@@ -18,6 +17,8 @@
 
     %label= t(:description)
     %p= @p.description
+
+    %p#address= "523 Queen street, philadelphia, pa, united states"
 
     #callout-overview
       .third
@@ -56,6 +57,7 @@
     %p= @p.culture_description
     %label= t(:location_description)
     %p= @p.location_description
+    #map-canvas
     %label= t(:challenges_description)
     %p= @p.challenges_description
     %label= t(:guidelines_description)
@@ -69,9 +71,9 @@
     %p= @host.first_name + ", " + @host.role_title
     %p= @host.get_pretty_properties(@host.experience_with_ywam, "experience_with_ywam")
 
-  .secondary
+  .c4.omega
     .info.rounded
-      =link_to "Back to Projects", projects_path, 'class' => "clr"
+      =link_to "Back to Projects", projects_path, 'class' => "clr entypo-back"
 
     .info.rounded
       %h3 Get Started
@@ -119,6 +121,7 @@
       %label= t(:location_and_region)
       %p= @p.location_type_text
 
+
       %label= t(:area_transportation)
       %p= @p.get_pretty_properties(@p.transportation_available,"transportation_available")
 
@@ -128,7 +131,6 @@
 
       %label= t(:internet_distance)
       %p= @p.internet_distance_text
-
 
 
 

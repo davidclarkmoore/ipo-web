@@ -442,7 +442,7 @@ fieldset:last-child {
 
 //responsive header media queries//
 
-@include respond-to(650){
+@include respond-to(800){
 
   .side-nav {
     position: fixed;
@@ -488,7 +488,7 @@ fieldset:last-child {
       -ms-transform: translateX(-100%);
       -o-transform: translateX(-100%);
       transform: translateX(-100%);
-    }
+      }
 
 
     .shift {
@@ -497,7 +497,7 @@ fieldset:last-child {
       -ms-transform: translateX(-40%);
       -o-transform: translateX(-40%);
       transform: translateX(-40%);
-    }
+      }
 
     .side {
 
@@ -507,12 +507,11 @@ fieldset:last-child {
       -webkit-transition-property: -webkit-transform,opacity;
       -moz-transition-property: -moz-transform,opacity;
       transition-property: transform,opacity;
-    }
+      } 
 
     .show{
       display:block;
-
-    }
+     }
 
     .side-nav ul {
       height:100%;
@@ -530,20 +529,15 @@ fieldset:last-child {
     line-height: 4em;
     }
 
-    header a#logo img {
-    max-width: 200px;
-    vertical-align: middle;
-    }
-
   nav.main {
-  position: absolute;
-  right: 30px;
-  top: 25px;
-  display: block;
-  width: 22px;
-  height: 19px;
-  cursor:pointer;
-  }
+    position: absolute;
+    right: 30px;
+    top: 25px;
+    display: block;
+    width: 22px;
+    height: 19px;
+    cursor:pointer;
+    }
 
   nav.main:before{
     display: block;
@@ -562,7 +556,7 @@ fieldset:last-child {
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.5s;
-  }
+    }
 
   nav.main:after {
     display: block;
@@ -581,7 +575,7 @@ fieldset:last-child {
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.5s;
-  }
+    }
 
   nav.main span{
     display: block;
@@ -600,7 +594,7 @@ fieldset:last-child {
       -ms-transform: rotate(45deg);
       -o-transform: rotate(45deg);
       transform: rotate(45deg);
-    }
+      }
 
     nav.main.mobile:after{
       -webkit-transform: rotate(-45deg);
@@ -608,10 +602,10 @@ fieldset:last-child {
       -ms-transform: rotate(-45deg);
       -o-transform: rotate(-45deg);
       transform: rotate(-45deg);
-    }
+      }
 
     nav.main.mobile span{
       opacity:0;
-    }
+      }
 
 }

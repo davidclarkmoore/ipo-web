@@ -474,8 +474,9 @@ fieldset:last-child {
     -moz-transition: all 0.7s;
     transition: all 0.7s;
     display: block;
-
-    background-color: $extra-dark-grey;
+    margin-top:4em;
+    z-index:5;
+    background-color: $grey;
 
 
       ul {
@@ -498,6 +499,12 @@ fieldset:last-child {
         }
 
       }
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      z-index: 6;
     }
 
     .menu-in {

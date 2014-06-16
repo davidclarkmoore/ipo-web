@@ -147,6 +147,7 @@ body {
 header {
   @include adjust-leading-to(4);
   background-color: #fff;
+  border-bottom:1px solid $grey;
 
   margin-bottom: 3em;
 
@@ -359,6 +360,11 @@ form {
     @include trailer(1, 16px);
     width: 100%;
   }
+
+ input#search {
+   font-family:'Entypo', 'Open Sans';
+   font-size:1em;
+ }
 
   label {
     display: block;

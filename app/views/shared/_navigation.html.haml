@@ -5,7 +5,5 @@
   %span
 
   = form_tag '/search', :method => :get do
-    = search_field_tag :search, @search, :autocomplete => false, :value => "Search + Enter"
-    = submit_tag 'Search', :class => 'button button-green', :id => 'submit'
-
+    = search_field_tag :search, @search, :autocomplete => false, :value => "&#128269; Search + Enter".html_safe
   = yield :navigation

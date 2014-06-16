@@ -1,4 +1,5 @@
 %ul
+  %li= search_field_tag :search, @search, :autocomplete => false, :value => "&#128269; Search + Enter".html_safe
   %li=link_to "<span class='entypo-submit'></span> submit a project".html_safe, main_app.projects_setup_index_path
   %li=link_to "<span class='entypo-apply'></span> apply".html_safe, main_app.students_setup_index_path
   - if current_login

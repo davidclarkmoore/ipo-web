@@ -194,6 +194,15 @@ header {
 
 }
 
+.side-nav input#search {
+    background-color: #fff;
+    border: 1px solid $light-grey;
+    @include border-radius (5px);
+    color: $light-grey;
+    margin-left: 2em;
+    width: 80%;
+  }
+
 h1.subtitle {
   -webkit-font-smoothing: antialiased;
   color: white;
@@ -361,10 +370,10 @@ form {
     width: 100%;
   }
 
- input#search {
-   font-family:'Entypo', 'Open Sans';
-   font-size:1em;
- }
+input#search {
+  font-family: 'Entypo', sans-serif;
+  font-size: 1em;
+  }
 
   label {
     display: block;
@@ -475,7 +484,7 @@ fieldset:last-child {
     padding-top: 1em;
     height: 100%;
     width: 40%;
-    overflow-y: auto;
+    overflow-y: hidden;
     -webkit-transition: all 0.7s;
     -moz-transition: all 0.7s;
     transition: all 0.7s;
@@ -513,6 +522,10 @@ fieldset:last-child {
       z-index: 6;
     }
 
+    .side-nav input#submit {
+    display: none;
+    }
+
     .menu-in {
       -webkit-transform: translateX(-100%);
       -moz-transform: translateX(-100%);
@@ -546,6 +559,7 @@ fieldset:last-child {
 
     .side-nav ul {
       height:100%;
+
     }
 
     .side-nav li {

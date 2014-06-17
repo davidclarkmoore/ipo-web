@@ -6,4 +6,5 @@
 
   = form_tag '/search', :method => :get do
     = search_field_tag :search, @search, :autocomplete => false, :value => "&#128269; Search + Enter".html_safe
+    = submit_tag 'Search', :class => 'button button-green', :id => 'submit' 
   = yield :navigation

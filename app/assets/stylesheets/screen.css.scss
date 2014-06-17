@@ -184,7 +184,6 @@ header {
     border: 1px solid $light-grey;
     @include border-radius (5px);
     color: $light-grey;
-    margin-left: 3em;
   }
 
   input#submit {

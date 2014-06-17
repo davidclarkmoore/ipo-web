@@ -2,7 +2,7 @@
   - menu_pages.each do |page|
     %span.link.heading= link_to page.menu_title, page.slug
 
-  = form_tag '/search', :method => :get do
+  = form_tag '/search', :method => :get do, :class => 'search'
     = search_field_tag :search, @search, :autocomplete => false, :value => "Search + Enter"
     = submit_tag 'Search', :class => 'button button-green', :id => 'submit'
 

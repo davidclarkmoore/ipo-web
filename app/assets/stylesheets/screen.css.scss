@@ -271,12 +271,15 @@ nav.sub-menu {
   padding-left: 64px;
   @include adjust-font-size-to(20px, 1.5);
   div { @include trailer(0.5, 20px); }
-  input { margin-left: 11px; }
-  input[name="full_name"] { width: 324px; }
-  input[name="email"] { width: 396px; }
-  .select2-container {
-    @include adjust-font-size-to(16px, 1, 20px);
-    margin: 0;
+  form {
+    input { margin-left: 11px; }
+    input[name="first_name"] { width: 162px; }
+    input[name="last_name"] { width: 162px}
+    input[name="email"] { width: 396px; }
+    .select2-container {
+      @include adjust-font-size-to(16px, 1, 20px);
+      margin: 0;
+    }
   }
 }
 

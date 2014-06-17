@@ -1,0 +1,8 @@
+var msg = '';
+<% if @lead %>
+  msg = "Request successfully sent."
+<% else %>
+  msg = "Please check your information and try again"
+<% end %>
+
+$("#reach-out p.msg").html(msg);

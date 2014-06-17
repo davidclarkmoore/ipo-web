@@ -40,3 +40,13 @@ $ ->
     $($(@).data('box')).show().siblings('.tab-box').first().hide()
   $('#search').autocomplete
     source: "/autocomplete"
+  $('form.apply').validate
+    errorElement: 'span'
+    ignore: null
+    highlight: (element, errorClass) ->
+      $(element).parent().addClass "invalid"
+    unhighlight: (element, errorClass) ->
+      $(element).parent().removeClass "invalid"
+    onfocusout: (element) ->
+      $(element).valid()
+    errorPlacement: errorPlacement

@@ -43,7 +43,7 @@ IpoWeb::Application.routes.draw do
 
   put "dashboards/update_login" => "dashboards#update_login"
 
-  resources :donations, path: "/donations", only: [:new, :create]
+  resources :donations, path: "/donations"
   get '/donate' => 'donations#new'
 
   mount Sidekiq::Web, at: '/sidekiq'

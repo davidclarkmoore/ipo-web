@@ -1,2 +1,19 @@
 .container
-  %h1 Thanks for your donation!
+  %h1= flash[:notice] || t(:donation_title)
+  - if @subscription
+    #donations
+      %table.table
+        %thead.table-head
+          %th= t(:donation_code)
+          %th= t(:donation_price)
+          %th= t(:donation_status)
+          %th
+        %tbody.table-body
+          %tr
+            %td= @subscription.id
+            %td= @subscription.price
+            %td= @subscription.status
+            -if @subscription.status == "Canceled"
+              %td= link_to t(:donation_renew), new_donation_path(id: @subscription.id)
+            -else
+              %td= link_to t(:donation_cancel), donation_path(@subscription.id), confirm: t(:are_you_sure), method: :delete

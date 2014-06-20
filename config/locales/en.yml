@@ -63,6 +63,7 @@ en:
   donation_email: "Email:"
   donation_expiration_date: "Expiration Date:"
   donation_first_name: "Your first name:"
+  donation_for: "This donation is destinated for student: "
   donation_last_name: "Your last name:"
   donation_phone: "Phone:"
   donation_postal_code: "Postal Code"

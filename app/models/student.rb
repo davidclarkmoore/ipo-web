@@ -26,7 +26,7 @@ class Student < ActiveRecord::Base
 
   has_many :person_references, as: :referencer, inverse_of: :referencer
   has_many :references, through: :person_references
-
+  has_many :donations
   has_one :login, as: :entity, dependent: :destroy
   has_many :student_applications, dependent: :destroy
   has_many :project_sessions, through: :student_applications

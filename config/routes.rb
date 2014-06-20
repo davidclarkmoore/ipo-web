@@ -36,7 +36,7 @@ IpoWeb::Application.routes.draw do
     post 'donating' => 'students#donating', :as => :donating
   end
   post 'apply' => 'students#apply', :as => :apply
-  
+
   resources :dashboards, only: [:index]
   resources :sessions
   get '/unique/:model/:attribute/:value' => 'uniqueness#validate', constraints: { value: /[^\/?]+/ }

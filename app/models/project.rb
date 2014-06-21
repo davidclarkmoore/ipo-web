@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
       :location_description, :location_private, :location_state_or_province,
       :location_street_address, :location_type, :max_students,
       :min_stay_duration, :min_students, :name, 
-      :per_week_cost, :per_week_cost_final, :related_fields_of_study, 
+      :per_week_cost, :per_week_cost_final, :region, :related_fields_of_study, 
       :related_student_passions, :required_languages, :safety_level, 
       :student_educational_requirement, :team_mode, :transportation_available, 
       :typical_attire, :updated_at ], {sf_status: "Status__c"}
@@ -42,7 +42,7 @@ class Project < ActiveRecord::Base
     :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description, 
     :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description, :typical_attire, 
     :guidelines_description, :agree_memo, :agree_to_transport, :field_host_attributes, :organization_attributes, 
-    :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id, :created_at, :updated_at
+    :region, :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
@@ -52,7 +52,7 @@ class Project < ActiveRecord::Base
   def agree_to_transport; properties["agree_to_transport"] == "1" ? true : false; end;
   def per_week_cost_final; properties["per_week_cost_final"] == "1" ? true : false; end;
 
-  %w(dining_location internet_distance location_type housing_type safety_level 
+  %w(dining_location internet_distance location_type housing_type safety_level region
     typical_attire student_educational_requirement sf_status).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")
 
@@ -107,7 +107,7 @@ class Project < ActiveRecord::Base
   validates :min_students, :max_students, :per_week_cost, :numericality => true, :if => :complete_or_the_project?
   # -- Location
   validates :location_private, inclusion: {in: [true, false]}, :if => :complete_or_location?
-  validates :location_street_address, :location_city, :location_state_or_province, :location_country,
+  validates :location_street_address, :location_city, :location_state_or_province, :location_country, :region,
    :internet_distance, :location_description, :culture_description, :presence => true, :if => :complete_or_location?
   # -- Content
   validates :description, :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description,

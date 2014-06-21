@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -41,6 +42,43 @@ SET search_path = public, pg_catalog;
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: donations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE donations (
+    id integer NOT NULL,
+    student_id integer,
+    transcation_id character varying(255),
+    customer_id character varying(255),
+    recurring boolean,
+    subscription_id character varying(255),
+    status character varying(255),
+    amount numeric(10,2),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: donations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE donations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: donations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE donations_id_seq OWNED BY donations.id;
+
 
 --
 -- Name: field_hosts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
@@ -283,7 +321,8 @@ CREATE TABLE projects (
     location_street_address character varying(255),
     location_city character varying(255),
     location_state_or_province character varying(255),
-    location_country character varying(255)
+    location_country character varying(255),
+    region character varying(255)
 );
 
 
@@ -853,6 +892,13 @@ ALTER SEQUENCE students_id_seq OWNED BY students.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY donations ALTER COLUMN id SET DEFAULT nextval('donations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY field_hosts ALTER COLUMN id SET DEFAULT nextval('field_hosts_id_seq'::regclass);
 
 
@@ -994,6 +1040,14 @@ ALTER TABLE ONLY student_applications ALTER COLUMN id SET DEFAULT nextval('stude
 --
 
 ALTER TABLE ONLY students ALTER COLUMN id SET DEFAULT nextval('students_id_seq'::regclass);
+
+
+--
+-- Name: donations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY donations
+    ADD CONSTRAINT donations_pkey PRIMARY KEY (id);
 
 
 --
@@ -1451,3 +1505,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140519154629');
 INSERT INTO schema_migrations (version) VALUES ('20140520235541');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603015231');
+
+INSERT INTO schema_migrations (version) VALUES ('20140620000441');
+
+INSERT INTO schema_migrations (version) VALUES ('20140621005243');

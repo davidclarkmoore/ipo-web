@@ -143,13 +143,16 @@
   article.description-section {
     overflow: hidden;
     @include trailer(4);
-    span.list-title { font-weight: bold; }
+    span.list-title { font-weight: bold; 
+    }
+    p {margin-left:50%;}
   }
 
   p.sub-title {
     font-weight: 300;
     @include adjust-font-size-to(22px, 1.5);
   }
+
 
   #search_projects {
     border-bottom: 0.5em solid desaturate( darken($green, 20), 10);

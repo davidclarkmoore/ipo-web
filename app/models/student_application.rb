@@ -3,18 +3,24 @@ class StudentApplication < ActiveRecord::Base
   COMPLETE = "complete"
   INCOMPLETE = "incomplete"
   include SFRails::ActiveRecord
-  salesforce "Opportunity", [ :start_date ],
-            { end_date: 'CloseDate', name: 'Name', stage_name: 'StageName' }
-
+  salesforce "Opportunity", [ :start_date, :pay_registration_fee ], 
+            { end_date: 'CloseDate', name: 'Name', 
+              stage_name: 'StageName', sf_status: 'Status__c' }
+    
   SF_STUDENT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/StudentApplication"
 
   belongs_to :student
   belongs_to :project_session
+  
+  enumerize :sf_status, in: I18n.t("enumerize.student_application.sf_status")
 
-  attr_accessible :student_id, :project_session_id, :wizard_status, :student_attributes, :student, :agree_terms, :status
   accepts_nested_attributes_for :student
-  delegate :project, :start_date, :end_date, to: :project_session
-  delegate :person_references, to: :student
+  delegate :project, :session, :start_date, :end_date, to: :project_session
+  delegate :person_references, :academic_reference, :spiritual_reference, to: :student
+
+  attr_accessible :student_id, :project_session_id, :wizard_status, :student_attributes, 
+                  :student, :agree_terms, :status, :sf_status, :pay_registration_fee,
+                  :name, :stage_name, :start_date, :end_date
 
   validates_uniqueness_of :project_session_id, scope: :student_id, message: "You already applied for this session"
   validates_presence_of :project_session_id
@@ -52,6 +58,8 @@ class StudentApplication < ActiveRecord::Base
   def stage_name
     :prospecting
   end
+
+  attr_writer :name, :stage_name, :end_date, :start_date
   
   def save_to_sf!
     begin

@@ -806,7 +806,9 @@ CREATE TABLE student_applications (
     updated_at timestamp without time zone NOT NULL,
     wizard_status character varying(255),
     agree_terms boolean,
-    sf_object_id character varying(255)
+    sf_object_id character varying(255),
+    sf_status character varying(255),
+    pay_registration_fee boolean
 );
 
 
@@ -1509,3 +1511,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140603015231');
 INSERT INTO schema_migrations (version) VALUES ('20140620000441');
 
 INSERT INTO schema_migrations (version) VALUES ('20140621005243');
+
+INSERT INTO schema_migrations (version) VALUES ('20140625131247');
+

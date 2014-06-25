@@ -35,6 +35,7 @@ IpoWeb::Application.routes.draw do
     get 'donate' => 'students#donate', :as => :donate_form
     post 'donating' => 'students#donating', :as => :donating
   end
+  post '/students/sync/:sf_object_id', to: 'students#sync_with_sf'
   post 'apply' => 'students#apply', :as => :apply
 
   resources :dashboards, only: [:index]

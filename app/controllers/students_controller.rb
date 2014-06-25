@@ -46,6 +46,20 @@ class StudentsController < ApplicationController
     end
   end
 
+  def sync_with_sf
+    begin
+      sf_student_app = StudentApplication.sf.find_by_id(params[:sf_object_id])
+      sf_student = Student.sf.find_by_id(sf_student_app.Contact__c) 
+      ActiveRecord::Base.transaction do
+        sf_student_app.save_to_rails!
+        sf_student.save_to_rails!
+      end
+      render json: sf_student_app
+    rescue => e
+      render json: { error: e.message }, status: 400
+    end
+  end
+
   def apply
     begin 
       client = SFRails.connection 

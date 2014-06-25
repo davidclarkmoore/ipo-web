@@ -369,6 +369,10 @@ form {
     width: 100%;
   }
 
+  .c5 input, .c4 input{
+    background-color: $extra-light-grey;
+  }
+
 input#search {
   font-family: 'Entypo', sans-serif;
   font-size: 1em;

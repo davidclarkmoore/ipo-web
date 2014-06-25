@@ -18,6 +18,13 @@
     width: 100%;
     @include adjust-font-size-to(20px, 1);
     @include leader(1, 20px);
+
+  }
+
+
+  #search-field-study {
+    line-height: 1.2em;
+    margin-top: 1.7em;
   }
 
   label {

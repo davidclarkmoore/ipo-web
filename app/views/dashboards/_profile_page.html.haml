@@ -1,15 +1,16 @@
-.fieldset
-  %h2= t(:personal_information)
-  = simple_form_for @login, url: dashboards_update_login_path, method: :put, validate: true do |student|
-    = hidden_field_tag :view, "profile_page"
-    = render partial: 'shared/errors', locals: {object: @login}
-    .student-fields
-      = student.label t(:background_image)
-      = student.file_field :cover_photo
-      = student.label t(:your_image)
-      = student.file_field :profile_picture
-      = student.input :biography
-      = student.input :public_contact_information
-      = student.input :published_status, as: :button_group, label: false, collection: [[t(:draft), false], [t(:published), true]], validate: true
+-if can? :view_profile_page, @login
+  .fieldset
+    %h2= t(:personal_information)
+    = simple_form_for @login, url: dashboards_update_login_path, method: :put, validate: true do |student|
+      = hidden_field_tag :view, "profile_page"
+      = render partial: 'shared/errors', locals: {object: @login}
+      .student-fields
+        = student.label t(:background_image)
+        = student.file_field :cover_photo
+        = student.label t(:your_image)
+        = student.file_field :profile_picture
+        = student.input :biography
+        = student.input :public_contact_information
+        = student.input :published_status, as: :button_group, label: false, collection: [[t(:draft), false], [t(:published), true]], validate: true
 
-    = student.submit t(:save), class: "button button-orange"
+      = student.submit t(:save), class: "button button-orange"

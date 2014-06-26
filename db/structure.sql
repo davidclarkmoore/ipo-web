@@ -808,7 +808,8 @@ CREATE TABLE student_applications (
     agree_terms boolean,
     sf_object_id character varying(255),
     sf_status character varying(255),
-    pay_registration_fee boolean
+    pay_registration_fee boolean,
+    reserved_his_spot boolean
 );
 
 
@@ -1514,3 +1515,4 @@ INSERT INTO schema_migrations (version) VALUES ('20140621005243');
 
 INSERT INTO schema_migrations (version) VALUES ('20140625131247');
 
+INSERT INTO schema_migrations (version) VALUES ('20140626000629');

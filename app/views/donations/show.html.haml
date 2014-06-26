@@ -14,6 +14,6 @@
             %td= @subscription.price
             %td= @subscription.status
             -if @subscription.status == "Canceled"
-              %td= link_to t(:donation_renew), new_donation_path(id: @subscription.id)
+              %td= link_to t(:donation_renew), renew_donation_path(id: @subscription.id)
             -else
               %td= link_to t(:donation_cancel), donation_path(@subscription.id), confirm: t(:are_you_sure), method: :delete

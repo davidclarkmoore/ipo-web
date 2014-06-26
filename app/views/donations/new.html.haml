@@ -1,5 +1,5 @@
 %article.container
-  %h1= t(:donation_support_ipo_connection)
+  %h1= t(:donation_support_ipo_connection) 
   %p= t(:donation_contribution_description)
 
   - if flash[:error]
@@ -8,8 +8,13 @@
     %p= "#{t(:donation_for)} #{@student.full_name}"
   = simple_form_for :donation, url: donations_path, html: { id: 'donate_form', novalidate: false } do |f|
     = f.input :student_id, as: :hidden, input_html: { value: (@student.id if @student) }
-    = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
-    = number_field_tag :custom_amount, (@subscription.price if @subscription), min: 1, placeholder: '$ other amount'
+    -if @amounts
+      = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
+      = number_field_tag :custom_amount, (@subscription.price if @subscription), min: 1, placeholder: '$ other amount'
+    -else 
+      .input.c6
+        %h3= t(:donation_for_reserve_my_spot)
+        = f.input :reserve_my_spot, as: :hidden, input_html: { value: (@student_application_id if @student_application_id) }
 
     .input.c6
       %label= t(:donation_first_name)

@@ -46,6 +46,9 @@ IpoWeb::Application.routes.draw do
 
   resources :donations, path: "/donations"
   get '/donate' => 'donations#new'
+  get '/donate/:student_id' => 'donations#new', :as => :donate_to_student
+  get '/renew_donation/:id' => 'donations#new', :as => :renew_donation
+  get '/reserve_my_spot/:reserve_my_spot' => 'donations#reserve_my_spot', :as => :reserve_my_spot
 
   mount Sidekiq::Web, at: '/sidekiq'
   mount Refinery::Core::Engine, :at => '/'

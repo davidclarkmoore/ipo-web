@@ -76,4 +76,8 @@ class Student < ActiveRecord::Base
   end
   
   def agree_terms; properties["agree_terms"] == "1" ? true : false; end;
+
+  def reserved_his_spot?
+    student_applications.any? { |student_app| student_app.reserved_his_spot }
+  end  
 end

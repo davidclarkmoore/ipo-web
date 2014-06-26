@@ -14,7 +14,7 @@
     %hr
 
     %h2= t(:give_to_the_project)
-    = link_to t(:donate_to_this_project), new_donation_path(student_id: @student.id), class: 'button button-blue', id: "donate_to_project"
+    = link_to t(:donate_to_this_project), donate_to_student_path(student_id: @student.id), class: 'button button-blue', id: "donate_to_project"
     %p
       %span.list-title= t(:donation_cover_the_following)
     %ul

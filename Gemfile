@@ -90,10 +90,7 @@ group :test, :development do
   gem "pry"
   gem "pry-debugger"
 end
-<<<<<<< HEAD
 
 group :test do
   gem 'fake_braintree'
 end
-=======
->>>>>>> Add integration with braintree in student show page

@@ -18,15 +18,19 @@ class DonationsController < ApplicationController
   end
 
   def create
+    reserve_my_spot = params[:donation][:reserve_my_spot]
     params[:donation][:amount] = params[:custom_amount] if params[:custom_amount].present?
+    params[:donation][:amount] = 25 if reserve_my_spot
     student_id = params[:donation][:student_id] 
+    @student = Student.find(student_id) if student_id.present?
     result = make_donation(params[:donation][:amount], student_id)
     if result.success? 
+      @student.student_applications.find(reserve_my_spot).update_attribute(:reserved_his_spot, true) if reserve_my_spot && @student
+      redirect_to dashboards_path(view: 'profile_page') and return if reserve_my_spot
       flash.now[:notice] = 'Thanks for your donation!'
       render action: "show"
     else
-      define_amounts
-      @student = Student.find(student_id) if student_id.present?
+      define_amounts unless reserve_my_spot
       flash[:error] = "Error: #{result.message}"
       render action: "new"
     end
@@ -38,6 +42,14 @@ class DonationsController < ApplicationController
     Donation.find_by_subscription_id(@subscription.id).update_attribute(:status, Donation::CANCELED)
     flash.now[:notice] = 'Your recurring donation has been canceled!'
     redirect_to action: "show", id: @subscription.id
+  end
+
+  def reserve_my_spot
+    @student = current_student if current_student
+    @student_application_id = params[:reserve_my_spot]
+    @amounts = nil 
+    flash.now[:notice] = 'Reserve My Spot for $25!'
+    render action: "new"
   end
 
   private

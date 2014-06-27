@@ -117,6 +117,22 @@ class Project < ActiveRecord::Base
   scope :by_name, order('name asc')
   scope :completed, where(wizard_status: COMPLETE)
 
+  def self.top_ten(array_name)
+    items = Project.connection.select_all(
+      "select unnest(#{array_name.to_s}) as array_name, 
+      count(*) from Projects group by array_name order by count
+      DESC limit 10")
+    items.map{ |item| item["array_name"] }
+  end
+
+  def self.top_ten_student_passions
+    top_ten(:related_student_passions)
+  end
+
+  def self.top_ten_fields_of_study
+    top_ten(:related_fields_of_study)
+  end
+
   def search_data
     as_json only: [:name, :description]
   end

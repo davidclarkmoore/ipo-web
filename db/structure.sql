@@ -281,9 +281,6 @@ CREATE TABLE projects (
     related_fields_of_study character varying(255)[],
     related_student_passions character varying(255)[],
     location_street_address character varying(255),
-    region character varying(255),
-    country character varying(255),
-    city character varying(255),
     location_city character varying(255),
     location_state_or_province character varying(255),
     location_country character varying(255)
@@ -765,8 +762,6 @@ CREATE TABLE student_applications (
     project_session_id integer,
     student_id integer,
     status character varying(255),
-    application_status character varying(255),
-    application_deadline date,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     wizard_status character varying(255),
@@ -1439,8 +1434,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140204231710');
 INSERT INTO schema_migrations (version) VALUES ('20140211152146');
 
 INSERT INTO schema_migrations (version) VALUES ('20140211153034');
-
-INSERT INTO schema_migrations (version) VALUES ('20140330035306');
 
 INSERT INTO schema_migrations (version) VALUES ('20140404193239');
 

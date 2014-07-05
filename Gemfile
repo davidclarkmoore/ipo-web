@@ -37,7 +37,7 @@ gem 'http_accept_language'
 gem 'select2-rails'
 gem 'font-awesome-rails'
 gem 'country_select'
-gem 'globalize3', '0.3.0'
+# gem 'globalize3', '0.3.0'
 gem 'refinerycms', '~> 2.1.0'
 
 gem "searchkick"

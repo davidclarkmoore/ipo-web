@@ -32,13 +32,12 @@ gem 'jquery-fileupload-rails'
 
 gem 'unicorn' # Use unicorn as the app server
 gem 'capistrano' # Deploy with Capistrano
-
+gem 'capistrano-sidekiq'
 
 gem 'http_accept_language'
 gem 'select2-rails'
 gem 'font-awesome-rails'
 gem 'country_select'
-# gem 'globalize3', '0.3.0'
 gem 'refinerycms', '~> 2.1.0'
 
 gem "searchkick"

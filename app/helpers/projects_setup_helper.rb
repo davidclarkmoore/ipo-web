@@ -7,4 +7,15 @@ module ProjectsSetupHelper
     steps[idx] = ">>" + steps[idx] + "<<"
     steps.join(", ")
   end
+
+  def currency_options(selected = nil)
+    options_from_collection_for_select(currencies, :last, :first, selected)
+  end
+
+  def currencies 
+    currencies = ::Money::Currency.table.map  do |code, details|
+      iso = details[:iso_code]
+      ["#{details[:name]} (#{iso})", iso]
+    end
+  end
 end

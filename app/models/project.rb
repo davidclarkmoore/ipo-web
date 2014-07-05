@@ -2,6 +2,7 @@
 class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
+  include Formatter
   salesforce "Project__c", 
     [ :agree_memo, :agree_to_transport, :challenges_description,
       :created_at, :culture_description, :description, 
@@ -173,7 +174,7 @@ class Project < ActiveRecord::Base
   #create/update object in SF
   def save_to_sf!
     # Databasedotcom::SalesForceError must be handled by the caller
-    parameters = SFRails.format_parameters({
+    parameters = Formatter.format_parameters({
       project: self,
       organization: self.organization,
       field_host: self.field_host,

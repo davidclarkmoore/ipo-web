@@ -48,7 +48,7 @@ class StudentApplication < ActiveRecord::Base
   def save_to_sf!
     begin
       c = SFRails.connection
-      parameters = SFRails.format_parameters({
+      parameters = Formatter.format_parameters({
           student: self.student, 
           academic_reference: self.student.academic_reference, 
           spiritual_reference: self.student.spiritual_reference, 

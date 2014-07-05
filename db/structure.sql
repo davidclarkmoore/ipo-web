@@ -730,7 +730,8 @@ CREATE TABLE sessions (
     duration character varying(255),
     application_deadline date,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    sf_object_id character varying(255)
 );
 
 
@@ -1448,3 +1449,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140502160507');
 INSERT INTO schema_migrations (version) VALUES ('20140519154629');
 
 INSERT INTO schema_migrations (version) VALUES ('20140520235541');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603015231');

@@ -1,4 +1,9 @@
 class Session < ActiveRecord::Base
+  include SFRails::ActiveRecord
+
+  salesforce "Session__c", [ :start_date, :end_date, :application_deadline, :duration ], 
+    { title: "Name" }
+
 
   DAYS_TO_APPLICATION_DEADLINE = Settings.sessions.days_to_application_deadline
 

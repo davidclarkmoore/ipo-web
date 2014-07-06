@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
 
   def index
     projects = ProjectLoader.load_projects(params[:properties])
-    @projects = projects.completed.ransack(params[:q])
+    @projects = projects.approved.ransack(params[:q])
     @total_projects = @projects.result.count
     @sessions = Session.order(:start_date)
     params[:view] ||= 'grid'
@@ -36,6 +36,22 @@ class ProjectsController < ApplicationController
     @p = Project.find(params[:id])
     @project_media = ProjectMedia.where(params[:project])
     @host = FieldHost.find(Project.find(params[:id]).field_host_id)
+  end
+
+  def sync_with_sf
+    begin
+      sf_project = Project.sf.find_by_id(params[:sf_object_id])
+      sf_field_host = FieldHost.sf.find_by_id(sf_project.FieldHost__c) 
+      sf_organization = Organization.sf.find_by_id(sf_project.Organization__c)
+      ActiveRecord::Base.transaction do
+        sf_project.save_to_rails!
+        sf_field_host.save_to_rails! if sf_field_host
+        sf_organization.save_to_rails! if sf_organization
+      end
+      render json: sf_project
+    rescue => e
+      render json: { error: e.message }, status: 400
+    end
   end
 
   private

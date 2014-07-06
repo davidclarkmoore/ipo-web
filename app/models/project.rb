@@ -14,11 +14,12 @@ class Project < ActiveRecord::Base
       :per_week_cost, :per_week_cost_final, :related_fields_of_study, 
       :related_student_passions, :required_languages, :safety_level, 
       :student_educational_requirement, :team_mode, :transportation_available, 
-      :typical_attire, :updated_at ]
+      :typical_attire, :updated_at ], {sf_status: "Status__c"}
 
   searchkick autocomplete: ['name']
   SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
   COMPLETE = "complete"
+  APPROVED = "approved"
 
   belongs_to :organization
   belongs_to :field_host
@@ -29,19 +30,19 @@ class Project < ActiveRecord::Base
 
   delegate :references, to: :field_host
 
-  hstore_accessor :properties, :min_stay_duration, :min_students, :max_students,
+  hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, :sf_status,
     :per_week_cost, :per_week_cost_final, :currency, :required_languages, :student_educational_requirement,
     :internet_distance, :location_type, :transportation_available, :location_description,
     :culture_description, :housing_type, :dining_location, :housing_description, :safety_level,
     :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 
-  attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students,
+  attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, :sf_status,
     :per_week_cost, :per_week_cost_final, :currency, :required_languages, :related_student_passions, :related_fields_of_study,
     :student_educational_requirement, :location_street_address, :location_city, :location_state_or_province, :location_country, 
     :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description, 
     :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description, :typical_attire, 
     :guidelines_description, :agree_memo, :agree_to_transport, :field_host_attributes, :organization_attributes, 
-    :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id
+    :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id, :created_at, :updated_at
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
@@ -51,7 +52,8 @@ class Project < ActiveRecord::Base
   def agree_to_transport; properties["agree_to_transport"] == "1" ? true : false; end;
   def per_week_cost_final; properties["per_week_cost_final"] == "1" ? true : false; end;
 
-  %w(dining_location internet_distance location_type housing_type safety_level typical_attire student_educational_requirement).each do |f|
+  %w(dining_location internet_distance location_type housing_type safety_level 
+    typical_attire student_educational_requirement sf_status).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")
 
     # =================
@@ -116,7 +118,7 @@ class Project < ActiveRecord::Base
   scope :recent, order('created_at desc')
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
-  scope :completed, where(wizard_status: COMPLETE)
+  scope :approved, where("properties -> 'sf_status' = 'approved'")
 
   def search_data
     as_json only: [:name, :description]

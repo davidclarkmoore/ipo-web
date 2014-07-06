@@ -91,6 +91,9 @@ en:
         never_walk_alone: "Never Walk Alone"
         daytime_ok_to_walk_area: "Daytime OK to walk area"
         free_to_move_around_alone: "Free to Move Around Alone"
+      sf_status:
+        approved: "Approved"
+        needs_review: "Needs Review"
       student_educational_requirement:
         high_school_graduate: "High School Graduate"
         some_college: "Some College"

@@ -3,17 +3,17 @@ class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
   include Formatter
-  salesforce "Project__c", 
+  salesforce "Project__c",
     [ :agree_memo, :agree_to_transport, :challenges_description,
-      :created_at, :culture_description, :description, 
+      :created_at, :culture_description, :description,
       :dining_location, :guidelines_description, :housing_description,
       :housing_type, :internet_distance, :location_city, :location_country,
       :location_description, :location_private, :location_state_or_province,
       :location_street_address, :location_type, :max_students,
-      :min_stay_duration, :min_students, :name, 
-      :per_week_cost, :per_week_cost_final, :region, :related_fields_of_study, 
-      :related_student_passions, :required_languages, :safety_level, 
-      :student_educational_requirement, :team_mode, :transportation_available, 
+      :min_stay_duration, :min_students, :name,
+      :per_week_cost, :per_week_cost_final, :region, :related_fields_of_study,
+      :related_student_passions, :required_languages, :safety_level,
+      :student_educational_requirement, :team_mode, :transportation_available,
       :typical_attire, :updated_at ], {sf_status: "Status__c"}
 
   searchkick autocomplete: ['name']
@@ -38,11 +38,11 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, :sf_status,
     :per_week_cost, :per_week_cost_final, :currency, :required_languages, :related_student_passions, :related_fields_of_study,
-    :student_educational_requirement, :location_street_address, :location_city, :location_state_or_province, :location_country, 
-    :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description, 
-    :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description, :typical_attire, 
-    :guidelines_description, :agree_memo, :agree_to_transport, :field_host_attributes, :organization_attributes, 
-    :region, :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id
+    :student_educational_requirement, :location_street_address, :location_city, :location_state_or_province, :location_country,
+    :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description,
+    :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description, :typical_attire,
+    :guidelines_description, :agree_memo, :agree_to_transport, :field_host_attributes, :organization_attributes,
+    :region, :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id, :created_at, :updated_at
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization
@@ -165,7 +165,7 @@ class Project < ActiveRecord::Base
   end
 
   def full_address
-    "#{location_street_address}, #{location_city}, 
+    "#{location_street_address}, #{location_city},
     #{location_state_or_province}, #{location_country}"
   end
 
@@ -184,7 +184,7 @@ class Project < ActiveRecord::Base
       sessions: self.sessions.to_a
     })
     response = SFRails.connection.http_post( SF_PROJECT_APPLICATION_URL, parameters )
-    
+
     # If no error is raised, parse the response and save the SF Ids
     parsed = JSON.parse(response.body)
     self.sf_object_id = parsed["project"]["Id"]
@@ -197,7 +197,7 @@ class Project < ActiveRecord::Base
       self.sessions.find_by_start_date(session["Start_Date__c"]).update_attribute(:sf_object_id, session["Id"])
     end
     self.save
-    
+
   end
 
 end

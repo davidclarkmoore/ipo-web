@@ -209,6 +209,7 @@ en:
   location_city: "City"
   location_state_or_province: "State"
   location_country: "Country"
+  region: "Region"
   student_application_deadline: "Student Application Deadline"
   student_educational_requirement: "Student Educational Requirement"
   student_dining_location: "Student dining location"

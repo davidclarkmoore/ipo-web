@@ -87,6 +87,13 @@ en:
         japanese: "Japanese"
         german: "German"
         other: "Other"
+      region:
+        north_america: "North America"
+        south_america: "South America"
+        africa: "Africa"
+        europe: "Europe"
+        asia: "Asia"
+        australia: "Australia"
       safety_level:
         never_walk_alone: "Never Walk Alone"
         daytime_ok_to_walk_area: "Daytime OK to walk area"

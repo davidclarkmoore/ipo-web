@@ -45,5 +45,21 @@ class StudentsController < ApplicationController
       render :donate
     end
   end
+
+  def apply
+    begin 
+      client = SFRails.connection 
+      client.materialize('Lead')
+      apply = params[:apply]
+      @lead = Lead.create( "FirstName" => apply[:first_name],
+        "LastName" => apply[:last_name], "Email" => apply[:email],
+        "Company" => "None" );
+    rescue Databasedotcom::SalesForceError => e
+      Rails.logger.warn "SalesForceError creting a Lead: #{e.message}"
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
   
 end

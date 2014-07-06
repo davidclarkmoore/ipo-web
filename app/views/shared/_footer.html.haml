@@ -32,18 +32,23 @@
           %li academic credit 4
 
     #reach-out.c6.omega
-      %h1 reach out
-      %div
-        %span Hi, my name is
-        %input{type: 'text', placeholder: 'Enter Full Name', name: 'full_name'}
+      = simple_form_for :apply, url: '/apply', method: 'post', remote: true do |f|
+        %h1 reach out
+        %div
+          %span Hi, my name is
+          = f.input :first_name, label: false, placeholder: 'First Name', required: true
+          = f.input :last_name, label: false, placeholder: 'Last Name', required: true
 
-      %div
-        %select{class: 'no-select2'}
-          %option I'm interested in an internship
-        %span . Please
-        %select{class: 'no-select2'}
-          %option Email me
+        %div
+          %select{class: 'no-select2'}
+            %option I'm interested in an internship
+          %span . Please
+          %select{class: 'no-select2'}
+            %option Email me
 
-      %div
-        %span using...
-        %input{type: 'email', placeholder: 'Enter email address...', name: 'email'}
+        %div
+          %span using...
+          = f.input :email, label: false, placeholder: 'Enter email address...'
+
+        = f.submit "Apply", class: "button"
+        %p.msg

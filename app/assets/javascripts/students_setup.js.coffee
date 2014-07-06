@@ -4,24 +4,35 @@ $ ->
     handleTabs("new", "spiritual_reference", !value)
     handleTabs("existing", "spiritual_reference", value)
     $('#is_new_spiritual_reference').val(($(@).data('box') == "#new_spiritual_reference"))
-      
+
   $('#academic_reference .tab').click (e) ->
     value = $(@).data('box') == '#existing_academic_reference'
     handleTabs("new", "academic_reference", !value)
     handleTabs("existing", "academic_reference", value)
     $('#is_new_academic_reference').val(($(@).data('box') == "#new_academic_reference"))
 
-  $("#student_application_project_session_id").empty()
   $("#your_project_select").change (event) ->
+    # Pull in new project sessions.
     project_code = $(this).val()
     $.ajax
       type: "GET"
       url: "/students_setup/project_sessions/" + project_code
-      success: (data) -> 
-        $("#s2id_student_application_project_session_id").children().children(".select2-chosen").text("")
+      success: (data) ->
+        # TODO: All of this could be vastly simplified by simply using a rails partial and render that with .js.ejs
+        selected = null
+
+        # Clear out project sessions input.
+        $("#s2id_student_application_project_session_id").find(".select2-chosen").text("")
         $("#student_application_project_session_id").empty()
+
+        # Replace sessions combobox with thew new project's sessions
         $.each data, (index, value) ->
-          $("#student_application_project_session_id").append "<option value=\"" + data[index].id + "\">" + data[index].text + "</option>"
+          selected = if data[index].selected then data[index].id else null
+          option = "<option value=\"#{data[index].id}\"> #{data[index].text} </option>"
+          $("#student_application_project_session_id").append option
+
+        # Preselect any sessions loaded form model.
+        $("#student_application_project_session_id").select2('val', selected)
         $("#student_application_project_session_id").valid()
 
   jQuery.validator.addMethod "student_application_agree_terms_accepted", ((value, element) ->
@@ -58,20 +69,28 @@ $ ->
         equalTo: "#student_application_student_attributes_login_attributes_password"
     $("#student_application_student_attributes_marital_status").rules "add",
       required: true
-  
+    $("#student_application_student_attributes_birthday_3i").removeClass("date")
+    $("#student_application_student_attributes_birthday_3i").rules "add",
+      required: true
+      min_length: 1
+      max_length: 31
+
   if $('form[action="/students/setup/interests_and_fields_of_study"]').length > 0
     $("#student_application_student_attributes_graduation_year").rules "add",
       required: true
       number: true
     reference = "#student_application_student_attributes_person_references_attributes_"
-    required_fields = (index) -> 
+
+    # Find a better less fragile way of doing these rules.
+    required_fields = (index) ->
       ["#{reference}#{index}_contact_first_name", "#{reference}#{index}_contact_last_name", "#{reference}#{index}_contact_email"]
+
     $("#{reference}0_reference_id").rules "add", required: "#is_new_spiritual_reference[value='false']"
     $("#{reference}2_reference_id").rules "add", required: "#is_new_academic_reference[value='false']"
     $(element).rules "add", required: "#is_new_spiritual_reference[value='true']" for element in required_fields(1)
     $(element).rules "add", required: "#is_new_academic_reference[value='true']" for element in required_fields(3)
-  
-  if $('form[action="/students/setup/important_details"]').length > 0      
+
+  if $('form[action="/students/setup/important_details"]').length > 0
     $("#student_application_agree_terms").rules "add",
       required: true
       student_application_agree_terms_accepted: true
@@ -81,7 +100,6 @@ $ ->
 handleTabs = (type, reference, display) ->
   tab = $("#tab_" + type + "_" + reference)
   content = $("#" + type + "_" + reference)
-
   if display
     content.show()
     tab.addClass 'active'

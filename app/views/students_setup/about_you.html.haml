@@ -5,33 +5,33 @@
     = render partial: 'shared/errors', locals: {object: @student_application}
 
     .background.c12.omega
-      - if @project_selected 
-        %h3.center= "#{t(:your_project)} #{@project_selected.name}"  
+      - if @project_selected
+        %h3.center= "#{t(:your_project)} #{@project_selected.name}"
         = f.input :id, as: :hidden, input_html: { id: 'your_project_select', value: @project_selected.id }
       - else
         %h3.center= t(:your_project)
         = f.input :project, as: :select, label: false do
-          = select_tag 'your_project_select', options_from_collection_for_select(Project.all, "id", "name", @project_selected), include_blank: true
+          = select_tag 'your_project_select', options_from_collection_for_select(Project.all, "id", "name", @student_application.project_id), include_blank: true
 
-        
+
       %h3.center= t(:your_session)
       = f.association :project_session, include_blank: true, label: false, label_method: :select_label
 
-    = f.fields_for :student, @student_application.student, validate: true do |f_student|  
+    = f.fields_for :student, @student_application.student, validate: true do |f_student|
       %fieldset
         %br
         .student-fields
           = f_student.input :first_name, label: t(:first_name_nickname)
           = f_student.input :last_name
           - unless current_student
-            = f_student.fields_for :login, @student_application.student.login, validate: true do |f_login|
+            = f_student.fields_for :login, @student_application.student_login, validate: true do |f_login|
               = f_login.input :email
               = f_login.input :password
               %p.register-description= t(:we_setup_an_account_for_you_so_you_can_check_your_application_status)
               = f_login.input :password_confirmation, label: t(:confirm_password)
 
-          = f_student.input :birthday, as: :date, start_year: Date.today.year - 50, label: t(:date_of_birth) 
-          = f_student.input :gender, collection: [:female, :male], as: :radio_buttons, :input_html => {:data => {:toggle => "checkbox"}}
+          = f_student.input :birthday, as: :date, start_year: Date.today.year - 50, label: t(:date_of_birth), order: [:year, :month, :day]
+          = f_student.input :gender, collection: [:female, :male], as: :radio_buttons, input_html: {data: { toggle: "radio"}}
           = f_student.input :marital_status, as: :select
 
       %fieldset
@@ -49,10 +49,10 @@
 
       %fieldset
         %h4= t(:how_did_your_hear_about_ipo_connection)
-        = f_student.input :heard_about_ipo, as: :check_boxes, label: false, :input_html => {:data => {:toggle => "checkbox"}}
+        = f_student.input :heard_about_ipo, as: :check_boxes, label: false, input_html: { data: { toggle: "checkbox" }}
 
       %fieldset
         %h4= t(:had_you_event_applied_to_an_ipo_connection_program_before)
-        = f_student.input :applied_ipo_before, as: :radio_buttons, label: false, required: true, :input_html => {:data => {:toggle => "checkbox"}}
+        = f_student.input :applied_ipo_before, as: :radio_buttons, label: false, required: true, input_html: { data: { toggle: "radio"}}
 
     = f.submit t(:save_and_continue_to_step_2), class: "button button-orange"

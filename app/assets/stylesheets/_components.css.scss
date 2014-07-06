@@ -377,7 +377,7 @@ text-transform: none;
 -moz-osx-font-smoothing: grayscale;
 }
 
-.checkbox {
+.checkbox, .radio {
   @extend %option-box;
 
   &:before {
@@ -399,11 +399,11 @@ text-transform: none;
   }
 }
 
-.fui-checkbox-checked:before {
+.fui-checkbox-checked:before, .fui-radio-checked:before {
 content: "\e034";
 }
 
-.fui-checkbox-unchecked:before {
+.fui-checkbox-unchecked:before, .fui-radio-unchecked:before {
 content: "\e033";
 }
 

@@ -11,6 +11,8 @@ class StudentsSetupController < ApplicationController
       # This is used for the apply button in project/show.html.haml
       @project_selected = Project.find(params[:project_id]) if params[:project_id]
       @student_application.student.build_login unless @student_application.student && @student_application.student.login
+      @student_application.build_project_session unless @student_application.project_session
+      @student_application.project_session.build_project unless @student_application.project
     when :interests_and_fields_of_study
       @academic_reference = PersonReference.find_or_build_person_reference(@student_application.person_references, :academic_reference)
       @spiritual_reference = PersonReference.find_or_build_person_reference(@student_application.person_references, :spiritual_reference)
@@ -44,8 +46,11 @@ class StudentsSetupController < ApplicationController
   end
 
   def project_sessions
+    selected_session = @student_application.project_session || @student_application.build_project_session
     @projects_sessions = ProjectSession.where(project_id: params[:project])
-    @projects_sessions.map! { |project| {id: project.id, text: project.select_label}}
+    @projects_sessions.map! { |session| {
+      id: session.id, text: session.select_label, 
+      selected: session.id == selected_session.id }}
     respond_to do |format|
       format.json { render :json => @projects_sessions }
     end

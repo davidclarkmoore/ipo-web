@@ -5,8 +5,8 @@ Refinery::PagesController.class_eval do
   protected
 
     def fill_fields_of_study_and_passion_areas
-      @fields_of_study = Project.related_fields_of_study.values
-      @student_passions = Project.related_student_passions.values
+      @fields_of_study = Project.top_ten_fields_of_study
+      @student_passions = Project.top_ten_student_passions
     end
 
 end

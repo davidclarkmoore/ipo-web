@@ -112,3 +112,13 @@ font-size: 2em;
 @mixin respond-to($breakpoint) {
   @media only screen and (max-width: $breakpoint + px) { @content;}
 }
+
+// Rotate mixin for nav main
+
+@mixin transform($rotate) {
+  -webkit-transform: $rotate;
+    -moz-transform: $rotate;
+      -ms-transform: $rotate;
+        -o-transform: $rotate;
+          transform: $rotate;
+}

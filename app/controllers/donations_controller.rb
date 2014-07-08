@@ -1,55 +1,46 @@
 class DonationsController < ApplicationController
+  before_filter :create_donation_processor
 
   def show
-    @subscription = Braintree::Subscription.find(params[:id])
+    @subscription = @donation_processor.get_subscription(params[:id])
+    donation = Donation.find_by_subscription_id(@subscription.id)
+    @student = Student.find(donation.student_id) if donation && donation.student_id
   end
 
   def new
     define_amounts
-    subscription_id = params[:id]
-    student_id = params[:student_id]
-    if subscription_id.present? 
-      @subscription = Braintree::Subscription.find(params[:id])
-      customer_id = @subscription.transactions[0].customer_details.id
-      @customer = Braintree::Customer.find(customer_id)
-    elsif student_id.present? 
-      @student = Student.find(student_id)
+    if params[:subscription_id].present?  #renew existing donation
+      @subscription = @donation_processor.get_subscription(params[:subscription_id])
+      @customer = @donation_processor.get_customer(params[:subscription_id])
+    elsif params[:student_id].present?  #donation for a specific student
+      @student = Student.find(params[:student_id])
+    elsif params[:student_application_id].present? #donation to reserve an spot
+      @student = current_student if current_student
+      @student_application_id = params[:student_application_id]
+      flash.now[:notice] = 'Reserve My Spot for $25!'
+      render action: "new"
     end
+    #else donation for the whole project no action needed
   end
 
   def create
-    reserve_my_spot = params[:donation][:reserve_my_spot]
-    params[:donation][:amount] = params[:custom_amount] if params[:custom_amount].present?
-    params[:donation][:amount] = 25 if reserve_my_spot
-    student_id = params[:donation][:student_id] 
-    @student = Student.find(student_id) if student_id.present?
-    result = make_donation(params[:donation][:amount], student_id)
+    result = @donation_processor.process_donation
     if result.success? 
-      @student.student_applications.find(reserve_my_spot).update_attribute(:reserved_his_spot, true) if reserve_my_spot && @student
-      redirect_to dashboards_path(view: 'profile_page') and return if reserve_my_spot
+      redirect_to dashboards_path(view: 'profile_page') and return if @donation_processor.spot_reservation?
       flash.now[:notice] = 'Thanks for your donation!'
       render action: "show"
     else
-      define_amounts unless reserve_my_spot
+      define_amounts unless @donation_processor.spot_reservation?
       flash[:error] = "Error: #{result.message}"
       render action: "new"
     end
   end
 
   def destroy
-    @subscription = Braintree::Subscription.find(params[:id])
-    Braintree::Subscription.cancel(@subscription.id) unless @subscription.status == Donation::CANCELED
-    Donation.find_by_subscription_id(@subscription.id).update_attribute(:status, Donation::CANCELED)
+    subscription = @donation_processor.cancel_recurring_donation(params[:id])
+    Donation.find_by_subscription_id(subscription.id).update_attribute(:status, Donation::CANCELED)
     flash.now[:notice] = 'Your recurring donation has been canceled!'
-    redirect_to action: "show", id: @subscription.id
-  end
-
-  def reserve_my_spot
-    @student = current_student if current_student
-    @student_application_id = params[:reserve_my_spot]
-    @amounts = nil 
-    flash.now[:notice] = 'Reserve My Spot for $25!'
-    render action: "new"
+    redirect_to action: "show", id: subscription.id
   end
 
   private
@@ -63,70 +54,11 @@ class DonationsController < ApplicationController
       ["$250","250"],
       ["$500","500"]
     ]
+    @amounts = nil if params[:student_application_id].present?
   end
 
-  def recurring?
-    params[:donation][:recurring] == "1"
-  end
-
-  def make_donation(amount, student_id = nil )
-    result = nil
-    if recurring?
-      result = create_customer
-      customer = result.customer if result.success?
-      result = recurrent_donation(customer, amount, student_id) if result.success?
-      DonationMailer.donation_info_email( customer, result.subscription).deliver if result.success?
-    else
-      result = one_time_donation(student_id) 
-    end
-    result
-  end
-  
-  def create_customer
-    result = Braintree::Customer.create(
-      first_name: params[:customer][:first_name],
-      last_name: params[:customer][:last_name],
-      email: params[:customer][:email],
-      credit_card: {
-        number: params[:card][:number],
-        expiration_month: params[:card][:expiration_month],
-        expiration_year: params[:card][:expiration_year],
-        cvv: params[:card][:cvv],
-        billing_address: params[:billing]
-      }
-    )
-  end
-  
-  def one_time_donation (student_id = nil)
-    result = Braintree::Transaction.sale(
-      :amount => params[:donation][:amount],
-      :credit_card => params[:card],
-      :customer => params[:customer],
-      :billing => params[:billing],
-      :options => {
-        :store_in_vault => true,
-        :add_billing_address_to_payment_method => true,
-        :submit_for_settlement => true
-      }
-    )
-    Donation.create(amount: params[:donation][:amount], 
-      transcation_id: result.transaction.id, recurring: false, 
-      student_id: student_id, status: Donation::SUBMITTED ) if result.success?
-    result
-  end
-
-  def recurrent_donation (customer, amount, student_id = nil)
-    customer = Braintree::Customer.find(customer.id)
-    payment_method_token = customer.credit_cards[0].token
-    result = Braintree::Subscription.create(
-      :payment_method_token => payment_method_token,
-      :plan_id => "donation",
-      :price => amount
-    )
-    Donation.create( amount: amount, customer_id: customer.id, 
-      subscription_id: result.subscription.id, recurring: true,
-      student_id: student_id, status: Donation::ACTIVE ) if result.success?
-    result
+  def create_donation_processor 
+    @donation_processor = DonationProcessor.new(params)
   end
 
 end

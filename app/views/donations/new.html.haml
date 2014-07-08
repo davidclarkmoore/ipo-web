@@ -14,7 +14,7 @@
     -else 
       .input.c6
         %h3= t(:donation_for_reserve_my_spot)
-        = f.input :reserve_my_spot, as: :hidden, input_html: { value: (@student_application_id if @student_application_id) }
+        = f.input :student_application_id, as: :hidden, input_html: { value: (@student_application_id if @student_application_id) }
 
     .input.c6
       %label= t(:donation_first_name)
@@ -56,7 +56,8 @@
       = select_year(Date.today, field_name: "expiration_year", start_year: 2014, prefix: "card")
 
     .input.c12.omega{style: 'margin-top: 50px;'}
-      = f.input :recurring, label: t(:recurring), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
+      -if @amounts
+        = f.input :recurring, label: t(:recurring), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
       = submit_tag t(:donation_button), class: 'button button-orange'
 
 

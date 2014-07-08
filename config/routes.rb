@@ -31,10 +31,7 @@ IpoWeb::Application.routes.draw do
   get '/students_setup/project_sessions/:project' => 'students_setup#project_sessions'
   get '/projects_setup/application_deadline/:id' => 'projects_setup#application_deadline'
 
-  resources :students do
-    get 'donate' => 'students#donate', :as => :donate_form
-    post 'donating' => 'students#donating', :as => :donating
-  end
+  resources :students 
   post '/students/sync/:sf_object_id', to: 'students#sync_with_sf'
   post 'apply' => 'students#apply', :as => :apply
 
@@ -46,9 +43,9 @@ IpoWeb::Application.routes.draw do
 
   resources :donations, path: "/donations"
   get '/donate' => 'donations#new'
-  get '/donate/:student_id' => 'donations#new', :as => :donate_to_student
-  get '/renew_donation/:id' => 'donations#new', :as => :renew_donation
-  get '/reserve_my_spot/:reserve_my_spot' => 'donations#reserve_my_spot', :as => :reserve_my_spot
+  get '/donate_to_student/:student_id' => 'donations#new', :as => :donate_to_student
+  get '/renew_donation/:subscription_id' => 'donations#new', :as => :renew_donation
+  get '/reserve_my_spot/:student_application_id' => 'donations#new', :as => :reserve_my_spot
 
   mount Sidekiq::Web, at: '/sidekiq'
   mount Refinery::Core::Engine, :at => '/'

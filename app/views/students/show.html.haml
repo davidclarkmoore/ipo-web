@@ -14,7 +14,7 @@
     %hr
 
     %h2= t(:give_to_the_project)
-    = link_to t(:donate_to_this_project), student_donate_form_path(@student), class: 'button button-blue', id: "donate_to_project"
+    = link_to t(:donate_to_this_project), new_donation_path(student_id: @student.id), class: 'button button-blue', id: "donate_to_project"
     %p
       %span.list-title= t(:donation_cover_the_following)
     %ul
@@ -25,10 +25,10 @@
     - if @student.projects.any?
       %h2= t(:quick_details)
       %ul
-        %li= t(:project, project: @student.projects.first.name, address: @student.projects.first.address)
+        %li= t(:project, project: @student.projects.first.name, address: @student.projects.first.full_address)
         %li= t(:session, range: @student.project_sessions.first.select_label)
         %li= t(:internet_access, internet: @student.projects.first.internet_distance)
-        %li= t(:project_type, type: @student.projects.first.team_mode_to_string)
+        %li= t(:project_type, type: @student.projects.first.team_mode)
     - else
       %h4 No Project Specified
     %hr
@@ -41,6 +41,6 @@
     %p More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection 
     %hr
     - if @student.projects.any?
-      %h1= t(:my_project, project: @student.projects.first.name, address: @student.projects.first.address)
+      %h1= t(:my_project, project: @student.projects.first.name, address: @student.projects.first.full_address)
       %p More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection More about IPO Connection 
       %hr

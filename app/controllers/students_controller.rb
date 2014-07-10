@@ -17,32 +17,18 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
   end
-  
-  def donate
-    @student = Student.find(params[:student_id])
-  end
-  
-  def donating
-    @student = Student.find(params[:student_id])
-    puts params.inspect
-    
-    result = Braintree::Transaction.sale(
-      :amount => params[:amount],
-      :credit_card => params[:card],
-      :customer => params[:customer],
-      :billing => params[:billing],
-      :options => {
-        :store_in_vault => true,
-        :add_billing_address_to_payment_method => true,
-        :submit_for_settlement => true
-      }
-    )
-    puts result.inspect
-    if result.success?
-      redirect_to @student, notice: 'Thanks for donate!'
-    else
-      flash[:error] = "<h1>Error: #{result.message}</h1>"
-      render :donate
+
+  def sync_with_sf
+    begin
+      sf_student_app = StudentApplication.sf.find_by_id(params[:sf_object_id])
+      sf_student = Student.sf.find_by_id(sf_student_app.Contact__c) 
+      ActiveRecord::Base.transaction do
+        sf_student_app.save_to_rails!
+        sf_student.save_to_rails!
+      end
+      render json: sf_student_app
+    rescue => e
+      render json: { error: e.message }, status: 400
     end
   end
 

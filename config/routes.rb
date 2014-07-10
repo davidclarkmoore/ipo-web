@@ -31,20 +31,21 @@ IpoWeb::Application.routes.draw do
   get '/students_setup/project_sessions/:project' => 'students_setup#project_sessions'
   get '/projects_setup/application_deadline/:id' => 'projects_setup#application_deadline'
 
-  resources :students do
-    get 'donate' => 'students#donate', :as => :donate_form
-    post 'donating' => 'students#donating', :as => :donating
-  end
+  resources :students 
+  post '/students/sync/:sf_object_id', to: 'students#sync_with_sf'
   post 'apply' => 'students#apply', :as => :apply
-  
+
   resources :dashboards, only: [:index]
   resources :sessions
   get '/unique/:model/:attribute/:value' => 'uniqueness#validate', constraints: { value: /[^\/?]+/ }
 
   put "dashboards/update_login" => "dashboards#update_login"
 
-  resources :donations, path: "/donations", only: [:new, :create]
+  resources :donations, path: "/donations"
   get '/donate' => 'donations#new'
+  get '/donate_to_student/:student_id' => 'donations#new', :as => :donate_to_student
+  get '/renew_donation/:subscription_id' => 'donations#new', :as => :renew_donation
+  get '/reserve_my_spot/:student_application_id' => 'donations#new', :as => :reserve_my_spot
 
   mount Sidekiq::Web, at: '/sidekiq'
   mount Refinery::Core::Engine, :at => '/'

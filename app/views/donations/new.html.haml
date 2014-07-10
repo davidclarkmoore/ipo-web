@@ -1,23 +1,30 @@
 %article.container
-  %h1= t(:donation_support_ipo_connection)
+  %h1= t(:donation_support_ipo_connection) 
   %p= t(:donation_contribution_description)
 
   - if flash[:error]
     %p.alert= flash[:error]
-
+  - if @student
+    %p= "#{t(:donation_for)} #{@student.full_name}"
   = simple_form_for :donation, url: donations_path, html: { id: 'donate_form', novalidate: false } do |f|
-    = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
-    = number_field_tag :custom_amount, '', min: 1, placeholder: '$ other amount'
+    = f.input :student_id, as: :hidden, input_html: { value: (@student.id if @student) }
+    -if @amounts
+      = f.input :amount, as: :button_group, label: false, collection: @amounts, validate: true
+      = number_field_tag :custom_amount, (@subscription.price if @subscription), min: 1, placeholder: '$ other amount'
+    -else 
+      .input.c6
+        %h3= t(:donation_for_reserve_my_spot)
+        = f.input :student_application_id, as: :hidden, input_html: { value: (@student_application_id if @student_application_id) }
 
     .input.c6
       %label= t(:donation_first_name)
-      = text_field_tag 'customer[first_name]', '', required: true
+      = text_field_tag 'customer[first_name]', (@customer.first_name if @customer), required: true
     .input.c6.omega
       %label= t(:donation_last_name)
-      = text_field_tag 'customer[last_name]', '', required: true
+      = text_field_tag 'customer[last_name]', (@customer.last_name if @customer), required: true
     .input.c12.omega
       %label= t(:donation_email)
-      = email_field_tag 'customer[email]', '', required: true
+      = email_field_tag 'customer[email]', (@customer.email if @customer), required: true
     .input.c8
       %label= t(:donation_address)
       = text_field_tag 'billing[street_address]', '', required: true
@@ -46,10 +53,11 @@
     .input.c12
       %label= t(:donation_expiration_date)
       = select_month(Date.today, field_name: "expiration_month", add_month_numbers: true, prefix: "card")
-      = select_year(Date.today, field_name: "expiration_year", start_year: 2005, prefix: "card")
+      = select_year(Date.today, field_name: "expiration_year", start_year: 2014, prefix: "card")
 
     .input.c12.omega{style: 'margin-top: 50px;'}
-      = f.input :recurring, label: t(:recurring), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
+      -if @amounts
+        = f.input :recurring, label: t(:recurring), as: :boolean, :input_html => {:data => {:toggle => "checkbox"}}
       = submit_tag t(:donation_button), class: 'button button-orange'
 
 

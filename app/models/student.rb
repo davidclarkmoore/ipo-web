@@ -19,19 +19,19 @@ class Student < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :birthday, :gender, :street_address, :city, :state, :postal_code,
     :country, :preferred_phone, :phone_type, :marital_status, :organization, :applied_ipo_before,
-    :description, :reference_id, :graduation_year, :agree_terms,
-    :login_attributes, :reference_attributes, :person_references_attributes,
+    :description, :reference_id, :graduation_year, :agree_terms, :created_at, :email,
+    :login_attributes, :reference_attributes, :person_references_attributes, :updated_at,
     :fields_of_study, :passions, :experiences, :spoken_languages, :heard_about_ipo, :overall_education,
     :profile_picture, :cover_photo, :public_contact_information, :published_status, :biography
 
   has_many :person_references, as: :referencer, inverse_of: :referencer
   has_many :references, through: :person_references
-
+  has_many :donations
   has_one :login, as: :entity, dependent: :destroy
   has_many :student_applications, dependent: :destroy
   has_many :project_sessions, through: :student_applications
   has_many :projects, through: :project_sessions
-  delegate :email, to: :login
+  delegate :email, :email=, to: :login
 
   accepts_nested_attributes_for :login
   accepts_nested_attributes_for :person_references
@@ -76,4 +76,8 @@ class Student < ActiveRecord::Base
   end
   
   def agree_terms; properties["agree_terms"] == "1" ? true : false; end;
+
+  def reserved_his_spot?
+    student_applications.any? { |student_app| student_app.reserved_his_spot }
+  end  
 end

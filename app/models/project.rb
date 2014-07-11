@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
       :per_week_cost, :per_week_cost_final, :region, :related_fields_of_study, 
       :related_student_passions, :required_languages, :safety_level, 
       :student_educational_requirement, :team_mode, :transportation_available, 
-      :typical_attire, :updated_at ]
+      :typical_attire, :updated_at ], {sf_status: "Status__c"}
 
   searchkick autocomplete: ['name']
   SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
@@ -37,12 +37,12 @@ class Project < ActiveRecord::Base
     :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 
   attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, :sf_status,
-    :per_week_cost, :per_week_cost_final, :required_languages, :related_student_passions, :related_fields_of_study,
+    :per_week_cost, :per_week_cost_final, :currency, :required_languages, :related_student_passions, :related_fields_of_study,
     :student_educational_requirement, :location_street_address, :location_city, :location_state_or_province, :location_country, 
     :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description, 
     :housing_type, :dining_location, :housing_description, :safety_level, :challenges_description, :typical_attire, 
     :guidelines_description, :agree_memo, :agree_to_transport, :field_host_attributes, :organization_attributes, 
-    :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id, :created_at, :updated_at
+    :region, :organization_id, :wizard_status, :project_sessions_attributes, :field_host_id, :created_at, :updated_at
 
   accepts_nested_attributes_for :field_host
   accepts_nested_attributes_for :organization

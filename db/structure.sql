@@ -802,13 +802,15 @@ CREATE TABLE student_applications (
     project_session_id integer,
     student_id integer,
     status character varying(255),
+    application_status character varying(255),
+    application_deadline date,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     wizard_status character varying(255),
     agree_terms boolean,
     sf_object_id character varying(255),
     sf_status character varying(255),
-    pay_registration_fee boolean,
+    pay_registration_fee boolean DEFAULT true,
     reserved_his_spot boolean
 );
 
@@ -1516,3 +1518,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140621005243');
 INSERT INTO schema_migrations (version) VALUES ('20140625131247');
 
 INSERT INTO schema_migrations (version) VALUES ('20140626000629');
+
+INSERT INTO schema_migrations (version) VALUES ('20140711005939');

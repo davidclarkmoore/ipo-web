@@ -476,7 +476,7 @@ fieldset:last-child {
   display:none;
 }
 
-//responsive header media queries//
+//responsive header side bar//
 
 @include respond-to(800){
 
@@ -611,9 +611,9 @@ fieldset:last-child {
     transition: all 0.5s;
   }
 
-  nav.main.mobile:before { @include transform(45deg); }
+  nav.main.mobile:before { @include transform( rotate(45deg) ); }
 
-  nav.main.mobile:after { @include transform(-45deg); }
+  nav.main.mobile:after { @include transform(rotate(-45deg) ); }
 
   nav.main.mobile span {
     opacity:0;

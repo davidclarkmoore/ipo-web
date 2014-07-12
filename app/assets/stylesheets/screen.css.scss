@@ -272,8 +272,7 @@ nav.sub-menu {
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
   text-transform: uppercase;
-  margin-top: -66px; // TODO: Responsive? Also rather hacky..
-
+  
   a { color: white; text-decoration: none; }
 }
 
@@ -347,6 +346,7 @@ form {
     background-color: rgba(0,0,0,0.1);
     border: 0em;
   }
+
 
   input[type='submit'], input[type='submit'].button {
     @include adjust-font-size-to(16px, 1, 14px);

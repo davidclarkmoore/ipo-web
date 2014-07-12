@@ -178,10 +178,10 @@ label {
 .project_field_host_middle_initial { @include span-columns(1, 6); }
 .project_field_host_last_name { @include span-columns(2 omega, 6); }
 
-.project_field_host_email {
-  @include span-columns(4 omega, 6);
-  @include post(2, 6);
+.project_field_host_login_email {
+  @include span-columns(6 alpha, 6);
 }
+
 
 .project_field_host_login_password{
   @include span-columns(2 alpha, 6);
@@ -225,6 +225,9 @@ label {
 .ywam_experience_and_connection { @include trailer(2);
 }
 
+.project_organization_website {
+  @include span-columns(4, 8);
+}
 
 .project_field_host_role_title { @include span-columns(3, 6);}
 .project_field_host_years_associated_with_organization { @include span-columns(2, 6);}

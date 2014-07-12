@@ -75,6 +75,17 @@
 .post5 { @include post(4); }
 .post8 { @include post(8); }
 
+/* ===========
+   Browser Behavior for Auto-Fill on Forms
+   =========== */
+
+
+// Make auto-fill white, removing webkit yellow ;)
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
 
 /* ===========
    Main Styles

@@ -11,8 +11,8 @@ class StudentApplicationSyncWorker
     rescue Databasedotcom::SalesForceError => e
       message = "Salesforce syncrhonization error saving Student Application"
       Rails.logger.warn "#{message} #{student_application_id}: #{e.message}"
-      SalesforceSyncFailureMailer.failure_details_email(
-        message, e.message, student_application_id).deliver
+      #SalesforceSyncFailureMailer.failure_details_email(
+      #  message, e.message, student_application_id).deliver
       raise e
     end
   end

@@ -94,6 +94,10 @@ input:-webkit-autofill {
    Main Styles
    =========== */
 
+hr {
+  margin-bottom: 2em;
+}
+
 p.alert {
   @include adjust-font-size-to(13px);
 

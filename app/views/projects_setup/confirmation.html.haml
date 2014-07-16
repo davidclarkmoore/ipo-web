@@ -1,11 +1,37 @@
 .container
   = render 'header', active_step: params[:id]
   %h2= t(:submission_confirmation)
-  %p= t(:thank_you_confirmation)
+  / %p= t(:thank_you_confirmation)
+
+  %h4="Thank you for submitting your Passion Project with Converge."
+  %p="By doing so, you are launching a Converge Fellowship, including you, the Host, and the Mentor, the Donor(s), and the Student Volunteer or Converge Fellow."
+
+  %p="So...what happens now?"
+
+  %ul
+    %li
+      %label="Reviewing Your Application"
+      %p=" We are contacting the Youth With A Mission staff person you gave as a Reference. You may want to contact them to let them know we will be calling. If we cannot reach the YWAMer, we will request another. We’ll let you know when you’re approved. You can login at any time to review your project. However, once the application is sent, you will not be able to make changes."
+    %li
+      %label="Recruiting"
+      %p=" We're reaching out to thousands of young people and groups to find you a match! You can get involved too. Use the Facebook and Twitter buttons to share your project from the Convege site. We pre-qualify the Converge Fellow(s), however you give final approval for those you choose for your project."
+    %li
+      %label="Preparing"
+      %p="Keep informed at the Converge site to help you prepare for when your Converge Fellow joins your project. Subscribe to the Converge Blog too. Please note how important it is that you meet with your Converge Fellow participant on Skype or Google Hangouts when their pre-departure training begins. We will send you details about the content in our Converge Course online training for every Converge Fellow."
+
+  %p= "Now, off to find you a match! If you have any questions, please contact us at #{mail_to "concierge@ywamconverge.org"}.".html_safe
+
+  %p="Thank you,"
+  %p="The YWAM Converge Team"
+
+
+  %label="Your project details"
+  %hr
+  
   %label= t(:project_name)
   %h3= @project.name
 
-
+  %label="Project Sessions"
   %table
     %thead
       %tr

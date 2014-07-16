@@ -234,10 +234,9 @@ en:
   student_profile: "Student Profile - %{status}"
   student_requirements: "Student Requirements"
   student_setup_application: "Student Setup Application"
-  student_references: "We will be contacting your listed reference(s). We recommend you let them know we'll be in touch with them soon."
-  students_approved: "Students Approved"
-  submission_confirmation: "Submission Confirmation"
-  suplemental_information_form: "Supplemental Information Form"
+  students_approved: "Students Approved: "
+  submission_confirmation: "Wahoo! You're all done!"
+  suplemental_information_form: "*Supplemental Information Form*"
 
   tag_all_related_passions: "Tag All Related Student Passions"
   tag_all_related_fields_of_study: "Tag all related fields of study that would benefit this project"

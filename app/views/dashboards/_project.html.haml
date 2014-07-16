@@ -3,7 +3,7 @@
     %h5= t(:project_name, project_name: project_session.project.name) 
     %h5= link_to "Edit", edit_project_path(project_session.project)
     %h5= t(:session_dates, start_date: project_session.start_date.to_formatted_s(:long_ordinal), end_date: project_session.end_date.to_formatted_s(:long_ordinal))
-    %h5= t(:status, status: project_session.status)
+    %h5= t(:status, status: project_session.sf_status)
     %h5= t(:application_deadline_dashboard, deadline: project_session.application_deadline.to_formatted_s(:long_ordinal))
   .second-col
     %h5= t(:applications_waiting_for_your_approval)

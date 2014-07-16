@@ -13,4 +13,13 @@ class Login < ActiveRecord::Base
   validates_confirmation_of :password
 
   belongs_to :entity, polymorphic: true
+
+  def field_host?
+    entity.class.to_s == "FieldHost"
+  end
+
+  def student?
+    entity.class.to_s == "Student"
+  end
+
 end

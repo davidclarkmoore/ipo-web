@@ -1,8 +1,0 @@
-%nav
-  %span.link.heading=link_to "<span class='entypo-submit'></span> submit a project".html_safe, main_app.projects_setup_index_path
-
-  %span.link.heading=link_to "<span class='entypo-apply'></span> apply".html_safe, main_app.students_setup_index_path
-  - if current_login
-    %span.link.heading=link_to "<span class='entypo-logout'></span> log out".html_safe, main_app.destroy_login_session_path
-  - else
-    %span.link.heading=link_to "<span class='entypo-login'></span> log in".html_safe, main_app.new_login_session_path

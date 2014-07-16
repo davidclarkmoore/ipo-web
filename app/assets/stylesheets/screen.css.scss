@@ -148,6 +148,8 @@ header {
   @include adjust-leading-to(4);
   background-color: #fff;
 
+  margin-bottom: 3em;
+
   color: white;
   -webkit-font-smoothing: antialiased;
   overflow: auto;
@@ -261,6 +263,7 @@ nav.main {
 
 .hero {
   padding-top: 10%;
+  margin-top: -3em;
 }
 
 

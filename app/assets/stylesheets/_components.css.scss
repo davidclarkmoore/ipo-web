@@ -230,6 +230,7 @@ li.tab {
   width: 100%;
   // TODO: Remove faux style.
   min-height: 300px;
+  overflow: hidden;
 
   &.w-padding { padding: 1em; }
 }
@@ -295,37 +296,71 @@ li.tab {
 // =========
 
 .select2-container, .select2-dropdown-open.select2-drop-above {
+
+  &:hover {
+    cursor: pointer;
+  }
+
   .select2-choice {
     // Select 2 doesn't seem to be sufficiently responsive.
     // Will have to manage manually?
     @include adjust-font-size-to(16px, 1.5);
-    line-height: 3.8em;
+    line-height: 3.3em;
     height: 55px;
     font-family: $header-font-family;
     -webkit-font-smoothing: antialiased;
     font-weight: 600;
-    background: $blue;
-    color: white;
+    background: rgba(0,0,0,0.0);
+    color: $dark-grey;
 
     box-shadow: none;
-    border: none;
+    border: 2px solid $light-grey;
+   
     &:focus { outline: none; }
+  
+
   }
+
   .select2-chosen {
     padding: 0 0.5em;
   }
 
-  .select2-choice .select2-arrow {
+ .select2-choice .select2-arrow {
     background: transparent;
     border: none;
     padding-right: 5px;
-    b { background: url(combo-arrow-down.png) no-repeat 50%; }
+    width: 32px;
+    b { background: url('combo-arrow-down-lightbkg-new.png') no-repeat 50% !important; }
   }
 }
 
 .select2-dropdown-open .select2-choice .select2-arrow b {
-  background: url(combo-arrow-up.png) no-repeat 50%;
+  background: url('combo-arrow-up-lightbkg-new.png') no-repeat 50% !important;;
 }
+
+
+.light-text {
+
+
+  .select2-container, .select2-dropdown-open.select2-drop-above {
+
+    .select2-choice {
+      background: rgba(0,0,0,0.0);
+      color: white;
+      border: 2px solid white;
+
+      .select2-arrow {
+        b { background: url('combo-arrow-down-new.png') no-repeat 50% !important; }
+      }
+    }
+  }
+
+  .select2-dropdown-open .select2-choice .select2-arrow b {
+    background: url('combo-arrow-up-new.png') no-repeat 50% !important;;
+  }
+
+}
+
 
 .select2-drop {
   box-shadow: none;
@@ -354,7 +389,7 @@ li.tab {
   margin: 0;
   padding: 0;
 
-  .select2-highlighted { background: $blue; }
+  .select2-highlighted { background: $light-grey; }
 }
 
 // ===============

@@ -341,19 +341,14 @@ li.tab {
 
 .light-text {
 
-
-  .select2-container, .select2-dropdown-open.select2-drop-above {
-
-    .select2-choice {
+  .select2-container .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choice {
       background: rgba(0,0,0,0.0);
       color: white;
       border: 2px solid white;
 
-      .select2-arrow {
-        b { background: url('combo-arrow-down-new.png') no-repeat 50% !important; }
-      }
-    }
+      .select2-arrow b { background: url('combo-arrow-down-new.png') no-repeat 50% !important; }
   }
+  
 
   .select2-dropdown-open .select2-choice .select2-arrow b {
     background: url('combo-arrow-up-new.png') no-repeat 50% !important;;

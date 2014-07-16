@@ -22,7 +22,7 @@
 
           .field-host-profile &nbsp;
 
-    %article
+    %article.dark-text
       .container.background
         %h3.center= t(:your_background)
 
@@ -50,10 +50,10 @@
             = f_field_host.input :overall_education
 
             %fieldset
-              %h4= t(:what_has_been_your_experiencie_with_ywam)
+              %label= t(:what_has_been_your_experiencie_with_ywam)
               = f_field_host.input :experience_with_ywam, as: :check_boxes, label: false, :input_html => {:data => {:toggle => "checkbox"}}
 
-              %h4= t(:how_did_your_hear_about_ipo_connection)
+              %label= t(:how_did_your_hear_about_ipo_connection)
               = f_field_host.input :heard_about_ipo, as: :check_boxes, label: false, :input_html => {:data => {:toggle => "checkbox"}}
     
     %article.bkg-green.light-text.inset-shadow

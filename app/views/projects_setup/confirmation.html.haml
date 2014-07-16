@@ -1,3 +1,24 @@
 .container
   = render 'header', active_step: params[:id]
   %h2= t(:submission_confirmation)
+  %p= t(:thank_you_confirmation)
+  %label= t(:project_name)
+  %h3= @project.name
+
+
+  %table
+    %thead
+      %tr
+        %th= t(:title)
+        %th= t(:start_date)
+        %th= t(:end_date)
+        %th= t(:duration)
+        %th= t(:application_deadline)
+    %tbody
+      - @project.sessions.each do |session|
+        %tr
+          %td= session.title
+          %td= session.start_date.to_formatted_s(:rfc822)
+          %td= session.end_date.to_formatted_s(:rfc822)
+          %td= session.duration
+          %td= session.application_deadline.to_formatted_s(:rfc822)

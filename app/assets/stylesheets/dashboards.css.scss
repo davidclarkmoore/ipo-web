@@ -3,6 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
+
+
+// Account Settings - Field Hosts
+
+
 .field_host_first_name {
   @include span-columns(3 alpha, 6);
 }
@@ -11,9 +17,12 @@
   @include span-columns(3 omega, 6);
 }
 
+.field_host_login_email {
+	 @include span-columns(3 alpha, 6);
+}
+
 .reset_password {
   @include span-columns(3 omega, 6);
-    @include post(3, 6);
 
 }
 
@@ -27,8 +36,6 @@
 
 }
 
-.field_host_profile_picture {
-	
-		  @include span-columns(6 omega, 6);
-
+#field_host_profile_picture_upload {
+	clear:both;
 }

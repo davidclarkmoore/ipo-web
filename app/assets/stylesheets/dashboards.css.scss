@@ -1,3 +1,34 @@
 // Place all the styles related to the dashboards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.field_host_first_name {
+  @include span-columns(3 alpha, 6);
+}
+
+.field_host_last_name {
+  @include span-columns(3 omega, 6);
+}
+
+.reset_password {
+  @include span-columns(3 omega, 6);
+    @include post(3, 6);
+
+}
+
+.field_host_preferred_phone {
+  @include span-columns(3 alpha, 6);
+}
+
+.field_host_phone_type {
+	
+	  @include span-columns(3 omega, 6);
+
+}
+
+.field_host_profile_picture {
+	
+		  @include span-columns(6 omega, 6);
+
+}

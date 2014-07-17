@@ -8,16 +8,18 @@
       = login.input :last_name
       = login.fields_for :login, @login.login, validate: true do |f_login|
         = f_login.input :email
-      %h5= link_to t(:reset_password), edit_login_registration_path 
+      %h5= link_to t(:reset_password), edit_login_registration_path, class: "button button-orange reset_password"
       = login.input :preferred_phone
       = login.input :phone_type
-      = label_tag t(:user_language)
-      = text_field_tag "user_language"
 
-      %br
-      %br
-      - if @login.class.name == "FieldHost"
-        %h2= t(:edit_profile_picture)
-        = login.file_field :profile_picture
+      #field_host_profile_picture_upload
+        - if @login.class.name == "FieldHost"
+          %h2= t(:edit_profile_picture)
+          #drop_zone= t(:drag_and_drop_photos_here)
+          = login.file_field :profile_picture
+          %h4= t(:saved_projects_photos_and_videos)
+
+      .saved-images
+        = render @login.profile_picture
 
     = login.submit t(:save), class: "button button-orange"

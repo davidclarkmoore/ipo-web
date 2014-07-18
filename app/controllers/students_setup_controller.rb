@@ -31,8 +31,10 @@ class StudentsSetupController < ApplicationController
     end
 
     params[:student_application][:wizard_status] = step.to_s
-    params[:student_application][:wizard_status] = 'complete' if step == :important_details
-
+    if step == :important_details
+      params[:student_application][:wizard_status] = 'complete'
+      @student_application.set_to_complete
+    end
     @student_application.update_attributes params[:student_application]
     
     if step == :important_details

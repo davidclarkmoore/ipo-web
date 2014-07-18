@@ -42,10 +42,14 @@ class StudentApplication < ActiveRecord::Base
     student.login
   end
 
+  def set_to_complete
+    self.status = COMPLETE
+  end
+
   def set_incomplete_status
     self.status = INCOMPLETE
   end
-
+  
   def complete?
     wizard_status == COMPLETE
   end

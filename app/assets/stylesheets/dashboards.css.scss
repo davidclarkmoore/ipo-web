@@ -32,7 +32,7 @@
 }
 
 
-.new-project-header {
+.dash-head {
 @include span-columns(3 alpha, 6);
 }
 
@@ -44,9 +44,11 @@
   }
 }
 
-.body {
-  margin-top: 2em;
- @include span-columns(6 alpha, 6);
+.dashboard {
+  .body {
+    margin-top: 2em;
+   @include span-columns(6 alpha, 6);
+  }
 }
 
 .project-overview {
@@ -106,8 +108,13 @@
    @include span-columns(3 alpha, 6);
 }
 
+.password {
+    @include span-columns(3 omega, 6);
+
+}
+
 .reset_password {
-  @include span-columns(3 omega, 6);
+  line-height: 2em;
 
 }
 

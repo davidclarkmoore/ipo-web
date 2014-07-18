@@ -7,6 +7,6 @@ en:
           posted: "Posted"
           withdrawn: "Withdrawn"
           closed_lost: "Closed Lost"
-        sf_status:
+        status:
+          complete: "Needs Review"
           approved: "Approved"
-          needs_review: "Needs Review"

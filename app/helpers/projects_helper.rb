@@ -1,5 +1,9 @@
 module ProjectsHelper
 
+  def pretty_date(date)
+    date.to_formatted_s(:long_ordinal)
+  end
+
   def wizard_step(label, index, url, current_step)
     content_tag(:li) do
       raw(

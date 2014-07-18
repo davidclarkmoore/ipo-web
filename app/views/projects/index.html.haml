@@ -6,15 +6,12 @@
 
     .options
       %h4.explore-by= t(:explore_by)
-
-      #option_buttons
-        = render "button_group"
+      #option_buttons= render "button_group"
 
   .search-box
     .sort.clr
-      #sort_links
-        = render "sort_links"
-
+      #sort_links= render "sort_links"
+      
     = search_form_for @projects, builder: SimpleForm::FormBuilder, remote: true do |f|
       = hidden_field_tag :view, params[:view]
       .filter

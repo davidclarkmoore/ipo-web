@@ -1,16 +1,2 @@
-- if @login.class.name == "FieldHost"
-  %h3= t(:your_projects)
-  - if @login.project_sessions
-    - @login.project_sessions.each do |project_session|
-      = render 'project', project_session: project_session
-  - else
-    %h5= t(:you_dont_have_any_project_related)
-- else
-  %h3= t(:quick_info)
-  %br
-  %h4=t(:your_student_applications)
-  - if @login.student_applications
-    - @login.student_applications.each do |student_application|
-      = render 'student_application', student_application: student_application
-  - else
-    %h5= t(:you_dont_have_any_student_application_related)
+= render 'field_host_dashboard' if @login.field_host?
+= render 'student_dashboard' if @login.student?

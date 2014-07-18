@@ -3,8 +3,8 @@ class DashboardsController < ApplicationController
   respond_to :html
 
   def index
-    @login = current_login.entity
-    @student_application = @login.student_applications.active if is_student?
+    @login = current_login
+    @student_application = @login.student_applications.active if @login.student?
     params[:view] ||= "dashboard"
   end
 

@@ -14,10 +14,3 @@
       = render 'student_application', student_application: student_application
   - else
     %h5= t(:you_dont_have_any_student_application_related)
-
-  %br
-  .fieldset
-    %h3= t(:course_sites_info)
-    %h5= link_to t(:login_to_course_sites), "#"
-    %h5= t(:user, user: @login.email)
-    %h5= t(:password, password: "ABCDE")

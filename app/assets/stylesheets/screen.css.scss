@@ -487,66 +487,48 @@ fieldset:last-child {
     padding-top: 1em;
     height: 100%;
     width: 40%;
-    overflow-y: hidden;
-    -webkit-transition: all 0.7s;
-    -moz-transition: all 0.7s;
-    transition: all 0.7s;
+    @include transition-duration(0.7s);
     display: block;
     margin-top:4em;
     z-index:5;
     background-color: $grey;
 
-      li {
-        list-style: none;
-         margin: 0;
+    li {
+      list-style: none;
+       margin: 0;
 
-        a {
-          color: white;
-          text-decoration: none;
-          display:block;
-          cursor: pointer;
-          padding: .5em 2em;
-        }
-
-        a:hover {background-color: rgba(255,255,255,.1)}
+      a {
+        color: white;
+        text-decoration: none;
+        display:block;
+        cursor: pointer;
+        padding: .5em 2em;
       }
+
+      a:hover {background-color: rgba(255,255,255,.1)}
+    }
+  }
+
+  form[action="/search"] input.button[type="submit"] {
+    margin: 1.5em 0px 0px 2em;
   }
 
   header {
     position: fixed;
     width: 100%;
     z-index: 6;
+    margin-top:47px;
   }
 
-  .side-nav input#submit {
-    display: none;
+  .link.heading, nav.main form, .secondary-header{
+    display:none;
   }
 
-  .menu-in {
-    -webkit-transform: translateX(-100%);
-    -moz-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    -o-transform: translateX(-100%);
-    transform: translateX(-100%);
-  }
+  .menu-in { @include transform( translateX(-100%) ); }
 
+  .shift { @include transform( translateX(-40%) ); }
 
-  .shift {
-    -webkit-transform: translateX(-40%);
-    -moz-transform: translateX(-40%);
-    -ms-transform: translateX(-40%);
-    -o-transform: translateX(-40%);
-    transform: translateX(-40%);
-  }
-
-  .side {
-    -webkit-transition-duration: 0.7s;
-    -moz-transition-duration: 0.7s;
-    transition-duration: 0.7s;
-    -webkit-transition-property: -webkit-transform,opacity;
-    -moz-transition-property: -moz-transform,opacity;
-    transition-property: transform,opacity;
-  } 
+  .side { @include transition-duration( 0.7s ); } 
 
   .show{
     display:block;
@@ -560,10 +542,6 @@ fieldset:last-child {
     width:100%;
   }
   
-  .link.heading, nav.main form, .secondary-header{
-    display:none;
-  }
-
   header {
     line-height: 4em;
   }
@@ -586,14 +564,8 @@ fieldset:last-child {
     width: 100%;
     height: 3px;
     background-color: grey;
-    -webkit-transform-origin: 0px 1.5px;
-    -moz-transform-origin: 0px 1.5px;
-    -ms-transform-origin: 0px 1.5px;
-    -o-transform-origin: 0px 1.5px;
-    transform-origin: 0px 1.5px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    transition: all 0.5s;
+    @include transform-origin (0px, 1.5px);
+    @include transition( all (0.5s) );
   }
 
   nav.main:before { top: 0; }
@@ -606,14 +578,12 @@ fieldset:last-child {
     height: 3px;
     background-color: grey;
     margin: 8px 0;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    transition: all 0.5s;
+    @include transition( all (0.5s) );
   }
 
   nav.main.mobile:before { @include transform( rotate(45deg) ); }
 
-  nav.main.mobile:after { @include transform(rotate(-45deg) ); }
+  nav.main.mobile:after { @include transform( rotate(-45deg) ); }
 
   nav.main.mobile span {
     opacity:0;

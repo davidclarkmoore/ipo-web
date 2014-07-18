@@ -510,11 +510,10 @@ fieldset:last-child {
   }
 
   form[action="/search"] input.button[type="submit"] {
-    margin: 1.5em 0px 0px 2em;
+    display:none;
   }
 
   header {
-    position: fixed;
     width: 100%;
     z-index: 6;
   }

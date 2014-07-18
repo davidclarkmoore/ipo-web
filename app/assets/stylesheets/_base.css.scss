@@ -117,8 +117,8 @@ font-size: 2em;
 
 @mixin transform($rotate) {
   -webkit-transform: $rotate;
-    -moz-transform: $rotate;
-      -ms-transform: $rotate;
-        -o-transform: $rotate;
-          transform: $rotate;
+  -moz-transform: $rotate;
+  -ms-transform: $rotate;
+  -o-transform: $rotate;
+  transform: $rotate;
 }

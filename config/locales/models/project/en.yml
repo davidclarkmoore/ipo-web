@@ -76,7 +76,7 @@ en:
         women_and_children_health: "Women & Children Health"
         youth_and_young_adults: "Youth & Young Adults"
       required_languages:
-        mandaring: "Mandarin"
+        mandarin: "Mandarin"
         spanish: "Spanish"
         english: "English"
         arabic: "Arabic"
@@ -98,9 +98,10 @@ en:
         never_walk_alone: "Never Walk Alone"
         daytime_ok_to_walk_area: "Daytime OK to walk area"
         free_to_move_around_alone: "Free to Move Around Alone"
-      sf_status:
+      status:
+        incomplete: "Incomplete"
+        complete: "Needs Review"
         approved: "Approved"
-        needs_review: "Needs Review"
       student_educational_requirement:
         high_school_graduate: "High School Graduate"
         some_college: "Some College"

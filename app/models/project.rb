@@ -3,8 +3,13 @@ class Project < ActiveRecord::Base
   extend Enumerize
   include SFRails::ActiveRecord
   include Formatter
+
+  SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
+  COMPLETE = "complete"
+  APPROVED = "approved"
+
   salesforce "Project__c",
-    [ :agree_memo, :agree_to_transport, :challenges_description,
+    [ :status, :agree_memo, :agree_to_transport, :challenges_description,
       :created_at, :culture_description, :description,
       :dining_location, :guidelines_description, :housing_description,
       :housing_type, :internet_distance, :location_city, :location_country,
@@ -14,29 +19,27 @@ class Project < ActiveRecord::Base
       :per_week_cost, :per_week_cost_final, :region, :related_fields_of_study, 
       :related_student_passions, :required_languages, :safety_level, 
       :student_educational_requirement, :team_mode, :transportation_available, 
-      :typical_attire, :updated_at ], {sf_status: "Status__c"}
+      :typical_attire, :updated_at ]
 
   searchkick autocomplete: ['name']
-  SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
-  COMPLETE = "complete"
-  APPROVED = "approved"
 
   belongs_to :organization
   belongs_to :field_host
   has_many :project_media
   has_many :project_sessions
+  has_many :student_applications, through: :project_sessions
   has_many :sessions, through: :project_sessions
   serialize :properties, ActiveRecord::Coders::Hstore
 
   delegate :references, to: :field_host
 
-  hstore_accessor :properties, :min_stay_duration, :min_students, :max_students, :sf_status,
+  hstore_accessor :properties, :min_stay_duration, :min_students, :max_students,
     :per_week_cost, :per_week_cost_final, :currency, :required_languages, :student_educational_requirement,
     :internet_distance, :location_type, :transportation_available, :location_description,
     :culture_description, :housing_type, :dining_location, :housing_description, :safety_level,
     :challenges_description, :typical_attire, :guidelines_description, :agree_memo, :agree_to_transport
 
-  attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, :sf_status,
+  attr_accessible :name, :description, :team_mode, :min_stay_duration, :min_students, :max_students, :status,
     :per_week_cost, :per_week_cost_final, :currency, :required_languages, :related_student_passions, :related_fields_of_study,
     :student_educational_requirement, :location_street_address, :location_city, :location_state_or_province, :location_country, 
     :internet_distance, :location_private, :location_type, :transportation_available, :location_description, :culture_description, 
@@ -48,12 +51,10 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :organization
   accepts_nested_attributes_for :project_sessions, reject_if: :all_blank, allow_destroy: true
 
-  def agree_memo; properties["agree_memo"] == "1" ? true : false; end;
-  def agree_to_transport; properties["agree_to_transport"] == "1" ? true : false; end;
-  def per_week_cost_final; properties["per_week_cost_final"] == "1" ? true : false; end;
+  enumerize :status, in: I18n.t("enumerize.project.status")
 
   %w(dining_location internet_distance location_type housing_type safety_level region
-    typical_attire student_educational_requirement sf_status).each do |f|
+    typical_attire student_educational_requirement).each do |f|
     enumerize f, in: I18n.t("enumerize.project.#{f}")
 
     # =================
@@ -115,10 +116,14 @@ class Project < ActiveRecord::Base
   # -- Agreement
   validates :agree_memo, :agree_to_transport, inclusion: { in: [true, 1, 'true', 'T', '1'], message: "You must agree the terms in order to continue" }, :if => :complete_or_agreement?
 
+  scope :approved, where(status: APPROVED)
+  scope :unapproved, where(status: COMPLETE) # "complete" status = completed application but not approved.
+  scope :incomplete, where("wizard_status != ?", COMPLETE)
+  scope :complete, where(wizard_status: COMPLETE)
+  
   scope :recent, order('created_at desc')
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
-  scope :approved, where("properties -> 'sf_status' = 'approved'")
 
   def self.top_ten(array_name)
     items = Project.connection.select_all(
@@ -134,6 +139,20 @@ class Project < ActiveRecord::Base
 
   def self.top_ten_fields_of_study
     top_ten(:related_fields_of_study)
+  end
+
+  def status=(value); write_attribute(:status, value); end
+
+  def agree_memo; properties["agree_memo"] == "1" ? true : false; end;
+  def agree_to_transport; properties["agree_to_transport"] == "1" ? true : false; end;
+  def per_week_cost_final; properties["per_week_cost_final"] == "1" ? true : false; end;
+
+  def max_students
+    properties["max_students"].to_i
+  end
+
+  def min_students
+    properties["min_students"].to_i
   end
 
   def search_data

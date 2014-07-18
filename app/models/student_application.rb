@@ -42,6 +42,10 @@ class StudentApplication < ActiveRecord::Base
     project.id
   end
 
+  def project_name
+    project.name
+  end  
+
   def student_login
     student.login
   end
@@ -56,6 +60,10 @@ class StudentApplication < ActiveRecord::Base
   
   def complete?
     wizard_status == COMPLETE
+  end
+
+  def approved?
+    status == APPROVED
   end
 
   def complete_or_important_details?

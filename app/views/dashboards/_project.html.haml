@@ -1,15 +1,15 @@
 %article
   .first-col
     %h4
-      = t(:project_name, project_name: project_session.name) 
+      = project_session.project_name
       = link_to "Edit", edit_project_path(project_session.project)
     %div= t(:session_dates, start_date: pretty_date(project_session.start_date), end_date: pretty_date(project_session.end_date))
     %div= t(:status, status: project_session.status_text)
     %div= t(:application_deadline_dashboard, deadline: project_session.application_deadline.to_formatted_s(:long_ordinal))
   .second-col
     %div
-      = t(:applications_waiting_for_your_approval)
-      = link_to(project_session.student_applications.unapproved.count, "#")
+      = t(:applications_waiting_for_ywam_approval)
+      = link_to(project_session.unapproved_applications.count, "#")
     %div
       = t(:students_approved)
-      = link_to(project_session.student_applications.approved.count, "#")
+      = link_to(project_session.approved_applications.count, "#")

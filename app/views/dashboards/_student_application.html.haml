@@ -1,6 +1,8 @@
-.fieldset
-  %h5= t(:application_status, status: student_application.status)
-  %h5= t(:project_and_session, project: student_application.project.name, start: student_application.start_date.to_formatted_s(:long_ordinal), end: student_application.end_date.to_formatted_s(:long_ordinal))
-  %h5= t(:student_profile, status: @login.published_status_to_string)
-  -if cannot? :view_profile_page, @login
-    =link_to "Reserve My Spot", reserve_my_spot_path(student_application_id: student_application.id) , class: "button button-blue"
+%article
+  %h4= sa.project_name
+  %div= t(:application_status, status: sa.status)
+  %div= t(:project_and_session, project: sa.project_name, start: pretty_date(sa.start_date), end: pretty_date(sa.end_date))
+  %div= t(:student_profile, status: @login.entity.published_status_to_string)
+
+  - if can? :reserve_spot, sa
+    %div= link_to "Reserve My Spot", reserve_my_spot_path(student_application_id: sa.id) , class: "button button-blue"

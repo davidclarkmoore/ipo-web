@@ -11,29 +11,29 @@ $ ->
     handleTabs("existing", "academic_reference", value)
     $('#is_new_academic_reference').val(($(@).data('box') == "#new_academic_reference"))
 
-  #$("#your_project_select").change (event) ->
-  #  # Pull in new project sessions.
-  #  project_code = $(this).val()
-  #  $.ajax
-  #    type: "GET"
-  #    url: "/students_setup/project_sessions/" + project_code
-  #    success: (data) ->
-  #      # TODO: All of this could be vastly simplified by simply using a rails partial and render that with .js.ejs
-  #      selected = null
-  #
-  #      # Clear out project sessions input.
-  #      $("#s2id_student_application_project_session_id").find(".select2-chosen").text("")
-  #      $("#student_application_project_session_id").empty()
-  #
-  #      # Replace sessions combobox with thew new project's sessions
-  #      $.each data, (index, value) ->
-  #        selected = if data[index].selected then data[index].id else null
-  #        option = "<option value=\"#{data[index].id}\"> #{data[index].text} </option>"
-  #        $("#student_application_project_session_id").append option
-  #
-  #      # Preselect any sessions loaded form model.
-  #      $("#student_application_project_session_id").select2('val', selected)
-  #      $("#student_application_project_session_id").valid()
+  $("#your_project_select").change (event) ->
+    # Pull in new project sessions.
+    project_code = $(this).val()
+    $.ajax
+      type: "GET"
+      url: "/students_setup/project_sessions/" + project_code
+      success: (data) ->
+        # TODO: All of this could be vastly simplified by simply using a rails partial and render that with .js.ejs
+        selected = null
+  
+        # Clear out project sessions input.
+        $("#s2id_student_application_project_session_id").find(".select2-chosen").text("")
+        $("#student_application_project_session_id").empty()
+  
+        # Replace sessions combobox with thew new project's sessions
+        $.each data, (index, value) ->
+          selected = if data[index].selected then data[index].id else null
+          option = "<option value=\"#{data[index].id}\"> #{data[index].text} </option>"
+          $("#student_application_project_session_id").append option
+  
+        # Preselect any sessions loaded form model.
+        $("#student_application_project_session_id").select2('val', selected)
+        $("#student_application_project_session_id").valid()
 
   jQuery.validator.addMethod "student_application_agree_terms_accepted", ((value, element) ->
     @.optional(element) || $("#student_application_agree_terms").is(":checked")

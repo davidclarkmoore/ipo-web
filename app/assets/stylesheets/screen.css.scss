@@ -283,14 +283,18 @@ nav.sub-menu {
   padding-left: 64px;
   @include adjust-font-size-to(20px, 1.5);
   div { @include trailer(0.5, 20px); }
+  form input[type=email], form input[type=text] {font-size: 1em;}
+  input[name="email"] { width: 396px; }
   form {
-    input { margin-left: 11px; }
-    input[name="first_name"] { width: 162px; }
-    input[name="last_name"] { width: 162px}
-    input[name="email"] { width: 396px; }
+    input[name="first_name"], input[name="last_name"] { 
+      width: 162px; 
+      border-radius: 10%;
+      font-size: 1em;
+    }
     .select2-container {
       @include adjust-font-size-to(16px, 1, 20px);
       margin: 0;
+      width: 64%;
     }
   }
 }
@@ -387,8 +391,7 @@ form {
     font-size: 0.75em;
     font-style: italic;
     color: #e46b66;
-
-    margin-top: -17px;
+    margin-top: -35px;
     display: block;
     padding-bottom: 5px;
   }

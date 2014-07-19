@@ -38,17 +38,14 @@
           %span Hi, my name is
           = f.input :first_name, label: false, placeholder: 'First Name', required: true
           = f.input :last_name, label: false, placeholder: 'Last Name', required: true
-
-        %div
-          %select{class: 'no-select2'}
-            %option I'm interested in an internship
-          %span . Please
-          %select{class: 'no-select2'}
-            %option Email me
-
-        %div
-          %span using...
           = f.input :email, label: false, placeholder: 'Enter email address...'
+        %div
+          %span I'm interested in...
+          %select{class: 'no-select2'}
+            %option An internship
+            %option Winning the Lottery
+            %option World Peace
+            %option The Cure to Cancer
 
-        = f.submit "Apply", class: "button"
+        = f.submit "Go!", class: "button"
         %p.msg

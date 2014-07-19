@@ -79,6 +79,7 @@ $box-colors: grey          #565656,
   input[type=tel],
   input[type=number] textarea {
     color: white;
+    border-radius: 5px;
   }
 }
 .dark-text { color: $dark-grey;}

@@ -50,6 +50,7 @@ class StudentsSetupController < ApplicationController
   def project_sessions
     selected_session = @student_application.project_session || @student_application.build_project_session
     @projects_sessions = ProjectSession.where(project_id: params[:project])
+    @projects_sessions.select! { |p| p.seats_left? } # Only show project sessions that aren't full.
     @projects_sessions.map! { |session| {
       id: session.id, text: session.select_label, 
       selected: session.id == selected_session.id }}

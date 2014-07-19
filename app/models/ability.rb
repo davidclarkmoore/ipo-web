@@ -6,6 +6,14 @@ class Ability
 
     field_host_permissions(login.entity) if login.field_host?
     student_permissions(login.entity) if login.student?
+
+    can :apply, ProjectSession do |p|
+      p.seats_left?
+    end
+
+    can :apply, Project do |p|
+      p.seats_left?
+    end
   end
 
   private

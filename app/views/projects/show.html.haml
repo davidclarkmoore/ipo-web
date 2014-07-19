@@ -39,16 +39,16 @@
             %th= t(:title)
             %th= t(:start_date)
             %th= t(:end_date)
-            %th= t(:duration)
             %th= t(:application_deadline)
+            %th= t(:seats_left)
         %tbody
-          - @p.sessions.each do |session|
+          - @p.project_sessions.each do |s|
             %tr
-              %td= session.title
-              %td= session.start_date.to_formatted_s(:rfc822)
-              %td= session.end_date.to_formatted_s(:rfc822)
-              %td= session.duration
-              %td= session.application_deadline.to_formatted_s(:rfc822)
+              %td= s.title
+              %td= s.start_date.to_formatted_s(:rfc822)
+              %td= s.end_date.to_formatted_s(:rfc822)
+              %td= s.application_deadline.to_formatted_s(:rfc822)
+              %td= s.seats_left
 
     %h3 Internship Location & Culture
 
@@ -70,14 +70,15 @@
     %p= @host.get_pretty_properties(@host.experience_with_ywam, "experience_with_ywam")
 
   .secondary
-    .info.rounded
-      =link_to "Back to Projects", projects_path, 'class' => "clr"
+    .info.rounded= link_to "Back to Projects", projects_path, 'class' => "clr"
 
     .info.rounded
       %h3 Get Started
-      =link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange"
+      - if can? :apply, @p
+        = link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange"
+      - else
+        %h2.grey= t(:sorry_project_full)
      
-
     .info.rounded
       %h3 Share
       .fb-share-button{:data => {:type => "button"}}

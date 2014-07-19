@@ -11,11 +11,12 @@
       - else
         %h3.center= t(:your_project)
         = f.input :project, as: :select, label: false do
-          = select_tag 'your_project_select', options_from_collection_for_select(Project.all, "id", "name", @student_application.project_id), include_blank: true
+          = select_tag 'your_project_select', options_from_collection_for_select(Project.available_seats, "id", "name", @student_application.project_id), include_blank: true
 
 
       %h3.center= t(:your_session)
-      = f.association :project_session, include_blank: true, label: false, label_method: :select_label
+      - # collection is loaded dynamically from server.
+      = f.association :project_session, collection: [], include_blank: true, label: false, label_method: :select_label
 
     = f.fields_for :student, @student_application.student, validate: true do |f_student|
       %fieldset

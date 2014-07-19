@@ -125,6 +125,24 @@ class Project < ActiveRecord::Base
   scope :oldest, order('created_at asc')
   scope :by_name, order('name asc')
 
+
+  # Returns all projects with at least one project session that has available spots.
+  # 
+  # Counts all approved applications and compare to the total available spots.
+  # Returns projects where total available spots > approved applications.
+
+  def self.available_seats
+    joins(:project_sessions)
+    .joins("
+      LEFT OUTER JOIN student_applications 
+      ON student_applications.project_session_id = project_sessions.id AND student_applications.status = 'approved'    
+     ")
+    .having("(
+      CAST(properties -> 'max_students' AS INTEGER) * COUNT(DISTINCT project_sessions.id)) > COUNT(student_applications.id)        
+     ")
+    .group("projects.id")
+  end
+
   def self.top_ten(array_name)
     items = Project.connection.select_all(
       "select unnest(#{array_name.to_s}) as array_name, 
@@ -139,6 +157,10 @@ class Project < ActiveRecord::Base
 
   def self.top_ten_fields_of_study
     top_ten(:related_fields_of_study)
+  end
+
+  def seats_left?
+    (project_sessions.count * max_students) > approved_applications.count
   end
 
   def agree_memo; properties["agree_memo"] == "1" ? true : false; end;
@@ -235,7 +257,12 @@ class Project < ActiveRecord::Base
       self.sessions.find_by_start_date(session["Start_Date__c"]).update_attribute(:sf_object_id, session["Id"])
     end
     self.save
+  end
 
+  private
+
+  def approved_applications
+    student_applications.approved
   end
 
 end

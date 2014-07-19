@@ -271,8 +271,6 @@ ALTER SEQUENCE project_media_id_seq OWNED BY project_media.id;
 CREATE TABLE project_sessions (
     id integer NOT NULL,
     project_id integer,
-    application_deadline date,
-    status character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     session_id integer
@@ -1518,3 +1516,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140625131247');
 INSERT INTO schema_migrations (version) VALUES ('20140626000629');
 
 INSERT INTO schema_migrations (version) VALUES ('20140711005939');
+
+INSERT INTO schema_migrations (version) VALUES ('20140718195026');
+
+INSERT INTO schema_migrations (version) VALUES ('20140718195600');

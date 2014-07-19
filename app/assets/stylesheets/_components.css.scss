@@ -26,6 +26,11 @@ a.button { text-decoration: none; }
   &.active { font-weight: 400; }
 }
 
+.button.small { 
+  @include adjust-font-size-to(14px); 
+  padding: 0.25em 1.25em;
+}
+
 .button.large { @include adjust-font-size-to(20px, 1); }
 .button.x-large { @include adjust-font-size-to(25px); }
 

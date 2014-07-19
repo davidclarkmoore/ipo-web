@@ -242,29 +242,32 @@ nav.main {
 
 
 .secondary-header {
-    background-color: $extra-light-grey;
-    padding: .7em 0em .7em 0em;
-    width: 100%;
+  background-color: $extra-light-grey;
+  padding: .7em 0em .7em 0em;
+  width: 100%;
 
-    nav { text-align: right;
+  nav {
+    text-align: right;
 
-      li {
-        padding: 0em .5em 0em .5em;
-        list-style: none;
-        display: inline;
-        margin-left: 1em;
+    a {
+      text-decoration: none;
+      @include adjust-font-size-to(15px);
+      color: $grey;
+    }
 
-        a {
-          text-decoration: none;
-          @include adjust-font-size-to(15px);
-          color: $grey;
-        }
+    a:hover {
+      text-decoration: underline;
+      color: $orange;
+    }
 
-        a:hover {
-          text-decoration: underline;
-          color: $orange;
-        }
-      }
+    > span { padding: 0em 1em 0em 1em; }
+
+    li {
+      padding: 0em .5em 0em .5em;
+      list-style: none;
+      display: inline;
+      margin-left: 1em;
+    }
 
     li:last-child {
       padding-right: 0em;

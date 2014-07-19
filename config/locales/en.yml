@@ -148,6 +148,7 @@ en:
   memorandum_of_understanding: "Memorandum of Understanding"
   multimedia_and_content: "Multimedia & Content"
   min_number_of_students: "Min. number of students to make this project worthwhile?"
+  min_max_label: "Min - Max Students"
 
   name: "Name"
   needed_lanaguages: "Needed Languages"

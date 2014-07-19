@@ -26,7 +26,15 @@ class DonationsController < ApplicationController
   def create
     result = @donation_processor.process_donation
     if result.success? 
-      redirect_to dashboards_path(view: 'profile_page') and return if @donation_processor.spot_reservation?
+      if @donation_processor.spot_reservation?
+
+        # TODO: Refactor this code to somewhere else.
+        student_application = StudentApplication.find(params[:donation][:student_application_id])
+        student_application.set_to_reserved!
+        StudentApplicationSyncWorker.perform_async(student_application.id) # Push change to salesforce.
+
+        redirect_to dashboards_path(view: 'profile_page') and return 
+      end
       flash.now[:notice] = 'Thanks for your donation!'
       render action: "show"
     else

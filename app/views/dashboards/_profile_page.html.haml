@@ -1,7 +1,7 @@
--if can? :view_profile_page, @login
+-if can? :view_profile_page, @login.entity
   .fieldset
     %h2= t(:personal_information)
-    = simple_form_for @login, url: dashboards_update_login_path, method: :put, validate: true do |student|
+    = simple_form_for @login.entity, url: dashboards_update_login_path, method: :put, validate: true do |student|
       = hidden_field_tag :view, "profile_page"
       = render partial: 'shared/errors', locals: {object: @login}
       .student-fields

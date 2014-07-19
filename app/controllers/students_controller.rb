@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  protect_from_forgery except: :sync_with_sf  
   respond_to :html, :js
 
   def new

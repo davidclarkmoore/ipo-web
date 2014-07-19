@@ -100,8 +100,10 @@ en:
         free_to_move_around_alone: "Free to Move Around Alone"
       status:
         incomplete: "Incomplete"
-        complete: "Needs Review"
+        complete: "Pending Review"
+        in_review: "In Review"
         approved: "Approved"
+        denied: "Denied"
       student_educational_requirement:
         high_school_graduate: "High School Graduate"
         some_college: "Some College"

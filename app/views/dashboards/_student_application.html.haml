@@ -1,8 +1,7 @@
 %article
   %h4= sa.project_name
-  %div= t(:application_status, status: sa.status)
+  %div= t(:application_status, status: sa.status.text)
   %div= t(:project_and_session, project: sa.project_name, start: pretty_date(sa.start_date), end: pretty_date(sa.end_date))
   %div= t(:student_profile, status: @login.entity.published_status_to_string)
-
   - if can? :reserve_spot, sa
     %div= link_to "Reserve My Spot", reserve_my_spot_path(student_application_id: sa.id) , class: "button button-blue"

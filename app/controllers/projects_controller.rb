@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_login!, :only => [:new, :create]
   before_filter :convert_to_datetime, :validate_home_search, :only => [:index]
+  protect_from_forgery except: :sync_with_sf
+
   respond_to :html, :js
 
   def index
@@ -47,7 +49,7 @@ class ProjectsController < ApplicationController
         sf_project.save_to_rails!
         sf_field_host.save_to_rails! if sf_field_host
         sf_organization.save_to_rails! if sf_organization
-      end
+      end      
       render json: sf_project
     rescue => e
       render json: { error: e.message }, status: 400

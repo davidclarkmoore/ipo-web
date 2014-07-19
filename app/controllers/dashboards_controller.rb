@@ -4,7 +4,7 @@ class DashboardsController < ApplicationController
 
   def index
     @login = current_login
-    @student_application = @login.student_applications.active if @login.student?
+    @student_application = @login.student_applications if @login.student?
     params[:view] ||= "dashboard"
   end
 

@@ -24,7 +24,7 @@ class ProjectSession < ActiveRecord::Base
   end
   
   def seats_left
-    max_students - approved_applications.count
+    max_students - reserved_applications.count
   end
 
   def full?
@@ -37,6 +37,10 @@ class ProjectSession < ActiveRecord::Base
   
   def select_label
     "#{self.session.title} - (Start: #{self.session.start_date}, End #{self.session.end_date})"
+  end
+
+  def reserved_applications
+    student_applications.reserved
   end
 
   def approved_applications

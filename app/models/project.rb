@@ -5,8 +5,12 @@ class Project < ActiveRecord::Base
   include Formatter
 
   SF_PROJECT_APPLICATION_URL = "https://cs18.salesforce.com/services/apexrest/ProjectApplication"
-  COMPLETE = "complete"
+
+  DENIED = "denied"
   APPROVED = "approved"
+  IN_REVIEW = "in_review"
+  COMPLETE = "complete"
+  INCOMPLETE = "incomplete"
 
   salesforce "Project__c",
     [ :status, :agree_memo, :agree_to_transport, :challenges_description,
@@ -51,7 +55,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :organization
   accepts_nested_attributes_for :project_sessions, reject_if: :all_blank, allow_destroy: true
 
-  enumerize :status, in: %w(incomplete complete approved), I18n_scope: "enumerize.project.status"
+  enumerize :status, in: %w(incomplete complete in_review approved denied), I18n_scope: "enumerize.project.status"
 
   %w(dining_location internet_distance location_type housing_type safety_level region
     typical_attire student_educational_requirement).each do |f|
@@ -116,8 +120,12 @@ class Project < ActiveRecord::Base
   # -- Agreement
   validates :agree_memo, :agree_to_transport, inclusion: { in: [true, 1, 'true', 'T', '1'], message: "You must agree the terms in order to continue" }, :if => :complete_or_agreement?
 
+
+  scope :denied, where(status: DENIED)
   scope :approved, where(status: APPROVED)
-  scope :unapproved, where(status: COMPLETE) # "complete" status = completed application but not approved.
+  scope :in_review, where(status: IN_REVIEW)
+  # unapproved = completed, but hasn't been approved yet.
+  scope :unapproved, where("status = ? OR status = ?", COMPLETE, IN_REVIEW) 
   scope :incomplete, where("wizard_status != ?", COMPLETE)
   scope :complete, where(wizard_status: COMPLETE)
   
@@ -135,7 +143,7 @@ class Project < ActiveRecord::Base
     joins(:project_sessions)
     .joins("
       LEFT OUTER JOIN student_applications 
-      ON student_applications.project_session_id = project_sessions.id AND student_applications.status = 'approved'    
+      ON student_applications.project_session_id = project_sessions.id AND student_applications.status = 'reserved'    
      ")
     .having("(
       CAST(properties -> 'max_students' AS INTEGER) * COUNT(DISTINCT project_sessions.id)) > COUNT(student_applications.id)        
@@ -160,7 +168,7 @@ class Project < ActiveRecord::Base
   end
 
   def seats_left?
-    (project_sessions.count * max_students) > approved_applications.count
+    (project_sessions.count * max_students) > reserved_applications.count
   end
 
   def agree_memo; properties["agree_memo"] == "1" ? true : false; end;
@@ -182,6 +190,10 @@ class Project < ActiveRecord::Base
   def set_to_complete
     return if status == APPROVED
     self.status = COMPLETE
+  end
+
+  def editable?
+    self.status == COMPLETE || self.status == INCOMPLETE
   end
 
   def complete?
@@ -260,6 +272,10 @@ class Project < ActiveRecord::Base
   end
 
   private
+
+  def reserved_applications
+    student_applications.reserved
+  end
 
   def approved_applications
     student_applications.approved

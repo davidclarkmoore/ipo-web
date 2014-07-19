@@ -1,9 +1,13 @@
 class StudentApplication < ActiveRecord::Base
   extend Enumerize
 
+  DENIED = "denied"
+  RESERVED = "reserved"
   APPROVED = "approved"
+  IN_REVIEW = "in_review"
   COMPLETE = "complete"
   INCOMPLETE = "incomplete"
+
   include SFRails::ActiveRecord
   salesforce "Opportunity", [ :status, :start_date, :pay_registration_fee ], 
             { end_date: 'CloseDate', name: 'Name', 
@@ -28,13 +32,16 @@ class StudentApplication < ActiveRecord::Base
 
   before_create :set_incomplete_status
 
+  scope :denied, where(status: DENIED)
+  scope :reserved, where(status: RESERVED)
   scope :approved, where(status: APPROVED)
-  scope :unapproved, where(status: COMPLETE) # "complete" status = completed application but not approved.
-  scope :complete, where(wizard_status: COMPLETE)
+  scope :in_review, where(status: IN_REVIEW)
+  # unapproved = completed, but hasn't been approved yet.
+  scope :unapproved, where("status = ? OR status = ?", COMPLETE, IN_REVIEW) 
   scope :incomplete, where("wizard_status != ?", COMPLETE)
-  scope :active, order(:created_at)
+  scope :complete, where(wizard_status: COMPLETE)
   
-  enumerize :status, in: %w(incomplete complete approved), I18n_scope: "enumerize.student_application.status"
+  enumerize :status, in: %w(incomplete complete in_review approved reserved denied), I18n_scope: "enumerize.student_application.status"
 
   def project_id
     project.id
@@ -46,6 +53,15 @@ class StudentApplication < ActiveRecord::Base
 
   def student_login
     student.login
+  end
+
+  def set_to_reserved!
+    set_to_reserved
+    save
+  end
+  
+  def set_to_reserved
+    self.status = RESERVED
   end
 
   def set_to_complete

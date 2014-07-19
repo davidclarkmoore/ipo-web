@@ -2,7 +2,8 @@
   .first-col
     %h4
       = project_session.project_name
-      = link_to "Edit", edit_project_path(project_session.project)
+      - if can? :edit, project_session.project
+        = link_to "Edit", edit_project_path(project_session.project)
     %div= t(:session_dates, start_date: pretty_date(project_session.start_date), end_date: pretty_date(project_session.end_date))
     %div= t(:status, status: project_session.status_text)
     %div= t(:application_deadline_dashboard, deadline: project_session.application_deadline.to_formatted_s(:long_ordinal))

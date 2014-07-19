@@ -26,7 +26,9 @@ class Ability
   end
 
   def field_host_permissions(field_host)
-    can :edit, Project, field_host_id: field_host.id
+    can :edit, Project do |p|
+      p.field_host_id == field_host.id && p.editable? 
+    end
   end
 
 end

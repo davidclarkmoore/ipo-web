@@ -9,5 +9,8 @@ en:
           closed_lost: "Closed Lost"
         status:
           incomplete: "Incomplete"
-          complete: "Needs Review"
+          complete: "Pending Review"
+          in_review: "In Review"
           approved: "Approved"
+          reserved: "Reserved"
+          denied: "Denied"

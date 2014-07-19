@@ -6,13 +6,17 @@
     %br
     %br
   .project-status
-    %h5= t(:status, status: project_session.project.sf_status)
+    %label= t(:status)
+    %h2= project_session.project.sf_status
   .project-student-status
-    %h5= t(:applications_waiting_for_your_approval)
-    = link_to(project_session.student_applications.unapproved.count, "#")
-    %h5= t(:students_approved)
-    =link_to(project_session.student_applications.approved.count, "#")
+    %label= t(:applications_waiting_for_your_approval)
+    %h1= link_to(project_session.student_applications.unapproved.count, "#")
+  .project-student-approved
+    %label= t(:students_approved)
+    %h1=link_to(project_session.student_applications.approved.count, "#")
   .project-details
-
+    %label= t(:session_dates)
     %h5= t(:session_dates, start_date: pretty_date(project_session.start_date), end_date: pretty_date(project_session.end_date))
+    %br
+    %label= t(:application_deadline_dashboard)
     %h5= t(:application_deadline_dashboard, deadline: project_session.application_deadline.to_formatted_s(:long_ordinal))

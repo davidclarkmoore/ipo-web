@@ -37,9 +37,9 @@ module SFRails
     end
 
     def update_to_sf
-      sf.Id = self.sf_object_id
-      sf.attributes = sf_object_values
-      sf.save
+      sf_object = sf
+      sf_object.attributes = sf_object_values      
+      sf_object.save
     end
 
     def upsert_to_sf; sf ? update_to_sf : create_to_sf; end

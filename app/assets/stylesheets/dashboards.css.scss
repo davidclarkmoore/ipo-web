@@ -1,3 +1,107 @@
 // Place all the styles related to the dashboards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// ----------------- Dash - Field Hosts -----------------
+
+.dash-project {
+  background-color: white;
+  margin-bottom: 1.5em;
+  border-radius: 2px;
+  padding: 1em;
+  overflow:hidden;
+  height: 100%;
+  border-top: 3px solid $green;
+
+  span {
+    margin-left: .5em;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    @include opacity (.8);
+  }
+
+  h3 {
+    display:inline;
+  }
+}
+
+
+.dash-head {
+@include span-columns(3 alpha, 6);
+}
+
+#option_buttons {
+  @include span-columns(3 omega, 6);
+  text-align: right;
+  .button-group {
+    margin: 0;
+  }
+}
+
+.dashboard {
+  .body {
+    margin-top: 2em;
+   @include span-columns(6 alpha, 6);
+  }
+}
+
+.project-overview {
+    @include span-columns(6 alpha, 6);
+}
+
+
+.project-status {
+  @include span-columns(2 alpha, 8);
+
+  .status-tag {
+    margin-top: 1.5em;
+  }
+
+  .status-tag span {
+    margin-left: 0;
+    background-color: $light-blue;
+    padding: .5em;
+    @include border-radius (5px);
+    display: inline;
+  }
+}
+
+.project-status span {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: white;
+  text-transform: uppercase;
+}
+.project-student-status,.project-student-approved {
+   @include span-columns(2, 8);
+   h1 {
+    font-size: 3em;
+    margin-bottom: 0;
+   }
+}
+
+
+.project-details {
+     @include span-columns(2 omega, 8);
+}
+
+
+// ----------------- Account Settings - Field Hosts / Students ----------------- 
+
+
+.field_host_first_name { @include span-columns(3 alpha, 6); }
+.field_host_last_name { @include span-columns(3 omega, 6); }
+.field_host_login_email { @include span-columns(3 alpha, 6); }
+.field_host_preferred_phone { @include span-columns(3 alpha, 6); }
+.field_host_phone_type { @include span-columns(3 omega, 6); }
+.account_settings_password { @include span-columns(3 omega, 6); }
+.reset_password { line-height: 2em; }
+
+#profile_picture_upload { clear: both; }

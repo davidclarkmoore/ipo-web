@@ -1,16 +1,25 @@
-%article
-  .first-col
-    %h4
-      = project_session.project_name
-      - if can? :edit, project_session.project
-        = link_to "Edit", edit_project_path(project_session.project)
-    %div= t(:session_dates, start_date: pretty_date(project_session.start_date), end_date: pretty_date(project_session.end_date))
-    %div= t(:status, status: project_session.status_text)
-    %div= t(:application_deadline_dashboard, deadline: project_session.application_deadline.to_formatted_s(:long_ordinal))
-  .second-col
-    %div
-      = t(:applications_waiting_for_ywam_approval)
-      = link_to(project_session.unapproved_applications.count, "#")
-    %div
-      = t(:students_approved)
-      = link_to(project_session.approved_applications.count, "#")
+.fieldset.dash-project
+  .project-overview
+    %label= t(:project_name, project_name: project_session.project.name) 
+    - if can? :edit, project_session.project
+      %span= link_to "edit", edit_project_path(project_session.project), :class => "entypo-edit"
+    %br
+    %br
+  .project-status
+    %label= t(:status)
+    .status-tag
+      %span="Approved"
+
+      / project_session.project.sf_status
+  .project-student-status
+    %label= t(:applications_waiting_for_your_approval)
+    %h1= link_to(project_session.student_applications.unapproved.count, "#")
+  .project-student-approved
+    %label= t(:students_approved)
+    %h1=link_to(project_session.student_applications.approved.count, "#")
+  .project-details
+    %label= t(:session_dates)
+    %h5= t(:session_dates, start_date: pretty_date(project_session.start_date), end_date: pretty_date(project_session.end_date))
+    %br
+    %label= t(:application_deadline_dashboard)
+    %h5= t(:application_deadline_dashboard, deadline: project_session.application_deadline.to_formatted_s(:long_ordinal))

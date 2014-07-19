@@ -4,7 +4,10 @@ class DashboardsController < ApplicationController
 
   def index
     @login = current_login
-    @student_application = @login.student_applications if @login.student?
+
+    student_index if current_login.student?
+    field_host_index if current_login.field_host?
+
     params[:view] ||= "dashboard"
   end
 
@@ -17,4 +20,16 @@ class DashboardsController < ApplicationController
       format.html { redirect_to dashboards_path(view: params[:view], notice: notice) }
     end
   end
+
+  private
+
+  def student_index
+    @student = @login.entity
+    @student_application = @login.student_applications
+  end
+
+  def field_host_index
+    @field_host = @login.entity
+  end
+
 end

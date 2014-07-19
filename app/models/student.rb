@@ -44,7 +44,6 @@ class Student < ActiveRecord::Base
   validates_inclusion_of :applied_ipo_before, in: [true, false]
   validates :graduation_year, numericality: {allow_nil: true}
 
-  mount_uploader :profile_picture, LoginImageUploader
   mount_uploader :cover_photo, LoginImageUploader
 
   %w(overall_education marital_status phone_type).each do |f|

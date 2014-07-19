@@ -48,9 +48,7 @@ class FieldHost < ActiveRecord::Base
   has_one :login, as: :entity
   accepts_nested_attributes_for :login
   delegate :email, :email=, to: :login
-
-  mount_uploader :profile_picture, LoginImageUploader
-
+ 
   validates :person_references, associated: true
   validates_presence_of :first_name, :last_name, :preferred_phone, :phone_type, :overall_education, :years_associated_with_organization
   validates :years_associated_with_organization, :numericality => {:allow_nil => true}

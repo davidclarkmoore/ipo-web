@@ -44,6 +44,7 @@ $shaded-grey: #ebedef;
 $light-yellow: #fefff5;
 $dark-grey: #7c7b7b;
 $extra-light-grey: #f5f5f5;
+$light-blue: #b6e2e8;
 $light-grey: #c1c1c1;
 $extra-dark-grey: #1d1d1d;
 
@@ -85,12 +86,23 @@ $box-colors: grey          #565656,
 [class*="entypo-"]:before {
 font-family: 'Entypo', sans-serif;
 font-size: 2em;
+margin-right: .2em;
+
 }
 
 
 .entypo-login:before {
   content: "\1f464";
 }
+
+.entypo-lock:before {
+  content: "\1F511";
+}
+
+.entypo-edit:before {
+  content: "\270E";
+}
+
 
 .entypo-logout:before {
   content: "\E741";

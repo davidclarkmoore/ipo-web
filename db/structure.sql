@@ -97,8 +97,7 @@ CREATE TABLE field_hosts (
     organization_id integer,
     properties hstore,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    profile_picture character varying(255)
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -142,7 +141,8 @@ CREATE TABLE logins (
     current_sign_in_at timestamp without time zone,
     last_sign_in_at timestamp without time zone,
     current_sign_in_ip character varying(255),
-    last_sign_in_ip character varying(255)
+    last_sign_in_ip character varying(255),
+    profile_picture character varying(255)
 );
 
 
@@ -860,7 +860,6 @@ CREATE TABLE students (
     experiences character varying(255)[],
     spoken_languages character varying(255)[],
     heard_about_ipo character varying(255)[],
-    profile_picture character varying(255),
     cover_photo character varying(255),
     biography text,
     public_contact_information text,
@@ -1520,3 +1519,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140711005939');
 INSERT INTO schema_migrations (version) VALUES ('20140718195026');
 
 INSERT INTO schema_migrations (version) VALUES ('20140718195600');
+
+INSERT INTO schema_migrations (version) VALUES ('20140719215236');

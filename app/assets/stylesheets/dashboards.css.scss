@@ -93,41 +93,15 @@
 }
 
 
-// ----------------- Account Settings - Field Hosts ----------------- 
+// ----------------- Account Settings - Field Hosts / Students ----------------- 
 
 
-.field_host_first_name {
-  @include span-columns(3 alpha, 6);
-}
+.field_host_first_name { @include span-columns(3 alpha, 6); }
+.field_host_last_name { @include span-columns(3 omega, 6); }
+.field_host_login_email { @include span-columns(3 alpha, 6); }
+.field_host_preferred_phone { @include span-columns(3 alpha, 6); }
+.field_host_phone_type { @include span-columns(3 omega, 6); }
+.account_settings_password { @include span-columns(3 omega, 6); }
+.reset_password { line-height: 2em; }
 
-.field_host_last_name {
-  @include span-columns(3 omega, 6);
-}
-
-.field_host_login_email {
-   @include span-columns(3 alpha, 6);
-}
-
-.account_settings_password {
-    @include span-columns(3 omega, 6);
-
-}
-
-.reset_password {
-  line-height: 2em;
-
-}
-
-.field_host_preferred_phone {
-  @include span-columns(3 alpha, 6);
-}
-
-.field_host_phone_type {
-  
-    @include span-columns(3 omega, 6);
-
-}
-
-#field_host_profile_picture_upload {
-  clear:both;
-}
+#profile_picture_upload { clear: both; }

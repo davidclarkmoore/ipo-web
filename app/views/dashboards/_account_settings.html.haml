@@ -1,24 +1,31 @@
 .fieldset
   %h2= t(:personal_information)
-  = simple_form_for @login.entity, url: dashboards_update_login_path, :builder => SimpleForm::FormBuilder, method: :put, validate: true do |login|
+  = simple_form_for @login.entity, url: dashboards_update_login_path, validate: true do |f|
     = hidden_field_tag :view, "account_settings"
-    = render partial: 'shared/errors', locals: {object: @login}
+    = render partial: 'shared/errors', locals: {object: @login.entity}
     .field-host-fields
-      = login.input :first_name
-      = login.input :last_name
-      = login.fields_for :login, @login, validate: true do |f_login|
-        = f_login.input :email
+      = f.input :first_name
+      = f.input :last_name
+      = f.fields_for :login, @login, validate: true do |f_login|
+        = f_login.input :email        
       .account_settings_password 
         %label= t(:reset_password)
         = link_to t(:reset_password), edit_login_registration_path, class: "button button-orange reset_password entypo-lock"
-      = login.input :preferred_phone
-      = login.input :phone_type, :class => 'select2'
+      = f.input :preferred_phone
+      = f.input :phone_type, class: 'select2'
 
-      #field_host_profile_picture_upload
-        - if @login.class.name == "FieldHost"
+      = f.fields_for :login, @login, validate: true do |f_login|
+        #profile_picture_upload      
           %h2= t(:edit_profile_picture)
           #drop_zone= t(:drag_and_drop_photos_here)
-          = login.file_field :profile_picture
-          %h4= t(:saved_projects_photos_and_videos)
+          = f_login.file_field :profile_picture
 
-    = login.submit t(:save), class: "button button-orange"
+          %br/
+          %br/
+          %h4= t(:current_profile_picture)
+          - if @login.profile_picture.present?
+            = image_tag @login.profile_picture.profile_size.url
+
+    = f.submit t(:save), class: "button button-orange"
+
+= render 'shared/media_progress'

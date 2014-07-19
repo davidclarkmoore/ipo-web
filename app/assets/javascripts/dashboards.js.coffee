@@ -2,7 +2,7 @@ ipo['dashboards'] = {}
 ipo['dashboards']['index'] = ->
   connect_group_to_select $(".student_published_status.button_group") , $("#student_published_status")
 
-  $('#field_host_profile_picture_upload').fileupload
+  $('#profile_picture_upload').fileupload
     dataType: "script"
     dropZone: $("#drop_zone")
     add: (e, data) ->

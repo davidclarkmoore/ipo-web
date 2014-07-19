@@ -7,7 +7,10 @@
     %br
   .project-status
     %label= t(:status)
-    %h2= project_session.project.sf_status
+    .status-tag
+      %span="Approved"
+
+      / project_session.project.sf_status
   .project-student-status
     %label= t(:applications_waiting_for_your_approval)
     %h1= link_to(project_session.student_applications.unapproved.count, "#")

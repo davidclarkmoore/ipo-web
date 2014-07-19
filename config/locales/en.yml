@@ -17,7 +17,7 @@ en:
   application_deadline_dashboard: "Application Deadline"
   application_status: "Application Status - %{status}"
   applications_waiting_for_ywam_approval: "Applications waiting for YWAM approval: "
-  applications_waiting_for_your_approval: "Apps waiting for your approval"
+  applications_waiting_for_your_approval: "Apps waiting approval"
   are_you_interested_in_teams_or_individuals: "Are you interested in teams or individuals?"
   are_you_sure: "Are you sure?"
   area_transportation: "Area Transportaion"

@@ -31,6 +31,7 @@
   }
 }
 
+
 .new-project-header {
 @include span-columns(3 alpha, 6);
 }
@@ -44,6 +45,7 @@
 }
 
 .body {
+  margin-top: 2em;
  @include span-columns(6 alpha, 6);
 }
 
@@ -51,20 +53,41 @@
     @include span-columns(6 alpha, 6);
 }
 
+
 .project-status {
-  @include span-columns(2 alpha, 6);
-}
-.project-student-status {
-   @include span-columns(1, 6);
+  @include span-columns(2 alpha, 8);
+
+  .status-tag {
+    margin-top: 1.5em;
+  }
+
+  .status-tag span {
+    margin-left: 0;
+    background-color: $light-blue;
+    padding: .5em;
+    @include border-radius (5px);
+    display: inline;
+  }
 }
 
-.project-student-approved {
-  @include span-columns(1, 6);
+.project-status span {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: white;
+  text-transform: uppercase;
+}
+.project-student-status,.project-student-approved {
+   @include span-columns(2, 8);
+   h1 {
+    font-size: 3em;
+    margin-bottom: 0;
+   }
 }
 
 
 .project-details {
-     @include span-columns(2 omega, 6);
+     @include span-columns(2 omega, 8);
 }
 
 

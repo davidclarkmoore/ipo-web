@@ -143,15 +143,10 @@ body {
   height: 730px;
 }
 
-
-
 header {
   @include adjust-leading-to(4);
   background-color: #fff;
-  border-bottom:1px solid $grey;
-
   margin-bottom: 3em;
-
   color: white;
   -webkit-font-smoothing: antialiased;
   overflow: auto;
@@ -199,7 +194,7 @@ header {
   border: 1px solid $light-grey;
   @include border-radius (5px);
   color: $light-grey;
-  margin-left: 2em;
+  margin: 3em 0 2em 2em;
   width: 80%;
 }
 
@@ -479,7 +474,7 @@ fieldset:last-child {
 
 //responsive header side bar//
 
-@include respond-to(800){
+@include respond-to(1000){
 
   .side-nav {
     position: fixed;
@@ -507,6 +502,15 @@ fieldset:last-child {
 
       a:hover {background-color: rgba(255,255,255,.1)}
     }
+  }
+
+  .main_nav_links {
+    margin-top: 20px;
+  }
+
+  .secondary_nav_links {
+    font-size: .8em;
+    margin-left: .5em;
   }
 
   form[action="/search"] input.button[type="submit"] {

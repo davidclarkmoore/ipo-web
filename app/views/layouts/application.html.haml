@@ -10,6 +10,8 @@
         / %h1.title Converge
         = image_tag 'converge-logo.png'
       = render 'shared/navigation'
+      = render 'shared/side_nav'
+      
     = yield :header
     
   = render 'shared/sub_menus', page: @page

@@ -53,6 +53,6 @@ $ ->
 
   #hamburger transform - main nav header
   $('nav.main').click -> 
-    $(this).toggleClass 'mobile'
+    $('nav.main').toggleClass 'mobile'
     $('.side-nav').toggleClass 'menu-in'
     $('.side').toggleClass 'shift'

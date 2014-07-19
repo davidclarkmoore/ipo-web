@@ -9,9 +9,10 @@
       .container
         = link_to root_path, {id: "logo"} do
           / %h1.title Converge
-          =image_tag 'converge-logo.png'
+          = image_tag 'converge-logo.png'
         = render 'shared/navigation' 
-        = render 'shared/side-nav'
+        = render 'shared/side_nav'
+        
 .side
   = yield :hero
   = render 'shared/sub_menus', page: @page

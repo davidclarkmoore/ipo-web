@@ -248,7 +248,7 @@ nav.main {
 
   nav {
     text-align: right;
-
+    
     a {
       text-decoration: none;
       @include adjust-font-size-to(15px);
@@ -256,11 +256,9 @@ nav.main {
     }
 
     a:hover {
-      text-decoration: underline;
+      text-decoration: none;
       color: $orange;
     }
-
-    > span { padding: 0em 1em 0em 1em; }
 
     li {
       padding: 0em .5em 0em .5em;
@@ -492,8 +490,7 @@ fieldset:last-child {
     width: 40%;
     @include transition-duration(0.7s);
     display: block;
-    margin-top:4em;
-    z-index:5;
+    z-index: 5;
     background-color: $grey;
 
     li {
@@ -526,9 +523,7 @@ fieldset:last-child {
   }
 
   .menu-in { @include transform( translateX(-100%) ); }
-
   .shift { @include transform( translateX(-40%) ); }
-
   .side { @include transition-duration( 0.7s ); } 
 
   .show{
@@ -570,9 +565,7 @@ fieldset:last-child {
   }
 
   nav.main:before { top: 0; }
-
   nav.main:after { top: 16px; }
-
   nav.main span {
     display: block;
     width: 100%;
@@ -580,6 +573,12 @@ fieldset:last-child {
     background-color: grey;
     margin: 8px 0;
     @include transition( all (0.5s) );
+  }
+
+  .side-nav nav.main span, 
+  .side-nav nav.main:before, 
+  .side-nav nav.main:after {
+    background-color: white;
   }
 
   nav.main.mobile:before { @include transform( rotate(45deg) ); }

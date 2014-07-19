@@ -617,7 +617,7 @@ content: "\e033";
   }
 
   .select2-search-choice-close {
-    top: 5px; // TODO: Responsive?
+    top: 8px; // TODO: Responsive?
   }
 }
 
@@ -767,10 +767,29 @@ article.no-margin{
 // ===================
 
 .select2-container-multi .select2-choices .select2-search-choice {
-  @include adjust-font-size-to(14px, 0.75);
+  font-size: 1em;
+  line-height: 1.5em;
   -webkit-font-smoothing: antialiased;
-  height: 22px; // TODO: Response?
+  height: 100%;
+  background: $green !important;
+  background-image: transparent !important;
+  border: none;
+  color: white;
+
+  a.select2-search-choice-close {
+    top: 40%;
+    background: transparent;
+    background-image: transparent;
+  }
 }
+
+.select2-container-multi .select2-choices .select2-search-choice a:before {
+      content: "\e00b";
+      font-family: "Flat-UI-Icons";
+      font-size: 1em;
+      color: white;
+    }
+
 
 
 // =============

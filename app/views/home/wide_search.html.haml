@@ -1,5 +1,9 @@
-%article.container
-  %h1 #{pluralize(@pages.count, 'page result')} for "#{params[:search]}"
+%article.container.searchcontainer
+  %div.search
+    %div.entypo-search
+      %h1 
+        %span search
+  %h3.head #{pluralize(@pages.count, 'page result')} for "#{params[:search]}"
   .results
     - @pages.with_details.each do |page,details|
       .result
@@ -8,7 +12,7 @@
           = details[:highlight][:bodies].html_safe
 
 %article.container
-  %h1 #{pluralize(@projects.count, 'project result')} for "#{params[:search]}"
+  %h3.head #{pluralize(@projects.count, 'project result')} for "#{params[:search]}"
   .results
     - @projects.with_details.each do |project,details|
       .result

@@ -28,6 +28,7 @@
 @import "projects";
 @import "students";
 @import "donations";
+@import "searchresults";
 @import "dashboards";
 
 .fa:before {
@@ -419,33 +420,3 @@ fieldset:last-child {
 /* overflow-x chrome fix */
 .select2-offscreen { display: none!important; }
 
-
-.results {
-  // TODO: Should not be using PX measurements here.
-  h1 { font-size: 18px; }
-  h2 { font-size: 16px; }
-  img { display: none; }  
-  .body { font-size: 12px; }
-
-  .result {
-    background-color: lightcyan;
-    border-radius: 6px;
-    padding: 6px;
-    margin: 6px;
-  }
-
-  a {
-    color: steelblue;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: inline-block;
-  }
-
-  em {
-    font-style: italic;
-    font-weight: bolder;
-  }
-}
-
-// DO NOT MOVE THIS IMPORT TO THE TOP. (breaks styles)
-@import "side_nav";

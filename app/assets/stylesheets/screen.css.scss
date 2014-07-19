@@ -20,16 +20,14 @@
 @import "select2";
 @import "font-awesome";
 
-
 @import "fonts";
 @import "typography";
 @import "components";
+
 @import "home";
 @import "projects";
 @import "students";
 @import "donations";
-
-
 
 .fa:before {
   margin-right: 5px;
@@ -163,7 +161,7 @@ header {
     font-weight: bold;
   }
 
-// main converge logo
+  // main converge logo
 
   a#logo {
       @include span-columns(3 alpha);
@@ -182,20 +180,7 @@ header {
     color: $light-grey;
   }
 
-  input#submit {
-    display:none;
-  }
-
-
-}
-
-.side-nav input#search {
-  background-color: #fff;
-  border: 1px solid $light-grey;
-  @include border-radius (5px);
-  color: $light-grey;
-  margin: 3em 0 2em 2em;
-  width: 80%;
+  input#submit { display:none; }
 }
 
 h1.subtitle {
@@ -430,167 +415,35 @@ fieldset:last-child {
 
 
 /* overflow-x chrome fix */
-.select2-offscreen{
-  display: none!important;
-}
+.select2-offscreen { display: none!important; }
 
 
-.results{
-    .result{
-      background-color: lightcyan;
-      border-radius: 6px;
-      padding: 6px;
-      margin: 6px;
+.results {
+  // TODO: Should not be using PX measurements here.
+  h1 { font-size: 18px; }
+  h2 { font-size: 16px; }
+  img { display: none; }  
+  .body { font-size: 12px; }
 
-    }
-    .body{
-      font-size: 12px;
-    }
-  a{
+  .result {
+    background-color: lightcyan;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 6px;
+  }
+
+  a {
     color: steelblue;
     font-weight: bold;
     margin-bottom: 5px;
     display: inline-block;
   }
-  em{
+
+  em {
     font-style: italic;
     font-weight: bolder;
   }
-
-  h1{
-    font-size: 18px;
-  }
-  h2{
-    font-size: 16px;
-  }
-  img{
-    display: none;
-  }
 }
 
-.side-nav {
-  display:none;
-}
-
-//responsive header side bar//
-
-@include respond-to(1000){
-
-  .side-nav {
-    position: fixed;
-    top: 0;
-    right: -40%;
-    padding-top: 1em;
-    height: 100%;
-    width: 40%;
-    @include transition-duration(0.7s);
-    display: block;
-    z-index: 5;
-    background-color: $grey;
-
-    li {
-      list-style: none;
-       margin: 0;
-
-      a {
-        color: white;
-        text-decoration: none;
-        display:block;
-        cursor: pointer;
-        padding: .5em 2em;
-      }
-
-      a:hover {background-color: rgba(255,255,255,.1)}
-    }
-  }
-
-  .main_nav_links {
-    margin-top: 20px;
-  }
-
-  .secondary_nav_links {
-    font-size: .8em;
-    margin-left: .5em;
-  }
-
-  form[action="/search"] input.button[type="submit"] {
-    display:none;
-  }
-
-  header {
-    width: 100%;
-    z-index: 6;
-  }
-
-  .link.heading, nav.main form, .secondary-header{
-    display:none;
-  }
-
-  .menu-in { @include transform( translateX(-100%) ); }
-  .shift { @include transform( translateX(-40%) ); }
-  .side { @include transition-duration( 0.7s ); } 
-
-  .show{
-    display:block;
-  }
-
-  .side-nav ul {
-    height:100%;
-  }
-
-  .side-nav li {
-    width:100%;
-  }
-  
-  header {
-    line-height: 4em;
-  }
-
-  nav.main {
-    position: absolute;
-    right: 30px;
-    top: 25px;
-    display: block;
-    width: 22px;
-    height: 19px;
-    cursor:pointer;
-  }
-
-  nav.main:before, nav.main:after {
-    display: block;
-    content: ' ';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: grey;
-    @include transform-origin (0px, 1.5px);
-    @include transition( all (0.5s) );
-  }
-
-  nav.main:before { top: 0; }
-  nav.main:after { top: 16px; }
-  nav.main span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: grey;
-    margin: 8px 0;
-    @include transition( all (0.5s) );
-  }
-
-  .side-nav nav.main span, 
-  .side-nav nav.main:before, 
-  .side-nav nav.main:after {
-    background-color: white;
-  }
-
-  nav.main.mobile:before { @include transform( rotate(45deg) ); }
-
-  nav.main.mobile:after { @include transform( rotate(-45deg) ); }
-
-  nav.main.mobile span {
-    opacity:0;
-  }
-
-}
+// DO NOT MOVE THIS IMPORT TO THE TOP. (breaks styles)
+@import "side_nav";

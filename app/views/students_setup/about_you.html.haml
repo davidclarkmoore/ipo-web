@@ -1,7 +1,7 @@
 .container
   = render 'header', active_step: params[:id]
 
-  = simple_form_for @student_application, url: wizard_path, method: :put, validate: true, html: {id: "new_student"} do |f|
+  = simple_form_for @student_application, url: wizard_path, method: :put, html: {id: "new_student"} do |f|
     = render partial: 'shared/errors', locals: {object: @student_application}
 
     .background.c12.omega
@@ -12,8 +12,7 @@
         %h3.center= t(:your_project)
         = f.input :project, as: :select, label: false do
           = select_tag 'your_project_select', options_from_collection_for_select(Project.available_seats, "id", "name", @student_application.project_id), include_blank: true
-
-
+          
       %h3.center= t(:your_session)
       - # collection is loaded dynamically from server.
       = f.association :project_session, collection: [], include_blank: true, label: false, label_method: :select_label

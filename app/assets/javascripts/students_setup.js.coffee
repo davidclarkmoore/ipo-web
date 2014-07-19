@@ -11,37 +11,39 @@ $ ->
     handleTabs("existing", "academic_reference", value)
     $('#is_new_academic_reference').val(($(@).data('box') == "#new_academic_reference"))
 
-  $("#your_project_select").change (event) ->
-    # Pull in new project sessions.
-    project_code = $(this).val()
-    $.ajax
-      type: "GET"
-      url: "/students_setup/project_sessions/" + project_code
-      success: (data) ->
-        # TODO: All of this could be vastly simplified by simply using a rails partial and render that with .js.ejs
-        selected = null
-
-        # Clear out project sessions input.
-        $("#s2id_student_application_project_session_id").find(".select2-chosen").text("")
-        $("#student_application_project_session_id").empty()
-
-        # Replace sessions combobox with thew new project's sessions
-        $.each data, (index, value) ->
-          selected = if data[index].selected then data[index].id else null
-          option = "<option value=\"#{data[index].id}\"> #{data[index].text} </option>"
-          $("#student_application_project_session_id").append option
-
-        # Preselect any sessions loaded form model.
-        $("#student_application_project_session_id").select2('val', selected)
-        $("#student_application_project_session_id").valid()
+  #$("#your_project_select").change (event) ->
+  #  # Pull in new project sessions.
+  #  project_code = $(this).val()
+  #  $.ajax
+  #    type: "GET"
+  #    url: "/students_setup/project_sessions/" + project_code
+  #    success: (data) ->
+  #      # TODO: All of this could be vastly simplified by simply using a rails partial and render that with .js.ejs
+  #      selected = null
+  #
+  #      # Clear out project sessions input.
+  #      $("#s2id_student_application_project_session_id").find(".select2-chosen").text("")
+  #      $("#student_application_project_session_id").empty()
+  #
+  #      # Replace sessions combobox with thew new project's sessions
+  #      $.each data, (index, value) ->
+  #        selected = if data[index].selected then data[index].id else null
+  #        option = "<option value=\"#{data[index].id}\"> #{data[index].text} </option>"
+  #        $("#student_application_project_session_id").append option
+  #
+  #      # Preselect any sessions loaded form model.
+  #      $("#student_application_project_session_id").select2('val', selected)
+  #      $("#student_application_project_session_id").valid()
 
   jQuery.validator.addMethod "student_application_agree_terms_accepted", ((value, element) ->
     @.optional(element) || $("#student_application_agree_terms").is(":checked")
   ), "You must agree the terms in order to continue"
-
+      
   $('form[action^="/students/setup"]').validate
     errorElement: 'span'
     ignore: null
+    submitHandler: (form) ->
+      alert("TEST")      
     highlight: (element, errorClass) ->
       $(element).parent().addClass "invalid"
     unhighlight: (element, errorClass) ->
@@ -50,11 +52,13 @@ $ ->
       $(element).valid()
     errorPlacement: errorPlacement
 
-  if $('form[action="/students/setup/about_you"]').length > 0
+  if $('form[action="/students/setup/about_you"]').length > 0    
     $("#your_project_select").rules "add",
       required: true
     $("#student_application_project_session_id").rules "add",
       required: true
+    $("#student_application_student_attributes_birthday_3i").removeClass("date")  
+
     if $("#student_application_student_attributes_login_attributes_email").length > 0
       $("#student_application_student_attributes_login_attributes_email").rules "add",
         uniqueness: ["/unique/login/email", "email", true]
@@ -67,13 +71,6 @@ $ ->
         required: true
         minlength: 8
         equalTo: "#student_application_student_attributes_login_attributes_password"
-    $("#student_application_student_attributes_marital_status").rules "add",
-      required: true
-    $("#student_application_student_attributes_birthday_3i").removeClass("date")
-    $("#student_application_student_attributes_birthday_3i").rules "add",
-      required: true
-      min_length: 1
-      max_length: 31
 
   if $('form[action="/students/setup/interests_and_fields_of_study"]').length > 0
     $("#student_application_student_attributes_graduation_year").rules "add",

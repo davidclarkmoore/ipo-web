@@ -1,11 +1,27 @@
-= form_tag '/search', :method => :get do
-  = search_field_tag :search, @search, :autocomplete => false, :value => "&#128269; Search + Enter".html_safe
-  = submit_tag 'Search', :class => 'button button-green', :id => 'submit' 
+.side-nav
+  = form_tag '/search', :method => :get do
+    = search_field_tag :search, @search, :autocomplete => false, :value => "&#128269; Search + Enter".html_safe
+    = submit_tag 'Search', :class => 'button button-green', :id => 'submit' 
 
-%ul
-  %li=link_to "<span class='entypo-submit'></span> submit a project".html_safe, main_app.projects_setup_index_path
-  %li=link_to "<span class='entypo-apply'></span> apply".html_safe, main_app.students_setup_index_path
+  - unless current_login && current_login.student?
+    %li
+      = link_to main_app.projects_setup_index_path do
+        %span.entypo-submit
+        submit a project
+
+  - unless current_login && current_login.field_host?
+    %li
+      = link_to main_app.students_setup_index_path do
+        %span.entypo-apply
+        apply
+
   - if current_login
-    %li=link_to "<span class='entypo-logout'></span> log out".html_safe, main_app.destroy_login_session_path
+    %li
+      = link_to main_app.destroy_login_session_path do
+        %span.entypo-logout
+        log out
   - else
-    %li=link_to "<span class='entypo-login'></span> log in".html_safe, main_app.new_login_session_path
+    %li
+      = link_to main_app.new_login_session_path do
+        %span.entypo-login
+        log in

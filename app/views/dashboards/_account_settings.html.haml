@@ -22,8 +22,8 @@
 
           %br/
           %br/
-          %h4= t(:current_profile_picture)
           - if @login.profile_picture.present?
+            %h4= t(:current_profile_picture)
             = image_tag @login.profile_picture.profile_size.url
 
     = f.submit t(:save), class: "button button-orange"

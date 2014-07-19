@@ -7,13 +7,15 @@
 	text-transform: uppercase;
 	padding: 0 20px;
 	position: relative;
-	background: $extra-light-grey
+	background: $extra-light-grey;
+	color: $dark-grey;
 }
 
 .search h1:before {
   content: "";
 	display: block;
-	border-top: solid 1px black;
+	border-top: solid 1px $grey;
+	color: $grey;
 	margin-left: 35%;
 	height: 1px;
 	position: absolute;
@@ -31,13 +33,14 @@
 
 .results{
     .result{
-    	padding: 25px 0 25px 0;
+    	padding: 45px 0 25px 0;
     }
     .body{
       font-size: 16px;
+      color: black; 
     }
   a{
-    color: steelblue;
+    color: $orange;
     margin-bottom: 5px;
     display: inline-block;
     text-decoration: none;
@@ -60,9 +63,9 @@
   }
 }
 
-h3.head {
+label.head {
 	border-bottom: 1px solid $light-grey;
-	font-size: 22px;
+	font-size: 14px;
 	margin-top: 3em;
 	margin-bottom: 0;
 	padding-bottom: 1em;

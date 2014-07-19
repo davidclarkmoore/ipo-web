@@ -20,16 +20,14 @@
 @import "select2";
 @import "font-awesome";
 
-
 @import "fonts";
 @import "typography";
 @import "components";
+
 @import "home";
 @import "projects";
 @import "students";
 @import "donations";
-
-
 
 .fa:before {
   margin-right: 5px;
@@ -103,6 +101,7 @@ p.alert {
 
 .clr { clear: both; }
 .centered, .center{ text-align: center; }
+.button-center { margin-left: auto; margin-right: auto; display: block; text-align: center; }
 .block-center { display: block; text-align: center; }
 .italic, .i { font-style: italic; }
 .or {
@@ -142,14 +141,10 @@ body {
   height: 730px;
 }
 
-
-
 header {
   @include adjust-leading-to(4);
   background-color: #fff;
-
   margin-bottom: 3em;
-
   color: white;
   -webkit-font-smoothing: antialiased;
   overflow: auto;
@@ -166,7 +161,7 @@ header {
     font-weight: bold;
   }
 
-// main converge logo
+  // main converge logo
 
   a#logo {
       @include span-columns(3 alpha);
@@ -183,14 +178,9 @@ header {
     border: 1px solid $light-grey;
     @include border-radius (5px);
     color: $light-grey;
-    margin-left: 3em;
   }
 
-  input#submit {
-    display:none;
-  }
-
-
+  input#submit { display:none; }
 }
 
 h1.subtitle {
@@ -200,7 +190,6 @@ h1.subtitle {
   font-weight: 300;
   @include adjust-font-size-to(44px, 4);
   @include trailer(3, 44px);
-
 }
 
 nav.main {
@@ -233,27 +222,32 @@ nav.main {
 
 
 .secondary-header {
-    background-color: $extra-light-grey;
-    padding: .7em 0em .7em 0em;
-    width: 100%;
+  background-color: $extra-light-grey;
+  padding: .7em 0em .7em 0em;
+  width: 100%;
 
-    nav {
-      text-align: right;
-      span {
-        padding: 0em 1em 0em 1em;
+  nav {
+    text-align: right;
+    
+    a {
+      text-decoration: none;
+      @include adjust-font-size-to(15px);
+      color: $grey;
+    }
 
-        a {
-          text-decoration: none;
-          @include adjust-font-size-to(15px);
-          color: $grey;
-        }
+    a:hover {
+      text-decoration: none;
+      color: $orange;
+    }
 
-        a:hover {
-            text-decoration: underline;
-            color: $orange;
-        }
-      }
-    span:last-child {
+    li {
+      padding: 0em .5em 0em .5em;
+      list-style: none;
+      display: inline;
+      margin-left: 1em;
+    }
+
+    li:last-child {
       padding-right: 0em;
     }
   }
@@ -357,6 +351,15 @@ form {
     width: 100%;
   }
 
+  .c5 input, .c4 input {
+    background-color: $extra-light-grey;
+  }
+
+  input#search {
+    font-family: 'Entypo', sans-serif;
+    font-size: 1em;
+  }
+
   label {
     display: block;
     @include adjust-font-size-to(14px);
@@ -412,40 +415,35 @@ fieldset:last-child {
 
 
 /* overflow-x chrome fix */
-.select2-offscreen{
-  display: none!important;
-}
+.select2-offscreen { display: none!important; }
 
 
-.results{
-    .result{
-      background-color: lightcyan;
-      border-radius: 6px;
-      padding: 6px;
-      margin: 6px;
+.results {
+  // TODO: Should not be using PX measurements here.
+  h1 { font-size: 18px; }
+  h2 { font-size: 16px; }
+  img { display: none; }  
+  .body { font-size: 12px; }
 
-    }
-    .body{
-      font-size: 12px;
-    }
-  a{
+  .result {
+    background-color: lightcyan;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 6px;
+  }
+
+  a {
     color: steelblue;
     font-weight: bold;
     margin-bottom: 5px;
     display: inline-block;
   }
-  em{
+
+  em {
     font-style: italic;
     font-weight: bolder;
   }
-
-  h1{
-    font-size: 18px;
-  }
-  h2{
-    font-size: 16px;
-  }
-  img{
-    display: none;
-  }
 }
+
+// DO NOT MOVE THIS IMPORT TO THE TOP. (breaks styles)
+@import "side_nav";

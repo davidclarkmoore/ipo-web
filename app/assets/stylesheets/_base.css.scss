@@ -45,6 +45,7 @@ $light-yellow: #fefff5;
 $dark-grey: #7c7b7b;
 $extra-light-grey: #f5f5f5;
 $light-grey: #c1c1c1;
+$extra-dark-grey: #1d1d1d;
 
 
 $btn-colors: default   $grey,
@@ -81,7 +82,6 @@ $box-colors: grey          #565656,
 }
 .dark-text { color: $dark-grey;}
 
-
 [class*="entypo-"]:before {
 font-family: 'Entypo', sans-serif;
 font-size: 2em;
@@ -102,4 +102,55 @@ font-size: 2em;
 
 .entypo-submit:before {
   content: "\1f4E4";
+}
+
+// ---------------------------------------------------------------------------
+// Media Queries
+
+// Main header nav bar
+
+@mixin respond-to($breakpoint) {
+  @media only screen and (max-width: $breakpoint + px) { @content;}
+}
+
+// Rotate mixin for nav main
+
+@mixin transform($rotate) {
+  -webkit-transform: $rotate;
+  -moz-transform: $rotate;
+  -ms-transform: $rotate;
+  -o-transform: $rotate;
+  transform: $rotate;
+}
+
+@mixin transform($translateX) {
+  -webkit-transform: $translateX;
+  -moz-transform: $translateX;
+  -ms-transform: $translateX;
+  -o-transform: $translateX;
+  transform: $translateX;
+}
+
+@mixin transition($all){
+  -webkit-transition: $all;
+  -moz-transition: $all;
+  -o-transition: $all;
+  ms-transition: $all;
+  transition: $all;
+}
+
+@mixin transform-origin($x, $y) {
+  -webkit-transform-origin: $x, $y;
+  -moz-transform-origin: $x, $y;
+  -ms-transform-origin: $x, $y;
+  -o-transform-origin: $x, $y;
+  transform-origin: $x, $y;
+}
+
+@mixin transition-duration($transition-time){
+  -webkit-transition: $transition-time;
+  -moz-transition: $transition-time;
+  -o-transition: $transition-time;
+  ms-transition: $transition-time;
+  transition: $transition-time;
 }

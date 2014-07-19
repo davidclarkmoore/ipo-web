@@ -20,6 +20,12 @@
     @include leader(1, 20px);
   }
 
+
+  #search-field-study {
+    line-height: 1.2em;
+    margin-top: 1.7em;
+  }
+
   label {
     @include adjust-leading-to(1);
     text-transform: uppercase;
@@ -137,6 +143,7 @@
     overflow: hidden;
     @include trailer(4);
     span.list-title { font-weight: bold; }
+    p { margin-left:50%; }
   }
 
   p.sub-title {

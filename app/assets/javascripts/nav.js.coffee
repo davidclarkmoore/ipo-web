@@ -6,5 +6,5 @@ $ ->
     
   $("input#search").blur ->
     if @value == ""
-      @value = "&#128269; Search + Enter"
+      @value = "Search + Enter"
       @className = "placeholder"

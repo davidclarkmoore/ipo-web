@@ -252,6 +252,9 @@ li.tab {
 
 .button {
   cursor: pointer;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  transition: all .4s ease;
 }
 
 .button-group {

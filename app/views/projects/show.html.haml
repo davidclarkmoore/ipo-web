@@ -75,10 +75,10 @@
     .info.rounded
       %h3 Get Started
       - if can? :apply, @p
-        = link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange"
+        = link_to "Apply", students_setup_index_path(project_id: @p), class: "button button-orange entypo-apply"
       - else
         %h2.grey= t(:sorry_project_full)
-     
+
     .info.rounded
       %h3 Share
       .fb-share-button{:data => {:type => "button"}}

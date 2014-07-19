@@ -1,0 +1,24 @@
+.secondary_nav_links
+  - unless current_login && current_login.student?
+    -# %span.link.heading
+    %li
+      = link_to main_app.projects_setup_index_path do
+        %span.entypo-submit
+        submit a project
+
+  - unless current_login && current_login.field_host?
+    %li
+      = link_to main_app.students_setup_index_path do
+        %span.entypo-apply
+        apply
+
+  - if current_login
+    %li
+      = link_to main_app.destroy_login_session_path do
+        %span.entypo-logout
+        log out
+  - else
+    %li
+      = link_to main_app.new_login_session_path do
+        %span.entypo-login
+        log in

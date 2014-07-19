@@ -34,7 +34,7 @@ class ProjectsSetupController < ApplicationController
     params[:project][:wizard_status] = step.to_s
     if step == :agreement || @project.complete?
       params[:project][:wizard_status] = Project::COMPLETE 
-      @project.status = Project::COMPLETE
+      @project.set_to_complete
     end
 
     if @project.update_attributes(params[:project])

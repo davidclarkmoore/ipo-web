@@ -51,7 +51,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :organization
   accepts_nested_attributes_for :project_sessions, reject_if: :all_blank, allow_destroy: true
 
-  enumerize :status, in: I18n.t("enumerize.project.status")
+  enumerize :status, in: %w(incomplete complete approved), I18n_scope: "enumerize.project.status"
 
   %w(dining_location internet_distance location_type housing_type safety_level region
     typical_attire student_educational_requirement).each do |f|
@@ -141,8 +141,6 @@ class Project < ActiveRecord::Base
     top_ten(:related_fields_of_study)
   end
 
-  def status=(value); write_attribute(:status, value); end
-
   def agree_memo; properties["agree_memo"] == "1" ? true : false; end;
   def agree_to_transport; properties["agree_to_transport"] == "1" ? true : false; end;
   def per_week_cost_final; properties["per_week_cost_final"] == "1" ? true : false; end;
@@ -157,6 +155,11 @@ class Project < ActiveRecord::Base
 
   def search_data
     as_json only: [:name, :description]
+  end
+
+  def set_to_complete
+    return if status == APPROVED
+    self.status = COMPLETE
   end
 
   def complete?

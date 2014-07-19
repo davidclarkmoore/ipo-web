@@ -33,10 +33,8 @@ class StudentApplication < ActiveRecord::Base
   scope :complete, where(wizard_status: COMPLETE)
   scope :incomplete, where("wizard_status != ?", COMPLETE)
   scope :active, order(:created_at)
-
-  enumerize :status, in: I18n.t("enumerize.student_application.status")
-
-  def status=(value); write_attribute(:status, value); end
+  
+  enumerize :status, in: %w(incomplete complete approved), I18n_scope: "enumerize.student_application.status"
 
   def project_id
     project.id
@@ -51,6 +49,7 @@ class StudentApplication < ActiveRecord::Base
   end
 
   def set_to_complete
+    return if status == APPROVED
     self.status = COMPLETE
   end
 

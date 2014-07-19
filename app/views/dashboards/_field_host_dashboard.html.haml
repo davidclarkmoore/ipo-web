@@ -1,7 +1,7 @@
 %h3= t(:your_projects)  
 
-- @login.project_sessions.each do |project_session|
+- @field_host.project_sessions.each do |project_session|
   = render 'project', project_session: project_session
 
-- if @login.project_sessions.count == 0
+- if @field_host.project_sessions.count == 0
   %h5= t(:you_dont_have_any_project_related)

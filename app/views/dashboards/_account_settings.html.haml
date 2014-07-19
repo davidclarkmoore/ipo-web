@@ -1,12 +1,12 @@
 .fieldset
   %h2= t(:personal_information)
-  = simple_form_for @login, url: dashboards_update_login_path, :builder => SimpleForm::FormBuilder, method: :put, validate: true do |login|
+  = simple_form_for @login.entity, url: dashboards_update_login_path, :builder => SimpleForm::FormBuilder, method: :put, validate: true do |login|
     = hidden_field_tag :view, "account_settings"
     = render partial: 'shared/errors', locals: {object: @login}
     .field-host-fields
       = login.input :first_name
       = login.input :last_name
-      = login.fields_for :login, @login.login, validate: true do |f_login|
+      = login.fields_for :login, @login, validate: true do |f_login|
         = f_login.input :email
       .account_settings_password 
         %label= t(:reset_password)

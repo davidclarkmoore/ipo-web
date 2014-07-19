@@ -1,6 +1,6 @@
 %h3= t(:your_student_applications)
-- @login.student_applications.each do |sa|
+- @student.student_applications.each do |sa|
   = render 'student_application', sa: sa
 
-- if @login.student_applications.count == 0
+- if @student.student_applications.count == 0
   %h5= t(:you_dont_have_any_student_application_related)

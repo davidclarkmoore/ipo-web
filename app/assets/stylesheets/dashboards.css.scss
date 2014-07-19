@@ -3,10 +3,58 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+// ----------------- Dash - Field Hosts -----------------
 
+.dash-project {
+  background-color: white;
+  margin-bottom: 1.5em;
+  border-radius: 2px;
+  padding: 1em;
+  overflow:hidden;
+  height: 100%;
 
+  span {
+    margin-left: .5em;
+  }
 
-// Account Settings - Field Hosts
+  a {
+    text-decoration: none;
+  }
+
+}
+
+.new-project-header {
+@include span-columns(3 alpha, 6);
+}
+
+#option_buttons {
+  @include span-columns(3 omega, 6);
+  text-align: right;
+  .button-group {
+    margin: 0;
+  }
+}
+
+.body {
+ @include span-columns(6 alpha, 6);
+}
+
+.project-overview {
+    @include span-columns(6 alpha, 6);
+}
+
+.project-status {
+  @include span-columns(2 alpha, 6);
+}
+.project-student-status {
+   @include span-columns(2, 6);
+}
+
+.project-details {
+     @include span-columns(2 omega, 6);
+}
+
+// ----------------- Account Settings - Field Hosts ----------------- 
 
 
 .field_host_first_name {
@@ -18,7 +66,7 @@
 }
 
 .field_host_login_email {
-	 @include span-columns(3 alpha, 6);
+   @include span-columns(3 alpha, 6);
 }
 
 .reset_password {
@@ -31,11 +79,11 @@
 }
 
 .field_host_phone_type {
-	
-	  @include span-columns(3 omega, 6);
+  
+    @include span-columns(3 omega, 6);
 
 }
 
 #field_host_profile_picture_upload {
-	clear:both;
+  clear:both;
 }

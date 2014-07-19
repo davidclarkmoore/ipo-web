@@ -46,6 +46,10 @@
     text-decoration: none;
     text-transform: uppercase;
     font-size: 20px;
+    @include transition(all(0.5s));
+  }
+  a:hover {
+    text-decoration: underline;
   }
   em{
     font-style: italic;

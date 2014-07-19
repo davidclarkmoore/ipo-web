@@ -10,9 +10,7 @@ class StudentsSetupController < ApplicationController
     when :about_you
       # This is used for the apply button in project/show.html.haml
       @project_selected = Project.find(params[:project_id]) if params[:project_id]
-      @student_application.student.build_login unless @student_application.student && @student_application.student.login
-      @student_application.build_project_session unless @student_application.project_session
-      @student_application.project_session.build_project unless @student_application.project
+      build_default_associations(@student_application)
     when :interests_and_fields_of_study
       @academic_reference = PersonReference.find_or_build_person_reference(@student_application.person_references, :academic_reference)
       @spiritual_reference = PersonReference.find_or_build_person_reference(@student_application.person_references, :spiritual_reference)
@@ -35,16 +33,17 @@ class StudentsSetupController < ApplicationController
       params[:student_application][:wizard_status] = 'complete'
       @student_application.set_to_complete
     end
-    @student_application.update_attributes params[:student_application]
-    
-    if step == :important_details
+
+    if @student_application.update_attributes params[:student_application]            
       # create/update SF object
-      StudentApplicationSyncWorker.perform_async(@student_application.id)
+      StudentApplicationSyncWorker.perform_async(@student_application.id) if step == :important_details
+      create_login_session unless login_signed_in?
+    elsif step == :about_you
+      build_default_associations(@student_application)
     end
 
-    create_login_session unless login_signed_in?
     render_wizard @student_application
-    session[:student_application] = @student_application.id
+    session[:student_application] = @student_application.id    
   end
 
   def project_sessions
@@ -60,6 +59,13 @@ class StudentsSetupController < ApplicationController
   end
 
   private
+
+  def build_default_associations(student_application)
+    student_application.student.build_login unless student_application.student && student_application.student.login
+    student_application.build_project_session unless student_application.project_session
+    student_application.project_session.build_project unless student_application.project    
+  end
+
 
   def person_references_params
     student_params[:person_references_attributes]

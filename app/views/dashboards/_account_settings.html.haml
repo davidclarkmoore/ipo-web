@@ -8,7 +8,7 @@
       = login.input :last_name
       = login.fields_for :login, @login.login, validate: true do |f_login|
         = f_login.input :email
-      .password  
+      .account_settings_password 
         %label= t(:reset_password)
         = link_to t(:reset_password), edit_login_registration_path, class: "button button-orange reset_password entypo-lock"
       = login.input :preferred_phone

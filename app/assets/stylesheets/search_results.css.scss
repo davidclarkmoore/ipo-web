@@ -1,0 +1,43 @@
+.span.entypo-search { width:30px; }
+.search { text-align: center; }
+.searchcontainer { padding: 0; }
+
+.search span {
+	z-index: 5;
+	text-transform: uppercase;
+	padding: 0 1em;
+	position: relative;
+	background: $extra-light-grey;
+	color: $dark-grey;
+}
+
+.search h1:before {
+  content: "";
+  position: absolute;
+	border-top: solid 1px $grey;		
+	margin-top: 25px;
+  margin-left: 50%;
+	width: 40%;	
+	left: -20%;
+}
+
+.results {
+  .result { padding: 1em 0; }    
+  
+  a {
+    @include adjust-font-size-to(20px);
+    text-decoration: none;
+  }
+
+  em {
+    font-style: italic;
+    font-weight: bolder;
+  }
+}
+
+label.head {
+  @include adjust-font-size-to(14px);
+  display: inline-block;
+	border-bottom: 1px solid $light-grey;
+	padding-bottom: 1em;
+}

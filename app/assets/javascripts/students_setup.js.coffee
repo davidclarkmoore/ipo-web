@@ -42,8 +42,6 @@ $ ->
   $('form[action^="/students/setup"]').validate
     errorElement: 'span'
     ignore: null
-    submitHandler: (form) ->
-      alert("TEST")      
     highlight: (element, errorClass) ->
       $(element).parent().addClass "invalid"
     unhighlight: (element, errorClass) ->

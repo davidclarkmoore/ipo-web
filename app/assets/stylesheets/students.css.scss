@@ -62,11 +62,6 @@ form#new_student_application, form.edit_student_application, form.new_student_ap
   .student_application_student_person_references_contact_phone { @include span-columns(3 omega, 12); }
 }
 
-.info-box {
-  border: 1px solid darkgrey;
-  padding: 20px;
-  margin-bottom: 40px;
-}
 
 .confirmation {
   h2 {
@@ -75,16 +70,14 @@ form#new_student_application, form.edit_student_application, form.new_student_ap
   margin-bottom: 40px;
 }
 
-.info-box, .confirmation {
-  h8 {
-    @include adjust-font-size-to(14px);
-  }
-  p {
-    @include adjust-font-size-to(24px);
-    margin-bottom: 0px;
-  }
+.tile {
+
+  padding: 1em;
+  background: white;
+  overflow: hidden;
+
   .first-column {
-    @include span-columns(6, 12);
+    @include span-columns(6 alpha, 12);
   }
   .second-column {
     @include span-columns(6 omega, 12);

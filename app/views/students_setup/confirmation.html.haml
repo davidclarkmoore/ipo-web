@@ -1,16 +1,6 @@
 .container
   = render 'header', active_step: params[:id]
-
-  .info-box
-    .first-column
-      %h8= t(:desired_project)
-      %p=@student_application.project_session.project.name
-
-    .second-column
-      %h8= t(:start_date)
-      %p=@student_application.project_session.select_label
-
-    .clearfix
+  = render 'student_app_detail'
 
   .confirmation
     .hr

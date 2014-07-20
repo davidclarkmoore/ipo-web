@@ -98,7 +98,7 @@ en:
   explore_by: "Explore By"
   explore_ipo_connection_projects: "Explore Converge Projects"
 
-  field_fees: "*Field Fees*"
+  field_fees: "Field Fees"
   field_fees_include_housing_food_and_local_travel: "Field Fees include housing, food, and local travel expenses and they vary according to the length of stay and location of the Project."
   fields_of_study: "Fields of Study"
   filter_by_passion: "Filter by Passion"
@@ -138,7 +138,7 @@ en:
   location_and_region: "Location & Region"
   login_to_course_sites: "Login to Course Sites"
 
-  making_the_ipo_connection: "*Making the Converge Connection*"
+  making_the_ipo_connection: "Making the Converge Connection"
   manage_account: "Manage Account"
   map: "Map"
   max_number_of_students: "Max. number of students you can house at any one time?"
@@ -235,7 +235,7 @@ en:
   student_setup_application: "Student Setup Application"
   students_approved: "Students Approved"
   submission_confirmation: "Submission Confirmation"
-  suplemental_information_form: "*Supplemental Information Form*"
+  suplemental_information_form: "Supplemental Information Form"
 
   tag_all_related_passions: "Tag All Related Student Passions"
   tag_all_related_fields_of_study: "Tag all related fields of study that would benefit this project"
@@ -261,8 +261,8 @@ en:
   this_weekly_cost: "This weekly cost will include all housing and all meal costs for student"
   title: "Title"
   total_projects: "Total Projects"
-  travel_expenses_and_personal_spendings: "*Travel Expenses & Personal Spending*"
-  tuition: "*Tuition*"
+  travel_expenses_and_personal_spendings: "Travel Expenses & Personal Spending"
+  tuition: "Tuition"
   typical_attire: "Typical Attire"
 
   user_language: "User Language"

@@ -420,3 +420,5 @@ fieldset:last-child {
 /* overflow-x chrome fix */
 .select2-offscreen { display: none!important; }
 
+// DO NOT MOVE THIS IMPORT TO THE TOP. (breaks styles)
+@import "side_nav";

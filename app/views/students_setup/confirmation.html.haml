@@ -3,7 +3,8 @@
 
   .confirmation
 
-    %h2.center= t(:app_confirmation)
+    %h2= t(:app_confirmation)
+    %p= t(:student_app_conf_detail)
 
     .c6
       %label= t(:name)
@@ -31,6 +32,7 @@
     %strong= t(:what_do_i_expect_next)
     %ul
       %li= t(:youll_get_this_confirmation_in_your_email)
+      %li= t(:student_references)
       %li= t(:weve_signed_you_up_for_your_enewsletter)
       %li= t(:we_review_your_application_in_3_business_days)
     .spacer

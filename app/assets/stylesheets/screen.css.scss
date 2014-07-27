@@ -17,9 +17,11 @@
 // =========================
 // Vendor/plugin stylesheets
 // =========================
-@import "select2";
+
+
 @import "font-awesome";
 
+@import "select2";
 @import "fonts";
 @import "typography";
 @import "components";
@@ -30,6 +32,7 @@
 @import "donations";
 @import "search_results";
 @import "dashboards";
+
 
 .fa:before {
   margin-right: 5px;
@@ -344,6 +347,10 @@ form {
     padding: .5em;
     background-color: rgba(0,0,0,0.1);
     border: 0em;
+
+    &:focus {
+      background-color: rgba(0,0,0,0.1);
+    }
   }
 
 

@@ -542,7 +542,8 @@ CREATE TABLE refinery_pages (
     view_template character varying(255),
     layout_template character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    footer_category character varying(255)
 );
 
 
@@ -1493,6 +1494,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140211153034');
 INSERT INTO schema_migrations (version) VALUES ('20140404193239');
 
 INSERT INTO schema_migrations (version) VALUES ('20140414193121');
+
+INSERT INTO schema_migrations (version) VALUES ('20140416192542');
 
 INSERT INTO schema_migrations (version) VALUES ('20140429005540');
 

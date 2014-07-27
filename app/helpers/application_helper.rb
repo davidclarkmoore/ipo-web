@@ -82,6 +82,16 @@ module ApplicationHelper
     I18n.t("enumerize.project.related_student_passions")
   end
 
+  def footer_menu(category)
+    menu_items = Refinery::Menu.new(Refinery::Page.footer_category(category))
+    
+    presenter = Refinery::Pages::MenuPresenter.new(menu_items, self)
+    presenter.dom_id = "footer-menu-#{category}"
+    presenter.css = "footer-menu"
+    presenter.menu_tag = :div
+    presenter
+  end
+  
   def menu_pages
     Refinery::Page.in_main_menu
   end

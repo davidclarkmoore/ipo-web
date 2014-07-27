@@ -316,6 +316,14 @@ footer {
   margin-top: 2.5em;
 }
 
+.footer-menu ul { padding: 0; }
+.footer-menu li { margin-left: 1em; }
+
+.footer-menu a {
+  color: white;
+  text-decoration: none;
+}
+
 ul {
   padding: .5em 0em .5em 0em;
 }

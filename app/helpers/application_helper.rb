@@ -86,8 +86,8 @@ module ApplicationHelper
     menu_items = Refinery::Menu.new(Refinery::Page.footer_category(category))
     
     presenter = Refinery::Pages::MenuPresenter.new(menu_items, self)
-    presenter.dom_id = "footer_menu#{category}"
-    presenter.css = "footer_menu"
+    presenter.dom_id = "footer-menu-#{category}"
+    presenter.css = "footer-menu"
     presenter.menu_tag = :div
     presenter
   end

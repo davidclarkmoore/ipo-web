@@ -1,23 +1,23 @@
-.fieldset.dash-project
-  .project-overview
+%article.card
+  .overview
     %label= t(:project_name, project_name: project_session.project.name) 
     - if can? :edit, project_session.project
       %span= link_to "edit", edit_project_path(project_session.project), :class => "entypo-edit"
     %br
     %br
-  .project-status
+  .status
     %label= t(:status)
     .status-tag
       %span="Approved"
 
       / project_session.project.sf_status
-  .project-student-status
+  .student-status
     %label= t(:applications_waiting_for_your_approval)
     %h1= link_to(project_session.student_applications.unapproved.count, "#")
-  .project-student-approved
+  .student-approved
     %label= t(:students_approved)
     %h1=link_to(project_session.student_applications.approved.count, "#")
-  .project-details
+  .details
     %label= t(:session_dates)
     %h5= t(:session_dates, start_date: pretty_date(project_session.start_date), end_date: pretty_date(project_session.end_date))
     %br

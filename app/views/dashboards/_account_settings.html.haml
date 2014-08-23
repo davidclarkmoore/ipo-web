@@ -4,27 +4,33 @@
     = hidden_field_tag :view, "account_settings"
     = render partial: 'shared/errors', locals: {object: @login.entity}
     .field-host-fields
-      = f.input :first_name
-      = f.input :last_name
-      = f.fields_for :login, @login, validate: true do |f_login|
-        = f_login.input :email        
+
+      .field_host_first_name 
+        = f.input :first_name
+      .field_host_last_name 
+        = f.input :last_name
+      .field_host_login_email
+        = f.fields_for :login, @login, validate: true do |f_login|
+          = f_login.input :email        
       .account_settings_password 
         %label= t(:reset_password)
         = link_to t(:reset_password), edit_login_registration_path, class: "button button-orange reset_password entypo-lock"
-      = f.input :preferred_phone
-      = f.input :phone_type, class: 'select2'
+      .field_host_preferred_phone
+        = f.input :preferred_phone
+      .field_host_phone_type
+        = f.input :phone_type, class: 'select2'
 
       = f.fields_for :login, @login, validate: true do |f_login|
-        #profile_picture_upload      
-          %h2= t(:edit_profile_picture)
+
+        .field_host_profile_picture
+          - if @login.profile_picture.present?
+            %label= t(:current_profile_picture)
+            = image_tag @login.profile_picture.profile_size.url
+
+        .field_host_picture_upload   
+          %label= t(:edit_profile_picture)
           #drop_zone= t(:drag_and_drop_photos_here)
           = f_login.file_field :profile_picture
-
-          %br/
-          %br/
-          - if @login.profile_picture.present?
-            %h4= t(:current_profile_picture)
-            = image_tag @login.profile_picture.profile_size.url
 
     = f.submit t(:save), class: "button button-orange"
 

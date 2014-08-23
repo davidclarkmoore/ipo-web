@@ -7,6 +7,11 @@
     - if can? :reserve_spot, sa
       %div= link_to "Reserve My Spot", reserve_my_spot_path(student_application_id: sa.id) , class: "button button-blue"
   .c4
-    %h5= t(:project_and_session, project: sa.project_name, start: pretty_date(sa.start_date), end: pretty_date(sa.end_date))
+    %label= t(:project)
+    %h4= sa.project_name
+    %label= t(:session)
+    %h4= pretty_date(sa.start_date) + " - " + pretty_date(sa.end_date)
     
-    %h5= t(:student_profile, status: @login.entity.published_status_to_string)
+  .c4
+    %label= t(:student_profile)
+    %h4= @login.entity.published_status_to_string

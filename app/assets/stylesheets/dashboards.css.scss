@@ -103,5 +103,18 @@
 .field_host_phone_type { @include span-columns(3 omega, 6); }
 .account_settings_password { @include span-columns(3 omega, 6); }
 .reset_password { line-height: 2em; }
+.field_host_profile_picture { 
+  @include span-columns(6 alpha, 6);
+  @include trailer(1);
 
-#profile_picture_upload { clear: both; }
+  img {
+    border: 3px solid $light-grey;
+  }
+
+   }
+
+.field_host_picture_upload { 
+
+  @include span-columns(6 alpha, 6); 
+  @include trailer(1);
+}

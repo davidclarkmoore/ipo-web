@@ -317,7 +317,15 @@ footer {
 }
 
 .footer-menu ul { padding: 0; }
-.footer-menu li { margin-left: 1em; }
+
+.footer-menu li { 
+  margin-left: 0em; 
+  list-style: none;
+}
+
+.footer-menu li:hover {
+  text-decoration: underline;
+}
 
 .footer-menu a {
   color: white;

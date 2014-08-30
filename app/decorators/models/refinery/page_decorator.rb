@@ -1,4 +1,11 @@
 Refinery::Page.class_eval do
+  
+  extend Enumerize
+  enumerize :footer_category, in: %w[explore about resources]
+  attr_accessible :footer_category
+
+  scope :footer_category, lambda { |category| where(footer_category: category) }
+  
   scope :in_main_menu, -> { where(show_in_menu: true, parent_id: nil) }
   scope :pages_related, lambda { |parent_page| where(parent_id: parent_page, show_in_menu: true) }
 

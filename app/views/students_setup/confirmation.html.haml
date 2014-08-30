@@ -1,53 +1,40 @@
 .container
   = render 'header', active_step: params[:id]
 
-  .info-box
-    .first-column
-      %h8= t(:desired_project)
-      %p=@student_application.project_session.project.name
-
-    .second-column
-      %h8= t(:start_date)
-      %p=@student_application.project_session.select_label
-
-    .clearfix
-
   .confirmation
-    .hr
-    %h2.center= t(:app_confirmation)
 
-    .first-column
-      %h8= t(:name)
+    %h2= t(:app_confirmation)
+    %p= t(:student_app_conf_detail)
+
+    .c6
+      %label= t(:name)
       %p=@student_application.student.full_name
 
-    .second-column
-      %h8= t(:confirmation_has_been_mail_to)
+    .c6.omega
+      %label= t(:confirmation_has_been_mail_to)
       %p=@student_application.student.login.email
 
-    .first-column
-      %h8= t(:desired_project)
+    .c6
+      %label= t(:desired_project)
       %p=@student_application.project_session.project.name
 
-    .second-column
-      %h8= t(:session)
+    .c6.omega
+      %label= t(:session)
       %p=@student_application.project_session.select_label
 
-    .first-column
-      %h8= t(:your_address)
+    .c6
+      %label= t(:your_address)
       %p=@student_application.student.full_address
 
     .clearfix
-    .spacer
-    .hr
 
-  .what_expect
+  .c12
     %strong= t(:what_do_i_expect_next)
     %ul
       %li= t(:youll_get_this_confirmation_in_your_email)
+      %li= t(:student_references)
       %li= t(:weve_signed_you_up_for_your_enewsletter)
-      %li= t(:prepared_your_passport_and_read_our) 
-      <a href="#">I've applied, what are my next steps blog post</a>
       %li= t(:we_review_your_application_in_3_business_days)
- 
-    %strong= t(:talk_soon_ipo_support_staff)
+    .spacer
+    %p= t(:talk_soon_ipo_support_staff)
 

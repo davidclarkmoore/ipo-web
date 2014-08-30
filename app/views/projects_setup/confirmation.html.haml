@@ -1,24 +1,52 @@
 .container
   = render 'header', active_step: params[:id]
   %h2= t(:submission_confirmation)
-  %p= t(:thank_you_confirmation)
-  %label= t(:project_name)
-  %h3= @project.name
+  / %p= t(:thank_you_confirmation)
+
+  %h4= t(:thank_you_confirmation)
+  %p= t(:converge_field_host_overview)
+  %p= t(:so_what_happens)
+
+  %ul
+    %li
+      %label= t(:reviewing_your_app)
+      %p=t(:reviewing_your_app_desc, dash:link_to('dashboard', dashboards_path)).html_safe
+    %li
+      %label= t(:recruiting)
+      %p= t(:recruiting_details)
+    %li
+      %label= t(:preparing)
+      %p= t(:preparing_details)
+
+  %p= t(:match_field_host, mail: mail_to("concierge@ywamconverge.org")).html_safe
+
+  %p= t(:thank_you_converge_team)
 
 
-  %table
-    %thead
-      %tr
-        %th= t(:title)
-        %th= t(:start_date)
-        %th= t(:end_date)
-        %th= t(:duration)
-        %th= t(:application_deadline)
-    %tbody
-      - @project.sessions.each do |session|
+  %label= t(:confirmation_project_details)
+  %hr
+  
+  .conf_proj_name
+    %label= t(:project_name)
+    %h3= @project.name
+  .conf_min_max_val
+    %label= t(:min_max_label)
+    %h3= @project.min_students + " - " + @project.max_students
+  .conf_project_sessions
+    %label= t(:project_sessions)
+    %table
+      %thead
         %tr
-          %td= session.title
-          %td= session.start_date.to_formatted_s(:rfc822)
-          %td= session.end_date.to_formatted_s(:rfc822)
-          %td= session.duration
-          %td= session.application_deadline.to_formatted_s(:rfc822)
+          %th= t(:title)
+          %th= t(:start_date)
+          %th= t(:end_date)
+          %th= t(:duration)
+          %th= t(:application_deadline)
+      %tbody
+        - @project.sessions.each do |session|
+          %tr
+            %td= session.title
+            %td= session.start_date.to_formatted_s(:rfc822)
+            %td= session.end_date.to_formatted_s(:rfc822)
+            %td= session.duration
+            %td= session.application_deadline.to_formatted_s(:rfc822)

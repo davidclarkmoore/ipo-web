@@ -12,7 +12,7 @@ en:
   after_initial_acceptance_addictional_information_will_be_required: "After initial acceptance, additional information will be required, including passport, insurance (with offer to purchase a travel insurance policy), etc."
   agreement: "Agreement"
   and_where_you_want_to_go: "And where you want to go: "
-  app_confirmation: "App Confirmation"
+  app_confirmation: "Wahoo, you're all done!"
   application_deadline: "Application Deadline"
   application_deadline_dashboard: "Application Deadline"
   application_status: "Application Status - %{status}"
@@ -34,6 +34,8 @@ en:
   confirm_password: "Confirm Password"
   confirmation: "Confirmation"
   confirmation_has_been_mail_to: "Confirmation has been mailed to"
+  confirmation_project_details: "Your project details"
+  converge_field_host_overview: "By doing so, you are launching a Converge Fellowship, including you, the Host, and the Mentor, the Donor(s), and the Student Volunteer or Converge Fellow."
   course_sites_info: "Course Sites Info"
   cross_cultural_experience_requirement: "Cross-Cultural Experience Requirement"
   current_profile_picture: "Current Profile Picture"
@@ -98,7 +100,7 @@ en:
   explore_by: "Explore By"
   explore_ipo_connection_projects: "Explore Converge Projects"
 
-  field_fees: "*Field Fees*"
+  field_fees: "Field Fees"
   field_fees_include_housing_food_and_local_travel: "Field Fees include housing, food, and local travel expenses and they vary according to the length of stay and location of the Project."
   fields_of_study: "Fields of Study"
   filter_by_passion: "Filter by Passion"
@@ -139,12 +141,14 @@ en:
   login_to_course_sites: "Login to Course Sites"
 
   making_the_ipo_connection: "*Making the Converge Connection*"
+  match_field_host: "Now, off to find you a match! If you have any questions, please contact us at %{mail}."
   manage_account: "Manage Account"
   map: "Map"
   max_number_of_students: "Max. number of students you can house at any one time?"
   memorandum_of_understanding: "Memorandum of Understanding"
   multimedia_and_content: "Multimedia & Content"
   min_number_of_students: "Min. number of students to make this project worthwhile?"
+  min_max_label: "Min - Max Students"
 
   name: "Name"
   needed_lanaguages: "Needed Languages"
@@ -165,6 +169,8 @@ en:
   please_include_any_additional: "Please include any additional costs for gear or equipment the student will need for the program"
   please_list_your_cross_cultural_experiences: "Please list your cross-cultural experiences"
   prepared_your_passport_and_read_our: "Prepare your passport and read our "
+  preparing: "Preparing"
+  preparing_details: "Keep informed at the Converge site to help you prepare for when your Converge Fellow joins your project. Subscribe to the Converge Blog too. Please note how important it is that you meet with your Converge Fellow participant on Skype or Google Hangouts when their pre-departure training begins. We will send you details about the content in our Converge Course online training for every Converge Fellow."
   primary_phone: "Primary phone"
   privacy_policy: "Privacy Policy"
   profile_page: "Profile page"
@@ -186,6 +192,10 @@ en:
   remove: "Remove"
   reset_password: "Reset Password"
   recurring: "Make This Monthly Recurring Donation"
+  recruiting: "Recruiting"
+  recruiting_details: "We're reaching out to thousands of young people and groups to find you a match! You can get involved too. Use the Facebook and Twitter buttons to share your project from the Convege site. We pre-qualify the Converge Fellow(s), however you give final approval for those you choose for your project."
+  reviewing_your_app: "Reviewing Your Application"
+  reviewing_your_app_desc: "We are contacting the Youth With A Mission staff person you gave as a Reference. You may want to contact them to let them know we will be calling. If we cannot reach the YWAMer, we will request another. We’ll let you know when you’re approved. You can login at any time to review your project. Heck, if you want go to your %{dash} now. However, once the application review has begun, you will not be able to make changes."
 
   safety_level: "Safety Level"
   save: "Save"
@@ -209,13 +219,14 @@ en:
   session_id: "Session ID"
   session_timeframe: "Session Timeframe"
   sessions: "Sessions"
-  session: "Session: %{title}"
+  session_title: "Session: %{title}"
   setup_your_project_sessions: "Setup your project sessions"
   show: "Show"
   signing_the_agreement: "SIGNING THE AGREEMENT: "
   spiritual_reference: "Spiritual Reference"
   sorry_project_full: "We're sorry but this project is full."
   sort: "Sort"
+  so_what_happens: "So...what happens now?"
   start_date: "Start Date"
   start_date_session: "Start Date %{date}"
   status: "Status"
@@ -225,6 +236,7 @@ en:
   location_country: "Country"
   region: "Region"
   student_application_deadline: "Student Application Deadline"
+  student_app_conf_detail: "Thank you for submitting your application. We've included some detail on your application below and next steps. Please read and verify."
   student_educational_requirement: "Student Educational Requirement"
   student_dining_location: "Student dining location"
   student_fields: "Student Fields"
@@ -233,13 +245,13 @@ en:
   student_profile: "Student Profile - %{status}"
   student_requirements: "Student Requirements"
   student_setup_application: "Student Setup Application"
-  students_approved: "Students Approved"
-  submission_confirmation: "Submission Confirmation"
+  students_approved: "Students Approved: "
+  submission_confirmation: "Wahoo! You're all done!"
   suplemental_information_form: "*Supplemental Information Form*"
 
   tag_all_related_passions: "Tag All Related Student Passions"
   tag_all_related_fields_of_study: "Tag all related fields of study that would benefit this project"
-  talk_soon_ipo_support_staff: "Talk soon! ~ Converge Support Staff*"
+  talk_soon_ipo_support_staff: "Talk soon! ~ Converge Support Staff"
   team: "Team"
   team_mode: "Team Mode"
   terms_and_conditions: "Terms and Conditions"
@@ -257,12 +269,13 @@ en:
   the_project_and_students: "The Projects & Students"
   the_tuition_fees_varies_according_to_our_international_fee_scale: "The Tuition fee varies according to our International Fee Scale (World A, B, and C - Most Developed to Least Developed), which is determined by your nation of citizenship. World A tuition is $400 USD; World B is $100 USD; and World C is $10 USD. To find out the fee scale for your country of citizenship, please see the International Fee Scale. "
   these_would_be_the_terms_and_conditions_including_privacy_information: "These would be the terms and conditions including privacy information..."
-  thank_you_confirmation: "Thank you for submitting your application! We'll be reaching out soon."
+  thank_you_confirmation: "Thank you for submitting your Passion Project with Converge."
+  thank_you_converge_team: "Thank you, The YWAM Converge Team"
   this_weekly_cost: "This weekly cost will include all housing and all meal costs for student"
   title: "Title"
   total_projects: "Total Projects"
-  travel_expenses_and_personal_spendings: "*Travel Expenses & Personal Spending*"
-  tuition: "*Tuition*"
+  travel_expenses_and_personal_spendings: "Travel Expenses & Personal Spending"
+  tuition: "Tuition"
   typical_attire: "Typical Attire"
 
   user_language: "User Language"
@@ -306,7 +319,7 @@ en:
   training_costs: "Training costs for Students"
   quick_details: "Quick Details"
   project: "Project: %{project}, %{address}"
-  session: "Session: %{range}"
+  session_range: "Session: %{range}"
   internet_access: "Internet Access: %{internet}"
   project_type: "Project Type: %{type}"
   how_to_contact_me: "How to contact me"
@@ -321,3 +334,10 @@ en:
       models:
         refinery/image:
           too_smaller: The %{dimension} is smaller than %{size} px
+
+  enumerize:
+    refinery/image:
+      footer_category:
+        explore: explore
+        about: about ipo
+        resources: resources

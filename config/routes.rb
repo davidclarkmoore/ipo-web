@@ -3,7 +3,7 @@ require 'sidekiq/web'
 IpoWeb::Application.routes.draw do
 
   authenticated :login do
-    root :to => "dashboards#index"
+    root :to => "refinery/pages#home"
   end
 
   devise_for :logins, class_name: "Login"

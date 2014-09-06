@@ -34,7 +34,7 @@
   }
 
 .filter {
-  @include span-columns(12 omega);
+  @include span-columns(3 alpha);
   @include adjust-leading-to(1.5, 16px);
   @include padding-leader(1);
   @include padding-trailer(1);
@@ -469,6 +469,13 @@ ul.weekly-cost li {
 // Project Search
 // -------------
 
+.student_passions {
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+}
+
 form.project_search {
   margin-bottom: 2em;
 }
@@ -508,9 +515,8 @@ form.project_search {
     display: inline-block;
     margin-right: 2em;
     margin-bottom: 0;
-    width: 22%;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    width: 100%;
     overflow: hidden;
 
     .mode label {

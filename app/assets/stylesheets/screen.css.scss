@@ -139,6 +139,12 @@ body {
   //@include susy-grid-background;
 }
 
+//Looks better we think...
+
+.container {
+  max-width: 95%;
+}
+
 .header-bg, .header-bg-large {
  // background: url(header-bg.png) no-repeat;
 
@@ -261,12 +267,9 @@ nav.main {
   }
 }
 
-
-
 .hero {
   padding-top: 10%;
 }
-
 
 nav.sub-menu {
   @include adjust-font-size-to(14px, 1.5);
@@ -307,7 +310,6 @@ nav.sub-menu {
     } 
   }
 }
-
 
 #reach-out {
   padding-left: 64px;
@@ -378,7 +380,6 @@ article {
   @include box-shadow (inset 0px 1px 2px $dark-grey);
 }
 
-
 /* ===========
    Form Styles
    =========== */
@@ -418,8 +419,6 @@ form {
     &:-ms-input-placeholder {
       color: $grey;
     }
-
-
   }
 
 #q_name_or_address_cont:-webkit-input-placeholder {
@@ -490,7 +489,7 @@ fieldset:last-child {
   }
 
   .search-results {
-    padding: 3em 0 3em 0;
+    padding: 3em 1em 3em 0;
   }
 
   #filter-details {
@@ -499,7 +498,8 @@ fieldset:last-child {
 
   .filter.c3.omega {
     margin-top: 0;
-    padding-top: .4em;
+    padding: 1em;
+    background-color: white;
 
     h3, i {
       display: inline;

@@ -14,19 +14,18 @@
     = hidden_field_tag :view, params[:view]
 
     .c12
-      .c3.alpha.mode
-        %label= t(:project_mode)
-        %label.checkbox
-          = t(:team)
-          = f.check_box :team_mode_true, { :data => {:toggle => "checkbox"} }
-        %label.checkbox
-          = t(:individual)
-          = f.check_box :team_mode_false, { :data => {:toggle => "checkbox"} }
-      .c5= f.text_field :name_or_address_cont, size: 15, placeholder: t(:text_search), value: @name_or_address
+      .c9= f.text_field :name_or_address_cont, size: 15, placeholder: t(:text_search), value: @name_or_address
       .filter.c3.omega
         %div
           %h3= "Advanced Filters"
         %div#filter-details
+          %label= t(:project_mode)
+          %label.checkbox
+            = t(:team)
+            = f.check_box :team_mode_true, { :data => {:toggle => "checkbox"} }
+          %label.checkbox
+            = t(:individual)
+            = f.check_box :team_mode_false, { :data => {:toggle => "checkbox"} }
           %label= t(:session_timeframe)
           = f.collection_select :sessions_id_in, @sessions, :id, :select_label, {}, include_blank: true, multiple: true
 

@@ -255,6 +255,7 @@ li.tab {
   -webkit-transition: all .4s ease;
   -moz-transition: all .4s ease;
   transition: all .4s ease;
+    line-height: 1.5em;
 }
 
 .button-group {
@@ -267,7 +268,10 @@ li.tab {
   > .button {
     font-size: 16px;
     border-radius: 0;
+    line-height: 1.5em;
+
     &.active { font-weight: bold; }
+
     &:first-child {
       border-top-left-radius: 2px;
       border-bottom-left-radius: 2px;

@@ -522,7 +522,10 @@ form.project_search {
     .mode label {
      width: inherit;
     }
+
   }
+
+body.controller-projects .button-group a {line-height: 2em;}
 
   .mode label.checkbox {
     width: auto;

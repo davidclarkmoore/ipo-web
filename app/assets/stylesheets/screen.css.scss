@@ -397,22 +397,41 @@ form {
     padding: .5em;
     background-color: rgba(0,0,0,0.1);
     border: 0em;
+    font-family: $body-font-family;
 
     &:focus {
       background-color: rgba(0,0,0,0.1);
     }
+
+    &::-webkit-input-placeholder {
+    color: $grey;
+    }
+
+    &::-moz-placeholder {
+      color: $grey;
+    }
+
+    &:-moz-placeholder {
+      color: $grey;
+    }
+
+    &:-ms-input-placeholder {
+      color: $grey;
+    }
+
+
   }
 
+#q_name_or_address_cont:-webkit-input-placeholder {
+   color: rgba(0,5,143,.5);
+   text-transform: uppercase;
+}
 
   input[type='submit'], input[type='submit'].button {
     @include adjust-font-size-to(16px, 1, 14px);
     @include leader(1, 16px);
     @include trailer(1, 16px);
     width: 100%;
-  }
-
-  .c5 input, .c4 input {
-    background-color: $extra-light-grey;
   }
 
   input#search {

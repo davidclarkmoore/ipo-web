@@ -57,7 +57,6 @@
 
 
 .status {
-  @include span-columns(2 alpha, 8);
 
   .status-tag {
     margin-top: 1.5em;

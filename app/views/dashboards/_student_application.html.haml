@@ -1,6 +1,6 @@
 %article.card
   %h4= sa.project_name
-  .status
+  .c4.status
     %label= t(:status)
     .status-tag
       %span= sa.status.text
@@ -12,6 +12,6 @@
     %label= t(:session)
     %h4= pretty_date(sa.start_date) + " - " + pretty_date(sa.end_date)
     
-  .c4
+  .c4.omega
     %label= t(:student_profile)
     %h4= @login.entity.published_status_to_string

@@ -476,7 +476,26 @@ fieldset:last-child {
   margin-bottom: 0;
 }
 
+#project_search {
+  input[type='submit'], input[type='submit'].button {
+    margin-top: 0;
+    line-height: 1.6em;
+  }
+}
 
+//hide and show div in advanced filter options
+
+#project_search {
+
+  .filter.c3.omega {
+    margin-top: 0;
+    padding-top: .5em;
+
+    h3, i {
+      display: inline;
+    }
+  }
+}
 
 #donate_form {
   width: 80%;

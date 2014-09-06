@@ -140,6 +140,12 @@ margin-right: .2em;
   color: $dark-grey;
 }
 
+.entypo-expand:before {
+  content: "\2795";
+  font-size: 50px;
+  color: black;
+}
+
 .entypo-chevron-right:before {
   content: "\E762";
   color: white;
@@ -151,8 +157,6 @@ margin-right: .2em;
   color: white;
   font-size: 50px;
 }
-
-
 
 // ---------------------------------------------------------------------------
 // Media Queries

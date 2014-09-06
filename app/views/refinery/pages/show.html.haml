@@ -1,3 +1,14 @@
-- @page.parts.each do |p|
-  %article.box{class: [p.color.present? ? "box-#{p.color}" : "", p.display_type, p.margin].join(" ")}
-    .container= raw p.body
+- if @page.cover_image
+  .cover    
+    .cover-image= image_tag @page.cover_image.url
+    %h1.subtitle= @page.cover_title
+
+
+- @page.parts.each do |p|  
+  %article.box{class: [p.color.present? ? "box-#{p.color}" : "", p.margin].join(" ")}
+    .container
+      - if p.column_image
+        .c4.image-column= image_tag p.column_image.url
+        .c8.omega.text-column= raw p.body
+      - else
+        = raw p.body

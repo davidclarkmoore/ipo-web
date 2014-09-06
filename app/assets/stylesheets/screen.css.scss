@@ -444,6 +444,30 @@ fieldset:last-child {
   border: 2px solid #ccc;
 }
 
+/*== Refinery Page Flow == */
+.image-column { text-align: right; }
+.image-column img { max-width: 100%; }
+.text-column { padding: 2em; padding-top: 0px; }
+
+.cover {
+  max-height: 25em;
+  margin-bottom: 3em;
+  overflow: hidden;
+  position: relative;
+}
+.cover h1 {
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  margin-top: -55px;
+  @include adjust-font-size-to(55px, 4);
+}
+
+.cover-image img {
+  max-width: 100%;
+}
 
 /* overflow-x chrome fix */
 .select2-offscreen { display: none!important; }

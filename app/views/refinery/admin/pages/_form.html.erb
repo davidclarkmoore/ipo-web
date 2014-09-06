@@ -1,0 +1,123 @@
+<%= form_for [refinery, :admin, @page],
+             :url => (refinery.admin_page_path(@page.nested_url) if @page.persisted?) do |f| %>
+
+  <%= render '/refinery/admin/error_messages', :object => @page, :include_object_name => true %>
+
+  <%= render '/refinery/admin/locale_picker', :current_locale => Globalize.locale %>
+
+  <div id="title-field" class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "larger widest" %>
+  </div>
+
+  <div id="cover-title-field" class="field">
+    <%= f.label :cover_title %>
+    <%= f.text_field :cover_title, :class => "larger widest" %>
+  </div>  
+  
+  <% if @page.cover_image.present? %>    
+    <div class='cover_image'>
+      <br /><br />
+      <%= image_fu @page.cover_image, '135x135#c' %>
+    </div>
+  <% end %>  
+
+  <div class='cover_image_field wym_area_top'>
+    <span class='clearfix label_inline_with_link'>
+      <%= link_to 'Add Cover Image', refinery.insert_admin_images_path({
+                    :dialog => true, :width => 950, :height => 510,
+                    :callback => "cover_image_added"
+                  }),
+                  :id => "add_image_link",
+                  :class => "add_cover_image_link" %>
+    </span>
+  </div>
+
+  <%= render 'form_fields_after_title', :f => f %>
+
+  <div class='field'>
+    <%= render 'form_page_parts', :f => f %>
+  </div>
+
+  <%= render 'form_advanced_options', :f => f %>
+
+  <%= render '/refinery/admin/form_actions', :f => f,
+             :continue_editing => true,
+             :delete_title => t('delete', :scope => 'refinery.admin.pages'),
+             :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @page.title),
+             :before_cancel_button => submit_tag(
+               t('.preview'),
+               :id => 'preview-button',
+               :title => 'Preview page',
+               :name => nil,
+               :class => "wymupdate button",
+               :tooltip => t('.preview_changes')
+             ),
+             :cancel_url => refinery.admin_pages_path %>
+
+  <%= render 'form_new_page_parts', :f => f if Refinery::Pages.new_page_parts %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      page_options.init(
+        <%= Refinery::Pages.new_page_parts.to_s %>
+        , "<%= refinery.new_admin_page_part_path %>"
+        , "<%= refinery.admin_page_parts_path %>"
+      );
+
+      $("#preview-button").click(function(e) {
+        var form = $(this).parents('form');
+        var prev_url = form.attr('action');
+        var prev_target = form.attr('target');
+        form.attr({
+          'action': '<%= @page.persisted? ? refinery.pages_admin_preview_page_path(@page.nested_url) : refinery.pages_admin_preview_pages_path %>'
+          , 'target': '_blank'
+        });
+        form.submit();
+        form.attr({
+          'action': prev_url
+          , 'target': prev_target
+        });
+        e.preventDefault();
+      });
+    });
+  </script>
+<% end %>
+
+<div class='js-cover-image-template'>
+  <br /><br />
+  <%= hidden_field_tag "page[cover_image_id]" %>
+</li>
+
+<% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      cover_image_template = $(".js-cover-image-template").detach();
+      cover_image_added = function(image) {
+
+        html = cover_image_template.clone();
+        hidden_input = html.find('input:hidden:first');
+        /* Add proper id val to id input */        
+        image_id = $(image).attr('id').replace('image_', '');
+        hidden_input.val(image_id);
+
+        /* clean up any previously inserted images */
+        $(".js-cover-image-template").remove();
+        $(".cover_image").remove();
+
+                  
+        $("<img />").attr({
+          title: $(image).attr('title')
+          , alt: $(image).attr('alt')
+          , src: $(image).attr('data-grid') // use 'grid' size that is built into Refinery CMS (135x135#c).
+        }).appendTo(html);
+
+        html.attr('id', 'image_' + image_id).removeClass('empty');
+        html.insertAfter($("#cover-title-field"));
+
+      }
+    });
+  </script>
+<% end %>

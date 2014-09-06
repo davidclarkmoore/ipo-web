@@ -14,4 +14,21 @@
 
   <label>Margin</label>
   <%= select_tag "page[parts_attributes][#{part_index}][margin]", options_for_select(Refinery::PagePart.margin_options, part.margin) %>
+
+  <div class='column_image_field wym_area_top'>
+    <span class='clearfix label_inline_with_link'>
+      <%= link_to 'Add Column Image', refinery.insert_admin_images_path({
+                    :dialog => true, :width => 950, :height => 510,
+                    :callback => "column_image_added"
+                  }),
+                  :id => "add_image_link",
+                  :class => "add_column_image_link" %>
+    </span>
+  </div>
+
+  <% if part.column_image.present? %>
+    <div class='column_image'>
+      <%= image_fu part.column_image, '135x135#c' %>
+    </div>
+  <% end %>
 </div>

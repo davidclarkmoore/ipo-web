@@ -1,5 +1,7 @@
 Refinery::PagePart.class_eval do
-  attr_accessible :color, :display_type, :margin, :title
+  attr_accessible :color, :display_type, :margin, :title, :column_image, :column_image_id
+  belongs_to :column_image, class_name: Refinery::Image
+
 
   #searchkick mappings: {
   #  'refinery/page_part' => {
@@ -13,6 +15,8 @@ Refinery::PagePart.class_eval do
   #def search_data
   #  as_json only: [:body]
   #end
+
+
   
   def self.color_options
     [['Default', nil],

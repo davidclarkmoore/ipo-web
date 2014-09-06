@@ -153,7 +153,6 @@ body {
 header {
   @include adjust-leading-to(4);
   background-color: #fff;
-  margin-bottom: 3em;
   color: white;
   -webkit-font-smoothing: antialiased;
   overflow: auto;
@@ -266,20 +265,47 @@ nav.main {
 
 .hero {
   padding-top: 10%;
-  margin-top: -3em;
 }
 
 
 nav.sub-menu {
   @include adjust-font-size-to(14px, 1.5);
-  box-shadow: inset -1px -2px 10px rgba(0, 0, 0, .15);
-  border-bottom: 4px solid #696969;
-  background: #8D8A8A;
+  background-color: $light-green;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
   text-transform: uppercase;
+
+  .container {
+    max-width: 60em;
+    overflow: hidden;
+  }
   
-  a { color: white; text-decoration: none; }
+  .sub-nav-wrapper {
+    width: 100%;
+    white-space: nowrap;
+    position: relative;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    overflow: auto;
+    // background-image: -webkit-gradient(
+    //   linear,
+    //   right top, right bottom,
+    //   from(rgba(255, 255, 255, 1)),
+    //   to(rgba(255, 255, 255, 0))
+    //   );
+    //   -webkit-background-clip: text;
+    //   -webkit-text-fill-color: transparent;
+  }
+
+  a { 
+    text-decoration: none;
+    padding: 1em;
+    color: white;
+
+    &:hover {
+      background-color: $green;
+    } 
+  }
 }
 
 

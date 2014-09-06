@@ -39,6 +39,7 @@ $orange : #ff9855;
 $blue   : #80c8d4;
 $light-blue: #f0fafc;
 $green  : #a2d49a;
+$light-green : #C6E6C3;
 $grey   : #999;
 $shaded-grey: #ebedef;
 $light-yellow: #fefff5;
@@ -129,6 +130,20 @@ margin-right: .2em;
   font-size: 50px;
   color: $dark-grey;
 }
+
+.entypo-chevron-right:before {
+  content: "\E762";
+  color: white;
+  font-size: 50px;
+}
+
+.entypo-chevron-left:before {
+  content: "\E75D";
+  color: white;
+  font-size: 50px;
+}
+
+
 
 // ---------------------------------------------------------------------------
 // Media Queries

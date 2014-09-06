@@ -2,8 +2,6 @@
   - menu_pages.each do |page|
     %span.link.heading
       = link_to page.menu_title, page.slug 
-      %span.entypo-carrot-down
-
   //for Hamburger button when nav bar collapses 
 
   %span
@@ -11,12 +9,5 @@
   = form_tag '/search', :method => :get do
     = search_field_tag :search, @search, :autocomplete => false, :value => "Search + Enter".html_safe
     = submit_tag 'Search', :class => 'button button-green', :id => 'submit' 
-
-  %ul.home-drop-down
-    %li Why we are amazing
-    %li Why you are going to love us
-    %li Yep, we are awesome
-    %li Did I mention we rock?
-    %li We are so cool 
 
   = yield :navigation

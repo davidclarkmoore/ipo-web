@@ -20,6 +20,8 @@
       .field_host_phone_type
         = f.input :phone_type, class: 'select2'
 
+      .c12
+
       = f.fields_for :login, @login, validate: true do |f_login|
 
         .field_host_profile_picture

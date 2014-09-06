@@ -1,3 +1,4 @@
-= link_to t(:a_z), projects_path(order: 'name', view: params[:view], properties: params[:properties], q: params[:q]), remote: true
-= link_to t(:recent), projects_path(order: 'created_at asc', view: params[:view], properties: params[:properties], q: params[:q]), remote: true
-= link_to t(:oldest), projects_path(order: 'created_at desc', view: params[:view], properties: params[:properties], q: params[:q]), remote: true
+.button-group
+	= button_link_to t(:a_z), projects_path(order: 'name', view: params[:view], properties: params[:properties], q: params[:q]), remote: true
+	= button_link_to t(:recent), projects_path(order: 'created_at asc', view: params[:view], properties: params[:properties], q: params[:q]), remote: true
+	= button_link_to t(:oldest), projects_path(order: 'created_at desc', view: params[:view], properties: params[:properties], q: params[:q]), remote: true

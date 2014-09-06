@@ -1,47 +1,47 @@
 .container
   .explore
-    .c8
-      %h3= t(:explore_ipo_connection_projects)
+    .c6.alpha
+      / %h3= t(:explore_ipo_connection_projects)
       .total-projects= "#{@total_projects.to_s} #{t(:total_projects)}"
 
-    .options
-      %h4.explore-by= t(:explore_by)
-      #option_buttons= render "button_group"
+    .c6.omega.options
+      / %h4.explore-by= t(:explore_by)
+      = render "sort_links"
+      = render "button_group"
 
-  .search-box
-    .sort.clr
-      #sort_links= render "sort_links"
-      
-    = search_form_for @projects, builder: SimpleForm::FormBuilder, remote: true do |f|
-      = hidden_field_tag :view, params[:view]
-      .filter
-        .session
-          %h4= t(:session_timeframe)
-          = f.collection_select :sessions_id_in, @sessions, :id, :select_label, {}, include_blank: true, multiple: true
+ 
+  = search_form_for @projects, builder: SimpleForm::FormBuilder, remote: true do |f|
+    = hidden_field_tag :view, params[:view]
 
-        .include
-          %h4= t(:fields_of_study)
-          = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, @field_of_study), include_blank: true , multiple: true 
+    .c4.alpha.mode
+      %label= t(:project_mode)
+      %label.checkbox
+        = t(:team)
+        = f.check_box :team_mode_true, { :data => {:toggle => "checkbox"} }
+      %label.checkbox
+        = t(:individual)
+        = f.check_box :team_mode_false, { :data => {:toggle => "checkbox"} }
+    .c8.omega= f.text_field :name_or_address_cont, size: 15, placeholder: t(:text_search), value: @name_or_address
+    
+    .filter
+      .c12
+        %label= t(:session_timeframe)
+        = f.collection_select :sessions_id_in, @sessions, :id, :select_label, {}, include_blank: true, multiple: true
 
-        .mode
-          %h4= t(:project_mode)
-          %label.checkbox
-            = t(:team)
-            = f.check_box :team_mode_true, { :data => {:toggle => "checkbox"} }
-          %label.checkbox
-            = t(:individual)
-            = f.check_box :team_mode_false, { :data => {:toggle => "checkbox"} }
+        / .include
+      .c12
+        %label= t(:fields_of_study)
+        = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, @field_of_study), include_blank: true , multiple: true 
 
-        .search= f.text_field :name_or_address_cont, size: 15, placeholder: t(:text_search), value: @name_or_address
-
-      .interests.clr
+      .c12
         %h4= t(:filter_by_passion)
+        .clr
         - student_passions.each do |key, value|
           %label.checkbox
             = check_box_tag "properties[related_student_passions][]", value, false, :data => {:toggle => "checkbox"}
             = key
 
-      = f.submit t(:search), class: "button button-orange"
+    = f.submit t(:search), class: "button button-orange"
 
 
   #projects

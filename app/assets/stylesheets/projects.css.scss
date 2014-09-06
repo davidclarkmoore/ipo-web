@@ -22,13 +22,16 @@
   }
 
   .new-project { margin-left: 1.5em; }
-  .button-group { display: inline; }
-  >.options {
-    @include adjust-leading-to(1.5, 16px);
-    @include span-columns(4);
-    @include omega;
+  .button-group { display: inline-block; }
+  .options {
+    text-align:right;
   }
+
 }
+
+#project_search .mode label {
+    margin-bottom: 0em;
+  }
 
 .filter {
   @include span-columns(12 omega);
@@ -509,11 +512,16 @@ form.project_search {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
+    .mode label {
+     width: inherit;
+    }
   }
 
   .mode label.checkbox {
     width: auto;
   }
+
 
   .select2-container {
     font-size: 1em;

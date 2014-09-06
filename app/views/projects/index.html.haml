@@ -14,7 +14,7 @@
     = hidden_field_tag :view, params[:view]
 
     .c12
-      .c4.alpha.mode
+      .c3.alpha.mode
         %label= t(:project_mode)
         %label.checkbox
           = t(:team)
@@ -23,37 +23,37 @@
           = t(:individual)
           = f.check_box :team_mode_false, { :data => {:toggle => "checkbox"} }
       .c5= f.text_field :name_or_address_cont, size: 15, placeholder: t(:text_search), value: @name_or_address
+      .filter.c3.omega
+        %div
+          %h3= "Advanced Filters"
+        %div#filter-details
+          %label= t(:session_timeframe)
+          = f.collection_select :sessions_id_in, @sessions, :id, :select_label, {}, include_blank: true, multiple: true
+
+          / .include
+          %label= t(:fields_of_study)
+          = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, @field_of_study), include_blank: true , multiple: true 
+
+          %h4= t(:filter_by_passion)
+          .clr
+
+          %div.student_passions
+            - student_passions.each do |key, value|
+              %label.checkbox
+                = check_box_tag "properties[related_student_passions][]", value, false, :data => {:toggle => "checkbox"}
+                = key
       
       / .c3.omega
       /   = f.submit t(:search), class: "button button-orange"
 
-    .c9.alpha
-      - if @projects.result.empty?
-        = render "no_projects_available"
-      - else
-        #related_projects
-          = render "projects_#{params[:view]}", projects: @projects.result.order("#{params[:order]}")
+      .c9.alpha
+        - if @projects.result.empty?
+          = render "no_projects_available"
+        - else
+          #related_projects
+            = render "projects_#{params[:view]}", projects: @projects.result.order("#{params[:order]}")
 
-    .filter.c3.omega
-      %div
-        %h3= "Advanced Filters"
-        %i.entypo-expand
-      %div#filter-details
-        %label= t(:session_timeframe)
-        = f.collection_select :sessions_id_in, @sessions, :id, :select_label, {}, include_blank: true, multiple: true
 
-        / .include
-        %label= t(:fields_of_study)
-        = select_tag "properties[related_fields_of_study]", options_for_select(fields_of_study, @field_of_study), include_blank: true , multiple: true 
-
-        %h4= t(:filter_by_passion)
-        .clr
-
-        %div.student_passions
-          - student_passions.each do |key, value|
-            %label.checkbox
-              = check_box_tag "properties[related_student_passions][]", value, false, :data => {:toggle => "checkbox"}
-              = key
 
 
 

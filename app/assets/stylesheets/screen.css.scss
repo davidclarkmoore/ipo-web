@@ -476,6 +476,12 @@ fieldset:last-child {
   margin-bottom: 0;
 }
 
+.controller-projects {
+  .explore {
+    padding-bottom: 2em;
+  }
+}
+
 #project_search {
   input[type='submit'], input[type='submit'].button {
     margin-top: 0;
@@ -487,9 +493,13 @@ fieldset:last-child {
 
 #project_search {
 
+  #filter-details {
+    padding-top: 2em;
+  }
+
   .filter.c3.omega {
     margin-top: 0;
-    padding-top: .5em;
+    padding-top: .4em;
 
     h3, i {
       display: inline;

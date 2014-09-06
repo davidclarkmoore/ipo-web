@@ -45,6 +45,7 @@
 }
 
 .dashboard {
+  margin-top: 3em;
   .body {
     margin-top: 2em;
    @include span-columns(6 alpha, 6);

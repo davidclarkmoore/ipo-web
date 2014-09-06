@@ -483,15 +483,15 @@ fieldset:last-child {
 }
 
 #project_search {
+
   input[type='submit'], input[type='submit'].button {
     margin-top: 0;
     line-height: 1.6em;
   }
-}
 
-//hide and show div in advanced filter options
-
-#project_search {
+  .search-results {
+    padding: 3em 0 3em 0;
+  }
 
   #filter-details {
     padding-top: 2em;

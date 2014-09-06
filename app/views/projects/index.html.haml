@@ -43,10 +43,10 @@
                 = check_box_tag "properties[related_student_passions][]", value, false, :data => {:toggle => "checkbox"}
                 = key
       
-      / .c3.omega
-      /   = f.submit t(:search), class: "button button-orange"
+      .hide
+        = f.submit t(:search), class: "button button-orange"
 
-      .c9.alpha
+      .c9.alpha.search-results
         - if @projects.result.empty?
           = render "no_projects_available"
         - else

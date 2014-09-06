@@ -63,6 +63,10 @@
   $(document).on("click", ".project-result", (function() {
     $(location).attr('href', "/projects/" + $(this).data('project'));
   }));
+
+  $("input").change(function() {
+    $("form.project_search input[type='submit']").submit();
+  });
 //    $(location).attr('href', "/projects/" + $(this).data('project'));     alert( "Goodbye!" ); // jQuery 1.4.3+
 
 

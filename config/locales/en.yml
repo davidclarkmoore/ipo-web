@@ -318,10 +318,7 @@ en:
   cost_associated_with_rutine: "Costs associated with running project"
   training_costs: "Training costs for Students"
   quick_details: "Quick Details"
-<<<<<<< HEAD
   project: "Project: %{project}, %{address}"
-=======
->>>>>>> a7624c403d5a30c6ca51acd5abf9fd0a1ff514cf
   project_address: "Project: %{project}, %{address}"
   session_range: "Session: %{range}"
   internet_access: "Internet Access: %{internet}"

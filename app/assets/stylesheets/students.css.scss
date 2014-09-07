@@ -20,13 +20,7 @@ form#new_student_application, form.edit_student_application, form.new_student_ap
     .select2-container { width: 32% !important; }
   }
 
-  .student_application_student_gender {
-    @include span-columns(4, 12);
-    label.radio {
-      width: 40%;
-      display: inline-block;
-    }
-  }
+
   .student_application_student_marital_status { @include span-columns(2 omega, 12); }
   .student_application_student_street_address { @include span-columns(12 omega, 12); }
   .student_application_student_city { @include span-columns(6, 12); }

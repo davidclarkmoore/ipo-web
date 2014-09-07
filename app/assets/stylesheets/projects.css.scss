@@ -123,7 +123,7 @@ form#new_project, form.edit_project, form.new_student_application, form.edit_stu
     height: 5em;
   }
 
-  label.checkbox { margin-right: 2em; }
+  label.checkbox, label.radio { margin-right: 2em; }
 
   .select2-container, input, textarea { width: 100%; }
 

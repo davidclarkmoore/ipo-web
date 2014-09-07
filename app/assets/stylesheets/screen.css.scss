@@ -398,7 +398,10 @@ form {
     @include trailer(0.5);
   }
 
-  label.checkbox { display: inline; }
+  label.checkbox, label.radio { 
+    display: inline; 
+    cursor: pointer;
+  }
 
   div.input {  @include trailer(); }
 

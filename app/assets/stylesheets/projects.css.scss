@@ -22,7 +22,10 @@
   }
 
   .new-project { margin-left: 1.5em; }
-  .button-group { display: inline-block; }
+  .button-group { 
+      display: inline-block; 
+      margin-top: 0;
+    }
   .options {
     text-align:right;
   }

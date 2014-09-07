@@ -182,6 +182,7 @@ en:
   project_mode: "Project Mode"
   project_name: "Project Name"
   project_sessions: "Project Sessions"
+  project_search_placeholder: "Search Projects"
   project_setup_application: "Project Setup Application"
   publish_your_internship_opportunity: "Publish Your Internship Opportunity"
   published: "Published"

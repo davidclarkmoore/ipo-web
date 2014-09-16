@@ -141,10 +141,6 @@ body {
 
 //Looks better we think...
 
-.container {
-  max-width: 95%;
-}
-
 .header-bg, .header-bg-large {
  // background: url(header-bg.png) no-repeat;
 
@@ -544,10 +540,7 @@ fieldset:last-child {
   @include adjust-font-size-to(55px, 4);
 }
 
-.cover-image img {
-  max-width: 100%;
-  margin-top: -20%;
-}
+.cover-image img { max-width: 100%; }
 
 /* overflow-x chrome fix */
 .select2-offscreen { display: none!important; }

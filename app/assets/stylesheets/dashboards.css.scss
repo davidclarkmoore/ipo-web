@@ -5,7 +5,7 @@
 
 // ----------------- Dash - Field Hosts -----------------
 
-.dash-project {
+.card {
   background-color: white;
   margin-bottom: 1.5em;
   border-radius: 2px;
@@ -45,19 +45,19 @@
 }
 
 .dashboard {
+  margin-top: 3em;
   .body {
     margin-top: 2em;
    @include span-columns(6 alpha, 6);
   }
 }
 
-.project-overview {
+.dashbaord .overview {
     @include span-columns(6 alpha, 6);
 }
 
 
-.project-status {
-  @include span-columns(2 alpha, 8);
+.status {
 
   .status-tag {
     margin-top: 1.5em;
@@ -72,14 +72,14 @@
   }
 }
 
-.project-status span {
+.status span {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 1em;
   color: white;
   text-transform: uppercase;
 }
-.project-student-status,.project-student-approved {
+.student-status,.project-student-approved {
    @include span-columns(2, 8);
    h1 {
     font-size: 3em;
@@ -88,12 +88,14 @@
 }
 
 
-.project-details {
+.details {
      @include span-columns(2 omega, 8);
 }
 
 
 // ----------------- Account Settings - Field Hosts / Students ----------------- 
+
+// Need to move all of these includes into our semantic columns at a later point
 
 
 .field_host_first_name { @include span-columns(3 alpha, 6); }
@@ -103,5 +105,18 @@
 .field_host_phone_type { @include span-columns(3 omega, 6); }
 .account_settings_password { @include span-columns(3 omega, 6); }
 .reset_password { line-height: 2em; }
+.field_host_profile_picture { 
+  @include span-columns(2 alpha, 6);
+  @include trailer(1);
 
-#profile_picture_upload { clear: both; }
+  img {
+    border: 3px solid $light-grey;
+  }
+
+   }
+
+.field_host_picture_upload { 
+
+  @include span-columns(4 omega, 6); 
+  @include trailer(1);
+}

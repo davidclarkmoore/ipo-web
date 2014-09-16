@@ -1,0 +1,12 @@
+.home-drop-down {
+  display: none;
+  background-color: white;
+  list-style-type: none;
+  list-style: none;
+  padding-left: 30%;
+  text-align: left;
+}
+
+nav.main {
+  .link a:hover .home-drop-down {display: block;}
+}

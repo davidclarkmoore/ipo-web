@@ -1,5 +1,6 @@
 - if page && page.has_nested_pages?
   %nav{id: 'sub-menu-{page.id}', class: 'sub-menu clr'}
     .container
-      - sub_menu_pages(page).each do |page|
-        %span.link.heading= link_to page.menu_title, page.slug
+      .sub-nav-wrapper
+        - sub_menu_pages(page).each do |page|
+          %span.link.heading= link_to page.menu_title, page.slug

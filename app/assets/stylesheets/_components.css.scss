@@ -255,6 +255,7 @@ li.tab {
   -webkit-transition: all .4s ease;
   -moz-transition: all .4s ease;
   transition: all .4s ease;
+    line-height: 1.5em;
 }
 
 .button-group {
@@ -267,7 +268,10 @@ li.tab {
   > .button {
     font-size: 16px;
     border-radius: 0;
+    line-height: 1.5em;
+
     &.active { font-weight: bold; }
+
     &:first-child {
       border-top-left-radius: 2px;
       border-bottom-left-radius: 2px;
@@ -607,6 +611,13 @@ content: "\e033";
 // Multi-select (select2)
 // ======================
 
+form.project_search .select2-container {
+  
+  border: 0px solid #d9d9d9 !important;
+  margin-bottom: 1em;
+
+}
+
 .select2-container-multi {
   .select2-choices .select2-search-choice {
     line-height: 1em;
@@ -638,11 +649,11 @@ content: "\e033";
   background: transparent;
   background-image: none;
   border: 2px solid $light-grey !important;
-  @include border-radius (5px);
+
 }
 
 .select2-container-multi .select2-choices .select2-search-choice {
-  border: 2px solid $light-grey;
+  border: 1px solid $light-grey;
   background: transparent;
   background-color: white;
   color: $grey;
@@ -680,7 +691,11 @@ content: "\e033";
 .select2-container-multi .select2-choices {
   height: auto !important;
   height: 1%;
-  border: 2px solid #dce4ec;
+  border: 1px solid #dce4ec;
+
+  li {
+    font-size: 80%;
+  }
 }
 
 // ==========

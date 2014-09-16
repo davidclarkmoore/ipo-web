@@ -22,16 +22,22 @@
   }
 
   .new-project { margin-left: 1.5em; }
-  .button-group { display: inline; }
-  >.options {
-    @include adjust-leading-to(1.5, 16px);
-    @include span-columns(4);
-    @include omega;
+  .button-group { 
+      display: inline-block; 
+      margin-top: 0;
+    }
+  .options {
+    text-align:right;
   }
+
 }
 
+#project_search .mode label {
+    margin-bottom: 0em;
+  }
+
 .filter {
-  @include span-columns(12 omega);
+  @include span-columns(3 alpha);
   @include adjust-leading-to(1.5, 16px);
   @include padding-leader(1);
   @include padding-trailer(1);
@@ -466,6 +472,13 @@ ul.weekly-cost li {
 // Project Search
 // -------------
 
+.student_passions {
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+}
+
 form.project_search {
   margin-bottom: 2em;
 }
@@ -505,15 +518,22 @@ form.project_search {
     display: inline-block;
     margin-right: 2em;
     margin-bottom: 0;
-    width: 22%;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    width: 100%;
     overflow: hidden;
+
+    .mode label {
+     width: inherit;
+    }
+
   }
+
+body.controller-projects .button-group a {line-height: 2em;}
 
   .mode label.checkbox {
     width: auto;
   }
+
 
   .select2-container {
     font-size: 1em;

@@ -1,14 +1,18 @@
 IpoWeb::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  MANDRILL_CONFIG = YAML.load(File.read(File.expand_path('../../mandrill.yml', __FILE__)))
+  MANDRILL_CONFIG.symbolize_keys!
+
   config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
-    :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => "idm@uofn.edu",
-    :password  => "eMn2yB0vVFuYM-snoJuboQ", # SMTP password is any valid API key
-    :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'beta.ywamconverge.org', # your domain to identify your server when connecting
+    :address   => MANDRILL_CONFIG[:address],
+    :port      => MANDRILL_CONFIG[:port],
+    :enable_starttls_auto => MANDRILL_CONFIG[:enable_starttls_auto], 
+    :user_name => MANDRILL_CONFIG[:user_name],
+    :password  => MANDRILL_CONFIG[:password],
+    :authentication => MANDRILL_CONFIG[:authentication],
+    :domain => MANDRILL_CONFIG[:domain]
   }
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
@@ -71,8 +75,8 @@ IpoWeb::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-   # Define host for mails
-  config.action_mailer.default_url_options = { :host => 'beta.ywamconverge.org' }
+  # Define host for mails
+  config.action_mailer.default_url_options = { :host => MANDRILL_CONFIG[:domain] }
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

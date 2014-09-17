@@ -1,0 +1,8 @@
+api_key: key
+address: smtp.mandrillapp.com
+port: 587
+enable_starttls_auto: true
+user_name: username
+password: password # SMTP password is any valid API key
+authentication: 'login'# Mandrill supports 'plain' or 'login'
+domain: domain

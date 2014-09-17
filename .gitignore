@@ -20,6 +20,7 @@ pickle-email-*.html
 database.yml
 .DS_Store
 config/sf_api.yml
+config/mandrill.yml
 # Rails
 .bundle
 db/*.sqlite3

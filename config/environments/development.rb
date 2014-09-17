@@ -43,7 +43,6 @@ IpoWeb::Application.configure do
 
   # Use letter opener for mail delivery (github.com/ryanb/letter_opener)
   config.action_mailer.delivery_method = :letter_opener
-  #config.action_mailer.delivery_method = :smtp
 
   # Define host for mails
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }

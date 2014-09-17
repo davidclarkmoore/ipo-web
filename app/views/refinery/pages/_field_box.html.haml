@@ -1,2 +1,3 @@
-%li
-  %span.text= field_box
+= link_to IpoWeb::Application.routes.url_helpers.projects_path(criteria => field_box) do
+  %li
+    %span.text= field_box.humanize

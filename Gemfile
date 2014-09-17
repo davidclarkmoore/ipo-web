@@ -47,6 +47,8 @@ gem 'braintree'
 
 gem 'faraday'
 
+gem 'mandrill-api'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

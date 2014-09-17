@@ -5,6 +5,6 @@ class SalesforceSyncFailureMailer < ActionMailer::Base
     @subject = subject
     @error = error
     @object_id = object_id
-    mail(to: SF_API_CONFIG[:email_address], subject: subject)
+    mail(to: SF_API_CONFIG["email_address"], subject: subject)
   end
 end

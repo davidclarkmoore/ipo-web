@@ -38,12 +38,12 @@ en:
         environmental_stewardship: "Environmental Stewardship"
         human_traffiking: "Human Traffiking"
         interational_students: "International Students"
-        other: "Other"
         poverty_economic_development: "Poverty & Economic Development"
         pure_water_resources: "Pure Water Resources"
         unreached_peoples_church_planting: "Unreached Peoples & Church Planting"
         women_children_risk: "Women & Children at Risk"
-        
+        other: "Other"
+
       required_languages:
         mandarin: "Mandarin"
         spanish: "Spanish"

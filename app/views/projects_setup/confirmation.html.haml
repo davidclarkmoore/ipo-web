@@ -31,7 +31,7 @@
     %h3= @project.name
   .conf_min_max_val
     %label= t(:min_max_label)
-    %h3= @project.min_students + " - " + @project.max_students
+    %h3= @project.min_students.to_s + " - " + @project.max_students.to_s
   .conf_project_sessions
     %label= t(:project_sessions)
     %table

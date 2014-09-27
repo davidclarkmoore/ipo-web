@@ -3,8 +3,8 @@ en:
     project:
       dining_location:
         cafeteria: "Cafeteria"
-        cook_own_food_in_shared_kitchen: "Cook Own Food in Shared Kitchen"
-        shared_meals_at_residence: "Shared Meals at Residence"
+        cook_own_food_in_shared_kitchen: "Cook own food in shared kitchen"
+        shared_meals_at_residence: "Shared meals at residence"
       housing_type:
         dormitory: "Dormitory"
         homestay: "Homestay"
@@ -97,7 +97,7 @@ en:
       safety_level:
         never_walk_alone: "Never Walk Alone"
         daytime_ok_to_walk_area: "Daytime OK to walk area"
-        free_to_move_around_alone: "Free to Move Around Alone"
+        free_to_move_around_alone: "Free to move around alone"
       status:
         incomplete: "Incomplete"
         complete: "Pending Review"

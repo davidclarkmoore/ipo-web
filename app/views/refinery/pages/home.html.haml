@@ -27,10 +27,10 @@
       %li.tab(data-box="#passion_areas")=t(:passion_areas)
 
     #fields_of_study.tab-box
-      %ul= render partial: '/refinery/pages/field_box', collection: @fields_of_study, locals: { criteria: 'properties[related_fields_of_study][]'}
+      %ul= render partial: '/refinery/pages/field_box', collection: @fields_of_study, locals: { criteria: 'related_fields_of_study'}
 
     #passion_areas.tab-box(style="display: none")
-      %ul= render partial: '/refinery/pages/field_box', collection: @student_passions, locals: { criteria: 'properties[related_student_passions][]' }
+      %ul= render partial: '/refinery/pages/field_box', collection: @student_passions, locals: { criteria: 'related_student_passions' }
 
   %article#search_projects.box.box-green
     .container

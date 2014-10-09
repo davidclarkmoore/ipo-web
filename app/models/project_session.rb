@@ -5,7 +5,7 @@ class ProjectSession < ActiveRecord::Base
 
   attr_accessible :project_id, :session_id
   delegate :title, :start_date, :end_date, :title, :application_deadline, :duration, to: :session
-  delegate :status_text, :max_students, :min_students, to: :project
+  delegate :status_text, :status, :max_students, :min_students, to: :project
 
   belongs_to :project
   belongs_to :session

@@ -52,23 +52,47 @@
   }
 }
 
-.dashbaord .overview {
+.overview {
     @include span-columns(6 alpha, 6);
+    h5 {
+      display:inline;
+      margin-left: 0.5em;
+    }
 }
 
-
 .status {
+  @include span-columns(2, 8);
 
   .status-tag {
-    margin-top: 1.5em;
+    margin: 0.5em 0;
   }
 
   .status-tag span {
-    margin-left: 0;
-    background-color: $light-blue;
+    margin-left: 0; 
     padding: .5em;
     @include border-radius (5px);
-    display: inline;
+    display: inline-block;
+  
+    &.incomplete {
+      background-color: $yellow;
+    }
+
+    &.complete {
+      background-color: $light-grey;
+    }
+
+    &.approved {
+      background-color: $light-blue;
+    }
+
+    &.in_review {
+      background-color: $green;
+    }
+
+    &.denied {
+      background-color: $orange;
+    }
+  
   }
 }
 
@@ -79,8 +103,9 @@
   color: white;
   text-transform: uppercase;
 }
-.student-status,.project-student-approved {
-   @include span-columns(2, 8);
+
+.student-status, .project-student-approved, .student-approved {
+   @include span-columns(1.5, 8);
    h1 {
     font-size: 3em;
     margin-bottom: 0;
@@ -89,7 +114,7 @@
 
 
 .details {
-     @include span-columns(2 omega, 8);
+     @include span-columns(2, 8);
 }
 
 

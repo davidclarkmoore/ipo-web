@@ -39,22 +39,15 @@ en:
         divorced: Divorced
         widowed: Widowed
       passions:    
-        business_and_economic_development: "Business & Economic Development"
-        children_at_risk: Children at Risk
-        church_planting: Church Planting
-        drug_abuse: Drug Abuse
-        environmental_stewardship: Environmental Stewardship
-        food_resources: Food Resources
-        hiv_aids_awareness: HIV/AIDS Awareness
-        human_traffiking: Human Traffiking
-        internal_students: International Students
-        malaria_prevention: Malaria Prevention
-        other: Other
-        poverty: Poverty
-        pure_water_resources: Pure Water Resources
-        solar_light_or_heat: "Solar Light &/or Heat"
-        women_children_health: "Women & Children Health"
-        youth_and_young_adults: "Youth & Young Adults"
+        disease_prevention: "Disease Prevention"
+        environmental_stewardship: "Environmental Stewardship"
+        human_traffiking: "Human Traffiking"
+        international_students: "International Students"
+        poverty_and_economic_development: "Poverty & Economic Development"
+        pure_water_resources: "Pure Water Resources"
+        unreached_peoples_and_church_planting: "Unreached Peoples & Church Planting"
+        women_and_children_at_risk: "Women & Children at Risk"
+        other: "Other"
       spoken_languages:
         mandarin: Mandarin
         spanish: Spanish
@@ -68,39 +61,13 @@ en:
         german: German
         other: Other
       fields_of_study:
-        accounting_and_finance: "Accounting & Finance"
-        agriculture: Agriculture
-        aviation: Aviation
-        business_and_development: "Business & Management"
-        child_development: Child Development
-        communications_and_journalism: "Communications & Journalism"
-        community_development: Community Development
-        computers_and_information_systems: "Computers & Information Systems"
-        construction_and_civil_engineering: "Construction & Civil Engineering"
-        counseling: Counseling
-        creative_writing: Creative Writing
-        cultural_anthropology: Cultural Anthropology
-        eduaction_and_teaching: "Education & Teaching"
-        engineering: "Engineering: Elec, Chem, Mech"
-        english: English
-        environmental_studies: Environmental Studies
-        fine_art: Fine Art
-        hospitality_and_service_mgmt: "Hospitality & Service Mgmt"
-        intercultural_studies: Intercultural Studies
-        international_studies: International Studies
-        internet_technology: Internet Technology
-        languages_and_linguistics: "Languages & Linguistics"
-        law_and_criminal_justice: "Law & Criminal Justice"
-        marriage_and_family: "Marriage & Family"
-        occupational_and_physical_therapy: "Occupational & Physical Therapy"
-        organizational_mgmt: Organizational Mgmt
-        political_science: Political Science
-        public_relations_and_marketing: "Public Relations & Marketing"
-        psychology: Psychology
-        social_work: Social Work
-        sports_and_recreation_mgmt: "Sports & Recreation Mgmt"
-        theology_and_religion: "Theology & Religion"
-        video_and_photography: "Video & Photography"
-        web_design: Web Design
-        youth_work: Youth Work
-        other: Other
+        arts_entertainment_sports: "Arts, Entertainment, Sports"
+        business_and_economic_development: "Business & Economic Development"
+        health_and_medicine: "Health & Medicine"
+        media_and_journalism: "Media & Journalism"
+        education_law_and_social_sciences: "Education, Law, & Social Sciences"
+        public_and_social_services: "Public & Social Services"
+        science_math_and_technology: "Science, Math, & Technology"
+        trades_and_personal_services: "Trades & Personal Services"
+        church_and_christian_ministries: "Church & Christian Ministries"
+        other: "Other"

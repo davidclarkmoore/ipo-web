@@ -53,19 +53,35 @@
    Semantic Columns
    ================ */
 
-.omega { @include omega; }
-.c1    { @include span-columns(1); }
-.c2    { @include span-columns(2); }
-.c3    { @include span-columns(3); }
-.c4    { @include span-columns(4); }
-.c5    { @include span-columns(5); }
-.c6    { @include span-columns(6); }
-.c7    { @include span-columns(7); }
-.c8    { @include span-columns(8); }
-.c9    { @include span-columns(9); }
-.c10   { @include span-columns(10); }
-.c11   { @include span-columns(11); }
-.c12   { @include span-columns(12); }
+  .omega { @include omega; }
+
+@media (max-width: 700px) {
+
+  .c1    { @include span-columns(12); }
+  .c2    { @include span-columns(12); }
+  .c3    { @include span-columns(6); }
+  .c4    { @include span-columns(12); }
+  .c6    { @include span-columns(12); }
+  .c12   { @include span-columns(12); }
+
+}
+
+@media (min-width: 700px) {
+
+  .omega { @include omega; }
+  .c1    { @include span-columns(1); }
+  .c2    { @include span-columns(2); }
+  .c3    { @include span-columns(3); }
+  .c4    { @include span-columns(4); }
+  .c5    { @include span-columns(5); }
+  .c6    { @include span-columns(6); }
+  .c7    { @include span-columns(7); }
+  .c8    { @include span-columns(8); }
+  .c9    { @include span-columns(9); }
+  .c10   { @include span-columns(10); }
+  .c11   { @include span-columns(11); }
+  .c12   { @include span-columns(12); }
+}
 
 .c1, .c2, .c3, .c4, .c5, .c6, .c7,
 .c8, .c9, .c10, .c11, .c12 {
@@ -78,12 +94,21 @@
 .post5 { @include post(4); }
 .post8 { @include post(8); }
 
+
+/* ===========
+   Mobile Baby!
+   =========== */
+
+
+
+
 /* ===========
    Browser Behavior for Auto-Fill on Forms
    =========== */
 
 
-// Make auto-fill white, removing webkit yellow ;)
+// Make auto-fill wsdfhite, removing webkit yellow ;)
+
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -154,7 +179,7 @@ body {
 
 .header-bg-large {
   background: url(header-bg-large.jpg) no-repeat;
-  height: 730px;
+  min-height: 730px;
 }
 
 header {
@@ -243,7 +268,7 @@ nav.main {
 
   nav {
     text-align: right;
-    
+
     a {
       text-decoration: none;
       @include adjust-font-size-to(15px);
@@ -283,7 +308,7 @@ nav.sub-menu {
     max-width: 95%;
     overflow: hidden;
   }
-  
+
   .sub-nav-wrapper {
     width: 100%;
     white-space: nowrap;
@@ -301,14 +326,14 @@ nav.sub-menu {
     //   -webkit-text-fill-color: transparent;
   }
 
-  a { 
+  a {
     text-decoration: none;
     padding: 1em;
     color: white;
 
     &:hover {
       background-color: $green;
-    } 
+    }
   }
 }
 
@@ -319,8 +344,8 @@ nav.sub-menu {
   form input[type=email], form input[type=text] {font-size: 1em;}
   input[name="email"] { width: 396px; }
   form {
-    input[name="first_name"], input[name="last_name"] { 
-      width: 162px; 
+    input[name="first_name"], input[name="last_name"] {
+      width: 162px;
       border-radius: 10%;
       font-size: 1em;
     }
@@ -330,6 +355,14 @@ nav.sub-menu {
       width: 64%;
     }
   }
+}
+
+@media (max-width: 700px) {
+
+  #reach-out {
+  padding-left: 0px;
+  }
+
 }
 
 footer li {
@@ -347,8 +380,8 @@ footer {
 
 .footer-menu ul { padding: 0; }
 
-.footer-menu li { 
-  margin-left: 0em; 
+.footer-menu li {
+  margin-left: 0em;
   list-style: none;
 }
 
@@ -445,8 +478,8 @@ form {
     @include trailer(0.5);
   }
 
-  label.checkbox, label.radio { 
-    display: inline; 
+  label.checkbox, label.radio {
+    display: inline;
     cursor: pointer;
   }
 

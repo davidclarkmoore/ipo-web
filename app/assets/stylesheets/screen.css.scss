@@ -201,7 +201,7 @@ header {
 h1.subtitle {
   -webkit-font-smoothing: antialiased;
   color: white;
-  text-shadow: 1px 1px rgba(0, 0, 0, .10);
+  text-shadow: 1px 1px rgba(0, 0, 0, .40);
   font-weight: 300;
   @include adjust-font-size-to(44px, 4);
   @include trailer(3, 44px);
@@ -243,7 +243,7 @@ nav.main {
 
   nav {
     text-align: right;
-    
+
     a {
       text-decoration: none;
       @include adjust-font-size-to(15px);
@@ -283,7 +283,7 @@ nav.sub-menu {
     max-width: 60em;
     overflow: hidden;
   }
-  
+
   .sub-nav-wrapper {
     width: 100%;
     white-space: nowrap;
@@ -301,14 +301,14 @@ nav.sub-menu {
     //   -webkit-text-fill-color: transparent;
   }
 
-  a { 
+  a {
     text-decoration: none;
     padding: 1em;
     color: white;
 
     &:hover {
       background-color: $green;
-    } 
+    }
   }
 }
 
@@ -319,8 +319,8 @@ nav.sub-menu {
   form input[type=email], form input[type=text] {font-size: 1em;}
   input[name="email"] { width: 396px; }
   form {
-    input[name="first_name"], input[name="last_name"] { 
-      width: 162px; 
+    input[name="first_name"], input[name="last_name"] {
+      width: 162px;
       border-radius: 10%;
       font-size: 1em;
     }
@@ -347,8 +347,8 @@ footer {
 
 .footer-menu ul { padding: 0; }
 
-.footer-menu li { 
-  margin-left: 0em; 
+.footer-menu li {
+  margin-left: 0em;
   list-style: none;
 }
 
@@ -445,8 +445,8 @@ form {
     @include trailer(0.5);
   }
 
-  label.checkbox, label.radio { 
-    display: inline; 
+  label.checkbox, label.radio {
+    display: inline;
     cursor: pointer;
   }
 
@@ -534,6 +534,7 @@ fieldset:last-child {
   margin-bottom: 3em;
   overflow: hidden;
   position: relative;
+  background-color: grey;
 }
 .cover h1 {
   z-index: 10;
@@ -545,7 +546,7 @@ fieldset:last-child {
   @include adjust-font-size-to(55px, 4);
 }
 
-.cover-image img { max-width: 100%; }
+.cover-image img { max-width: 100%; @include opacity (.7); min-width: 100%; margin-top: -25%; }
 
 /* overflow-x chrome fix */
 .select2-offscreen { display: none!important; }

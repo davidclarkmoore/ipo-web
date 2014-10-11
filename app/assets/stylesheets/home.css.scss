@@ -206,6 +206,9 @@
 
     @include nth-omega(4n);
 
+    min-height: 300px;
+    margin-top: 1%;
+
     color: white;
     img { width: 100%;
     height: auto; }

@@ -35,7 +35,6 @@
   }
 
   .select2-container {
-    @include adjust-font-size-to(20px, 2);
     width: 100%;
     display: block;
     border: none;

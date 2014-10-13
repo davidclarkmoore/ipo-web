@@ -1,16 +1,16 @@
 %article.card
   .overview
-    %label= t(:project_name, project_name: project_session.project.name) 
+    %label= t(:project_name)  
+    %h5= project_session.project.name
     - if can? :edit, project_session.project
       %span= link_to "edit", edit_project_path(project_session.project), :class => "entypo-edit"
     %br
     %br
   .status
     %label= t(:status)
-    .status-tag
-      %span="Approved"
-
-      / project_session.project.sf_status
+    .status-tag= project_status_tag(project_session)
+    
+    / project_session.project.sf_status
   .student-status
     %label= t(:applications_waiting_for_your_approval)
     %h1= link_to(project_session.student_applications.unapproved.count, "#")
@@ -19,7 +19,8 @@
     %h1=link_to(project_session.student_applications.approved.count, "#")
   .details
     %label= t(:session_dates)
-    %h5= t(:session_dates, start_date: pretty_date(project_session.start_date), end_date: pretty_date(project_session.end_date))
+    %h5= t(:session_dates_start, start_date: pretty_date(project_session.start_date))
+    %h5= t(:session_dates_end, end_date: pretty_date(project_session.end_date))
     %br
     %label= t(:application_deadline_dashboard)
-    %h5= t(:application_deadline_dashboard, deadline: project_session.application_deadline.to_formatted_s(:long_ordinal))
+    %h5= project_session.application_deadline.to_formatted_s(:long_ordinal)

@@ -282,6 +282,7 @@ en:
   user_language: "User Language"
   user: "User: %{user}"
 
+  website_title: "Converge"
   we_setup_an_account_for_you_so_you_can_check_your_application_status: "We'll setup an account for you so you can check your application status, update your info, access important material and setup a funraising page!"
   we_require_that_projects_are_established_6_months: "We require that projects are established 6 months in advanced, but no earlier than 1 year"
   we_require_one_academic_reference: "*We require one academic reference (professor/teacher, academic advisor, etc.). We will send them an email when you complete this application to verify their contact information and setup a quick call with an Converge Staff member.*"

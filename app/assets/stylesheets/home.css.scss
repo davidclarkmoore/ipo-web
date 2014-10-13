@@ -63,15 +63,27 @@
 
   .tab-list .active { color: $blue; }
 
+  .tab-box {
+
+    padding: .5%;
+  }
+
+  .tab-box ul {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .tab-box ul .c4 {
+    width: 32%;
+  }
+
   .tab-box ul li {
     position: relative;
     display: inline-block;
     text-transform: uppercase;
-
-    width: 30%;
     height: 4em;
-    margin: 1em;
     line-height: 4em;
+    margin: .5%;
 
     background-color: $extra-light-grey;
     color: $blue;
@@ -108,6 +120,13 @@
   }
 }
 
+@media (max-width: 700px) {
+
+  #fields_and_areas .tab-box ul .c4 {
+    width: 100%;
+  }
+}
+
 .we-are-unique {
   .col1 {
     @include span-columns(5);
@@ -131,12 +150,22 @@
   @include leader(1, 25px);
   @include trailer(2, 25px);
 
-  @include span-columns(4 omega);
+  @include span-columns(4);
   @include pre(4);
   @include post(4);
 
   text-align: center;
 }
+
+@media (max-width: 700px) {
+
+  #search-projects {
+    @include span-columns(8);
+    @include pre(2);
+    @include post(2);
+  }
+}
+
 
 #home {
   article.description-section {
@@ -167,10 +196,18 @@
     h2 { @include adjust-leading-to(4, 30px); }
   }
 
+  #stories-from-field .button {
+    margin: 2em auto;
+    clear:both;
+  }
+
+
   .field_experience {
-    @include span-columns(3);
+
     @include nth-omega(4n);
-    @include trailer(1);
+
+    min-height: 300px;
+    margin-top: 1%;
 
     color: white;
     img { width: 100%;
@@ -187,6 +224,14 @@
 
   h3 { color: $color; }
 }
+
+@media (max-width: 700px) {
+
+  #home .field_experience {
+    @include nth-omega(2n);
+  }
+}
+
 
 
 article.description-section h2, #pre-footer h3 {

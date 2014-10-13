@@ -50,16 +50,16 @@
   %article#stories-from-field.box.box-blue
     .container
       %h2.center.medium= raw @page.content_for :stories_title
-      .field_experience
+      .c3.field_experience
         = raw @page.content_for :story1
-      .field_experience
+      .c3.field_experience
         = raw @page.content_for :story2
-      .field_experience
+      .c3.field_experience
         = raw @page.content_for :story3
-      .field_experience
+      .c3.field_experience
         = raw @page.content_for :story4
 
-
+    .container
       = button "See All", :green, class: 'x-large button-center' do
         See All
         = image_sprite :arrow_right
@@ -73,6 +73,3 @@
 
     .c4.omega
       = raw @page.content_for :support
-
-
-

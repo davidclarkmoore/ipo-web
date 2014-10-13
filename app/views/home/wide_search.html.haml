@@ -8,7 +8,7 @@
     - @pages.with_details.each do |page,details|
       .result
         = link_to page.title, page.slug
-        %p= details[:highlight][:bodies].html_safe
+        %p= raw(details[:highlight][:bodies] || details[:highlight][:title])
 
 %article.container
   %label.head #{pluralize(@projects.count, 'project result')} for "#{params[:search]}"

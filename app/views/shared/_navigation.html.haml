@@ -1,7 +1,7 @@
 %nav.main
   - menu_pages.each do |page|
     %span.link.heading
-      = link_to page.custom_slug_or_title, page.url
+      = link_to page.menu_title, page.slug 
   //for Hamburger button when nav bar collapses 
 
   %span

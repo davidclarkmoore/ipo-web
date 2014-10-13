@@ -12,6 +12,8 @@ class ProjectsSetupController < ApplicationController
       @project.field_host.build_login unless @project.field_host && @project.field_host.login
     when :the_project
       @project.project_sessions.build if @project.project_sessions.empty?
+    when :confirmation
+      session[:project_id] = nil
     end
     flash[:editing_mode] = @project.complete? # For editing projects 
     @project.wizard_status = step.to_s # For client-side validations
@@ -49,9 +51,6 @@ class ProjectsSetupController < ApplicationController
     else
       render_wizard @project
       session[:project_id] = @project.id
-      if step == :agreement
-        session[:project_id] = nil 
-      end
       # create/update SF object
       ProjectSyncWorker.perform_async(@project.id) if step == :agreement || @project.complete?
     end

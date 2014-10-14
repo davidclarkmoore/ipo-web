@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
       apply = params[:apply]
       @lead = Lead.create( "FirstName" => apply[:first_name],
         "LastName" => apply[:last_name], "Email" => apply[:email],
-        "Company" => "None" );
+        "Company" => "None",  "Interest_in__c" => apply[:interest_in] );
     rescue Databasedotcom::SalesForceError => e
       Rails.logger.warn "SalesForceError creting a Lead: #{e.message}"
     end

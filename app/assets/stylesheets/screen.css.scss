@@ -352,8 +352,13 @@ nav.sub-menu {
     .select2-container {
       @include adjust-font-size-to(16px, 1, 20px);
       margin: 0;
-      width: 64%;
+      width: 100%;
     }
+  }
+
+  .error {
+    text-align: right;
+    margin-right: 2em;
   }
 }
 
@@ -436,6 +441,7 @@ form {
 
     &:focus {
       background-color: rgba(0,0,0,0.1);
+      color: white;
     }
 
     &::-webkit-input-placeholder {

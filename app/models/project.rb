@@ -146,7 +146,7 @@ class Project < ActiveRecord::Base
       ON student_applications.project_session_id = project_sessions.id AND student_applications.status = 'reserved'    
      ")
     .having("(
-      CAST(properties -> 'max_students' AS INTEGER) * COUNT(DISTINCT project_sessions.id)) > COUNT(student_applications.id)        
+      CAST(properties -> 'max_students' AS FLOAT) * COUNT(DISTINCT project_sessions.id)) > COUNT(student_applications.id)        
      ")
     .group("projects.id")
   end

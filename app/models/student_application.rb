@@ -96,30 +96,25 @@ class StudentApplication < ActiveRecord::Base
   attr_writer :name, :stage_name, :end_date, :start_date
   
   def save_to_sf!
-    begin
-      c = SFRails.connection
-      parameters = Formatter.format_parameters({
-          student: self.student, 
-          academic_reference: self.student.academic_reference, 
-          spiritual_reference: self.student.spiritual_reference, 
-          student_application: self, 
-          project: self.project_session.project.sf_object_id,
-          session: self.session.sf_object_id,
-          organization: self.project.organization.sf_object_id })
-      response = c.http_post( SF_STUDENT_APPLICATION_URL , parameters )
-      parsed = JSON.parse(response.body)
-      self.sf_object_id = parsed["Id"]
-      self.student.sf_object_id = parsed["Contact__c"]
-      self.student.academic_reference.sf_object_id = parsed["Academic_Reference__c"]
-      self.student.academic_reference.save
-      self.student.spiritual_reference.sf_object_id = parsed["Spiritual_Reference__c"]
-      self.student.spiritual_reference.save
-      self.save
-    rescue Databasedotcom::SalesForceError => e
-      Rails.logger.warn "SalesForceError saving StudentApplication #{self.id}: #{e.message}"
-      return false
-    end
-    self
+    # Databasedotcom::SalesForceError must be handled by the caller
+    c = SFRails.connection
+    parameters = Formatter.format_parameters({
+        student: self.student, 
+        academic_reference: self.student.academic_reference, 
+        spiritual_reference: self.student.spiritual_reference, 
+        student_application: self, 
+        project: self.project_session.project.sf_object_id,
+        session: self.session.sf_object_id,
+        organization: self.project.organization.sf_object_id })
+    response = c.http_post( SF_STUDENT_APPLICATION_URL , parameters )
+    parsed = JSON.parse(response.body)
+    self.sf_object_id = parsed["Id"]
+    self.student.sf_object_id = parsed["Contact__c"]
+    self.student.academic_reference.sf_object_id = parsed["Academic_Reference__c"]
+    self.student.academic_reference.save
+    self.student.spiritual_reference.sf_object_id = parsed["Spiritual_Reference__c"]
+    self.student.spiritual_reference.save
+    self.save
   end
   
 end

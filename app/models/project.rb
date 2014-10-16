@@ -224,7 +224,7 @@ class Project < ActiveRecord::Base
     self.field_host.organization_id = self.organization_id
   end
 
-  def self.get_pretty_properties(properties, type)
+  def get_pretty_properties(properties, type)
     properties = [] if properties.nil?
 
     all_properties = I18n.t("enumerize.project." + type)

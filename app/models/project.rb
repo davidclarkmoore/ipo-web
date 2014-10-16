@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
       :housing_type, :internet_distance, :location_city, :location_country,
       :location_description, :location_private, :location_state_or_province,
       :location_street_address, :location_type, :max_students,
-      :min_stay_duration, :min_students, :name, 
+      :min_stay_duration, :min_students, :name, :currency,
       :per_week_cost, :per_week_cost_final, :region, :related_fields_of_study, 
       :related_student_passions, :required_languages, :safety_level, 
       :student_educational_requirement, :team_mode, :transportation_available, 

@@ -46,7 +46,7 @@ Refinery::PagePart.create!([
   {
     refinery_page_id: home_page.id,
     title: "Ipo",
-    body: "<img src=\"%s\" title=\"Vid Thumb1\" alt=\"Vid Thumb1\" width=\"487\" height=\"297\" />\r\n<h1 class=\"text-align-left\"><span style=\"background-color: transparent;\" class=\"font-size-normal\">What makes IPO different?</span>\r\n</h1>\r\n<div><div><h2><span>Choose a missional internship that matches your field of study,&#160;area of passion, and availability. Because sometimes you just need to get out of the classroom.</span>\r\n</h2>\r\n</div>\r\n</div>" % vid_thumb.url,
+    body: "<img src=\"%s\" title=\"Vid Thumb1\" alt=\"Vid Thumb1\" width=\"487\" height=\"297\" />\r\n<h1 class=\"text-align-left\"><span style=\"background-color: transparent;\" class=\"font-size-normal\">What makes Converge different?</span>\r\n</h1>\r\n<div><div><h2><span>Choose a missional internship that matches your field of study,&#160;area of passion, and availability. Because sometimes you just need to get out of the classroom.</span>\r\n</h2>\r\n</div>\r\n</div>" % vid_thumb.url,
     position: 4,
     display_type: "img-right"
   },
@@ -108,7 +108,7 @@ Refinery::PagePart.create!([
   {
     refinery_page_id: home_page.id,
     title: "Support",
-    body: "<h2>Support IPO</h2>\r\n<h3>Give to students &amp; projects or tell the World about us!</h3>",
+    body: "<h2>Support Converge</h2>\r\n<h3>Give to students &amp; projects or tell the World about us!</h3>",
     position: 13
   }])
 

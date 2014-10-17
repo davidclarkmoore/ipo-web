@@ -62,7 +62,7 @@ en:
   donation_cancel: "Cancel"
   donation_card_number: "Card Number:"
   donation_code: "Code"
-  donation_contribution_description: "Contributions in support of IPO Connection are 100% tax deductible with the understanding that no goods or services are received by the donor. Donations may be made as scholarships for participant project expenses."
+  donation_contribution_description: "Contributions in support of Converge are 100% tax deductible with the understanding that no goods or services are received by the donor. Donations may be made as scholarships for participant project expenses."
   donation_cvv: "CVV:"
   donation_email: "Email:"
   donation_expiration_date: "Expiration Date:"
@@ -77,7 +77,7 @@ en:
   donation_secure_transaction_description: "Your credit card information is being processed by Braintree does not give or sell information to any third party organizations. To receive a detailed review of our privacy statement, please visit our approved Privacy Statement."
   donation_security: "Security"
   donation_status: "Status"
-  donation_support_ipo_connection: "Support the IPO Connection"
+  donation_support_ipo_connection: "Support Converge"
   donation_for_reserve_my_spot: "Reserve my spot for $25!"
   donation_title: "Donation Information"
   donation_mail_thanks: "Thanks for your donation!"
@@ -330,7 +330,7 @@ en:
   share_this: "Share this!"
   events: "Events"
   checkout_one_of_our_mobilization_events: "Checkout one of our mobilization events, webinars or fundraisers!"
-  support_ipo: "Support IPO"
+  support_ipo: "Support Converge"
   give_to_students_or_projects: "Give to students & projects or tell the world about us!"
 
   activerecord:

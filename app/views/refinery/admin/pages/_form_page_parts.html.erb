@@ -62,6 +62,7 @@
   <script>
     $(document).ready(function(){
       column_image_template = $(".js-column-image-template").detach();
+      
       column_image_added = function(image) {
         index = $("[aria-selected=true]").data('index');
 
@@ -91,7 +92,41 @@
 
         html.attr('id', 'image_' + image_id).removeClass('empty');
         html.insertAfter($("[aria-expanded=true]").find(".column_image_field"));
+
+        $("[aria-expanded=true]").find("#remove_image_link").show();
       }
+
+      remove_column_image = function() {
+        /* get index of the active tab*/
+        index = $("[aria-selected=true]").data('index');
+  
+        /* if a saved column image alread exists in the page part */
+        column_image = $("[aria-expanded=true]").find(".column_image")
+        if ( column_image.length ) {
+
+          image_div = column_image_template.clone();
+          image_div.find('input:hidden:first').val("nil");
+
+          /* Replace "x" with correct ID in cloned template */
+          image_div.html(image_div.html().replace(/x/g,index));
+
+          image_div.insertAfter($("[aria-expanded=true]").find(".column_image_field"));
+          column_image.remove();
+        
+        /* els if it's a recently added image */
+        } else {  
+
+          $("#page_parts_attributes_"+index+"_column_image_id").val("nil");
+          $("[aria-expanded=true]").find(".js-column-image-template img").remove();
+
+        }
+
+        $("[aria-expanded=true]").find("#remove_image_link").hide();
+
+      }
+
+      $('#page_part_editors').on("click", "#remove_image_link", remove_column_image);
+      
     });
   </script>
 <% end %>

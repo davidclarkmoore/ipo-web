@@ -21,13 +21,9 @@
           = f.input :first_name, label: false, placeholder: 'First Name', required: true
           = f.input :last_name, label: false, placeholder: 'Last Name', required: true
           = f.input :email, label: false, placeholder: 'Enter email address...'
-        %div
           %span I'm interested in...
-          %select{class: 'no-select2'}
-            %option An internship
-            %option Winning the Lottery
-            %option World Peace
-            %option The Cure to Cancer
+          = f.input :interest_in, label: false, collection: ['Hosting Interns', 'Internship or Outreach', 'Joining Staff Team', 'Mentoring Students', 'Supporting this Ministry', 'Request a Speaker', 'Other']
+        %div
 
-        = f.submit "Go!", class: "button"
+        = f.submit "Go!", :disable_with => "Submitting...", class: "button"
         %p.msg

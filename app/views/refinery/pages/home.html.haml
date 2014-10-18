@@ -21,16 +21,17 @@
   %article.motto.box.box-light-yellow
     .container= raw @page.content_for :motto
 
-  %article#fields_and_areas.box.container
-    %ul.tab-list
-      %li.tab.active(data-box="#fields_of_study")=t(:fields_of_study)
-      %li.tab(data-box="#passion_areas")=t(:passion_areas)
+  - if Project.count == 0
+    %article#fields_and_areas.box.container
+      %ul.tab-list
+        %li.tab.active(data-box="#fields_of_study")=t(:fields_of_study)
+        %li.tab(data-box="#passion_areas")=t(:passion_areas)
 
-    #fields_of_study.tab-box
-      %ul= render partial: '/refinery/pages/field_box', collection: @fields_of_study, locals: { criteria: 'related_fields_of_study'}
+        #fields_of_study.tab-box
+          %ul= render partial: '/refinery/pages/field_box', collection: @fields_of_study, locals: { criteria: 'related_fields_of_study'}
 
-    #passion_areas.tab-box(style="display: none")
-      %ul= render partial: '/refinery/pages/field_box', collection: @student_passions, locals: { criteria: 'related_student_passions' }
+        #passion_areas.tab-box(style="display: none")
+          %ul= render partial: '/refinery/pages/field_box', collection: @student_passions, locals: { criteria: 'related_student_passions' }
 
   %article#search_projects.box.box-green
     .container

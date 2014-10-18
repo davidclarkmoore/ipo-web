@@ -340,7 +340,8 @@ nav.sub-menu {
 #reach-out {
   padding-left: 64px;
   @include adjust-font-size-to(20px, 1.5);
-  div { @include trailer(0.5, 20px); }
+  div { @include trailer(0.5, 20px);
+          @include leader(0.5, 20px);}
   form input[type=email], form input[type=text] {font-size: 1em;}
   input[name="email"] { width: 396px; }
   form {

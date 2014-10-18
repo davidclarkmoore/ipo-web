@@ -4,11 +4,11 @@
       %h1.center.subtitle= t(:global_customized_internships_in_your_field)
       .title-search
         = form_tag(IpoWeb::Application.routes.url_helpers.projects_path, method: "get") do
-          .c5
+          .c5.light-text
             %label= t(:search_your_field_of_study)
             = select_tag 'related_field_of_study', options_for_select(Project.related_fields_of_study.options), placeholder: t(:engineering_medicine_marketing)
 
-          .c4
+          .c4.light-text
             %label= t(:and_where_you_want_to_go)
             = select_tag "q[region_cont]", options_for_select(Project.region.options), placeholder: t(:region)
 

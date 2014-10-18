@@ -419,9 +419,25 @@ article {
   @include box-shadow (inset 0px 1px 2px $dark-grey);
 }
 
+
 /* ===========
    Form Styles
    =========== */
+
+.invalid {
+  input[type=text], input[type=email], input[type=password], input[type=url],
+  input[type=search], input[type=tel], input[type=number], textarea {
+    color: $grey !important;
+  }
+}
+
+.bkg-green, .bkg-blue, .bkg-grey {
+  input[type=text], input[type=email], input[type=password], input[type=url],
+  input[type=search], input[type=tel], input[type=number], textarea {
+    color: white;
+    &:focus { color: white !important; }
+  }
+}
 
 form {
 
@@ -439,26 +455,12 @@ form {
     border: 0em;
     font-family: $body-font-family;
 
-    &:focus {
-      background-color: rgba(0,0,0,0.1);
-      color: white;
-    }
+    &:focus { background-color: rgba(0,0,0,0.1); }
 
-    &::-webkit-input-placeholder {
-    color: $grey;
-    }
-
-    &::-moz-placeholder {
-      color: $grey;
-    }
-
-    &:-moz-placeholder {
-      color: $grey;
-    }
-
-    &:-ms-input-placeholder {
-      color: $grey;
-    }
+    &::-webkit-input-placeholder { color: $grey; }
+    &::-moz-placeholder { color: $grey; }
+    &:-moz-placeholder { color: $grey; }
+    &:-ms-input-placeholder { color: $grey; }
   }
 
 #q_name_or_address_cont:-webkit-input-placeholder {
@@ -498,7 +500,7 @@ form {
     font-size: 0.75em;
     font-style: italic;
     color: #e46b66;
-    margin-top: -35px;
+    margin-top: 10px;
     display: block;
     padding-bottom: 5px;
   }

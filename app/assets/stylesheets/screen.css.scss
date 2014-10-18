@@ -584,7 +584,7 @@ fieldset:last-child {
   @include adjust-font-size-to(55px, 4);
 }
 
-.cover-image img { max-width: 100%; }
+.cover-image img { min-width: 100%; }
 
 /* overflow-x chrome fix */
 .select2-offscreen { display: none!important; }

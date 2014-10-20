@@ -29,6 +29,7 @@ class StudentsController < ApplicationController
       end
       render json: sf_student_app
     rescue => e
+      Rails.logger.error "Error updating Student Application from Salesforce: #{e.message}"
       render json: { error: e.message }, status: 400
     end
   end

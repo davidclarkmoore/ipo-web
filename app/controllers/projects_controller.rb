@@ -52,6 +52,7 @@ class ProjectsController < ApplicationController
       end      
       render json: sf_project
     rescue => e
+      Rails.logger.error "Error updating Project from Salesforce: #{e.message}"
       render json: { error: e.message }, status: 400
     end
   end

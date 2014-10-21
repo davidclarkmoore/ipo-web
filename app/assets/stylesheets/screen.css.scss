@@ -119,6 +119,10 @@ input:-webkit-autofill {
    Main Styles
    =========== */
 
+.topbuffer {
+  margin-top: 3em;
+}
+
 hr {
   margin-bottom: 2em;
 }
@@ -340,7 +344,8 @@ nav.sub-menu {
 #reach-out {
   padding-left: 64px;
   @include adjust-font-size-to(20px, 1.5);
-  div { @include trailer(0.5, 20px); }
+  div { @include trailer(0.5, 20px);
+          @include leader(0.5, 20px);}
   form input[type=email], form input[type=text] {font-size: 1em;}
   input[name="email"] { width: 396px; }
   form {
@@ -390,7 +395,7 @@ footer {
   list-style: none;
 }
 
-.footer-menu li:hover {
+.footer-menu li a:hover {
   text-decoration: underline;
 }
 
@@ -500,9 +505,11 @@ form {
     font-size: 0.75em;
     font-style: italic;
     color: #e46b66;
-    margin-top: 10px;
+    margin-top: 5px;
     display: block;
-    padding-bottom: 5px;
+    padding: 5px;
+    position: absolute;
+    background-color: white;
   }
 
   .radio_buttons span.error { margin-top: 0px; }

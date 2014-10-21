@@ -154,8 +154,8 @@ class Project < ActiveRecord::Base
   def self.top_ten(array_name)
     items = Project.connection.select_all(
       "select unnest(#{array_name.to_s}) as array_name, 
-      count(*) from Projects group by array_name order by count
-      DESC limit 10")
+      count(*) from Projects where status = '#{Project::APPROVED}' 
+      group by array_name order by count DESC limit 10")
     items.map{ |item| item["array_name"] }
   end
 

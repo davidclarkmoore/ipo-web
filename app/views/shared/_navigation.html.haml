@@ -1,11 +1,7 @@
 %nav.main
-  - menu_pages.each do |page|
-    %span.link.heading
-      = link_to page.custom_slug_or_title, page.nested_path
-  //for Hamburger button when nav bar collapses 
-
+  = NavigationMenu.new(refinery_menu_pages, self).to_html
+  
   %span
-
   = form_tag '/search', :method => :get do
     = search_field_tag :search, @search, :autocomplete => false, :value => "Search + Enter".html_safe
     = submit_tag 'Search', :class => 'button button-green', :id => 'submit' 

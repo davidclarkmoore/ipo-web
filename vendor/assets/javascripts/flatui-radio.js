@@ -122,11 +122,18 @@
  /* RADIO DATA-API
   * =============== */
 
-  $(document).on('click.radio.data-api', '[data-toggle^=radio], .radio', function (e) {
+  $(document).on('click.radio.data-api', '.radio', function (e) {
     var $radio = $(e.target);
     e && e.preventDefault() && e.stopPropagation();
     if (!$radio.hasClass('radio')) $radio = $radio.closest('.radio');
     $radio.find(':radio').radio('toggle');
+  });
+
+  //hack to make radio buttons selected with tabbing send info to server
+  $(document).on('click.input', '[data-toggle^=radio]', function (e) {
+    e.stopPropagation();
+    $(this).prop("checked",!$(this).is(':checked')); 
+    $(this).radio('toggle');
   });
   
   $(function () {

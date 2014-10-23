@@ -30,7 +30,7 @@ jQuery.validator.prototype.elementValue = (element) ->
   return val.replace(/\r/g, "")  if typeof val is "string"
   val
 
-#fix - select2 and button_group gain focus after failed validation
+fix - select2 and button_group gain focus after failed validation
 jQuery.validator.prototype.focusInvalid = ->
   if @settings.focusInvalid
     try

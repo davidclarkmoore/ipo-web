@@ -93,7 +93,7 @@
  /* CHECKBOX DATA-API
   * =============== */
 
-	$(document).on('click.checkbox.data-api', '[data-toggle^=checkbox], .checkbox', function (e) {
+	$(document).on('click.checkbox.data-api', '.checkbox', function (e) {
 	  var $checkbox = $(e.target);
 		if (e.target.tagName != "A") {			
 			e && e.preventDefault() && e.stopPropagation();
@@ -101,6 +101,13 @@
 			$checkbox.find(':checkbox').checkbox('toggle');
 		}
 	});
+
+  //hack to make checkboxes selected with tabbing send info to server
+  $(document).on('click.input', '[data-toggle^=checkbox]', function (e) {
+    e.stopPropagation();
+    $(this).prop("checked",!$(this).is(':checked')); 
+    $(this).checkbox('toggle');
+  });
 	
 	$(function () {
 		$('[data-toggle="checkbox"]').each(function () {

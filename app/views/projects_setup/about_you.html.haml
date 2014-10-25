@@ -30,8 +30,10 @@
           = hidden_field_tag 'is_new_organization', false
 
           %ul.tab-list.small
-            %li.tab.active(data-box="#existing-organization")= t(:choose_existing)
-            %li.tab(data-box="#new-organization")= t(:new_organization)
+            %li.tab.active(data-box="#existing-organization")
+              %a(href='#organizations')= t(:choose_existing)
+            %li.tab(data-box="#new-organization")
+              %a(href='#organizations')= t(:new_organization)
 
           #existing-organization.tab-box.w-padding
             = f.association :organization, include_blank: true, label: t(:select_organization)

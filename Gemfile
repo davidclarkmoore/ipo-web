@@ -35,7 +35,7 @@ gem 'capistrano' # Deploy with Capistrano
 gem 'capistrano-sidekiq'
 
 gem 'http_accept_language'
-gem 'select2-rails'
+gem 'select2-rails', '~> 3.5.9.1'
 gem 'font-awesome-rails'
 gem 'country_select'
 gem 'refinerycms', '~> 2.1.0'

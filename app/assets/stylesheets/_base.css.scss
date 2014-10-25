@@ -209,3 +209,10 @@ margin-right: .2em;
   ms-transition: $transition-time;
   transition: $transition-time;
 }
+
+@mixin input_focus($color) {
+  border: 1px solid $color;
+    outline: none;
+    -webkit-box-shadow: 0 0 10px $color;
+            box-shadow: 0 0 10px $color;
+}

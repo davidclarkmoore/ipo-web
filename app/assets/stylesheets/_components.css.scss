@@ -1,4 +1,9 @@
-a { color: $orange; }
+a { 
+  color: $orange; 
+  &:focus {
+    @include input_focus($focus_color)
+  }
+}
 .box-blue a, .bkg-blue a { color: #11508E; }
 
 // ============
@@ -26,6 +31,9 @@ a.button { text-decoration: none; }
   font-size: 1em;
   outline: none;
   &.active { font-weight: 400; }
+  &:focus {
+    @include input_focus($focus_color);
+  }
 }
 
 .button.small { 
@@ -220,6 +228,11 @@ input[type=submit] {
     border-color: #80c8d4; // TODO: Extract to variable.
   }
 
+  a {
+    text-decoration: none;
+    color: $dark-grey;
+  }
+
 }
 
 li.tab {
@@ -291,6 +304,10 @@ li.tab {
   span.error { display: block; }
   .button { outline: none; }
 }
+
+//avoid tabindex
+select.button_group { display: none; }
+
 .button_group {
   @extend .button-group;
   font-size: 1.1em;
@@ -405,6 +422,12 @@ li.tab {
   .select2-highlighted { background: $light-grey; }
 }
 
+// focus glow
+.select2-container-active .select2-choice,
+.select2-container-active .select2-choices {
+    @include input_focus($focus_color);
+}
+
 // ===============
 // Checkbox Styles
 // ===============
@@ -479,8 +502,15 @@ content: "\e033";
 }
 .checkbox input,
 .radio input {
-  outline: none !important;
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  outline: 0!important;
+  opacity: 0;
 }
 .checkbox .icons,
 .radio .icons {
@@ -610,6 +640,12 @@ content: "\e033";
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: 10px;
+}
+
+// focus glow
+.checkbox.focusin, .radio.focusin {
+    margin: 0.5em 0;
+    @include input_focus($focus_color);
 }
 
 

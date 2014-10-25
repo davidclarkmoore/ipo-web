@@ -1,6 +1,5 @@
-- if page && page.has_nested_pages?
-  %nav{id: 'sub-menu-{page.id}', class: 'sub-menu clr'}
+- if page
+  %nav{id: "sub-menu-#{page.id}", class: 'sub-menu clr'}
     .container
       .sub-nav-wrapper
-        - sub_menu_pages(page).each do |page|
-          %span.link.heading= link_to page.menu_title, page.slug
+        = NavigationMenu.new(refinery_menu_pages, self).render_submenu

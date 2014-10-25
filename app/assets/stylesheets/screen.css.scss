@@ -342,6 +342,10 @@ nav.sub-menu {
       background-color: $green;
     }
   }
+
+  .selected a {
+    background-color: $green;
+  }
 }
 
 #reach-out {

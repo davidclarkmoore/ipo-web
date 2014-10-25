@@ -600,7 +600,7 @@ fieldset:last-child {
   @include adjust-font-size-to(55px, 4);
 }
 
-.cover-image img { min-width: 100%; }
+.cover-image img { min-width: 100%; max-width: 100%; }
 
 // DO NOT MOVE THIS IMPORT TO THE TOP. (breaks styles)
 @import "side_nav";

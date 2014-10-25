@@ -191,6 +191,7 @@ header {
   background-color: #fff;
   color: white;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow: auto;
 
   h1, h2, h3, h4, h5, h6 {
@@ -229,6 +230,7 @@ header {
 
 h1.subtitle {
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: white;
   text-shadow: 1px 1px rgba(0, 0, 0, .10);
   font-weight: 300;
@@ -306,6 +308,7 @@ nav.sub-menu {
   background-color: $light-green;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-transform: uppercase;
 
   .container {

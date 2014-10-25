@@ -9,6 +9,7 @@
 
   color: white;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   .c5, .c4 {
     @include leader(0.5);

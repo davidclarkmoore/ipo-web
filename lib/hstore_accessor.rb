@@ -1,5 +1,4 @@
 # include from an initializer
-
 module HstoreAccessor
   def self.included(base)
     base.extend(ClassMethods)

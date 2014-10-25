@@ -94,6 +94,8 @@ class Project < ActiveRecord::Base
     define_method "#{f}_with_deserialize" do
       value = send("#{f}_without_deserialize")
       value = JSON.parse(send("#{f}_without_deserialize")) if value && value.is_a?(String)
+      return value # DO NOT remove this line. Must ensure value 
+                   # is always returned regardless if "if" statement runs
     end
     alias_method_chain f, :deserialize
   end

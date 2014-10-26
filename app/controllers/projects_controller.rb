@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
 
   def show
     @p = Project.find(params[:id])
+    @o = Organization.find(@p.organization_id)
     @project_media = ProjectMedia.where(params[:project])
     @host = FieldHost.find(Project.find(params[:id]).field_host_id)
   end
@@ -43,13 +44,13 @@ class ProjectsController < ApplicationController
   def sync_with_sf
     begin
       sf_project = Project.sf.find_by_id(params[:sf_object_id])
-      sf_field_host = FieldHost.sf.find_by_id(sf_project.FieldHost__c) 
+      sf_field_host = FieldHost.sf.find_by_id(sf_project.FieldHost__c)
       sf_organization = Organization.sf.find_by_id(sf_project.Organization__c)
       ActiveRecord::Base.transaction do
         sf_project.save_to_rails!
         sf_field_host.save_to_rails! if sf_field_host
         sf_organization.save_to_rails! if sf_organization
-      end      
+      end
       render json: sf_project
     rescue => e
       Rails.logger.error "Error updating Project from Salesforce: #{e.message}"

@@ -14,6 +14,10 @@
         %a{:href => "#", :data => {:slide => {:index => i}}}
           %img{:src => m.image.url(:thumb)}
 
+    %h3= t(:sponsoring_organization)
+    %p= @o.name
+    %p= @o.organization_type
+
     %h3 Overview
 
     %label= t(:description)

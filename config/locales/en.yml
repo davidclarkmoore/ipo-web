@@ -218,7 +218,7 @@ en:
   select_required_languages_students: "Select Required Languages Students Must Speak"
   session: "Session"
   session_dates: "Session Dates"
-  session_dates_start: "Start: %{start_date}" 
+  session_dates_start: "Start: %{start_date}"
   session_dates_end: "End: %{end_date}"
   session_id: "Session ID"
   session_timeframe: "Session Timeframe"
@@ -252,6 +252,7 @@ en:
   students_approved: "Students Approved"
   submission_confirmation: "Wahoo! You're all done!"
   suplemental_information_form: "*Supplemental Information Form*"
+  sponsoring_organization: "Sponsoring Organization"
 
   tag_all_related_passions: "Tag All Related Student Passions"
   tag_all_related_fields_of_study: "Tag all related fields of study that would benefit this project"

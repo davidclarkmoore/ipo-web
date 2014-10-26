@@ -31,7 +31,7 @@ IpoWeb::Application.routes.draw do
   get '/students_setup/project_sessions/:project' => 'students_setup#project_sessions'
   get '/projects_setup/application_deadline/:id' => 'projects_setup#application_deadline'
 
-  resources :students 
+  resources :students
   post '/students/sync/:sf_object_id', to: 'students#sync_with_sf'
   post 'apply' => 'students#apply', :as => :apply
 
@@ -41,6 +41,8 @@ IpoWeb::Application.routes.draw do
 
   put "dashboards/update_login" => "dashboards#update_login"
 
+  resources :organizations
+  
   resources :donations, path: "/donations"
   get '/donate' => 'donations#new'
   get '/donate_to_student/:student_id' => 'donations#new', :as => :donate_to_student

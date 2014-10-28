@@ -16,4 +16,4 @@
     - @projects.with_details.each do |project,details|
       .result
         = link_to project.name, project_path(project)
-        %p=h ( details[:highlight][:description] || project.description).html_safe
+        %p= raw (details[:highlight][:description] || project.description )

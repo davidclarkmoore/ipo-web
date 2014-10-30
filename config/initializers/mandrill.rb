@@ -1,2 +1,2 @@
 require 'mandrill'
-mandrill = Mandrill::API.new 'eMn2yB0vVFuYM-snoJuboQ'
+mandrill = Mandrill::API.new MANDRILL_CONFIG[:api_key] if Rails.env.production?

@@ -21,7 +21,7 @@
   %article.motto.box.box-light-yellow
     .container= raw @page.content_for :motto
 
-  - if Project.count == 0
+  - if Project.approved.count > 0
     %article#fields_and_areas.box.container
       %ul.tab-list
         %li.tab.active(data-box="#fields_of_study")=t(:fields_of_study)

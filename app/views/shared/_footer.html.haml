@@ -11,7 +11,7 @@
 
       .footer-col
         %h3 resources
-        = footer_menu('resources').to_html
+        = footer_menu('resources').to_html    
 
     #reach-out.c6.omega
       = simple_form_for :apply, url: '/apply', method: 'post', remote: true do |f|
@@ -27,3 +27,6 @@
 
         = f.submit "Go!", :disable_with => "Submitting...", class: "button"
         %p.msg
+
+    #footer-logo.c12.omega
+      = image_tag "ywam_initiative.png"

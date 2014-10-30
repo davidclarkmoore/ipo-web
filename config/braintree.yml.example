@@ -1,0 +1,5 @@
+environment: 'sandbox'
+merchant_id: id
+public_key: public key
+private_key: private key
+client_side_encryption_key: cse key

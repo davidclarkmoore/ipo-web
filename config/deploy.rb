@@ -13,6 +13,8 @@ load "config/recipes/check"
 load "config/recipes/redis"
 load "config/recipes/elasticsearch"
 load "config/recipes/imagemagick"
+load "config/recipes/mandrill"
+load "config/recipes/braintree"
 load "config/recipes/seed.rb" #refinery pages
 
 server "162.209.8.93", :web, :app, :db, primary: true

@@ -21,6 +21,7 @@ database.yml
 .DS_Store
 config/sf_api.yml
 config/mandrill.yml
+config/braintree.yml
 # Rails
 .bundle
 db/*.sqlite3

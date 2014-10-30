@@ -1,7 +1,7 @@
-set_default(:mandrill_api_key, Capistrano::CLI.ui.ask "Mandril API Key: ")
+set_default(:mandrill_api_key)    { Capistrano::CLI.ui.ask "Mandril API Key: " }
 set_default(:mandrill_user_name)  { Capistrano::CLI.ui.ask "Mandrill Username: " }
-set_default(:mandrill_password)       { Capistrano::CLI.password_prompt "Mandrill Password: " }
-set_default(:mandrill_domain) { Capistrano::CLI.ui.ask "Domain for emails: " }
+set_default(:mandrill_password)   { Capistrano::CLI.password_prompt "Mandrill Password: " }
+set_default(:mandrill_domain)     { Capistrano::CLI.ui.ask "Domain for emails: " }
 
 namespace :mandrill do
   desc "Generate the mandrill.yml configuration file."

@@ -396,12 +396,7 @@ footer li {
   @include nth-omega(3n);
 }
 
-footer {
-  margin-top: 2.5em;
-}
-
 .footer-menu ul { padding: 0; }
-
 .footer-menu li {
   margin-left: 0em;
   list-style: none;

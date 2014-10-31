@@ -382,11 +382,9 @@ nav.sub-menu {
 
 }
 
-#footer-logo {
-  margin-top: -160px;
-  margin-bottom: 60px;
-}
+#footer-logo { margin: 4em 0em;  }
 
+footer { position: relative; }
 footer li {
   @include adjust-font-size-to(14px, 1);
 }

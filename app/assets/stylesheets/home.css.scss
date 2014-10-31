@@ -43,6 +43,13 @@
 
 }
 
+.donate-btn {
+  @include adjust-font-size-to(25px);
+  text-align: center;
+  margin: 2em 25%;
+  width: 50%;
+}
+
 .motto {
   border-top: 8px solid #dcdcdc; // TODO: Make responsive?
   p {

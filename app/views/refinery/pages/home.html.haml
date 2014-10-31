@@ -36,7 +36,7 @@
   %article#search_projects.box.box-green
     .container
       = raw @page.content_for :search
-      = link_to IpoWeb::Application.routes.url_helpers.projects_path, class: "button button-orange", id: "search-projects" do
+      = link_to main_app.projects_path, class: "button button-orange", id: "search-projects" do
         = image_sprite :search
         = t(:search_projects)
 
@@ -61,11 +61,15 @@
         = raw @page.content_for :story4
 
   %article#pre-footer.box.container{style: "display: none;"}
-    .c4
-      = raw @page.content_for :share
+    .c4= raw @page.content_for :share
+    .c4= raw @page.content_for :events
+    .c4.omega= raw @page.content_for :support
 
-    .c4
-      = raw @page.content_for :events
-
-    .c4.omega
-      = raw @page.content_for :support
+  %article.box
+    %h2.center 
+      100% of your donation will be spent on developing Converge. 
+      %br/
+      %br/
+      We guarantee it!
+    = link_to main_app.new_donation_path, class: "button button-green donate-btn" do
+      = t(:donate)

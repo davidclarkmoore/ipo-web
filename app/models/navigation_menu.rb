@@ -25,8 +25,14 @@ class NavigationMenu < Refinery::Pages::MenuPresenter
 
   def render_submenu_items(menu_items)
     if menu_items.present?
-      menu_items.each_with_index.inject(ActiveSupport::SafeBuffer.new) do |buffer, (item, index)|
-        buffer << render_menu_item(item, index)
+      content_tag(:nav, class: 'sub-menu clr') do
+        content_tag(:div, class: 'container') do
+          content_tag(:div, class: 'sub-nav-wrapper') do
+            menu_items.each_with_index.inject(ActiveSupport::SafeBuffer.new) do |buffer, (item, index)|
+              buffer << render_menu_item(item, index)
+            end
+          end
+        end
       end
     end
   end

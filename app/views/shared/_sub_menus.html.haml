@@ -1,5 +1,2 @@
 - if page
-  %nav{id: "sub-menu-#{page.id}", class: 'sub-menu clr'}
-    .container
-      .sub-nav-wrapper
-        = NavigationMenu.new(refinery_menu_pages, self).render_submenu
+  = NavigationMenu.new(refinery_menu_pages, self).render_submenu

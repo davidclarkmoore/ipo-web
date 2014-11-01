@@ -26,6 +26,7 @@ config/braintree.yml
 .bundle
 db/*.sqlite3
 db/*.sqlite3-journal
+db/structure.sql
 *.log
 tmp
 tmp/**/*
@@ -101,4 +102,3 @@ capybara-*html
 
 # vendor/extensions dummy applications.
 vendor/extensions/**/spec/dummy
-

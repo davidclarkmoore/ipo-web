@@ -8,3 +8,15 @@
 
     %label= "Description"
     %p= @o.description
+
+    %h3= @o.name + "'s Projects"
+    - @projects.each do |p|
+      .project.c3.project-result{'data' => {'project' => p.id}}
+        = image_tag p.project_media.first.image_url(:medium) unless p.project_media.empty?
+        .project-description
+          %h3= p.name
+          %p= truncate(p.description, :length => 50, :omission => ' ...')
+          %p= p.region_text
+          %p.team_mode= p.team_mode ? "team" : "individual"
+          / %p= p.get_pretty_properties(p.related_fields_of_study, "related_fields_of_study")
+          / %p= p.get_pretty_properties(p.related_student_passions, "related_student_passions")

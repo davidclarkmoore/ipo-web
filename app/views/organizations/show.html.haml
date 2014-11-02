@@ -1,17 +1,19 @@
 
 .container.buffer
-  .c12
+  .c8
     %label= "Organization Name"
     %h1= @o.name
+    %p= "Created " + @numberofprojects.to_s + " projects" + " · " + "Joined Converge "+ @joineddaysago.to_s + " days ago"
     %label= "Type"
     %p= @o.organization_type
+    %h2= @o.byline
 
     %label= "Description"
     %p= @o.description
 
     %h3= @o.name + "'s Projects"
     - @projects.each do |p|
-      .project.c3.project-result{'data' => {'project' => p.id}}
+      .project.c4.project-result{'data' => {'project' => p.id}}
         = image_tag p.project_media.first.image_url(:medium) unless p.project_media.empty?
         .project-description
           %h3= p.name
@@ -20,3 +22,5 @@
           %p.team_mode= p.team_mode ? "team" : "individual"
           / %p= p.get_pretty_properties(p.related_fields_of_study, "related_fields_of_study")
           / %p= p.get_pretty_properties(p.related_student_passions, "related_student_passions")
+
+    .c4

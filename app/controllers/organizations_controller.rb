@@ -9,6 +9,9 @@ class OrganizationsController < ApplicationController
 
     @projects = Project.where organization_id: @o.id
 
+    @joineddaysago = (DateTime.now - (DateTime.now-20)).to_i
+    @numberofprojects = Project.where(organization_id: @o.id).count
+
   end
 
   def new
@@ -34,7 +37,7 @@ class OrganizationsController < ApplicationController
 
   	org = Organization.find params[:id]
 
-		if org.update_attributes params[:post]
+		if org.update_attributes params[:organization]
 		redirect_to organization_path
 		else
 		redirect_to :organizations

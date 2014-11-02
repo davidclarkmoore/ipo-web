@@ -49,3 +49,8 @@ p {
   @include adjust-font-size-to(16px);
   @include trailer();
 }
+
+.emphasize {
+  @include adjust-font-size-to(55px);
+  @include trailer(1, 55px);
+}

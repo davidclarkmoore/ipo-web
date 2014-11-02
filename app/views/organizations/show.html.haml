@@ -1,6 +1,6 @@
 
 .container.buffer
-  .c8
+  .c8.alpha
     %label= "Organization Name"
     %h1= @o.name
     %p= "Created " + @numberofprojects.to_s + " projects" + " · " + "Joined Converge "+ @joineddaysago.to_s + " days ago"
@@ -23,4 +23,8 @@
           / %p= p.get_pretty_properties(p.related_fields_of_study, "related_fields_of_study")
           / %p= p.get_pretty_properties(p.related_student_passions, "related_student_passions")
 
-    .c4
+  .c3.pre1.omega
+
+    .card
+      %h1.emphasize= @numberofprojects.to_s
+      %label= "Projects"

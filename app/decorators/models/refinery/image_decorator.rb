@@ -1,4 +1,3 @@
 Refinery::Image.class_eval do
-  validates_with Validators::ImageResolutionValidator
-  
+  # validates_with Validators::ImageResolutionValidator  
 end

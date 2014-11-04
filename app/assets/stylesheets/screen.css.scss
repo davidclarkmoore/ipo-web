@@ -11,7 +11,6 @@
 @import "mixins";
 @import "tables";
 @import "button-dropdowns";
-// @import "button-groups";
 // ====================================================
 
 // =========================
@@ -50,7 +49,23 @@
    Semantic Columns
    ================ */
 
-  .omega { @include omega; }
+.c1, .c2, .c3, .c4, .c5, .c6, .c7,
+.c8, .c9, .c10, .c11, .c12 {
+  &.omega { @include omega; }
+}
+
+.pre1 { @include pre(1); }
+.post1 { @include post(1); }
+.post4 { @include post(4); }
+.post5 { @include post(4); }
+.post8 { @include post(8); }
+
+.omega { @include omega; }
+
+
+/* ===========
+   Mobile Baby!
+   =========== */
 
 @media (max-width: 700px) {
 
@@ -80,32 +95,13 @@
   .c12   { @include span-columns(12); }
 }
 
-.c1, .c2, .c3, .c4, .c5, .c6, .c7,
-.c8, .c9, .c10, .c11, .c12 {
-  &.omega { @include omega; }
-}
-
-.pre1 { @include pre(1); }
-.post1 { @include post(1); }
-.post4 { @include post(4); }
-.post5 { @include post(4); }
-.post8 { @include post(8); }
-
-
-/* ===========
-   Mobile Baby!
-   =========== */
-
-
-
 
 /* ===========
    Browser Behavior for Auto-Fill on Forms
    =========== */
 
 
-// Make auto-fill wsdfhite, removing webkit yellow ;)
-
+// Make auto-fill white, removing webkit yellow ;)
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -248,11 +244,8 @@ nav.main {
     line-height: inherit;
     text-align: center;
     padding: 0;
-    // padding-right: 4em;
-
     font-weight: bold;
     &:last-child { padding-right: 0;}
-    // font-weight: 300;
   }
 
   .link a {
@@ -321,14 +314,6 @@ nav.sub-menu {
     padding-top: .5em;
     padding-bottom: .5em;
     overflow: auto;
-    // background-image: -webkit-gradient(
-    //   linear,
-    //   right top, right bottom,
-    //   from(rgba(255, 255, 255, 1)),
-    //   to(rgba(255, 255, 255, 0))
-    //   );
-    //   -webkit-background-clip: text;
-    //   -webkit-text-fill-color: transparent;
   }
 
   a {
@@ -349,8 +334,10 @@ nav.sub-menu {
 #reach-out {
   padding-left: 64px;
   @include adjust-font-size-to(20px, 1.5);
-  div { @include trailer(0.5, 20px);
-          @include leader(0.5, 20px);}
+  div { 
+    @include trailer(0.5, 20px);
+    @include leader(0.5, 20px);
+  }
   form input[type=email], form input[type=text] {font-size: 1em;}
   input[name="email"] { width: 396px; }
   form {
@@ -374,9 +361,7 @@ nav.sub-menu {
 
 @media (max-width: 700px) {
 
-  #reach-out {
-  padding-left: 0px;
-  }
+  #reach-out { padding-left: 0px; }
 
 }
 
@@ -580,6 +565,7 @@ fieldset:last-child {
 }
 
 /*== Refinery Page Flow == */
+
 .image-column { text-align: right; }
 .image-column img { max-width: 100%; }
 .text-column { padding: 2em; padding-top: 0px; }

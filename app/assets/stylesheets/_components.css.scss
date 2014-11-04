@@ -117,19 +117,14 @@ a.button { text-decoration: none; }
 
 .box-green, .box-blue, .box-grey, .bkg-green, .bkg-blue, .bkg-grey {
   label { color: white; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-}
+  h1, h2, h3, h4, p { color: white; font-weight: 600; }  
+  p { color: white; }
+  /*p { font-weight: 600; }*/
 
-.box-blue, .box-grey {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: white;
-  h1, h2, h3, h4, p { color: white; }
-  p { font-weight: 600; }
-}
 
-
-.box-blue {
-  h1, h2, h3, h4, p { font-weight: 600; }
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;  
 }
 
 .box-light-yellow {
@@ -146,9 +141,6 @@ a.button { text-decoration: none; }
     color: white;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  p {
-    color: rgba(0, 0, 0, .8);
   }
 }
 

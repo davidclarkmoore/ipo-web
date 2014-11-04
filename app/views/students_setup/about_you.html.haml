@@ -1,4 +1,4 @@
-.container
+%article.container
   = render 'header', active_step: params[:id]
 
   = simple_form_for @student_application, url: wizard_path, method: :put, html: {id: "new_student"} do |f|
@@ -27,12 +27,14 @@
             = f_student.fields_for :login, @student_application.student_login, validate: true do |f_login|
               = f_login.input :email
               = f_login.input :password
-              %p.register-description= t(:we_setup_an_account_for_you_so_you_can_check_your_application_status)
+              - # Out of place. Find better place for this
+              - # %p.register-description= t(:we_setup_an_account_for_you_so_you_can_check_your_application_status)
               = f_login.input :password_confirmation, label: t(:confirm_password)
+              = f_student.input :marital_status, as: :select
 
           = f_student.input :birthday, as: :date, start_year: Date.today.year - 50, label: t(:date_of_birth), order: [:year, :month, :day]
           = f_student.input :gender, collection: [:female, :male], as: :radio_buttons, input_html: {data: { toggle: "radio"}}
-          = f_student.input :marital_status, as: :select
+          
 
       %fieldset
         .student-fields

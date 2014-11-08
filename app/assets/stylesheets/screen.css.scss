@@ -169,14 +169,18 @@ body {
 }
 
 .header-bg, .header-bg-large {
- // background: url(header-bg.png) no-repeat;
-
   border-bottom: 3px solid $extra-light-grey;
 }
 
 .header-bg-large {
-  background: url(header-bg-large.jpg) no-repeat;
-  background-size: cover;
+  position: relative;
+  video {    
+    min-width: 100%;
+    min-height: 730px;
+    z-index: -1;
+    top: 0;
+    position: absolute;    
+  }
   min-height: 730px;
 }
 

@@ -73,7 +73,6 @@ module SFRails
       end
 
       def sf
-        return @materialized if @materialized.present?
         @materialized = SFRails.connection.materialize(sf_model_name)
         @materialized.send(:include, Adapter)
         @materialized.rails_class = self
